@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Beta signup
+ *
+ */
+#}
+<div class="beta-signup">
+  <div class="title">
+    Join us
+  </div>
+  <div class="content">
+    {% if not logged_in %}
+    {{ content.signup_message }}
+    {{ elements.name }}
+    {{ elements.email_address }}
+    {{ elements.your_organization }}
+    {{ elements.is_staff }}
+    {{ elements.message }}
+    {{ elements.submit }}
+    {{ elements.form_build_id }}
+    {{ elements.form_token }}
+    {{ elements.form_id }}
+    {% else %}
+    {{ content.join_message }}
+    {% endif %}
+  </div>
+</div>

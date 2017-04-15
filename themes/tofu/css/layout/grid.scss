@@ -1,0 +1,114 @@
+/**
+ * @file
+ * The grid function.
+ *
+ * Uses mixin from http://thesassway.com/intermediate/simple-grid-mixins.
+ */
+
+$column-align: top;
+$column-padding: 1em;
+$column-wrapper-margin: 1em;
+
+.column-wrapper {
+  font-size: 0;
+  margin-top: $column-wrapper-margin;
+  margin-bottom: $column-wrapper-margin;
+}
+
+@mixin column($col, $sum) {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: $font-size;
+  @media only screen and (min-width: $medium-min-width) {
+    width: percentage($col/$sum);
+    vertical-align: $column-align;
+    padding-left: $column-padding;
+    padding-right: $column-padding;
+  }
+}
+
+.column-1-15 {
+  @include column(1, 15);
+}
+
+.column-2-15 {
+  @include column(2, 15);
+}
+
+.column-3-15 {
+  @include column(3, 15);
+}
+
+.column-4-15 {
+  @include column(4, 15);
+}
+
+.column-5-15 {
+  @include column(5, 15);
+}
+
+.column-6-15 {
+  @include column(6, 15);
+}
+
+.column-7-15 {
+  @include column(7, 15);
+}
+
+.column-8-15 {
+  @include column(8, 15);
+}
+
+.column-9-15 {
+  @include column(9, 15);
+}
+
+.column-10-15 {
+  @include column(10, 15);
+}
+
+.column-11-15 {
+  @include column(11, 15);
+}
+
+.column-12-15 {
+  @include column(12, 15);
+}
+
+.column-13-15 {
+  @include column(13, 15);
+}
+
+.column-14-15 {
+  @include column(14, 15);
+}
+
+.column-15-15 {
+  @include column(15, 15);
+}
+
+.first-column {
+  @media only screen and (min-width: $medium-min-width) {
+    padding-left: 0;
+    padding-right: $column-padding;
+  }
+}
+
+.last-column {
+  @media only screen and (min-width: $medium-min-width) {
+    padding-left: $column-padding;
+    padding-right: 0;
+  }
+}
+
+.no-spacing {
+  @media only screen and (min-width: $medium-min-width) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.vertical-align {
+  margin-top: 0.8em;
+}

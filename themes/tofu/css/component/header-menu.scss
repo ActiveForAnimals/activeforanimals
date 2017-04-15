@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Header menu
+ */
+
+$header-menu-large-width: 70%;
+$header-menu-height: 6em;
+
+.header-menu {
+  @media only screen and (min-width: $large-min-width) {
+    width: $header-menu-large-width;
+    margin: auto;
+  }
+  background-color: $white1;
+  height: $header-menu-height;
+}
+
+.header-menu .view.element-logo {
+  width: auto;
+  margin-top: 0.5em;
+}
+
+.header-menu .view.element-guide,
+.header-menu .view.element-organizations,
+.header-menu .view.element-help,
+.header-menu .view.element-profile_link,
+.header-menu .view.element-logout_link {
+  margin-top: 1.5em;
+  margin-left: 0.2em;
+  width: auto;
+  float: left;
+  text-transform: uppercase;
+}
+
+.header-menu .form.element-name,
+.header-menu .form.element-pass,
+.header-menu .form.element-submit {
+  margin-top: 1em;
+}
+
+.header-menu .spacer {
+  width: auto;
+  float: left;
+  border-right: 2px solid #d1d2d0;
+  margin-top: 1.9em;
+}

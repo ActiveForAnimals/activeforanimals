@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {}
+name: logo_200x200
+label: 'Logo thumbnail (200x200)'
+effects:
+  logo_200x200:
+    uuid: logo_200x200
+    id: image_scale
+    weight: 2
+    data:
+      width: 200
+      height: 200
+upscale: false

@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Invitations to join organizations and groups.
+ *
+ */
+#}
+<div class="invitations">
+{% for invitation in content.invitations %}
+  <div class="section">
+    <div class="content">
+      {{ invitation }}
+      </form>
+    </div>
+  </div>
+{% endfor %}
+</div>

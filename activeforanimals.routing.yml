@@ -1,0 +1,75 @@
+# Front page
+activeforanimals.frontpage:
+  path: '/front'
+  defaults:
+    _controller: '\Drupal\activeforanimals\Controller\FrontPageController::content'
+    _title: Active for Animals
+  requirements:
+    _permission: 'access content'
+
+# Organizations overview
+activeforanimals.organization.overview:
+  path: '/o'
+  defaults:
+    _entity_list: 'organization'
+    _title: Organizations
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+# Add organization.
+activeforanimals.organization.create:
+  path: '/create-organization'
+  defaults:
+    _entity_form: 'organization.add'
+    _title: Create organization
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+# Add group.
+activeforanimals.group.create:
+  path: '/create-group'
+  defaults:
+    _entity_form: 'group.add'
+    _title: Create group
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
+
+# Add import.
+activeforanimals.import:
+  path: '/import/{import_type}'
+  defaults:
+    _entity_form: 'import.add'
+    _title: Import events
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
+  options:
+    parameters:
+      import_type:
+        type: entity:import_type
+
+# Add event.
+activeforanimals.event.create:
+  path: '/create-event'
+  defaults:
+    _entity_form: 'event.add'
+    _title: Create event
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
+
+# Result type overview.
+activeforanimals.result_type.overview:
+  path: '/result-types'
+  defaults:
+    _entity_list: 'result_type'
+    _title: Result types
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
+
+# Add result type.
+activeforanimals.result_type.create:
+  path: '/result-types/create'
+  defaults:
+    _entity_form: 'result_type.add'
+    _title: Create result type
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'

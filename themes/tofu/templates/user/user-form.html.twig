@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * The user form.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Account'|t }}
+    </div>
+    <div class="content">
+      <div class="section">
+        {{ form.account.current_pass }}
+      </div>
+      <div class="section">
+        <div class="title">
+          {{ 'Change e-mail address'|t }}
+        </div>
+        <div class="content">
+          {{ form.account.mail }}
+        </div>
+      </div>
+      <div class="section">
+        <div class="title">
+          {{ 'Change password'|t }}
+        </div>
+        <div class="content">
+          {{ form.account.pass }}
+        </div>
+      </div>
+      <div class="footer">
+        {{ form.actions }}
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,5 @@
+name: AFA Agarve nectar jar
+type: module
+description: 'Attempts to trick spambots by adding a honeypot field to user creation forms.'
+package: "Active for Animals"
+core: 8.x

@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Result type overview.
+ *
+ */
+#}
+<div class="section">
+  <div class="list">
+    <div class="title">
+      {{ 'Result types'|t }}
+    </div>
+    <div class="content">
+      <ul>
+        {% if content.result_types is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for result_type in content.result_types %}
+        <li>
+          <div class="column-wrapper">
+            <div class="column-3-15 first-column">
+              {{ result_type.label }}
+            </div>
+            <div class="column-3-15">
+              {{ result_type.organization }}
+            </div>
+            <div class="column-3-15">
+              {{ result_type.group_count }}
+            </div>
+            <div class="column-3-15">
+              {{ result_type.data_types }}
+            </div>
+            <div class="column-3-15">
+              {{ result_type.edit_link }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="footer">
+      {{ content.create_link }}
+    </div>
+  </div>
+</div>

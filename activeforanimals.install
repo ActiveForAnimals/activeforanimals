@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the Active for Animals profile.
+ */
+
+use Drupal\activeforanimals\Settings;
+
+/**
+ * Implements hook_install().
+ */
+function activeforanimals_install() {
+  // Override the front page.
+  \Drupal::getContainer()->get('config.factory')->getEditable('system.site')->set('page.front', '/front')->save();
+  // Allow visitor account creation with administrative approval.
+  $userSettings = \Drupal::configFactory()->getEditable('user.settings');
+  $userSettings->set('register', USER_REGISTER_ADMINISTRATORS_ONLY)->save(TRUE);
+  // Disable user time zones.
+  // This is required in order for events to register correct time.
+  $systemDate = \Drupal::configFactory()->getEditable('system.date');
+  $systemDate->set('timezone.user.configurable', FALSE)->save(TRUE);
+  // Setup the location key.
+  $locationSettings = \Drupal::configFactory()->getEditable('effective_activism.location');
+  $locationSettings->set('key', Settings::getGoogleAPIKey())->save(TRUE);
+}

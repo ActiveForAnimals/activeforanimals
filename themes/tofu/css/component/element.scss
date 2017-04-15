@@ -1,0 +1,264 @@
+/**
+ * @file
+ * Element definitions.
+ */
+
+.element,
+.form.element .form-text,
+.form.element .form-date,
+.form.element .form-tel,
+.form.element .form-email,
+.form.element .form-time,
+.form.element .form-number,
+.form.element select {
+  padding: 0.4em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+%element-icon {
+  padding-left: 1.5em !important;
+  background-repeat: no-repeat;
+  background-size: 1.25em auto;
+  background-position: 0.2em center;
+}
+
+.form input {
+  border: 1px solid $gray3;
+}
+
+.form label,
+.form .description {
+  display: none;
+}
+
+.view.element-logo img,
+.form.element-logo .image-style-thumbnail {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.form.element-logo label,
+.form.element-logo .description {
+  display: inherit;
+}
+
+// Do not display alt textfield.
+.form.element-logo .form-type-textfield {
+  display: none;
+}
+
+.view.element-title,
+.form.element-title input {
+  padding: 0;
+}
+
+.form.element-timezone label {
+  display: block;
+  font-weight: bold;
+}
+
+.form.element-instructions label {
+  display: block;
+  font-weight: bold;
+}
+
+.view.element-website,
+.form.element-website input {
+  @extend %element-icon;
+  background-image: url(../images/website.svg);
+}
+
+.form.element-website .description {
+  display: block;
+}
+
+.view.element-phone_number,
+.form.element-phone_number input {
+  @extend %element-icon;
+  background-image: url(../images/phone_number.svg);
+}
+
+.view.element-email_address,
+.form.element-email_address input {
+  @extend %element-icon;
+  background-image: url(../images/email_address.svg);
+}
+
+.view.element-location,
+.form.element-location .address {
+  @extend %element-icon;
+  background-image: url(../images/address.svg);
+}
+
+.form.element-location .extra-information {
+  @extend %element-icon;
+  background-image: url(../images/extra_location_information.svg);
+}
+
+.view.element-event_count {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-start_date {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-end_date {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-created {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-parent {
+  @extend %element-icon;
+  background-image: url(../images/group.svg);
+}
+
+.view.element-edit_page {
+  @extend %element-icon;
+  background-image: url(../images/edit.svg);
+}
+
+.view.element-edit_page {
+  @extend %element-icon;
+  background-image: url(../images/edit.svg);
+}
+
+.view.element-manage_groups {
+  @extend %element-icon;
+  background-image: url(../images/group.svg);
+}
+
+.view.element-manage_results {
+  @extend %element-icon;
+  background-image: url(../images/result.svg);
+}
+
+.view.element-add_organization {
+  @extend %element-icon;
+  background-image: url(../images/organization.svg);
+}
+
+.view.element-add_group {
+  @extend %element-icon;
+  background-image: url(../images/group.svg);
+}
+
+.view.element-add_event {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-manage_events {
+  @extend %element-icon;
+  background-image: url(../images/date.svg);
+}
+
+.view.element-manage_imports {
+  @extend %element-icon;
+  background-image: url(../images/export.svg);
+}
+
+.view.element-type {
+  @extend %element-icon;
+  background-image: url(../images/export.svg);
+}
+
+.view.element-publish {
+  @extend %element-icon;
+  background-image: url(../images/publish.svg);
+}
+
+.form.element-instructions table {
+  font-size: $small-font-size;
+  margin-bottom: 1em;
+}
+
+.form.element-instructions table td {
+  border-right: 1px solid $gray1;
+  padding-left: 0.5em;
+}
+
+.form.element-instructions table thead td {
+  font-weight: bold;
+}
+
+.view.element-username {
+  @extend %element-icon;
+  background-image: url(../images/person.svg);
+}
+
+.form.element-inline_entity_form {
+  @extend %corner;
+  background-color: $gray1;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.view.element-more_info a {
+  @extend %button-base;
+}
+
+.view.element-step img {
+  max-width: 100%;
+  height: auto;
+}
+
+.form.element-importname .description {
+  display: block;
+}
+
+.form.element-organization label,
+.form.element-organization .description {
+  display: block;
+}
+
+.form.element-groups label,
+.form.element-groups .description {
+  display: block;
+}
+
+.view.element-group_count {
+  @extend %element-icon;
+  background-image: url(../images/group.svg);
+}
+
+.view.element-data_types {
+  @extend %element-icon;
+  background-image: url(../images/data.svg);
+}
+
+.form.element-your_organization input {
+  @extend %element-icon;
+  background-image: url(../images/organization.svg);
+}
+
+.form.element-password .description {
+  display: block;
+}
+
+.form.element-data fieldset {
+  padding: 0;
+}
+
+.form.element-tags .field--name-description,
+.form.element-tags .field--widget-path,
+.form.element-tags .field-multiple-drag,
+.form.element-tags .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+
+.form.element-tags .form-item {
+  margin-bottom: 0.5em;
+}

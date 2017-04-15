@@ -1,0 +1,28 @@
+/**
+ * @file
+ * Generic elements.
+ */
+
+body {
+  color: $color;
+  background: $white1;
+}
+
+a,
+.link {
+  color: darken($blue, 20%);
+  text-decoration: none;
+}
+
+a:hover,
+.link:hover,
+a:focus,
+.link:focus {
+  outline: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

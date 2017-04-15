@@ -1,0 +1,31 @@
+name: Active for Animals
+type: profile
+description: 'Setup Drupal for the activeforanimals.com site'
+version: 1.0
+core: 8.x
+dependencies:
+  # core dependencies
+  - automated_cron
+  - block
+  - breakpoint
+  - config
+  - contextual
+  - dblog
+  - dynamic_page_cache
+  - history
+  - node
+  - options
+  - page_cache
+  - path
+  - rdf
+  - search
+  - taxonomy
+  - tour
+  - views
+  # effective activism modules
+  - effective_activism
+  # custom modules
+  - afa_agarvenectarjar
+themes:
+  - tofu
+  - seven

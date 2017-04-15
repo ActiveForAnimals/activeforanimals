@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {}
+name: logo_110x110
+label: 'Logo thumbnail (110x110)'
+effects:
+  logo_110x110:
+    uuid: logo_110x110
+    id: image_scale
+    weight: 2
+    data:
+      width: 110
+      height: 110
+upscale: false

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Organizer tools.
+ *
+ */
+#}
+<div class="management">
+  <div class="title">
+    {{ 'Organizer'|t }}
+  </div>
+    <ul>
+      {% for element in content %}
+      {% if element|render %}
+      <li>{{ element }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

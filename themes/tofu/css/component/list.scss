@@ -1,0 +1,29 @@
+/**
+ * @file
+ * List definitions.
+ */
+
+$list-li-margin-bottom: 1.5em;
+$list-li-padding-bottom: 1em;
+$list-element-title-padding: 0.5em;
+
+.list .content .element {
+  font-size: $small-font-size;
+  color: $gray3;
+}
+
+.list .content .element a {
+  font-size: $small-font-size;
+}
+
+.list .content .element.element-title {
+  font-size: $font-size;
+  color: $gray4;
+  padding-bottom: $list-element-title-padding;
+}
+
+.list li {
+  border-bottom: 1px solid $gray2;
+  margin-bottom: $list-li-margin-bottom;
+  padding-bottom: $list-li-padding-bottom;
+}

@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Various text effects.
+ */
+
+$corner-border-radius: 8px;
+
+.point {
+  font-size: $large-font-size;
+  color: $blue
+}
+
+.emphasis {
+  font-weight: bold;
+}

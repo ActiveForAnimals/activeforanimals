@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Contact information.
+ *
+ */
+#}
+<div class="contact-information">
+  <div class="title">
+    {{ 'Contact Details'|t }}
+  </div>
+  <div class="content">
+    <ul>
+      {% for element in content %}
+      {% if element is not empty  %}
+      <li>{{ element }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+/**
+ * @file
+ * The corner definition.
+ */
+
+$corner-border-radius: 8px;
+
+%corner {
+  border-radius: $corner-border-radius;
+}

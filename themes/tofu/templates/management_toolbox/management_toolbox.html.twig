@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Management.
+ *
+ */
+#}
+<div class="management">
+  <div class="title">
+    {{ 'Management'|t }}
+  </div>
+  <div class="content">
+    <ul>
+      {% for element in content %}
+      {% if element|render %}
+      <li>{{ element }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

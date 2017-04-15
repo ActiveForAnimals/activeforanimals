@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Tofu theme.
+ */
+
+include drupal_get_path('theme', 'tofu') . '/includes/hooks.inc';

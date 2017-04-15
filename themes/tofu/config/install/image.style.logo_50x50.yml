@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {}
+name: logo_50x50
+label: 'Logo thumbnail (50x50)'
+effects:
+  logo_50x50:
+    uuid: logo_50x50
+    id: image_scale
+    weight: 2
+    data:
+      width: 50
+      height: 50
+upscale: false

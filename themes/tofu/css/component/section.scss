@@ -1,0 +1,55 @@
+/**
+ * @file
+ * Sections are visually distinctive confinements used to group related information.
+ */
+
+$section-margin: 1em;
+$section-padding: 1em;
+$section-title-margin: 0.5em;
+$section-title-padding: 0.5em;
+$section-footer-margin-top: 3em;
+$section-content-spacing-top: 2em;
+
+
+%section-title {
+  margin-right: $section-title-margin;
+  margin-bottom: $section-title-margin;
+  padding-bottom: $section-title-padding;
+  padding-top: $section-title-padding;
+  font-size: $large-font-size;
+  color: $blue;
+  border-bottom: 1px solid $gray1;
+}
+
+.section {
+  @extend %corner;
+  background-color: $white1;
+  margin-top: $section-margin;
+  margin-bottom: $section-margin;
+  padding: $section-padding;
+}
+
+.section.transparent {
+  background-color: $white1;
+  background: $transparent-gradient;
+}
+
+.section .title {
+  @extend %section-title;
+}
+
+.section .footer {
+  margin-top: $section-footer-margin-top;
+}
+
+.section .content.spacing-top {
+  margin-top: $section-content-spacing-top;
+}
+
+.section .section {
+  background-color: $white2;
+}
+
+.section .section .section {
+  background-color: $white3;
+}

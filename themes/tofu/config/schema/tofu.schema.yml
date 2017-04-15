@@ -1,0 +1,4 @@
+# Schema for the configuration files of the Tofu theme.
+tofu.settings:
+  type: theme_settings
+  label: 'Tofu settings'

@@ -1,0 +1,28 @@
+/**
+ * @file
+ * The button definition.
+ */
+
+$button-font-size: 14px;
+$button-padding: 6px 20px;
+
+%button-base {
+  @extend %corner;
+  background-color: $orange;
+  color: $white1;
+  padding: $button-padding;
+  text-transform: uppercase;
+  font-size: $button-font-size;
+  font-weight: bold;
+  border: 0 none;
+  &:hover,
+  &:focus {
+    background-color: darken($orange, 5%);
+  }
+}
+
+.edit-button,
+input.form-submit,
+.element.button a {
+  @extend %button-base;
+}

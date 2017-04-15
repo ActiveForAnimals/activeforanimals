@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * The user password reset login form.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    {{ form.mail }}
+    {{ form.actions }}
+  </div>
+</form>

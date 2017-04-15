@@ -1,0 +1,110 @@
+/**
+ * @file
+ * Inline entity form definitions.
+ */
+
+$inline-entity-form-padding: 1em;
+
+// Container elements.
+.element-inline_entity_form fieldset {
+  border: 0 none;
+}
+
+.element-inline_entity_form legend {
+  display: none;
+}
+
+.element-inline_entity_form .ief-entity-table {
+  width :100%;
+  margin-bottom: 1em;
+}
+
+// Table header.
+.element-inline_entity_form thead {
+  display: none;
+}
+
+// Table rows.
+.element-inline_entity_form .ief-row-entity {
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+
+.element-inline_entity_form .inline-entity-form-user-label {
+  @extend %element-icon;
+  background-image: url(../images/person.svg);
+}
+
+.element-inline_entity_form .odd {
+  background-color: $gray2;
+  border-bottom: 1px solid $gray3;
+}
+
+.element-inline_entity_form .even {
+  background-color: $gray2;
+}
+
+// Invite form.
+.element-inline_entity_form .ief-form-bottom {
+  @extend %corner;
+  background-color: $white1;
+  margin-top: 1em !important;
+  padding: 1em;
+}
+
+.element-inline_entity_form .ief-form-bottom .form-type-email {
+  margin-bottom: 1em !important;
+}
+
+.element-inline_entity_form .ief-form-bottom .form-type-email input {
+  @extend %element-icon;
+  background-image: url(../images/email_address.svg);
+}
+
+.element-inline_entity_form .ief-form-bottom .form-type-email .description {
+  display: block;
+}
+
+// Buttons.
+.element-inline_entity_form .ief-entity-table .form-submit {
+  @extend %button-base;
+  width: 10em;
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.element-inline_entity_form fieldset .invite_new {
+  @extend %button-base;
+  background-color: $green;
+  margin-top: 1em;
+  width: 15em;
+}
+
+.element-inline_entity_form .ief-form-bottom .invite {
+  @extend %button-base;
+  background-color: $green;
+  width: 12em;
+  margin-top: 0.5em;
+}
+
+.element-inline_entity_form .ief-form-bottom .cancel {
+  @extend %button-base;
+  background-color: $gray2;
+  width: 10em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+.element-inline_entity_form .ief-entity-table .field-add-more-submit {
+  width: 13em;
+}
+
+.field--type-entity-reference .tabledrag-toggle-weight {
+  display: none;
+}
+
+.field--type-entity-reference .ief-tabledrag-handle {
+  display: none;
+}
+
