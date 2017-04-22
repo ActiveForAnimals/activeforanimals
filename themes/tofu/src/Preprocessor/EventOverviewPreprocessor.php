@@ -53,6 +53,9 @@ class EventOverviewPreprocessor extends Preprocessor implements PreprocessorInte
       $event_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $event_link);
       $this->variables['content']['events'][] = $event_elements;
     }
+    $this->variables['content']['pager'] = [
+      '#type' => 'pager',
+    ];
     return $this->variables;
   }
 }

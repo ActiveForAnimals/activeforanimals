@@ -55,6 +55,9 @@ class ImportOverviewPreprocessor extends Preprocessor implements PreprocessorInt
       $import_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $import_link);
       $this->variables['content']['imports'][] = $import_elements;
     }
+    $this->variables['content']['pager'] = [
+      '#type' => 'pager',
+    ];
     return $this->variables;
   }
 }

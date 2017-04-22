@@ -54,8 +54,8 @@ class BetaSignupForm extends FormBase {
     $form['message'] = [
       '#type' => 'textarea',
       '#required' => FALSE,
-      '#title' => $this->t('Optional message'),
-      '#placeholder' => $this->t('Optional message'),
+      '#title' => $this->t('About your organization'),
+      '#placeholder' => $this->t('Please write a little about your organization or provide a link to your organization homepage.'),
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -78,7 +78,7 @@ class BetaSignupForm extends FormBase {
     if (Drupal::service('email.validator')->isValid($sender)) {
       $email_message = [
         'headers' => [
-          'content-type' => 'text/html',
+          'content-type' => 'text/plain',
           'MIME-Version' => '1.0',
           'reply-to' => $sender,
           'from' => sprintf('%s <%s>', $name, $sender),
@@ -89,6 +89,7 @@ class BetaSignupForm extends FormBase {
       ];
       $mailer = new PhpMail();
       $mailer->mail($email_message);
+      Drupal::logger('activeforanimals')->notice('Sent e-mail: <pre>' . htmlentities(print_r($email_message, TRUE)) . '</pre>');
       drupal_set_message($this->t('Thank you for signing up. Please allow for a few days to process your submission after which we will get in touch with you.'));
     }
     else {
