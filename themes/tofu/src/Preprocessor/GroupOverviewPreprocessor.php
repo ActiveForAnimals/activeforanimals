@@ -48,6 +48,9 @@ class GroupOverviewPreprocessor extends Preprocessor implements PreprocessorInte
         ]), 'event_count');
       $this->variables['content']['groups'][] = $group_elements;
     }
+    $this->variables['content']['pager'] = [
+      '#type' => 'pager',
+    ];
     return $this->variables;
   }
 }
