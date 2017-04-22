@@ -54,8 +54,8 @@ class BetaSignupForm extends FormBase {
     $form['message'] = [
       '#type' => 'textarea',
       '#required' => FALSE,
-      '#title' => $this->t('Optional message'),
-      '#placeholder' => $this->t('Optional message'),
+      '#title' => $this->t('About your organization'),
+      '#placeholder' => $this->t('Please write a little about your organization or provide a link to your organization homepage.'),
     ];
     $form['submit'] = [
       '#type' => 'submit',
