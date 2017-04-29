@@ -72,7 +72,7 @@ class CreateOrganization {
         'datatypes' => $settings['datatypes'],
         'organization' => $organization->id(),
         'groups' => [
-          $group->id(),
+          $group->id() => $group->id(),
         ],
       ]);
       if ($result_type->save() === SAVED_NEW) {
