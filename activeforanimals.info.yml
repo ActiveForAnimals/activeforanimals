@@ -1,7 +1,6 @@
 name: Active for Animals
 type: profile
 description: 'Setup Drupal for the activeforanimals.com site'
-version: 1.0
 core: 8.x
 dependencies:
   # core dependencies

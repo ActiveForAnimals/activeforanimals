@@ -96,4 +96,5 @@ class BetaSignupForm extends FormBase {
       drupal_set_message($this->t('Unable to sign up, please try again later.'), 'error');
     }
   }
+
 }

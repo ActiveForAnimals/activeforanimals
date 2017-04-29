@@ -16,7 +16,14 @@ class Settings {
   const ENVIRONMENT_LIVE = 'live';
   const ENVIRONMENT_TEST = 'test';
   const ENVIRONMENT_DEV = 'dev';
-  private static $json_path = 'sites/default/files/private/keys.json';
+
+
+  /**
+   * The path to the json settings file.
+   *
+   * @var string
+   */
+  private static $jsonpath = 'sites/default/files/private/keys.json';
 
   /**
    * Get settings.
@@ -25,7 +32,7 @@ class Settings {
    *   Settings array.
    */
   private static function getSettings() {
-    $json_keys = file_get_contents(self::$json_path);
+    $json_keys = file_get_contents(self::$jsonpath);
     $data = json_decode($json_keys, TRUE);
     return $data;
   }
@@ -36,9 +43,9 @@ class Settings {
    * @return string
    *   The API key.
    */
-  public static function getGoogleAPIKey() {
+  public static function getGoogleApiKey() {
     $key = NULL;
-    if(defined('PANTHEON_ENVIRONMENT')) {
+    if (defined('PANTHEON_ENVIRONMENT')) {
       $data = self::getSettings();
       switch (PANTHEON_ENVIRONMENT) {
         case self::ENVIRONMENT_LIVE:
@@ -66,7 +73,7 @@ class Settings {
    */
   public static function getBetaSignupRecipient() {
     $email_address = NULL;
-    if(defined('PANTHEON_ENVIRONMENT')) {
+    if (defined('PANTHEON_ENVIRONMENT')) {
       $data = self::getSettings();
       switch (PANTHEON_ENVIRONMENT) {
         case self::ENVIRONMENT_LIVE:
@@ -85,4 +92,5 @@ class Settings {
     }
     return $email_address;
   }
+
 }

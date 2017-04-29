@@ -3,10 +3,12 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
-use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ImageController;
 use Drupal\tofu\Constant;
 
+/**
+ * Preprocessor for FrontPage.
+ */
 class FrontPagePreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -24,4 +26,5 @@ class FrontPagePreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['beta_signup'] = Drupal::formBuilder()->getForm('Drupal\activeforanimals\Form\BetaSignupForm');
     return $this->variables;
   }
+
 }

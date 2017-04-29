@@ -2,10 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\Core\Render\Element;
-use Drupal\Core\Url;
 use Drupal\effective_activism\Entity\Organization;
-use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Controller\Element\FieldController;
@@ -16,6 +13,9 @@ use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 
+/**
+ * Preprocessor for Group.
+ */
 class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -59,4 +59,5 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['events'] = $event_list_controller->view();
     return $this->variables;
   }
+
 }

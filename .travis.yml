@@ -57,8 +57,9 @@ before_script:
   - ~/.composer/vendor/bin/phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer
 
 script:
-  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/
-  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/
-  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/
-  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/
+  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
+  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
+  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
+  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
+  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
   - php core/scripts/run-tests.sh --php $(which php) --color --url $SIMPLETEST_BASE_URL --verbose activeforanimals

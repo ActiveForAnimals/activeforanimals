@@ -2,7 +2,6 @@
 
 namespace Drupal\activeforanimals\Tests;
 
-use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
@@ -66,7 +65,7 @@ class CSVImportTest extends WebTestBase {
    *
    * @var string
    */
-  private $csv_file_path;
+  private $csvfilepath;
 
   /**
    * {@inheritdoc}
@@ -84,7 +83,7 @@ class CSVImportTest extends WebTestBase {
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
     $groups = OrganizationHelper::getGroups($this->organization);
     $this->group = array_pop($groups);
-    $this->csv_file_path = $this->container->get('file_system')->realpath(drupal_get_path('profile', 'activeforanimals') . '/src/Tests/testdata/sample.csv');
+    $this->csvfilepath = $this->container->get('file_system')->realpath(drupal_get_path('profile', 'activeforanimals') . '/src/Tests/testdata/sample.csv');
   }
 
   /**
@@ -96,7 +95,7 @@ class CSVImportTest extends WebTestBase {
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'parent[0][target_id]' => $this->group->id(),
-      'files[field_file_csv_0]' => $this->csv_file_path,
+      'files[field_file_csv_0]' => $this->csvfilepath,
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the import.', 'Added a new import entity.');
@@ -111,4 +110,5 @@ class CSVImportTest extends WebTestBase {
     $this->assertText(sprintf('%s - %s', self::STARTDATE, self::STARTTIME), 'Start date and time found.');
     $this->assertText(sprintf('%s - %s', self::ENDDATE, self::ENDTIME), 'End date and time found.');
   }
+
 }

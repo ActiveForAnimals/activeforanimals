@@ -8,9 +8,11 @@ use Drupal\tofu\Constant;
 use Drupal\activeforanimals\Controller\ProfileBarController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\ImageController;
-use Drupal\tofu\Preprocessor\PreprocessorInterface;
 use Drupal\user\Form\UserLoginForm;
 
+/**
+ * Preprocessor for HeaderMenu.
+ */
 class HeaderMenuPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -32,4 +34,5 @@ class HeaderMenuPreprocessor extends Preprocessor implements PreprocessorInterfa
     $this->variables['content']['profile_bar'] = $profile_bar_controller->content();
     return $this->variables;
   }
+
 }

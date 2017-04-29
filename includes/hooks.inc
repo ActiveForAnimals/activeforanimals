@@ -7,8 +7,6 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\activeforanimals\Hook\EntityInsertHook;
-use Drupal\activeforanimals\Hook\EntityUpdateHook;
-use Drupal\activeforanimals\Hook\PathAliasTypesAlterHook;
 
 /**
  * Implements hook_entity_insert().

@@ -2,12 +2,13 @@
 
 namespace Drupal\activeforanimals\Tests\Helper;
 
-use Drupal;
-use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Entity\DataType;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 
+/**
+ * Creates test data.
+ */
 class CreateData {
 
   const TITLE = 'Test data type';
@@ -22,18 +23,14 @@ class CreateData {
     'min' => '0',
   ];
 
-
   /**
    * Constructor.
-   *
-   * @return CreateData
-   *   An instance of this class.
    */
   public function __construct() {
   }
 
   /**
-   * {inheritdoc}
+   * Create data.
    */
   public function execute() {
     // Create data type.
@@ -80,4 +77,5 @@ class CreateData {
       ->save();
     return $data_type;
   }
+
 }

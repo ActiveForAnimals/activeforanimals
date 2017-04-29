@@ -3,12 +3,13 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for EventList.
+ */
 class EventListPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -30,7 +31,7 @@ class EventListPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['create_link'] = $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create'));
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
-      $event_elements =  [];
+      $event_elements = [];
       $event_link = new Url(
         'entity.event.canonical', [
           'event' => $event->id(),
@@ -56,4 +57,5 @@ class EventListPreprocessor extends Preprocessor implements PreprocessorInterfac
     }
     return $this->variables;
   }
+
 }

@@ -1,6 +1,10 @@
 <?php
 
-use Drupal\Component\Utility\Html;
+/**
+ * @file
+ * Preprocess hook for html.
+ */
+
 use Drupal\tofu\Constant;
 
 /**
@@ -9,7 +13,7 @@ use Drupal\tofu\Constant;
  * @param array $variables
  *   An associative array.
  */
-function tofu_preprocess_html(&$variables) {
+function tofu_preprocess_html(array &$variables) {
   foreach (Constant::ENTITY_TYPES as $entity_type) {
     $entity = \Drupal::routeMatch()->getParameter($entity_type);
     if ($entity !== FALSE) {

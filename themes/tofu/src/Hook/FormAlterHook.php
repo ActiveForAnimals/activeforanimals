@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Hook;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\tofu\Constant;
 
 /**
@@ -13,7 +12,7 @@ class FormAlterHook implements HookInterface {
   /**
    * An instance of this class.
    *
-   * @var HookImplementation $instance
+   * @var HookImplementation
    */
   private static $instance;
 
@@ -74,4 +73,5 @@ class FormAlterHook implements HookInterface {
     }
     return $form;
   }
+
 }

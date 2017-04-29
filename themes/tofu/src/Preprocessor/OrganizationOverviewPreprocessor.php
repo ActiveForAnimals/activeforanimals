@@ -3,11 +3,13 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for OrganizationOverview.
+ */
 class OrganizationOverviewPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -48,4 +50,5 @@ class OrganizationOverviewPreprocessor extends Preprocessor implements Preproces
     }
     return $this->variables;
   }
+
 }

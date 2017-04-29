@@ -8,6 +8,9 @@ use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for GroupList.
+ */
 class GroupListPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -28,7 +31,7 @@ class GroupListPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['title'] = $element_controller->view(t('Groups'), 'title', $group_overview_link);
     $this->variables['content']['empty'] = t('No groups created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['groups'] as $group) {
-      $group_elements =  [];
+      $group_elements = [];
       $group_link = new Url(
         'entity.group.canonical', [
           'group' => $group->id(),
@@ -43,10 +46,11 @@ class GroupListPreprocessor extends Preprocessor implements PreprocessorInterfac
         $group_elements['location'] = $field_controller->view($group->get('location'));
       }
       $group_elements['event_count'] = $element_controller->view(t('Events (@event_count)', [
-          '@event_count' => count(GroupHelper::getEvents($group, 0, 0, FALSE)),
-        ]), 'event_count');
+        '@event_count' => count(GroupHelper::getEvents($group, 0, 0, FALSE)),
+      ]), 'event_count');
       $this->variables['content']['groups'][] = $group_elements;
     }
     return $this->variables;
   }
+
 }
