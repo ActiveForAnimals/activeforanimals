@@ -109,7 +109,7 @@ class PublishTest extends WebTestBase {
     $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
     // User may create event.
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText(sprintf('%s has been unpublished', $this->event->get('title')->value));
+    $this->assertText('One item unpublished.');
 
     // Verify that organizer cannot access event.
     $this->drupalLogin($this->organizer);
@@ -127,10 +127,10 @@ class PublishTest extends WebTestBase {
     $this->drupalLogin($this->manager);
     $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText(sprintf('%s has been published', $this->event->get('title')->value));
+    $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText(sprintf('%s has been unpublished', $this->group->get('title')->value));
+    $this->assertText('2 items unpublished.');
 
     // Verify that organizer cannot access group and event.
     $this->drupalLogin($this->organizer);
@@ -148,13 +148,13 @@ class PublishTest extends WebTestBase {
     $this->drupalLogin($this->manager);
     $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText(sprintf('%s has been published', $this->event->get('title')->value));
+    $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText(sprintf('%s has been published', $this->group->get('title')->value));
+    $this->assertText('2 items published.');
     $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText(sprintf('%s has been unpublished', $this->organization->get('title')->value));
+    $this->assertText('4 items unpublished.');
 
     // Verify that organizer cannot access organization, group and event.
     $this->drupalLogin($this->organizer);
