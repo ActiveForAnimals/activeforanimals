@@ -14,7 +14,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class ResultTest extends WebTestBase {
 
-  const ADD_RESULT_PATH = 'manage/result-types/add'; //'result-types/create';
+  const ADD_RESULT_PATH = 'manage/result-types/add';
   const GROUPTITLE = 'Test group';
   const LABEL = 'Test';
   const IMPORT_NAME = 'result_type_test';
