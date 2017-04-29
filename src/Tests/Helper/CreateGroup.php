@@ -23,9 +23,9 @@ class CreateGroup {
   /**
    * Constructor.
    *
-   * @param Organization $organization
+   * @param \Drupal\effective_activism\Entity\Organization $organization
    *   The organization the group belongs to.
-   * @param User $organizer
+   * @param \Drupal\user\Entity\User $organizer
    *   The organizer of the group.
    * @param string $title
    *   Optional title of the group.

@@ -36,19 +36,19 @@ class GroupListPreprocessor extends Preprocessor implements PreprocessorInterfac
         'entity.group.canonical', [
           'group' => $group->id(),
         ]);
-        if (!$group->get('logo')->isEmpty()) {
-          $group_elements['logo'] = $image_controller->view($group->get('logo')->entity->getFileUri(), 'logo', ImageController::LOGO_200X200, $group_link);
-        }
-        if (!$group->get('title')->isEmpty()) {
-          $group_elements['title'] = $field_controller->view($group->get('title'), $group_link);
-        }
-        if (!$group->get('location')->isEmpty()) {
-          $group_elements['location'] = $field_controller->view($group->get('location'));
-        }
-        $group_elements['event_count'] = $element_controller->view(t('Events (@event_count)', [
-          '@event_count' => count(GroupHelper::getEvents($group, 0, 0, FALSE)),
-        ]), 'event_count');
-        $this->variables['content']['groups'][] = $group_elements;
+      if (!$group->get('logo')->isEmpty()) {
+        $group_elements['logo'] = $image_controller->view($group->get('logo')->entity->getFileUri(), 'logo', ImageController::LOGO_200X200, $group_link);
+      }
+      if (!$group->get('title')->isEmpty()) {
+        $group_elements['title'] = $field_controller->view($group->get('title'), $group_link);
+      }
+      if (!$group->get('location')->isEmpty()) {
+        $group_elements['location'] = $field_controller->view($group->get('location'));
+      }
+      $group_elements['event_count'] = $element_controller->view(t('Events (@event_count)', [
+        '@event_count' => count(GroupHelper::getEvents($group, 0, 0, FALSE)),
+      ]), 'event_count');
+      $this->variables['content']['groups'][] = $group_elements;
     }
     return $this->variables;
   }

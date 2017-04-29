@@ -30,23 +30,16 @@ class DataTest extends WebTestBase {
   /**
    * The DataType config entity.
    *
-   * @var DataType
+   * @var \Drupal\effective_activism\Entity\DataType
    */
   private $dataType;
 
   /**
    * The data entity.
    *
-   * @var Data
+   * @var \Drupal\effective_activism\Entity\Data
    */
   private $data;
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setUp() {
-    parent::setUp();
-  }
 
   /**
    * Run test.

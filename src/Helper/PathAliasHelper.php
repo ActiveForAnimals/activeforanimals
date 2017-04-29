@@ -12,7 +12,7 @@ class PathAliasHelper {
   /**
    * Adds path aliases for entity.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity to process.
    */
   public static function add(EntityInterface $entity) {
@@ -72,7 +72,7 @@ class PathAliasHelper {
   /**
    * Returns the path alias for an entity and link type.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The path to process.
    * @param string $rel
    *   The link relationship type, for example: canonical or edit-form.

@@ -26,8 +26,10 @@ class CreateOrganization {
   /**
    * Constructor.
    *
-   * @param User $manager
+   * @param \Drupal\user\Entity\User $manager
    *   The manager of the group.
+   * @param \Drupal\user\Entity\User $organizer
+   *   The organizer of the group.
    */
   public function __construct(User $manager, User $organizer) {
     $this->manager = $manager;

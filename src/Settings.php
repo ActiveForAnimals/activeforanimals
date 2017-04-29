@@ -16,6 +16,13 @@ class Settings {
   const ENVIRONMENT_LIVE = 'live';
   const ENVIRONMENT_TEST = 'test';
   const ENVIRONMENT_DEV = 'dev';
+
+
+  /**
+   * The path to the json settings file.
+   *
+   * @var string
+   */
   private static $jsonpath = 'sites/default/files/private/keys.json';
 
   /**

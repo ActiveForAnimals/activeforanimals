@@ -12,7 +12,7 @@ class EntityInsertHook implements HookInterface {
   /**
    * An instance of this class.
    *
-   * @var HookImplementation $instance
+   * @var HookImplementation
    */
   private static $instance;
 

@@ -22,9 +22,9 @@ class CreateEvent {
   /**
    * Constructor.
    *
-   * @param Group $group
+   * @param \Drupal\effective_activism\Entity\Group $group
    *   The group the event belongs to.
-   * @param User $organizer
+   * @param \Drupal\user\Entity\User $organizer
    *   The organizer of the group.
    * @param string $title
    *   Optional title of the group.

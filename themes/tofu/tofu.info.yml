@@ -3,7 +3,6 @@ type: theme
 base theme: classy
 description: 'Tofu is a delicious food that serves as an excellent meat substitute. It comes in a variety of shapes, colors and taste and is a basic staple of any tasty vegan dish. Also, this is a theme that shares the name.'
 package: activeforanimals
-version: 1.0.0
 core: 8.x
 
 libraries:

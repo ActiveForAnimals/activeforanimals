@@ -9,6 +9,8 @@ abstract class Preprocessor {
 
   /**
    * The variables to preprocess.
+   *
+   * @var array
    */
   protected $variables;
 

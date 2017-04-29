@@ -36,24 +36,24 @@ class EventOverviewPreprocessor extends Preprocessor implements PreprocessorInte
         'entity.event.canonical', [
           'event' => $event->id(),
         ]);
-        $group_link = new Url(
+      $group_link = new Url(
         'entity.group.canonical', [
           'group' => $event->get('parent')->entity->id(),
         ]);
-        if (!$event->get('title')->isEmpty()) {
-          $event_elements['title'] = $field_controller->view($event->get('title'));
-        }
-        if (!$event->get('parent')->isEmpty()) {
-          $event_elements['parent'] = $field_controller->view($event->get('parent'), $group_link);
-        }
-        if (!$event->get('parent')->isEmpty()) {
-          $event_elements['start_date'] = $field_controller->view($event->get('start_date'));
-        }
-        if (!$event->get('location')->isEmpty()) {
-          $event_elements['location'] = $field_controller->view($event->get('location'));
-        }
-        $event_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $event_link);
-        $this->variables['content']['events'][] = $event_elements;
+      if (!$event->get('title')->isEmpty()) {
+        $event_elements['title'] = $field_controller->view($event->get('title'));
+      }
+      if (!$event->get('parent')->isEmpty()) {
+        $event_elements['parent'] = $field_controller->view($event->get('parent'), $group_link);
+      }
+      if (!$event->get('parent')->isEmpty()) {
+        $event_elements['start_date'] = $field_controller->view($event->get('start_date'));
+      }
+      if (!$event->get('location')->isEmpty()) {
+        $event_elements['location'] = $field_controller->view($event->get('location'));
+      }
+      $event_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $event_link);
+      $this->variables['content']['events'][] = $event_elements;
     }
     $this->variables['content']['pager'] = [
       '#type' => 'pager',
