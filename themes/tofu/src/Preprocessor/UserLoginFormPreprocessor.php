@@ -4,6 +4,9 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal\effective_activism\Controller\Element\FieldController;
 
+/**
+ * Preprocessor for UserLoginForm.
+ */
 class UserLoginFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -21,4 +24,5 @@ class UserLoginFormPreprocessor extends Preprocessor implements PreprocessorInte
     $this->variables['form']['actions']['submit'] = $field_controller->form($form['actions']['submit'], 'submit');
     return $this->variables;
   }
+
 }

@@ -8,7 +8,6 @@ use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\simpletest\WebTestBase;
-use Drupal\user\Entity\User;
 
 /**
  * Access restriction tests.

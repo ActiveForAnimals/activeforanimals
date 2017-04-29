@@ -3,12 +3,13 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for EventList.
+ */
 class EventListPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -30,30 +31,31 @@ class EventListPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['create_link'] = $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create'));
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
-      $event_elements =  [];
+      $event_elements = [];
       $event_link = new Url(
         'entity.event.canonical', [
           'event' => $event->id(),
         ]);
-      $group_link = new Url(
+        $group_link = new Url(
         'entity.group.canonical', [
           'group' => $event->get('parent')->entity->id(),
         ]);
-      if (!$event->get('title')->isEmpty()) {
-        $event_elements['title'] = $field_controller->view($event->get('title'));
-      }
-      if (!$event->get('parent')->isEmpty()) {
-        $event_elements['parent'] = $field_controller->view($event->get('parent'), $group_link);
-      }
-      if (!$event->get('parent')->isEmpty()) {
-        $event_elements['start_date'] = $field_controller->view($event->get('start_date'));
-      }
-      if (!$event->get('location')->isEmpty()) {
-        $event_elements['location'] = $field_controller->view($event->get('location'));
-      }
-      $event_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $event_link);
-      $this->variables['content']['events'][] = $event_elements;
+        if (!$event->get('title')->isEmpty()) {
+          $event_elements['title'] = $field_controller->view($event->get('title'));
+        }
+        if (!$event->get('parent')->isEmpty()) {
+          $event_elements['parent'] = $field_controller->view($event->get('parent'), $group_link);
+        }
+        if (!$event->get('parent')->isEmpty()) {
+          $event_elements['start_date'] = $field_controller->view($event->get('start_date'));
+        }
+        if (!$event->get('location')->isEmpty()) {
+          $event_elements['location'] = $field_controller->view($event->get('location'));
+        }
+        $event_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $event_link);
+        $this->variables['content']['events'][] = $event_elements;
     }
     return $this->variables;
   }
+
 }

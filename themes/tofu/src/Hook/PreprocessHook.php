@@ -207,4 +207,5 @@ class PreprocessHook implements HookInterface {
     }
     return $variables;
   }
+
 }

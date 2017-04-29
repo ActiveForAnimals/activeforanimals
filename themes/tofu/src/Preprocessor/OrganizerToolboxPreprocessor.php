@@ -5,6 +5,9 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ElementController;
 
+/**
+ * Preprocessor for OrganizerToolbox.
+ */
 class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -14,7 +17,7 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
     $entity = $this->variables['elements']['#storage']['entity'];
     // Fetch elements.
     $element_controller = new ElementController();
-    switch($entity->getEntityTypeId()) {
+    switch ($entity->getEntityTypeId()) {
       case 'organization':
         $this->variables['content']['manage_groups'] = $element_controller->view(t('Manage groups'), 'manage_groups', new Url(
           'entity.organization.groups', [
@@ -54,4 +57,5 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
     }
     return $this->variables;
   }
+
 }

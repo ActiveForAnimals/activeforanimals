@@ -32,4 +32,5 @@ class ProfileBarController extends ControllerBase {
     ];
     return $content;
   }
+
 }

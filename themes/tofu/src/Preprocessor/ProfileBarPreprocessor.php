@@ -2,13 +2,14 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for ProfileBar.
+ */
 class ProfileBarPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -25,4 +26,5 @@ class ProfileBarPreprocessor extends Preprocessor implements PreprocessorInterfa
     $this->variables['content']['logout_link'] = $button_controller->view(t('Log out'), 'logout_link', $logout_link);
     return $this->variables;
   }
+
 }

@@ -2,10 +2,9 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\Core\Url;
-use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ElementController;
-
+/**
+ * Preprocessor for PublishGroupForm.
+ */
 class PublishGroupFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**

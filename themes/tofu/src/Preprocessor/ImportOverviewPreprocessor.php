@@ -7,9 +7,11 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ImageController;
 use Drupal\effective_activism\Helper\ImportHelper;
 
+/**
+ * Preprocessor for ImportOverview.
+ */
 class ImportOverviewPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -35,29 +37,30 @@ class ImportOverviewPreprocessor extends Preprocessor implements PreprocessorInt
     ));
     $this->variables['content']['empty'] = t('No imports created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['imports'] as $import) {
-      $import_elements =  [];
+      $import_elements = [];
       $import_link = new Url(
         'entity.import.canonical', [
           'import' => $import->id(),
         ]);
-      $import_elements['type'] = $element_controller->view($import->type->entity->label(), 'type');
-      switch ($import->bundle()) {
-        case 'csv':
-          $import_elements['source'] = $element_controller->view($import->get('field_file_csv')->entity->getFilename(), 'source');
-          break;
+        $import_elements['type'] = $element_controller->view($import->type->entity->label(), 'type');
+        switch ($import->bundle()) {
+          case 'csv':
+            $import_elements['source'] = $element_controller->view($import->get('field_file_csv')->entity->getFilename(), 'source');
+            break;
 
-      }
-      $create_date = Drupal::service('date.formatter')->format($import->get('created')->value);
-      $import_elements['created'] = $element_controller->view($create_date, 'created');
-      $import_elements['event_count'] = $element_controller->view(t('Events (@event_count)', [
+        }
+        $create_date = Drupal::service('date.formatter')->format($import->get('created')->value);
+        $import_elements['created'] = $element_controller->view($create_date, 'created');
+        $import_elements['event_count'] = $element_controller->view(t('Events (@event_count)', [
           '@event_count' => count(ImportHelper::getEvents($import, 0, 0, FALSE)),
         ]), 'event_count');
-      $import_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $import_link);
-      $this->variables['content']['imports'][] = $import_elements;
+        $import_elements['more_info'] = $button_controller->view(t('More info'), 'more_info', $import_link);
+        $this->variables['content']['imports'][] = $import_elements;
     }
     $this->variables['content']['pager'] = [
       '#type' => 'pager',
     ];
     return $this->variables;
   }
+
 }

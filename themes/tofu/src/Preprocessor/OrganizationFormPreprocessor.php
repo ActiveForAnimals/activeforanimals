@@ -5,10 +5,13 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 
+/**
+ * Preprocessor for OrganizationForm.
+ */
 class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
-   * {@inheritdoc}s
+   * {@inheritdoc}
    */
   public function preprocess() {
     // Fetch form array.
@@ -25,4 +28,5 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['form']['contact_information'] = $contact_information_controller->form($form);
     return $this->variables;
   }
+
 }

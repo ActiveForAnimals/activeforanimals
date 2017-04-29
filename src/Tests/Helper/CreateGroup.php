@@ -6,6 +6,9 @@ use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\user\Entity\User;
 
+/**
+ * Creates a test group.
+ */
 class CreateGroup {
 
   const TITLE = 'Test group';
@@ -26,9 +29,6 @@ class CreateGroup {
    *   The organizer of the group.
    * @param string $title
    *   Optional title of the group.
-   *
-   * @return CreateGroup
-   *   An instance of this class.
    */
   public function __construct(Organization $organization, User $organizer, $title = NULL) {
     $this->organization = $organization;
@@ -37,7 +37,7 @@ class CreateGroup {
   }
 
   /**
-   * {inheritdoc}
+   * Create group.
    */
   public function execute() {
     $group = Group::create([
@@ -50,4 +50,5 @@ class CreateGroup {
     $group->save();
     return $group;
   }
+
 }

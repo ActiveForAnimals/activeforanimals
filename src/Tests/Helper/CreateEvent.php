@@ -6,6 +6,9 @@ use Drupal\effective_activism\Entity\Event;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\user\Entity\User;
 
+/**
+ * Creates a test event.
+ */
 class CreateEvent {
 
   const TITLE = 'Test event';
@@ -19,15 +22,12 @@ class CreateEvent {
   /**
    * Constructor.
    *
-   * @param Organization $organization
-   *   The organization the group belongs to.
+   * @param Group $group
+   *   The group the event belongs to.
    * @param User $organizer
    *   The organizer of the group.
    * @param string $title
    *   Optional title of the group.
-   *
-   * @return CreateGroup
-   *   An instance of this class.
    */
   public function __construct(Group $group, User $organizer, $title = NULL) {
     $this->group = $group;
@@ -36,7 +36,7 @@ class CreateEvent {
   }
 
   /**
-   * {inheritdoc}
+   * Create event.
    */
   public function execute() {
     $event = Event::create([
@@ -47,4 +47,5 @@ class CreateEvent {
     $event->save();
     return $event;
   }
+
 }

@@ -6,6 +6,9 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 
+/**
+ * Preprocessor for User.
+ */
 class UserPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -26,4 +29,5 @@ class UserPreprocessor extends Preprocessor implements PreprocessorInterface {
     ));
     return $this->variables;
   }
+
 }

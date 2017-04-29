@@ -126,7 +126,7 @@ class PathAliasHelper {
    * Connect all paths required for the entity.
    *
    * @param string $system_path
-   *   The system path of the entity
+   *   The system path of the entity.
    * @param string $path
    *   The path to add.
    */

@@ -51,7 +51,7 @@ class ResultTest extends WebTestBase {
    *
    * @var DataType
    */
-  private $data_type;
+  private $datatype;
 
   /**
    * The organization to host the group.
@@ -76,7 +76,7 @@ class ResultTest extends WebTestBase {
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
     $this->group = (new CreateGroup($this->organization, $this->organizer))->execute();
-    $this->data_type = (new CreateData())->execute();
+    $this->datatype = (new CreateData())->execute();
   }
 
   /**

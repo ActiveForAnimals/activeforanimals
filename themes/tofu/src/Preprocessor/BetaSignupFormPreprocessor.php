@@ -4,6 +4,9 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal\effective_activism\Controller\Element\FieldController;
 
+/**
+ * Preprocessor for BetaSignupForm.
+ */
 class BetaSignupFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -30,4 +33,5 @@ class BetaSignupFormPreprocessor extends Preprocessor implements PreprocessorInt
     ];
     return $this->variables;
   }
+
 }

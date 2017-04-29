@@ -2,11 +2,13 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Entity\ResultType;
 
+/**
+ * Preprocessor for DataForm.
+ */
 class DataFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -28,4 +30,5 @@ class DataFormPreprocessor extends Preprocessor implements PreprocessorInterface
     $this->variables['elements']['tags'] = $field_controller->form($elements[$tag_field], 'tags');
     return $this->variables;
   }
+
 }

@@ -3,8 +3,10 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\tofu\Preprocessor\PreprocessorInterface;
 
+/**
+ * Preprocessor for ContactInformation.
+ */
 class ContactInformationPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -19,10 +21,11 @@ class ContactInformationPreprocessor extends Preprocessor implements Preprocesso
         $this->variables['content'][$field_name] = $field_controller->view($field);
       }
       // Process form element arrays.
-      elseif(is_array($field)) {
+      elseif (is_array($field)) {
         $this->variables['content'][$field_name] = $field_controller->form($field, $field_name);
       }
     }
     return $this->variables;
   }
+
 }

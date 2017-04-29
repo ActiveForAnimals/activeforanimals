@@ -1,6 +1,10 @@
 <?php
 
-use Drupal\Component\Utility\Html;
+/**
+ * @file
+ * Preprocess hook for html.
+ */
+
 use Drupal\tofu\Constant;
 
 /**

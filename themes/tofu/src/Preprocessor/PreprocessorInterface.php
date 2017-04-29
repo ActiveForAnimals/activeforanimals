@@ -2,6 +2,9 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+/**
+ * Interface for preprocessor classes.
+ */
 interface PreprocessorInterface {
 
   /**

@@ -2,10 +2,12 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 
+/**
+ * Preprocessor for UserPasswordForm.
+ */
 class UserPasswordFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -19,4 +21,5 @@ class UserPasswordFormPreprocessor extends Preprocessor implements PreprocessorI
     $element_controller = new ElementController();
     return $this->variables;
   }
+
 }

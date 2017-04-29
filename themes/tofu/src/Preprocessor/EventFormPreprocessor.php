@@ -2,9 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 
+/**
+ * Preprocessor for EventForm.
+ */
 class EventFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -24,4 +26,5 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['results'] = $field_controller->form($form['results'], 'inline_entity_form');
     return $this->variables;
   }
+
 }

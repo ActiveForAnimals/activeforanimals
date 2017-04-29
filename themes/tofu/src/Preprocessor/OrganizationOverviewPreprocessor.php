@@ -3,11 +3,13 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
 
+/**
+ * Preprocessor for OrganizationOverview.
+ */
 class OrganizationOverviewPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -35,17 +37,18 @@ class OrganizationOverviewPreprocessor extends Preprocessor implements Preproces
         'entity.organization.canonical', [
           'organization' => $organization->id(),
         ]);
-      if (!$organization->get('logo')->isEmpty()) {
-        $organization_elements['logo'] = $image_controller->view($organization->get('logo')->entity->getFileUri(), 'logo', ImageController::LOGO_200X200, $organization_link);
-      }
-      if (!$organization->get('title')->isEmpty()) {
-        $organization_elements['title'] = $field_controller->view($organization->get('title'), $organization_link);
-      }
-      if (!$organization->get('location')->isEmpty()) {
-        $organization_elements['location'] = $field_controller->view($organization->get('location'));
-      }
-      $this->variables['content']['organizations'][] = $organization_elements;
+        if (!$organization->get('logo')->isEmpty()) {
+          $organization_elements['logo'] = $image_controller->view($organization->get('logo')->entity->getFileUri(), 'logo', ImageController::LOGO_200X200, $organization_link);
+        }
+        if (!$organization->get('title')->isEmpty()) {
+          $organization_elements['title'] = $field_controller->view($organization->get('title'), $organization_link);
+        }
+        if (!$organization->get('location')->isEmpty()) {
+          $organization_elements['location'] = $field_controller->view($organization->get('location'));
+        }
+        $this->variables['content']['organizations'][] = $organization_elements;
     }
     return $this->variables;
   }
+
 }

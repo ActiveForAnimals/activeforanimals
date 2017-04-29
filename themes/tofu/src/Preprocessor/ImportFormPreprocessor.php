@@ -2,9 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 
+/**
+ * Preprocessor for ImportForm.
+ */
 class ImportFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -28,4 +30,5 @@ class ImportFormPreprocessor extends Preprocessor implements PreprocessorInterfa
     $this->variables['form']['timezone_notice'] = $field_controller->form($form['timezone_notice'], 'timezone');
     return $this->variables;
   }
+
 }
