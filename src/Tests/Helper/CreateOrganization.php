@@ -2,7 +2,6 @@
 
 namespace Drupal\activeforanimals\Tests\Helper;
 
-use Drupal;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Entity\Group;
@@ -11,6 +10,9 @@ use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\user\Entity\User;
 
+/**
+ * Creates a test organization.
+ */
 class CreateOrganization {
 
   const TITLE = 'Test organization';
@@ -24,11 +26,10 @@ class CreateOrganization {
   /**
    * Constructor.
    *
-   * @param User $manager
+   * @param \Drupal\user\Entity\User $manager
    *   The manager of the group.
-   *
-   * @return CreateOrganization
-   *   An instance of this class.
+   * @param \Drupal\user\Entity\User $organizer
+   *   The organizer of the group.
    */
   public function __construct(User $manager, User $organizer) {
     $this->manager = $manager;
@@ -37,7 +38,7 @@ class CreateOrganization {
   }
 
   /**
-   * {inheritdoc}
+   * Create organization.
    */
   public function execute() {
     $organization = Organization::create([
@@ -82,4 +83,5 @@ class CreateOrganization {
     }
     return $organization;
   }
+
 }

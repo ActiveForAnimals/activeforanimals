@@ -2,14 +2,12 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
-use Drupal\Core\Url;
-use Drupal\tofu\Constant;
-use Drupal\activeforanimals\Controller\ProfileBarController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\ImageController;
-use Drupal\tofu\Preprocessor\PreprocessorInterface;
 
+/**
+ * Preprocessor for Invitation.
+ */
 class InvitationPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -24,4 +22,5 @@ class InvitationPreprocessor extends Preprocessor implements PreprocessorInterfa
     }
     return $this->variables;
   }
+
 }

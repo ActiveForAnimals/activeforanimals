@@ -2,11 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests;
 
-use Drupal\effective_activism\Entity\Group;
-use Drupal\effective_activism\Entity\ResultType;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\simpletest\WebTestBase;
-use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Function tests for creating organizations.

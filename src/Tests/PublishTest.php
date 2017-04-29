@@ -8,7 +8,6 @@ use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\simpletest\WebTestBase;
-use Drupal\user\Entity\User;
 
 /**
  * Access restriction tests.
@@ -43,21 +42,21 @@ class PublishTest extends WebTestBase {
   /**
    * Container for an organization.
    *
-   * @var Organization
+   * @var \Drupal\effective_activism\Entity\Organization
    */
   private $organization;
 
   /**
    * Container for a group.
    *
-   * @var Group
+   * @var \Drupal\effective_activism\Entity\Group
    */
   private $group;
 
   /**
    * Container for an event.
    *
-   * @var Group
+   * @var \Drupal\effective_activism\Entity\Group
    */
   private $event;
 

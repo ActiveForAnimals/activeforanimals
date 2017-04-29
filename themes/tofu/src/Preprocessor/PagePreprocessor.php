@@ -2,10 +2,12 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
 
+/**
+ * Preprocessor for Page.
+ */
 class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -22,4 +24,5 @@ class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
     ];
     return $this->variables;
   }
+
 }

@@ -2,7 +2,8 @@
 
 /**
  * @file
- * AFA Agarve nectar jar module, for deterring spam bots from completing the user creation form.
+ * AFA Agarve nectar jar module, for deterring spam bots.
+ *
  * Inspired by https://drupal.org/project/honeypot.
  */
 
@@ -48,7 +49,7 @@ function afa_agarvenectarjar_form_alter(&$form, FormStateInterface $form_state, 
  */
 function _afa_agarvenectarjar_validate($element, FormStateInterface $form_state) {
   // Make sure it's empty.
-  if (!empty( $element['#value'])) {
+  if (!empty($element['#value'])) {
     \Drupal::logger('afa_agarvenectarjar')->notice('Spambot access attempt');
     $form_state->setErrorByName('', t('There was a problem with your form submission. Please refresh the page and try again.'));
   }

@@ -104,4 +104,5 @@ class EventTest extends WebTestBase {
     $this->assertText(self::ENDDATEFORMATTED, 'Set end date correctly.');
     $this->assertText(self::ENDTIME, 'Set end time correctly.');
   }
+
 }

@@ -32,4 +32,5 @@ class FrontPageController extends ControllerBase {
     ];
     return $content;
   }
+
 }

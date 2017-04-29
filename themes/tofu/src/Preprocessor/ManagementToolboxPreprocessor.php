@@ -5,6 +5,9 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ElementController;
 
+/**
+ * Preprocessor for ManagementToolbox.
+ */
 class ManagementToolboxPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -14,7 +17,7 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
     $entity = $this->variables['elements']['#storage']['entity'];
     // Fetch elements.
     $element_controller = new ElementController();
-    switch($entity->getEntityTypeId()) {
+    switch ($entity->getEntityTypeId()) {
       case 'organization':
         $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
           'entity.organization.edit_form', [
@@ -90,4 +93,5 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
     }
     return $this->variables;
   }
+
 }

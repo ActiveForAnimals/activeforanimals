@@ -2,9 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 
+/**
+ * Preprocessor for ResultTypeForm.
+ */
 class ResultTypeFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -23,4 +25,5 @@ class ResultTypeFormPreprocessor extends Preprocessor implements PreprocessorInt
     $this->variables['form']['groups'] = $field_controller->form($form['groups'], 'groups');
     return $this->variables;
   }
+
 }

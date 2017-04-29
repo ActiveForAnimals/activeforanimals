@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Install, update and uninstall functions for the Active for Animals profile.
@@ -21,5 +22,5 @@ function activeforanimals_install() {
   $systemDate->set('timezone.user.configurable', FALSE)->save(TRUE);
   // Setup the location key.
   $locationSettings = \Drupal::configFactory()->getEditable('effective_activism.location');
-  $locationSettings->set('key', Settings::getGoogleAPIKey())->save(TRUE);
+  $locationSettings->set('key', Settings::getGoogleApiKey())->save(TRUE);
 }

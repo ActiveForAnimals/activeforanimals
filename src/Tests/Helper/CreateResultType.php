@@ -6,6 +6,9 @@ use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\user\Entity\User;
 
+/**
+ * Creates a test result type.
+ */
 class CreateResultType {
 
   const TITLE = 'Test group';
@@ -18,13 +21,10 @@ class CreateResultType {
   /**
    * Constructor.
    *
-   * @param Organization $organization
+   * @param \Drupal\effective_activism\Entity\Organization $organization
    *   The organization the group belongs to.
-   * @param User $organizer
+   * @param \Drupal\user\Entity\User $organizer
    *   The organizer of the group.
-   *
-   * @return CreateGroup
-   *   An instance of this class.
    */
   public function __construct(Organization $organization, User $organizer) {
     $this->organization = $organization;
@@ -32,7 +32,7 @@ class CreateResultType {
   }
 
   /**
-   * {inheritdoc}
+   * Create result type.
    */
   public function execute() {
     $group = Group::create([
@@ -45,4 +45,5 @@ class CreateResultType {
     $group->save();
     return $group;
   }
+
 }

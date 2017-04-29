@@ -3,11 +3,6 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Url;
-use Drupal\effective_activism\Entity\Organization;
-use Drupal\effective_activism\Helper\AccountHelper;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\ImportHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
@@ -15,9 +10,11 @@ use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
 use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
 use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
-use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 
+/**
+ * Preprocessor for Import.
+ */
 class ImportPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   /**
@@ -63,4 +60,5 @@ class ImportPreprocessor extends Preprocessor implements PreprocessorInterface {
     }
     return $this->variables;
   }
+
 }

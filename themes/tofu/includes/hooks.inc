@@ -5,8 +5,6 @@
  * Contains theme hook implements.
  */
 
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\tofu\Hook\EntityInsertHook;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\tofu\Hook\FormAlterHook;
 use Drupal\tofu\Hook\PreprocessHook;

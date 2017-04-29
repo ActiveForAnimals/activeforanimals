@@ -4,10 +4,7 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
-use Drupal\effective_activism\Entity\Group;
-use Drupal\effective_activism\Entity\Organization;
 use Drupal\simpletest\WebTestBase;
-use Drupal\user\Entity\User;
 
 /**
  * Access restriction tests.
@@ -167,7 +164,7 @@ class AccessRestrictionsTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
-    
+
     // Verify that organizer1 can create events for group1.
     $this->drupalLogin($this->organizer1);
     // User has access to event overview page.
@@ -188,7 +185,7 @@ class AccessRestrictionsTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
-    
+
     // Verify that organizer2 cannot manage events from group1.
     $this->drupalLogin($this->organizer2);
     // User cannot create events with group.
