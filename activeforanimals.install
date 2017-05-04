@@ -14,13 +14,16 @@ function activeforanimals_install() {
   // Override the front page.
   \Drupal::getContainer()->get('config.factory')->getEditable('system.site')->set('page.front', '/front')->save();
   // Allow visitor account creation with administrative approval.
-  $userSettings = \Drupal::configFactory()->getEditable('user.settings');
-  $userSettings->set('register', USER_REGISTER_ADMINISTRATORS_ONLY)->save(TRUE);
+  $user_settings = \Drupal::configFactory()->getEditable('user.settings');
+  $user_settings->set('register', USER_REGISTER_ADMINISTRATORS_ONLY)->save(TRUE);
   // Disable user time zones.
   // This is required in order for events to register correct time.
-  $systemDate = \Drupal::configFactory()->getEditable('system.date');
-  $systemDate->set('timezone.user.configurable', FALSE)->save(TRUE);
-  // Setup the location key.
-  $locationSettings = \Drupal::configFactory()->getEditable('effective_activism.location');
-  $locationSettings->set('key', Settings::getGoogleApiKey())->save(TRUE);
+  $system_date = \Drupal::configFactory()->getEditable('system.date');
+  $system_date->set('timezone.user.configurable', FALSE)->save(TRUE);
+  // Setup the Google Maps API key.
+  $location_settings = \Drupal::configFactory()->getEditable('effective_activism.settings');
+  $location_settings->set('google_maps_api_key', Settings::getGoogleMapsApiKey())->save(TRUE);
+  // Setup the Google Static Maps API key.
+  $location_settings = \Drupal::configFactory()->getEditable('effective_activism.settings');
+  $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey())->save(TRUE);
 }

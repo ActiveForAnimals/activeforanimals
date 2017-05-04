@@ -32,7 +32,7 @@ install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS drupal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' -uroot
   - composer global require drush/drush
   - composer global require PHPUnit/PHPUnit
-  - composer global require squizlabs/php_codesniffer
+  - composer global require squizlabs/php_codesniffer:2.*
   - composer global require drupal/coder
 
 before_script:
@@ -59,7 +59,6 @@ before_script:
 script:
   - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
   - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
-  - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
   - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
   - ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
   - php core/scripts/run-tests.sh --php $(which php) --color --url $SIMPLETEST_BASE_URL --verbose activeforanimals
