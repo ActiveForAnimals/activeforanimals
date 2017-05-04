@@ -20,10 +20,10 @@ function activeforanimals_install() {
   // This is required in order for events to register correct time.
   $system_date = \Drupal::configFactory()->getEditable('system.date');
   $system_date->set('timezone.user.configurable', FALSE)->save(TRUE);
-  // Setup the location key.
+  // Setup the Google Maps API key.
   $location_settings = \Drupal::configFactory()->getEditable('effective_activism.settings');
   $location_settings->set('google_maps_api_key', Settings::getGoogleMapsApiKey())->save(TRUE);
-  // Setup the location key.
+  // Setup the Google Static Maps API key.
   $location_settings = \Drupal::configFactory()->getEditable('effective_activism.settings');
-  $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsKey())->save(TRUE);
+  $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey())->save(TRUE);
 }
