@@ -38,26 +38,54 @@ class Settings {
   }
 
   /**
-   * Return API key for Google services.
+   * Return API key for Google Maps.
    *
    * @return string
    *   The API key.
    */
-  public static function getGoogleApiKey() {
+  public static function getGoogleMapsApiKey() {
     $key = NULL;
     if (defined('PANTHEON_ENVIRONMENT')) {
       $data = self::getSettings();
       switch (PANTHEON_ENVIRONMENT) {
         case self::ENVIRONMENT_LIVE:
-          $key = isset($data['google']['maps']) ? $data['google']['maps'] : NULL;
+          $key = isset($data['google_maps_api_key']) ? $data['google_maps_api_key'] : NULL;
           break;
 
         case self::ENVIRONMENT_TEST:
-          $key = isset($data['google']['maps']) ? $data['google']['maps'] : NULL;
+          $key = isset($data['google_maps_api_key']) ? $data['google_maps_api_key'] : NULL;
           break;
 
         case self::ENVIRONMENT_DEV:
-          $key = isset($data['google']['maps']) ? $data['google']['maps'] : NULL;
+          $key = isset($data['google_maps_api_key']) ? $data['google_maps_api_key'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
+   * Return API key for Google Static Maps.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getGoogleStaticMapsApiKey() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['google_static_maps_api_key']) ? $data['google_static_maps_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['google_static_maps_api_key']) ? $data['google_static_maps_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_DEV:
+          $key = isset($data['google_static_maps_api_key']) ? $data['google_static_maps_api_key'] : NULL;
           break;
 
       }
