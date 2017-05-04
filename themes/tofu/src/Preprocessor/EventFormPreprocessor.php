@@ -26,4 +26,5 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['results'] = $field_controller->form($form['results'], 'inline_entity_form');
     return $this->variables;
   }
+
 }
