@@ -11,6 +11,7 @@ use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
 use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
+use Drupal\tofu\Constant;
 
 /**
  * Preprocessor for Event.
@@ -37,10 +38,11 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['results'] = $field_controller->view($event->get('results'));
     $this->variables['content']['results'] = $field_controller->view($event->get('results'));
     // Render map.
+    $icon_path = sprintf('http://%s/%s/images/location.png', Drupal::request()->getHost(), drupal_get_path('theme', Constant::MACHINE_NAME));
     $google_static_maps_api_key = Drupal::config('effective_activism.settings')->get('google_static_maps_api_key');
     $locations = $event->get('location')->getValue();
     $location = array_pop($locations);
-    $map_uri = sprintf('%s?markers=%f,%f&zoom=%d&size=640x200&scale=2&key=%s', self::GOOGLE_MAP_URL, $location['latitude'], $location['longitude'], self::GOOGLE_MAP_ZOOM_LEVEL, $google_static_maps_api_key);
+    $map_uri = sprintf('%s?markers=icon:%s|%f,%f&zoom=%d&size=640x200&scale=2&key=%s', self::GOOGLE_MAP_URL, $icon_path, $location['latitude'], $location['longitude'], self::GOOGLE_MAP_ZOOM_LEVEL, $google_static_maps_api_key);
     $this->variables['content']['map'] = $image_controller->view($map_uri, 'map');
     // Get organization groups.
     $organization = $event->get('parent')->entity->get('organization')->entity;
