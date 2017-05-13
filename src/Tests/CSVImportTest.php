@@ -22,6 +22,7 @@ class CSVImportTest extends WebTestBase {
   const STARTTIME = '11:00';
   const ENDDATE = '12/13/2016';
   const ENDTIME = '13:00';
+  const NUMBER_OF_IMPORTED_EVENTS = 2;
 
   /**
    * {@inheritdoc}
@@ -103,11 +104,11 @@ class CSVImportTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the import.', 'Added a new import entity.');
-    $this->assertText('One item imported', 'Successfully imported event');
+    $this->assertText('2 items imported.', 'Successfully imported event');
     // Get imported events.
     $events = GroupHelper::getEvents($this->group);
-    $this->assertEqual(count($events), 1, 'Imported one event');
-    $event = array_pop($events);
+    $this->assertEqual(count($events), self::NUMBER_OF_IMPORTED_EVENTS, 'Imported two events');
+    $event = array_shift($events);
     $event_path = $event->toUrl()->toString();
     $this->drupalGet($event_path);
     $this->assertResponse(200);
