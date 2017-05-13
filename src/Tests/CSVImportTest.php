@@ -5,6 +5,7 @@ namespace Drupal\activeforanimals\Tests;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -15,6 +16,8 @@ use Drupal\simpletest\WebTestBase;
 class CSVImportTest extends WebTestBase {
 
   const ADD_CSV_IMPORT_PATH = '/import/csv';
+  const RESULTTYPE = 'leafleting';
+  const RESULT = 'leafleting | 4 | 0 | 1 | 0 | 1000 | Flyer A';
   const STARTDATE = '12/13/2016';
   const STARTTIME = '11:00';
   const ENDDATE = '12/13/2016';
@@ -90,6 +93,7 @@ class CSVImportTest extends WebTestBase {
    * Run test.
    */
   public function testDo() {
+    // Import CSV file.
     $this->drupalLogin($this->organizer);
     $this->drupalGet(self::ADD_CSV_IMPORT_PATH);
     $this->assertResponse(200);
@@ -109,6 +113,19 @@ class CSVImportTest extends WebTestBase {
     $this->assertResponse(200);
     $this->assertText(sprintf('%s - %s', self::STARTDATE, self::STARTTIME), 'Start date and time found.');
     $this->assertText(sprintf('%s - %s', self::ENDDATE, self::ENDTIME), 'End date and time found.');
+    // Remove result type from group.
+    $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULTTYPE, $this->organization->id());
+    $result_type->groups = [];
+    $result_type->save();
+    // Fail CSV import.
+    $this->drupalGet(self::ADD_CSV_IMPORT_PATH);
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [
+      'parent[0][target_id]' => $this->group->id(),
+      'files[field_file_csv_0]' => $this->csvfilepath,
+    ], t('Save'));
+    $this->assertResponse(200);
+    $this->assertText(sprintf('The CSV file contains a row with an incorrect result (%s)', self::RESULT), 'Failed to import.');
   }
 
 }
