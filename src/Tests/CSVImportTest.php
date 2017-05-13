@@ -5,6 +5,7 @@ namespace Drupal\activeforanimals\Tests;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
