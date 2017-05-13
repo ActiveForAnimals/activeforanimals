@@ -125,7 +125,7 @@ class CSVImportTest extends WebTestBase {
       'files[field_file_csv_0]' => $this->csvfilepath,
     ], t('Save'));
     $this->assertResponse(200);
-    $this->assertText('The CSV file contains a row with an incorrect result (%s)', 'Failed to import.');
+    $this->assertText(sprintf('The CSV file contains a row with an incorrect result (%s)', self::RESULT), 'Failed to import.');
   }
 
 }
