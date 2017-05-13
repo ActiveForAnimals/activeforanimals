@@ -4,6 +4,7 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
+use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -15,6 +16,7 @@ class AccessRestrictionsTest extends WebTestBase {
 
   const PATH_EVENT_ADD = 'create-event';
   const ADD_CSV_IMPORT_PATH = 'import/csv';
+  const RESULTTYPE = 'leafleting';
   const GROUP_TITLE_1 = 'Test group 1';
   const GROUP_TITLE_1_MODIFIED = 'Test group 1 (updated)';
   const GROUP_TITLE_2 = 'Test group 2';
@@ -107,6 +109,10 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2))->execute();
     $this->group1 = (new CreateGroup($this->organization1, $this->organizer1, self::GROUP_TITLE_1))->execute();
     $this->group2 = (new CreateGroup($this->organization2, $this->organizer2, self::GROUP_TITLE_2))->execute();
+    // Add result type to group1.
+    $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULTTYPE, $this->organization1->id());
+    $result_type->groups = [$this->group1->id()];
+    $result_type->save();
   }
 
   /**
