@@ -94,6 +94,34 @@ class Settings {
   }
 
   /**
+   * Return API key for DarkSky.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getDarkskyApiKey() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['darksky_api_key']) ? $data['darksky_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['darksky_api_key']) ? $data['darksky_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_DEV:
+          $key = isset($data['darksky_api_key']) ? $data['darksky_api_key'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
    * Return e-mail address for beta signup.
    *
    * @return string

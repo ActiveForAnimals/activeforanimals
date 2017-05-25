@@ -53,7 +53,6 @@ class AccessRestrictionsTest extends WebTestBase {
    */
   private $organization2;
 
-
   /**
    * Container for the group1 group.
    *
