@@ -24,6 +24,6 @@ function activeforanimals_install() {
   $location_settings = \Drupal::configFactory()->getEditable('effective_activism.settings');
   $location_settings->set('google_maps_api_key', Settings::getGoogleMapsApiKey());
   $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey());
-  $location_settings->set('darksky_api_key', Settings::getDarkskyApiKey())
+  $location_settings->set('darksky_api_key', Settings::getDarkskyApiKey());
   $location_settings->save(TRUE);
 }
