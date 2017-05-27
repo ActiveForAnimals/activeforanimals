@@ -16,7 +16,8 @@ class AccessRestrictionsTest extends WebTestBase {
 
   const PATH_EVENT_ADD = 'create-event';
   const ADD_CSV_IMPORT_PATH = 'import/csv';
-  const RESULTTYPE = 'leafleting';
+  const RESULT_TYPE_1 = 'leafleting';
+  const RESULT_TYPE_2 = 'pay_per_view_event';
   const GROUP_TITLE_1 = 'Test group 1';
   const GROUP_TITLE_1_MODIFIED = 'Test group 1 (updated)';
   const GROUP_TITLE_2 = 'Test group 2';
@@ -51,7 +52,6 @@ class AccessRestrictionsTest extends WebTestBase {
    * @var Organization
    */
   private $organization2;
-
 
   /**
    * Container for the group1 group.
@@ -109,8 +109,12 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2))->execute();
     $this->group1 = (new CreateGroup($this->organization1, $this->organizer1, self::GROUP_TITLE_1))->execute();
     $this->group2 = (new CreateGroup($this->organization2, $this->organizer2, self::GROUP_TITLE_2))->execute();
-    // Add result type to group1.
-    $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULTTYPE, $this->organization1->id());
+    // Add leafleting result type to group1.
+    $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULT_TYPE_1, $this->organization1->id());
+    $result_type->groups = [$this->group1->id()];
+    $result_type->save();
+    // Add pay-per-view result type to group1.
+    $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULT_TYPE_2, $this->organization1->id());
     $result_type->groups = [$this->group1->id()];
     $result_type->save();
   }
@@ -264,7 +268,7 @@ class AccessRestrictionsTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the import.', 'Added a new import entity.');
-    $this->assertText('One item imported', 'Successfully imported event');
+    $this->assertText('2 items imported.', 'Successfully imported event');
 
     // Verify that manager2 cannot manage import.
     $this->drupalLogin($this->manager2);
