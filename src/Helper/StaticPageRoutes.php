@@ -21,7 +21,7 @@ class StaticPageRoutes {
   /**
    * A collection of routes.
    *
-   * @var RouteCollection
+   * @var \Symfony\Component\Routing\RouteCollection
    */
   private $collection;
 
