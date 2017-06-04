@@ -1,0 +1,11 @@
+{
+    "name": "activeforanimals/tofu",
+    "description": "Theme for the active for animals website.",
+    "type": "drupal-theme",
+    "minimum-stability": "stable",
+    "require": {
+        "erusev/parsedown": "^1.6.2"
+    }
+}
+
+

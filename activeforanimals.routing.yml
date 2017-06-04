@@ -73,3 +73,6 @@ activeforanimals.result_type.create:
     _title: Create result type
   requirements:
     _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
+
+route_callbacks:
+  - '\Drupal\activeforanimals\Helper\StaticPageRoutes::routes'

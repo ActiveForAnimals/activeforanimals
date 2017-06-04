@@ -40,7 +40,6 @@ class ThemeHook implements HookInterface {
     $theme['import-form'] = $this->getForm('import');
     // Update html element.
     $theme['html']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'html');
-    $theme['html']['file'] = sprintf('%s.page.inc', 'html');
     $theme['html']['template'] = 'html';
     // Update page element.
     $theme['page']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'page');
