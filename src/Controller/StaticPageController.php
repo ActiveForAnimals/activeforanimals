@@ -19,7 +19,7 @@ class StaticPageController extends ControllerBase {
   /**
    * Returns a render array.
    *
-   * @param string $root
+   * @param string $filepath
    *   The path to the static content.
    *
    * @return array

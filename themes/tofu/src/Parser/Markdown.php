@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Parser;
 
-use Drupal\filter\Plugin\FilterInterface;
 use Parsedown;
 
 /**
@@ -12,7 +11,7 @@ class Markdown {
 
   private $parser;
 
-  private $raw_content;
+  private $raw;
 
   private $structure;
 
@@ -23,7 +22,7 @@ class Markdown {
    *   The file path of the markdown document to render.
    */
   public function __construct($filepath) {
-    $this->raw_content = file_get_contents($filepath);
+    $this->raw = file_get_contents($filepath);
     $this->parser = new Parsedown();
   }
 
@@ -44,7 +43,7 @@ class Markdown {
    *   Derived HTML.
    */
   private function parse() {
-    return $this->parser->text($this->raw_content);
+    return $this->parser->text($this->raw);
   }
 
 }

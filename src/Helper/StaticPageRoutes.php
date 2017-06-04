@@ -19,17 +19,22 @@ class StaticPageRoutes {
   ];
 
   /**
-   * @var RouteCollection $collection
-   *   A collection of routes.
+   * A collection of routes.
+   *
+   * @var RouteCollection
    */
   private $collection;
 
   /**
-   * @var string rootpath
-   *   The root path of the static page location.
+   * The root path of the static page location.
+   *
+   * @var string
    */
   private $rootpath;
 
+  /**
+   * Constructor.
+   */
   public function __construct() {
     $this->collection = new RouteCollection();
     $this->rootpath = sprintf('%s/docs', drupal_get_path('profile', 'activeforanimals'));
@@ -39,7 +44,7 @@ class StaticPageRoutes {
   /**
    * Returns static page routes.
    *
-   * @return RouteCollection
+   * @return \Symfony\Component\Routing\RouteCollection
    *   A collection of routes.
    */
   public function routes() {
@@ -47,15 +52,15 @@ class StaticPageRoutes {
   }
 
   /**
-   * Builds routes from a structure.
+   * Builds routes from a path.
    *
-   * @param array $structure
-   *   A structure of content to iterate over.
+   * @param string $path
+   *   A path to iterate over.
    */
   private function traversePath($path) {
     $handle = opendir($path);
     if ($handle) {
-      while (false !== ($element = readdir($handle))) {
+      while (($element = readdir($handle)) !== FALSE) {
         if (
           $element === '.' ||
           $element === '..'
