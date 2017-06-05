@@ -2,6 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests;
 
+use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
@@ -78,7 +79,7 @@ class CSVImportTest extends WebTestBase {
     parent::setUp();
     // Disable user timezones.
     // This is required in order for events to register correct time.
-    $systemDate = \Drupal::configFactory()->getEditable('system.date');
+    $systemDate = Drupal::configFactory()->getEditable('system.date');
     $systemDate->set('timezone.default', 'UTC');
     $systemDate->save(TRUE);
     // Create users and structure.

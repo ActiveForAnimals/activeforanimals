@@ -4,6 +4,7 @@ namespace Drupal\tofu\Hook;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\ProfileBarController;
+use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\activeforanimals\Form\BetaSignupForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
@@ -29,6 +30,7 @@ use Drupal\tofu\Preprocessor\FrontPagePreprocessor;
 use Drupal\tofu\Preprocessor\GroupListPreprocessor;
 use Drupal\tofu\Preprocessor\GroupPreprocessor;
 use Drupal\tofu\Preprocessor\HeaderMenuPreprocessor;
+use Drupal\tofu\Preprocessor\HtmlPreprocessor;
 use Drupal\tofu\Preprocessor\InvitationPreprocessor;
 use Drupal\tofu\Preprocessor\ImportFormPreprocessor;
 use Drupal\tofu\Preprocessor\ImportOverviewPreprocessor;
@@ -44,6 +46,7 @@ use Drupal\tofu\Preprocessor\PublishGroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\ResultFormPreprocessor;
 use Drupal\tofu\Preprocessor\ResultTypeOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ResultTypeFormPreprocessor;
+use Drupal\tofu\Preprocessor\StaticPagePreprocessor;
 use Drupal\tofu\Preprocessor\UserFormPreprocessor;
 use Drupal\tofu\Preprocessor\UserLoginFormPreprocessor;
 use Drupal\tofu\Preprocessor\UserPasswordFormPreprocessor;
@@ -126,6 +129,10 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new HeaderMenuPreprocessor($variables);
         break;
 
+      case 'html':
+        $preprocessor = new HtmlPreprocessor($variables);
+        break;
+
       case InvitationController::THEME_ID:
         $preprocessor = new InvitationPreprocessor($variables);
         break;
@@ -184,6 +191,10 @@ class PreprocessHook implements HookInterface {
 
       case ResultTypeListBuilder::THEME_ID:
         $preprocessor = new ResultTypeOverviewPreprocessor($variables);
+        break;
+
+      case StaticPageController::THEME_ID:
+        $preprocessor = new StaticPagePreprocessor($variables);
         break;
 
       case 'user':
