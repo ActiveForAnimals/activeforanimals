@@ -2,6 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests;
 
+use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
@@ -141,7 +142,7 @@ class AccessRestrictionsTest extends WebTestBase {
       'email_address[0][value]' => '',
       'location[0][address]' => '',
       'location[0][extra_information]' => '',
-      'timezone' => \Drupal::config('system.date')->get('timezone.default'),
+      'timezone' => Drupal::config('system.date')->get('timezone.default'),
       'description[0][value]' => '',
     ], t('Save'));
     $this->assertResponse(200);
@@ -234,7 +235,7 @@ class AccessRestrictionsTest extends WebTestBase {
       'email_address[0][value]' => '',
       'location[0][address]' => '',
       'location[0][extra_information]' => '',
-      'timezone' => \Drupal::config('system.date')->get('timezone.default'),
+      'timezone' => Drupal::config('system.date')->get('timezone.default'),
       'description[0][value]' => '',
     ], t('Save'));
     $this->assertResponse(200);
