@@ -3,7 +3,6 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
-use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
@@ -44,21 +43,21 @@ class EventResultTest extends WebTestBase {
   /**
    * The organization to host the group.
    *
-   * @var Organization
+   * @var \Drupal\effective_activism\Entity\Organization
    */
   private $organization;
 
   /**
    * The group to host the event.
    *
-   * @var Group
+   * @var \Drupal\effective_activism\Entity\Group
    */
   private $group;
 
   /**
    * The event to test with results.
    *
-   * @var Event
+   * @var \Drupal\effective_activism\Entity\Event
    */
   private $event;
 
