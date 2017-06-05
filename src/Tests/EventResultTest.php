@@ -99,35 +99,38 @@ class EventResultTest extends WebTestBase {
       $result_type = ResultTypeHelper::getResultTypeByImportName($import_name, $this->organization->id());
       $this->drupalPostAjaxForm(NULL, [
         'results[actions][bundle]' => $result_type->id(),
-      ], $this->getButtonName('//input[@type="submit" and @value="Add new result"]'));
+      ], $this->getElementName('//input[@type="submit" and @value="Add new result"]'));
       $this->assertResponse(200);
+      // Note: Inline entity form fields can have different name attributes.
+      // We search with Xpath by a subset of the name to match them all.
       $data_fields = [];
       foreach ($options['datatypes'] as $key => $value) {
-        $data_fields[sprintf('results[0][data_%s][0][inline_entity_form][field_%s][0][value]', $key, $key)] = '300';
+        $datatype_name = $this->getElementName(sprintf('//input[contains(@name, "[inline_entity_form][field_%s][0][value]")]', $key));
+        $data_fields[$datatype_name] = '300';
       }
-      $this->drupalPostAjaxForm(NULL, array_merge([
-        sprintf('results[0][participant_count][0][value]') => '1',
-        sprintf('results[0][duration_minutes]', $import_name) => '30',
-        sprintf('results[0][duration_hours]', $import_name) => '1',
-        sprintf('results[0][duration_days]', $import_name) => '0',
-        sprintf('results[0][tags_1][0][target_id]', $import_name) => 'tag_test',
-      ], $data_fields), $this->getButtonName('//input[@type="submit" and @value="Create result"]'));
-      $this->assertResponse(200);
+      $post_data = array_merge([
+        $this->getElementName('//input[contains(@name, "[participant_count][0][value]")]') => '1',
+        $this->getElementName('//select[contains(@name, "[duration_minutes]")]') => '30',
+        $this->getElementName('//select[contains(@name, "[duration_hours]")]') => '1',
+        $this->getElementName('//select[contains(@name, "[duration_days]")]') => '0',
+      ], $data_fields);
+      $this->drupalPostAjaxForm(NULL, $post_data, $this->getElementName('//input[@type="submit" and @value="Create result"]'));
       $this->drupalPostForm(sprintf('%s/edit', $this->event->toUrl()->toString()), [], t('Save'));
-      $this->assertText('Saved the event.', 'Added a new event entity.');
+      $this->assertResponse(200);
+      $this->assertText('Saved the event.', 'Saved the event entity.');
     }
   }
 
   /**
-   * Gets IEF button name.
+   * Gets HTML element name.
    *
    * @param string $xpath
-   *   Xpath of the button.
+   *   Xpath of the element.
    *
    * @return string
-   *   The name of the button.
+   *   The name of the element.
    */
-  private function getButtonName($xpath) {
+  private function getElementName($xpath) {
     $retval = '';
     /** @var \SimpleXMLElement[] $elements */
     if ($elements = $this->xpath($xpath)) {
@@ -138,7 +141,7 @@ class EventResultTest extends WebTestBase {
         }
       }
     }
-    return $retval;
+    return (string) $retval;
   }
 
 }
