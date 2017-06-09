@@ -12,14 +12,12 @@
     </div>
     <div class="column-2-15 no-spacing">
     </div>
-    <div class="column-6-15 no-spacing">
+    <div class="column-10-15 no-spacing">
       {{ content.guide }}
       <div class="spacer">&nbsp;</div>
       {{ content.organizations }}
       <div class="spacer">&nbsp;</div>
       {{ content.help }}
-    </div>
-    <div class="column-4-15 no-spacing">
       {% if not logged_in %}
       {{ content.login }}
       {% else %}

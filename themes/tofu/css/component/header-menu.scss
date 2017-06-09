@@ -3,16 +3,16 @@
  * Header menu
  */
 
-$header-menu-large-width: 70%;
-$header-menu-height: 6em;
+$header-menu-height-large: 6em;
+$header-menu-height-small: 8em;
 
 .header-menu {
-  @media only screen and (min-width: $large-min-width) {
-    width: $header-menu-large-width;
+  @media only screen and (min-width: $medium-min-width) {
     margin: auto;
+    height: $header-menu-height-large;
   }
   background-color: $white1;
-  height: $header-menu-height;
+  height: $header-menu-height-small;
 }
 
 .header-menu .view.element-logo {
@@ -25,7 +25,9 @@ $header-menu-height: 6em;
 .header-menu .view.element-help,
 .header-menu .view.element-profile_link,
 .header-menu .view.element-logout_link {
-  margin-top: 1.5em;
+  @media only screen and (min-width: $medium-min-width) {
+    margin-top: 1.5em;
+  }
   margin-left: 0.2em;
   width: auto;
   float: left;
@@ -42,5 +44,17 @@ $header-menu-height: 6em;
   width: auto;
   float: left;
   border-right: 2px solid #d1d2d0;
-  margin-top: 1.9em;
+  @media only screen and (min-width: $medium-min-width) {
+    margin-top: 1.9em;
+  }
+  margin-top: 0.4em;
+}
+
+.header-menu .element-login {
+  @media only screen and (min-width: $medium-min-width) {
+    margin-top: 1.4em;
+  }
+  margin-top: 0;
+  width: 6em;
+  float: right;
 }
