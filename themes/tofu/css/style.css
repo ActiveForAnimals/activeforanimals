@@ -840,12 +840,12 @@ input.form-submit:focus,
  */
 .header-menu {
   background-color: #ffffff;
-  height: 6em;
+  height: 8em;
 }
-@media only screen and (min-width: 1490px) {
+@media only screen and (min-width: 1024px) {
   .header-menu {
-    width: 70%;
     margin: auto;
+    height: 6em;
 } }
 
 .header-menu .view.element-logo {
@@ -855,27 +855,63 @@ input.form-submit:focus,
 
 .header-menu .view.element-guide,
 .header-menu .view.element-organizations,
-.header-menu .view.element-help,
-.header-menu .view.element-profile_link,
-.header-menu .view.element-logout_link {
-  margin-top: 1.5em;
+.header-menu .view.element-help {
   margin-left: 0.2em;
   width: auto;
   float: left;
   text-transform: uppercase;
 }
-
-.header-menu .form.element-name,
-.header-menu .form.element-pass,
-.header-menu .form.element-submit {
-  margin-top: 1em;
-}
+@media only screen and (min-width: 1024px) {
+  .header-menu .view.element-guide,
+  .header-menu .view.element-organizations,
+  .header-menu .view.element-help {
+    margin-top: 1.5em;
+} }
+@media only screen and (max-width: 768px) {
+  .header-menu .view.element-guide,
+  .header-menu .view.element-organizations,
+  .header-menu .view.element-help {
+    display: none;
+} }
 
 .header-menu .spacer {
   width: auto;
   float: left;
   border-right: 2px solid #d1d2d0;
-  margin-top: 1.9em;
+  margin-top: 0.4em;
 }
+@media only screen and (min-width: 1024px) {
+  .header-menu .spacer {
+    margin-top: 1.9em;
+} }
+@media only screen and (max-width: 768px) {
+  .header-menu .spacer {
+    display: none;
+} }
+
+.header-menu .element-login_link,
+.header-menu .element-profile_link,
+.header-menu .element-logout_link {
+  margin-top: 0;
+  width: 7em;
+  float: right;
+}
+@media only screen and (min-width: 1024px) {
+  .header-menu .element-login_link,
+  .header-menu .element-profile_link,
+  .header-menu .element-logout_link {
+    margin-top: 1.4em;
+} }
+
+.header-menu .element-profile_link {
+  margin-top: 0;
+  width: 5em;
+  float: right;
+  text-transform: uppercase;
+}
+@media only screen and (min-width: 1024px) {
+  .header-menu .element-profile_link {
+    margin-top: 1.5em;
+} }
 
 /*# sourceMappingURL=style.css.map */

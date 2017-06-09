@@ -3,7 +3,6 @@
 namespace Drupal\tofu\Hook;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
-use Drupal\activeforanimals\Controller\ProfileBarController;
 use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\activeforanimals\Form\BetaSignupForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
@@ -41,7 +40,6 @@ use Drupal\tofu\Preprocessor\OrganizationOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizerToolboxPreprocessor;
 use Drupal\tofu\Preprocessor\PagePreprocessor;
-use Drupal\tofu\Preprocessor\ProfileBarPreprocessor;
 use Drupal\tofu\Preprocessor\PublishGroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\ResultFormPreprocessor;
 use Drupal\tofu\Preprocessor\ResultTypeOverviewPreprocessor;
@@ -171,10 +169,6 @@ class PreprocessHook implements HookInterface {
 
       case 'page':
         $preprocessor = new PagePreprocessor($variables);
-        break;
-
-      case ProfileBarController::THEME_ID:
-        $preprocessor = new ProfileBarPreprocessor($variables);
         break;
 
       case 'inline_entity_form_result':
