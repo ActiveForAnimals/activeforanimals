@@ -4,7 +4,6 @@ namespace Drupal\tofu;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
-use Drupal\activeforanimals\Controller\ProfileBarController;
 use Drupal\activeforanimals\Form\BetaSignupForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
@@ -52,7 +51,6 @@ class Constant {
     ManagementToolboxController::THEME_ID,
     OrganizationListBuilder::THEME_ID,
     OrganizerToolboxController::THEME_ID,
-    ProfileBarController::THEME_ID,
     ResultTypeListBuilder::THEME_ID,
     StaticPageController::THEME_ID,
   ];
