@@ -5,7 +5,6 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal;
 use Drupal\Core\Url;
 use Drupal\tofu\Constant;
-use Drupal\activeforanimals\Controller\ProfileBarController;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\ImageController;
@@ -31,9 +30,9 @@ class HeaderMenuPreprocessor extends Preprocessor implements PreprocessorInterfa
     $this->variables['content']['guide'] = $element_controller->view(t('Guide'), 'guide');
     $this->variables['content']['organizations'] = $element_controller->view(t('Organizations'), 'organizations', $organization_overview_link);
     $this->variables['content']['help'] = $element_controller->view(t('Help'), 'help');
-    $this->variables['content']['login'] = $button_controller->view(t('Log in'), 'login', new Url('user.login'));
-    $profile_bar_controller = new ProfileBarController();
-    $this->variables['content']['profile_bar'] = $profile_bar_controller->content();
+    $this->variables['content']['login_link'] = $button_controller->view(t('Log in'), 'login_link', new Url('user.login'));
+    $this->variables['content']['profile_link'] = $element_controller->view(t('Account'), 'profile_link', new Url('user.page'));
+    $this->variables['content']['logout_link'] = $button_controller->view(t('Log out'), 'logout_link', new Url('user.logout.http'));
     return $this->variables;
   }
 

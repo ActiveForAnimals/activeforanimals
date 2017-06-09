@@ -19,9 +19,10 @@
       <div class="spacer">&nbsp;</div>
       {{ content.help }}
       {% if not logged_in %}
-      {{ content.login }}
+      {{ content.login_link }}
       {% else %}
-      {{ content.profile_bar }}
+      {{ content.logout_link }}
+      {{ content.profile_link }}
       {% endif %}
     </div>
   </div>

@@ -22,11 +22,12 @@ $header-menu-height-small: 8em;
 
 .header-menu .view.element-guide,
 .header-menu .view.element-organizations,
-.header-menu .view.element-help,
-.header-menu .view.element-profile_link,
-.header-menu .view.element-logout_link {
+.header-menu .view.element-help {
   @media only screen and (min-width: $medium-min-width) {
     margin-top: 1.5em;
+  }
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
   margin-left: 0.2em;
   width: auto;
@@ -34,11 +35,6 @@ $header-menu-height-small: 8em;
   text-transform: uppercase;
 }
 
-.header-menu .form.element-name,
-.header-menu .form.element-pass,
-.header-menu .form.element-submit {
-  margin-top: 1em;
-}
 
 .header-menu .spacer {
   width: auto;
@@ -47,14 +43,29 @@ $header-menu-height-small: 8em;
   @media only screen and (min-width: $medium-min-width) {
     margin-top: 1.9em;
   }
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
   margin-top: 0.4em;
 }
 
-.header-menu .element-login {
+.header-menu .element-login_link,
+.header-menu .element-profile_link,
+.header-menu .element-logout_link {
   @media only screen and (min-width: $medium-min-width) {
     margin-top: 1.4em;
   }
   margin-top: 0;
-  width: 6em;
+  width: 7em;
   float: right;
+}
+
+.header-menu .element-profile_link {
+  @media only screen and (min-width: $medium-min-width) {
+    margin-top: 1.5em;
+  }
+  margin-top: 0;
+  width: 5em;
+  float: right;
+  text-transform: uppercase;
 }
