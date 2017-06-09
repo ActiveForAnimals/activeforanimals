@@ -2,13 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\tofu\Constant;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\ImageController;
-use Drupal\user\Form\UserLoginForm;
 
 /**
  * Preprocessor for HeaderMenu.
