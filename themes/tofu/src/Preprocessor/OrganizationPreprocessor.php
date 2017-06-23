@@ -2,6 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Controller\Element\FieldController;
@@ -51,7 +52,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     ]);
     $this->variables['content']['events'] = $event_list_controller->view();
     // Add link to organization.
-    $this->variables['content']['link'] = \Drupal::l(
+    $this->variables['content']['link'] = Drupal::l(
       $organization->label(),
       new Url(
         'entity.organization.canonical', [

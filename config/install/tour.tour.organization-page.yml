@@ -1,0 +1,92 @@
+uuid: ef7e8c4d-ab94-4344-976b-f53596e0a8e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: organization-page
+label: 'Organization page'
+module: effective_activism
+routes:
+  -
+    route_name: entity.organization.canonical
+tips:
+  organization-page-introduction:
+    id: organization-page-introduction
+    plugin: text
+    label: 'Organization page'
+    weight: -100
+    attributes: null
+    body: '<p>This is your organization page.</p><p>The following steps will show you the different components that make up the page.</p>'
+    location: top
+  title:
+    id: title
+    plugin: text
+    label: 'Organization information'
+    weight: -99
+    attributes:
+      data-class: element-title
+    body: '<p>This is your organization information, visible to visitors.</p><p>You can change this information by editing the organization page</p>'
+    location: top
+  event-overview:
+    id: event-overview
+    plugin: text
+    label: 'Event overview'
+    weight: -98
+    attributes:
+      data-class: events
+    body: '<p>This is an overview of the events that belongs to your organization. Whenever you create or import an event in any of your local groups, it will appear here.</p>'
+    location: top
+  group-overview:
+    id: group-overview
+    plugin: text
+    label: 'Group overview'
+    weight: -97
+    attributes:
+      data-class: groups
+    body: '<p>This is an overview of the groups that belongs to your organization. As manager you can create new groups or modify existing ones.</p>'
+    location: top
+  edit-this-page:
+    id: edit-this-page
+    plugin: text
+    label: 'Edit this page'
+    weight: -96
+    attributes:
+      data-class: element-edit_page
+    body: '<p>Edit the organization information, change the logo and add and remove managers.</p>'
+    location: left
+  manage-groups:
+    id: manage-groups
+    plugin: text
+    label: 'Manage groups'
+    weight: -95
+    attributes:
+      data-class: element-manage_groups
+    body: '<p>Provides an overview of the groups belonging to the organization. You can also add new groups and modify and unpublish existing groups.</p>'
+    location: left
+  manage-results:
+    id: manage-results
+    plugin: text
+    label: 'Manage results'
+    weight: -94
+    attributes:
+      data-class: element-manage_results
+    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/manager/result-types/">result types</a>.</p>'
+    location: left
+  unpublish:
+    id: unpublish
+    plugin: text
+    label: Unpublish
+    weight: -93
+    attributes:
+      data-class: element-publish
+    body: '<p>Unpublish the organization and the groups and results belonging to the organization. When your organization is unpublished, it is unavailable to access for anyone but managers of the organization.</p>'
+    location: left
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -92
+    attributes: null
+    body: '<p>To read more about the organization page, click here.</p><p>To read more about managing groups, click here.</p>'
+    location: top

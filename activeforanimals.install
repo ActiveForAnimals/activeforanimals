@@ -6,6 +6,10 @@
  */
 
 use Drupal\activeforanimals\Settings;
+use Drupal\user\Entity\Role;
+use \Drupal\user\RoleInterface;
+
+const AFA_PERMISSION_TOUR_ACCESS = 'access tour';
 
 /**
  * Implements hook_install().
@@ -26,4 +30,10 @@ function activeforanimals_install() {
   $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey());
   $location_settings->set('darksky_api_key', Settings::getDarkskyApiKey());
   $location_settings->save(TRUE);
+  // Allow authenticated users access to tours.
+  $authenticated_role = Role::load(RoleInterface::AUTHENTICATED_ID);
+  if ($authenticated_role) {
+    $authenticated_role->grantPermission(AFA_PERMISSION_TOUR_ACCESS);
+    $authenticated_role->trustData()->save();
+  }
 }

@@ -2,6 +2,10 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
+use Drupal\Core\Url;
+use Drupal\effective_activism\Controller\Element\ElementController;
+
 /**
  * Preprocessor abstract class.
  */
@@ -19,6 +23,8 @@ abstract class Preprocessor {
    */
   public function __construct(array $variables) {
     $this->variables = $variables;
+    // Fetch elements.
+    $element_controller = new ElementController();
   }
 
 }

@@ -91,6 +91,11 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         ));
         break;
     }
+    $this->variables['content']['help_link'] = $element_controller->view(t('Help'), 'help_link', Url::fromUri('internal:#help',  [
+      'attributes' => [
+        'id' => 'activeforanimals_help',
+      ],
+    ]));
     return $this->variables;
   }
 

@@ -23,6 +23,14 @@ class ResultTypeFormPreprocessor extends Preprocessor implements PreprocessorInt
     $this->variables['form']['datatypes'] = $field_controller->form($form['datatypes'], 'datatypes');
     $this->variables['form']['organization'] = $field_controller->form($form['organization'], 'organization');
     $this->variables['form']['groups'] = $field_controller->form($form['groups'], 'groups');
+    $this->variables['help_button'] = [
+      '#id' => 'activeforanimals_help',
+      '#type' => 'button',
+      '#value' => '',
+      '#attributes' => [
+        'title' => t('Help'),
+      ],
+    ];
     return $this->variables;
   }
 

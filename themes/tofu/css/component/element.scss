@@ -98,6 +98,11 @@
   background-image: url(../images/address.svg);
 }
 
+.form.element-file label,
+.form.element-file .description {
+  display: block;
+}
+
 .form.element-location .extra-information {
   @extend %element-icon;
   background-image: url(../images/extra_location_information.svg);
@@ -265,4 +270,9 @@
 
 .form.element-tags .form-item {
   margin-bottom: 0.5em;
+}
+
+.view.element-help_link {
+  @extend %element-icon;
+  background-image: url(../images/help.svg);
 }
