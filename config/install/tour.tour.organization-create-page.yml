@@ -17,7 +17,7 @@ tips:
     label: 'Create a new organization'
     weight: -100
     attributes: null
-    body: '<p>Let's begin by creating your organization page.</p><p>The following steps will guide you through the process.</p>'
+    body: '<p>Let u0s begin by creating your organization page.</p><p>The following steps will guide you through the process.</p>'
     location: top
   logo:
     id: logo
