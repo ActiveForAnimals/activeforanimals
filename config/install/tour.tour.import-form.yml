@@ -28,7 +28,7 @@ tips:
     weight: -99
     attributes:
       data-class: element-parent
-    body: '<p>The group that will host the imported events. The selected group will determine the timezone and which types of results are available to the events.</p><p>Note that you cannot import events with result types that aren't allowed for the group you are importing into.</p>'
+    body: '<p>The group that will host the imported events. The selected group will determine the timezone and which types of results are available to the events.</p><p>Note that you cannot import events with result types that are not allowed for the group you are importing into.</p>'
     location: top
   csv-file:
     id: csv-file
