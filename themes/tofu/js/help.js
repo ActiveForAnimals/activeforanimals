@@ -4,7 +4,7 @@
  */
 
 (function ($) {
-  Drupal.behaviors.someArbitraryKey = {
+  Drupal.behaviors.tofuHelp = {
     attach: function(context) {
       $('#activeforanimals_help').click(function(event) {
         var model = new Drupal.tour.models.StateModel();
