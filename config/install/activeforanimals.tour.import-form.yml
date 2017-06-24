@@ -18,7 +18,7 @@ tips:
     plugin: text
     label: 'Import events'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This page allows you to import one or more events for your group.</p><p>The following steps will guide you through the process.</p>'
     location: top
   group:
@@ -44,6 +44,6 @@ tips:
     plugin: text
     label: 'Read more'
     weight: -97
-    attributes: null
+    attributes: {  }
     body: '<p>When you are done, click on <em>Save</em>. The CSV file will be imported into the selected group.</p><p>To read more about importing events, click <a href="/help/organizer/imports" target="_blank">here</a>.<p>'
     location: top

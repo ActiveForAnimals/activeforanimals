@@ -16,7 +16,7 @@ tips:
     plugin: text
     label: 'Create a new organization'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This page allows you to edit your organization.</p><p>The following steps will guide you through the process.</p>'
     location: top
   logo:

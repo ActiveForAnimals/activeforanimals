@@ -16,7 +16,7 @@ tips:
     plugin: text
     label: 'Organization page'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This is your organization page.</p><p>The following steps will show you the different components that make up the page.</p>'
     location: top
   title:
@@ -87,6 +87,6 @@ tips:
     plugin: text
     label: 'Read more'
     weight: -92
-    attributes: null
+    attributes: {  }
     body: '<p>To read more about the organization page, click here.</p><p>To read more about managing groups, click here.</p>'
     location: top

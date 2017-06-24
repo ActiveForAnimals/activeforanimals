@@ -16,7 +16,7 @@ tips:
     plugin: text
     label: 'Group page'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This is a group page of your organization.</p><p>The following steps will show you the different components that make up the page.</p>'
     location: top
   group-information:
@@ -87,6 +87,6 @@ tips:
     plugin: text
     label: 'Read more'
     weight: -92
-    attributes: null
+    attributes: {  }
     body: '<p>To read more about the group page, <a href="/help/manager/groups">click here</a>.</p>'
     location: top

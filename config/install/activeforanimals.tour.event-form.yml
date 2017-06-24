@@ -16,7 +16,7 @@ tips:
     plugin: text
     label: 'Create and edit events'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This page allows you to create an event for your group or edit an existing one.</p><p>The following steps will guide you through the process.</p>'
     location: top
   title:
@@ -78,6 +78,6 @@ tips:
     plugin: text
     label: 'Read more'
     weight: -93
-    attributes: null
+    attributes: {  }
     body: '<p>When you are done, click on <em>Save</em>. The event page will be created or updated and made visible to the public.</p><p>To read more about managing events, click <a href="/help/organizer/events" target="_blank">here</a>.<p>'
     location: top

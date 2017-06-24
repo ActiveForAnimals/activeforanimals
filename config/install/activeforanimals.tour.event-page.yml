@@ -16,7 +16,7 @@ tips:
     plugin: text
     label: 'Event page'
     weight: -100
-    attributes: null
+    attributes: {  }
     body: '<p>This is an event page hosted by your group.</p><p>The following steps will show you the different components that make up the page.</p>'
     location: top
   event-information:
@@ -60,6 +60,6 @@ tips:
     plugin: text
     label: 'Read more'
     weight: -95
-    attributes: null
+    attributes: {  }
     body: '<p>To read more about the event page, <a href="/help/organizer/events">click here</a>.</p>'
     location: top
