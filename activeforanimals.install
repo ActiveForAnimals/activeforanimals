@@ -7,7 +7,7 @@
 
 use Drupal\activeforanimals\Settings;
 use Drupal\user\Entity\Role;
-use \Drupal\user\RoleInterface;
+use Drupal\user\RoleInterface;
 
 const AFA_PERMISSION_TOUR_ACCESS = 'access tour';
 

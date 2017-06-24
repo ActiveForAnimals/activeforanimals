@@ -55,7 +55,7 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
         ));
         break;
     }
-    $this->variables['content']['help_link'] = $element_controller->view(t('Help'), 'help_link', Url::fromUri('internal:#help',  [
+    $this->variables['content']['help_link'] = $element_controller->view(t('Help'), 'help_link', Url::fromUri('internal:#help', [
       'attributes' => [
         'id' => 'activeforanimals_help',
       ],
