@@ -1,0 +1,83 @@
+uuid: 1bd4fbfc-3ad3-4372-bd86-606e11276093
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: event-form
+label: 'Create Event form'
+module: effective_activism
+routes:
+  -
+    route_name: activeforanimals.event.create
+tips:
+  create-and-edit-events:
+    id: create-and-edit-events
+    plugin: text
+    label: 'Create and edit events'
+    weight: -100
+    attributes: {  }
+    body: '<p>This page allows you to create an event for your group or edit an existing one.</p><p>The following steps will guide you through the process.</p>'
+    location: top
+  title:
+    id: title
+    plugin: text
+    label: Title
+    weight: -99
+    attributes:
+      data-class: element-title
+    body: '<p>The title of the event.</p>'
+    location: top
+  group:
+    id: group
+    plugin: text
+    label: Group
+    weight: -98
+    attributes:
+      data-id: edit-parent-wrapper
+    body: '<p>The group that will host the event. The selected group will determine the timezone and which types of results are available to the event.</p>'
+    location: top
+  address:
+    id: address
+    plugin: text
+    label: Address
+    weight: -97
+    attributes:
+      data-class: element-location
+    body: '<p>The address of the event.</p><p>The address must be a proper address. Valid addresses are suggested as you type.</p><p>You can optionally include extra location information in the field below. Typically, custom information such as "Second door to the right" or "By the fountain" will not be accepted in the Address field and must be typed in the Other address info field.</p>'
+    location: top
+  start-date:
+    id: start-date
+    plugin: text
+    label: 'Start date'
+    weight: -96
+    attributes:
+      data-class: element-start_date
+    body: '<p>The local date and time that the event starts and ends.</p>'
+    location: top
+  description:
+    id: description
+    plugin: text
+    label: Description
+    weight: -95
+    attributes:
+      data-class: element-description
+    body: '<p>A brief description of your event. This description will be presented on the event page and tells visitors what the event is about. It can also contain practical information for people who would like to join.</p>'
+    location: top
+  results:
+    id: results
+    plugin: text
+    label: Results
+    weight: -94
+    attributes:
+      data-class: element-inline_entity_form
+    body: '<p>You can add results to the event.</p><p>To add results, select the type of result you want to add and click on <em>Add new result</em>. Then fill out the fields as required.</p><p>You can optionally add tags to the result.</p><p>When you are done, click on <em>Create result</em>. You can add as many results to the event as needed.</p>'
+    location: top
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -93
+    attributes: {  }
+    body: '<p>When you are done, click on <em>Save</em>. The event page will be created or updated and made visible to the public.</p><p>To read more about managing events, click <a href="/help/organizer/events" target="_blank">here</a>.<p>'
+    location: top

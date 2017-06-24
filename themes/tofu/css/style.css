@@ -336,6 +336,29 @@ input.form-submit,
 
 /**
  * @file
+ * Formatting for static pages.
+ */
+.path-guide .region-content ul,
+.path-help .region-content ul {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
+.path-guide .region-content table th,
+.path-guide .region-content table td,
+.path-help .region-content table th,
+.path-help .region-content table td {
+  border: 1px solid #6b6d69;
+  padding: 0.5em;
+}
+
+.path-guide .region-content table th,
+.path-help .region-content table th {
+  text-align: left;
+}
+
+/**
+ * @file
  * The button definition.
  */
 .edit-button,
@@ -371,6 +394,14 @@ input.form-submit:focus,
 .element-inline_entity_form .ief-form-bottom .invite:focus,
 .element-inline_entity_form .ief-form-bottom .cancel:focus {
   background-color: #e76219;
+}
+
+#activeforanimals_help.button {
+  background-image: url(../images/help.svg);
+  background-size: 2em auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: right;
 }
 
 /**
@@ -481,6 +512,7 @@ input.form-submit:focus,
 .view.element-group_count,
 .view.element-data_types,
 .form.element-your_organization input,
+.view.element-help_link,
 .element-inline_entity_form .inline-entity-form-user-label,
 .element-inline_entity_form .ief-form-bottom .form-type-email input {
   padding-left: 1.5em !important;
@@ -557,6 +589,11 @@ input.form-submit:focus,
 .view.element-location,
 .form.element-location .address {
   background-image: url(../images/address.svg);
+}
+
+.form.element-file label,
+.form.element-file .description {
+  display: block;
 }
 
 .form.element-location .extra-information {
@@ -700,6 +737,10 @@ input.form-submit:focus,
 
 .form.element-tags .form-item {
   margin-bottom: 0.5em;
+}
+
+.view.element-help_link {
+  background-image: url(../images/help.svg);
 }
 
 /**

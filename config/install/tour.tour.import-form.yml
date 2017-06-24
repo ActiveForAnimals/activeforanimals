@@ -1,0 +1,49 @@
+uuid: 1e63b5bf-4a9e-4e1d-a9c7-350993199cf2
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: import-create-page
+label: 'Import form'
+module: effective_activism
+routes:
+  -
+    route_name: activeforanimals.import
+  -
+    route_name: entity.import.edit_form
+tips:
+  import-events:
+    id: import-events
+    plugin: text
+    label: 'Import events'
+    weight: -100
+    attributes: {  }
+    body: '<p>This page allows you to import one or more events for your group.</p><p>The following steps will guide you through the process.</p>'
+    location: top
+  group:
+    id: group
+    plugin: text
+    label: Group
+    weight: -99
+    attributes:
+      data-class: element-parent
+    body: '<p>The group that will host the imported events. The selected group will determine the timezone and which types of results are available to the events.</p><p>Note that you cannot import events with result types that are not allowed for the group you are importing into.</p>'
+    location: top
+  csv-file:
+    id: csv-file
+    plugin: text
+    label: 'CSV file'
+    weight: -98
+    attributes:
+      data-class: element-file
+    body: '<p>Upload a comma-separated file, also known as a CSV file. The file must adhere to a specific format.</p><p>See the <em>Instructions on how to import a CSV file</em> section of the page.</p>'
+    location: top
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -97
+    attributes: {  }
+    body: '<p>When you are done, click on <em>Save</em>. The CSV file will be imported into the selected group.</p><p>To read more about importing events, click <a href="/help/organizer/imports" target="_blank">here</a>.<p>'
+    location: top

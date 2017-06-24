@@ -1,0 +1,92 @@
+uuid: fac88383-f15d-4c83-91aa-76744ad5dd29
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: group-page
+label: 'Group page'
+module: effective_activism
+routes:
+  -
+    route_name: entity.group.canonical
+tips:
+  group-page-introduction:
+    id: group-page-introduction
+    plugin: text
+    label: 'Group page'
+    weight: -100
+    attributes: {  }
+    body: '<p>This is a group page of your organization.</p><p>The following steps will show you the different components that make up the page.</p>'
+    location: top
+  group-information:
+    id: group-information
+    plugin: text
+    label: 'Group information'
+    weight: -99
+    attributes:
+      data-class: element-title
+    body: '<p>This is your group information, visible to visitors.</p><p>You can change this information by editing the group page.</p>'
+    location: top
+  event-overview:
+    id: event-overview
+    plugin: text
+    label: 'Event overview'
+    weight: -98
+    attributes:
+      data-class: events
+    body: '<p>This is an overview of the events that are hosted by your group. Whenever you create or import an event and select this group as host of the event, it will appear here.</p>'
+    location: top
+  group-overview:
+    id: group-overview
+    plugin: text
+    label: 'Group overview'
+    weight: -97
+    attributes:
+      data-class: groups
+    body: '<p>This is an overview of the groups that belongs to your organization.</p>'
+    location: top
+  edit-this-page:
+    id: edit-this-page
+    plugin: text
+    label: 'Edit this page'
+    weight: -96
+    attributes:
+      data-class: element-edit_page
+    body: '<p>Edit the group information, change the logo and add and remove organizers.</p>'
+    location: left
+  manage-events:
+    id: manage-events
+    plugin: text
+    label: 'Manage events'
+    weight: -95
+    attributes:
+      data-class: element-manage_events
+    body: '<p>Provides an overview of the events hosted by the group. You can also add new events and modify and unpublish existing events.</p>'
+    location: left
+  manage-imports:
+    id: manage-imports
+    plugin: text
+    label: 'Manage imports'
+    weight: -94
+    attributes:
+      data-class: element-manage_imports
+    body: '<p>Provides an overview of the events imported from CSV files into the group. You can also import more events.</p>'
+    location: left
+  manage-results:
+    id: manage-results
+    plugin: text
+    label: 'Manage results'
+    weight: -93
+    attributes:
+      data-class: element-manage_results
+    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/manager/result-types/">result types</a>.</p>'
+    location: left
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -92
+    attributes: {  }
+    body: '<p>To read more about the group page, <a href="/help/manager/groups">click here</a>.</p>'
+    location: top
