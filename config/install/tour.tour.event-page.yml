@@ -1,10 +1,10 @@
-uuid: fac88383-f15d-4c83-91aa-76744ad5dd29
+uuid: 488d33d1-92b6-4987-b12c-fb19dd7d15fa
 langcode: en
 status: true
 dependencies:
   module:
     - effective_activism
-id: group-page
+id: event-page
 label: 'Event page'
 module: effective_activism
 routes:

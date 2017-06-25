@@ -4,7 +4,7 @@ status: true
 dependencies:
   module:
     - effective_activism
-id: organization-create-form
+id: organization-create-page
 label: 'Active for Animals'
 module: effective_activism
 routes:
