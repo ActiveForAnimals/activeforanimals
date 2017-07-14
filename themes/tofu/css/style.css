@@ -743,6 +743,10 @@ input.form-submit:focus,
   background-image: url(../images/help.svg);
 }
 
+.form.element-datatypes .form-checkboxes .form-item {
+  margin-bottom: 1em !important;
+}
+
 /**
  * @file
  * Inline entity form definitions.
