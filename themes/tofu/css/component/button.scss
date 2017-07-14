@@ -26,3 +26,11 @@ input.form-submit,
 .element.button a {
   @extend %button-base;
 }
+
+#activeforanimals_help.button {
+  background-image: url(../images/help.svg);
+  background-size: 2em auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: right;
+}

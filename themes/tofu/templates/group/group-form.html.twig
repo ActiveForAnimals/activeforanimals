@@ -21,6 +21,7 @@
         </div>
         {{ form.description }}
         {{ form.timezone }}
+        {{ form.result_types }}
       </div>
       <div class="column-4-15 last-column">
         {{ form.contact_information }}
@@ -34,6 +35,7 @@
     </div>
     <div class="footer">
       {{ form.actions.submit }}
+      {{ help_button }}
     </div>
 </div>
 </form>

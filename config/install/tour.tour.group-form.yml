@@ -1,0 +1,121 @@
+uuid: 563fbbc9-3277-4718-a418-42484dd56dba
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: group-form
+label: 'Group form'
+module: effective_activism
+routes:
+  -
+    route_name: activeforanimals.group.create
+  -
+    route_name: entity.group.edit_form
+tips:
+  create-and-edit-groups:
+    id: create-and-edit-groups
+    plugin: text
+    label: 'Create and edit groups'
+    weight: -100
+    attributes: {  }
+    body: '<p>This page allows you to create a group for your organization or edit existing groups.</p><p>The following steps will guide you through the process.</p>'
+    location: top
+  logo:
+    id: logo
+    plugin: text
+    label: Logo
+    weight: -99
+    attributes:
+      data-id: edit-logo-0-upload
+    body: '<p>A logo for your group. The logo will be shown on your group page to visitors.</p>'
+    location: bottom
+  title:
+    id: title
+    plugin: text
+    label: Title
+    weight: -98
+    attributes:
+      data-id: edit-title-0-value
+    body: '<p>The title of your group.</p>'
+    location: bottom
+  description:
+    id: description
+    plugin: text
+    label: Description
+    weight: -97
+    attributes:
+      data-id: edit-description-0-value
+    body: '<p>A brief description of your group. This description will be presented on your group page and tells visitors what the group is about.</p>'
+    location: top
+  timezone:
+    id: timezone
+    plugin: text
+    label: Timezone
+    weight: -96
+    attributes:
+      data-id: edit-timezone
+    body: '<p>The timezone helps translating the local time of your outreach events. This will allow you to compare event times across your groups and other organizations.</p><p>You can set the timezone to inherit whatever timezone the organization uses or set a timezone specific to this group.</p>'
+    location: top
+  website:
+    id: website
+    plugin: text
+    label: Website
+    weight: -95
+    attributes:
+      data-id: edit-website-0-value
+    body: '<p>A URL to the website of your group. Typically, groups have a Facebook page or a presence on other social sites.</p>'
+    location: top
+  phone-number:
+    id: phone-number
+    plugin: text
+    label: 'Phone number'
+    weight: -94
+    attributes:
+      data-id: edit-phone-number-0-value
+    body: '<p>A phone number to get in touch with the group. Optionally include the country code.</p>'
+    location: top
+  e-mail-address:
+    id: e-mail-address
+    plugin: text
+    label: 'E-mail address'
+    weight: -93
+    attributes:
+      data-id: edit-email-address-0-value
+    body: '<p>An e-mail address to contact the group. This address is not protected and is visible to the public. If you do not filter e-mail spam, consider not filling out this field. You can instead link to the contact page of your organization website in the "website" field above.</p>'
+    location: top
+  address:
+    id: address
+    plugin: text
+    label: Address
+    weight: -92
+    attributes:
+      data-id: edit-location-0-address
+    body: '<p>The address of the group.</p><p>The address must be a proper address. Valid addresses are suggested as you type.</p><p>You can optionally include extra location information in the field below. Typically, custom information such as "Second door to the right" or "By the fountain" will not be accepted in the Address field and must be typed in the Other address info field.</p>'
+    location: top
+  organizers:
+    id: organizers
+    plugin: text
+    label: Organizers
+    weight: -91
+    attributes:
+      data-id: edit-managers-wrapper
+    body: '<p>Organizers of the group can create and edit any events hosted by the group.</p><p>If you remove an organizer from a group, they will not be able to create or edit events hosted by that group.</p>'
+    location: top
+  invite-new-organizer:
+    id: invite-new-organizer
+    plugin: text
+    label: 'Invite new organizer'
+    weight: -90
+    attributes:
+      data-class: invite_new
+    body: '<p>You can invite organizers to the group.</p><p>To invite an organizer, type in the e-mail address of the person you would like to add. They will then have to create an account on the Active for Animals using that e-mail address.</p><p>When they have created an account (or if they already have an account), they will be invited to join the group.</p>'
+    location: top
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -89
+    attributes: {  }
+    body: '<p>When you are done, click on <em>Save</em>. The group page will be created and made visible to the public.</p><p>To read more about managing groups, click <a href="/help/manager/groups" target="_blank">here</a>.<p>'
+    location: top

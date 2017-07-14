@@ -1,0 +1,65 @@
+uuid: 488d33d1-92b6-4987-b12c-fb19dd7d15fa
+langcode: en
+status: true
+dependencies:
+  module:
+    - effective_activism
+id: event-page
+label: 'Event page'
+module: effective_activism
+routes:
+  -
+    route_name: entity.event.canonical
+tips:
+  event-page-introduction:
+    id: event-page-introduction
+    plugin: text
+    label: 'Event page'
+    weight: -100
+    attributes: {  }
+    body: '<p>This is an event page hosted by your group.</p><p>The following steps will show you the different components that make up the page.</p>'
+    location: top
+  event-information:
+    id: event-information
+    plugin: text
+    label: 'Event information'
+    weight: -99
+    attributes:
+      data-class: element-title
+    body: '<p>This is your group information, visible to visitors.</p><p>You can change this information by editing the group page</p>'
+    location: top
+  event-overview:
+    id: event-overview
+    plugin: text
+    label: 'Event overview'
+    weight: -98
+    attributes:
+      data-class: events
+    body: '<p>This is an overview of the events that are hosted by your group. Whenever you create or import an event and select this group as host of the event, it will appear here.</p>'
+    location: top
+  group-overview:
+    id: group-overview
+    plugin: text
+    label: 'Group overview'
+    weight: -97
+    attributes:
+      data-class: groups
+    body: '<p>This is an overview of the groups that belongs to your organization.</p>'
+    location: top
+  edit-this-page:
+    id: edit-this-page
+    plugin: text
+    label: 'Edit this page'
+    weight: -96
+    attributes:
+      data-class: element-edit_page
+    body: '<p>Edit the event information, change the logo and add and remove organizers.</p>'
+    location: left
+  read-more:
+    id: read-more
+    plugin: text
+    label: 'Read more'
+    weight: -95
+    attributes: {  }
+    body: '<p>To read more about the event page, <a href="/help/organizer/events">click here</a>.</p>'
+    location: top

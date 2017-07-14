@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Formatting for static pages.
+ */
+
+.path-guide .region-content ul,
+.path-help .region-content ul{
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
+.path-guide .region-content table th,
+.path-guide .region-content table td,
+.path-help .region-content table th,
+.path-help .region-content table td {
+  border: 1px solid $gray3;
+  padding: 0.5em;
+}
+
+.path-guide .region-content table th,
+.path-help .region-content table th {
+  text-align: left;
+}

@@ -4,6 +4,7 @@ global-styling:
       css/style.css: {}
   js:
     js/background.js: {}
+    js/help.js: {}
   dependencies:
     - core/jquery
     - core/drupal

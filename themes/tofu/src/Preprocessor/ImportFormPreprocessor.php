@@ -22,12 +22,18 @@ class ImportFormPreprocessor extends Preprocessor implements PreprocessorInterfa
       case 'import_csv_add_form':
         $this->variables['type'] = 'csv';
         $this->variables['form']['field_file_csv'] = $field_controller->form($form['field_file_csv'], 'file');
-        $this->variables['form']['instructions'] = $field_controller->form($form['instructions'], 'instructions');
         break;
 
     }
     $this->variables['form']['parent'] = $field_controller->form($form['parent'], 'parent');
-    $this->variables['form']['timezone_notice'] = $field_controller->form($form['timezone_notice'], 'timezone');
+    $this->variables['help_button'] = [
+      '#id' => 'activeforanimals_help',
+      '#type' => 'button',
+      '#value' => '',
+      '#attributes' => [
+        'title' => t('Help'),
+      ],
+    ];
     return $this->variables;
   }
 

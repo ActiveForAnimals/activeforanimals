@@ -24,6 +24,14 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['start_date'] = $field_controller->form($form['start_date'], 'start_date');
     $this->variables['form']['end_date'] = $field_controller->form($form['end_date'], 'end_date');
     $this->variables['form']['results'] = $field_controller->form($form['results'], 'inline_entity_form');
+    $this->variables['help_button'] = [
+      '#id' => 'activeforanimals_help',
+      '#type' => 'button',
+      '#value' => '',
+      '#attributes' => [
+        'title' => t('Help'),
+      ],
+    ];
     return $this->variables;
   }
 
