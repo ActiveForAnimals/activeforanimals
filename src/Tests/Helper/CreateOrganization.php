@@ -2,6 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests\Helper;
 
+use Drupal;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Entity\Group;
@@ -34,7 +35,7 @@ class CreateOrganization {
   public function __construct(User $manager, User $organizer) {
     $this->manager = $manager;
     $this->organizer = $organizer;
-    $this->timezone = \Drupal::config('system.date')->get('timezone.default');
+    $this->timezone = Drupal::config('system.date')->get('timezone.default');
   }
 
   /**
