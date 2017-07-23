@@ -318,7 +318,8 @@ input.form-submit,
 .section,
 .form.element-inline_entity_form,
 .form.element-result_types,
-.element-inline_entity_form .ief-form-bottom {
+.element-inline_entity_form .ief-form-bottom,
+.tip-module-effective-activism {
   border-radius: 8px;
 }
 
@@ -975,5 +976,14 @@ input.form-submit:focus,
   .header-menu .element-profile_link {
     margin-top: 1.5em;
 } }
+
+/**
+ * @file
+ * The tips definition.
+ */
+.tip-module-effective-activism {
+  background-color: #d1d2d0;
+  color: #333;
+}
 
 /*# sourceMappingURL=style.css.map */
