@@ -1,0 +1,10 @@
+/**
+ * @file
+ * The tips definition.
+ */
+
+.tip-module-effective-activism {
+  @extend %corner;
+  background-color: $gray1;
+  color: $black;
+}
