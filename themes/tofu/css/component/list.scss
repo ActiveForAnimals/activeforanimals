@@ -27,3 +27,13 @@ $list-element-title-padding: 0.5em;
   margin-bottom: $list-li-margin-bottom;
   padding-bottom: $list-li-padding-bottom;
 }
+
+.list.invitations {
+  margin: 0 1.5em 1.5em 1.5em;
+  padding-bottom: 1em;
+}
+
+.list.invitations li {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
