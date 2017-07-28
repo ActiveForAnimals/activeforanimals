@@ -2,9 +2,10 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ElementController;
+use Drupal\effective_activism\Controller\Misc\ContactInformationController;
+use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 
 /**
  * Preprocessor for GroupForm.
@@ -29,6 +30,12 @@ class GroupFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     // Get contact information.
     $contact_information_controller = new ContactInformationController();
     $this->variables['form']['contact_information'] = $contact_information_controller->form($form);
+    // Get invitation list.
+    $this->variables['form']['invitations'] = NULL;
+    if (isset($this->variables['form']['#invitation_list'])) {
+      $invitation_overview_controller = new InvitationOverviewController();
+      $this->variables['form']['invitations'] = $invitation_overview_controller->content($this->variables['form']['#invitation_list']);
+    }
     return $this->variables;
   }
 
