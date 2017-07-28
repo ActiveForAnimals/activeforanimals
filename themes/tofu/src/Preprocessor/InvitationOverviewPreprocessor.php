@@ -2,9 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Url;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
 
 /**
@@ -24,7 +22,7 @@ class InvitationOverviewPreprocessor extends Preprocessor implements Preprocesso
       $invitation_elements = [];
       $invitation_elements['email_address'] = $element_controller->view($invitation->email, 'invitation_email');
       $invitation_elements['timestamp'] = $element_controller->view(t('Invited on @date', [
-        '@date' => date(self::DATE_FORMAT, $invitation->created)
+        '@date' => date(self::DATE_FORMAT, $invitation->created),
       ]), 'invitation_timestamp');
       $invitation_elements['remove'] = $element_controller->view(t('Remove'), 'invitation_remove', Url::fromRoute('effective_activism.invitation.remove', ['invitation' => $invitation->id]));
       $this->variables['content']['invitations'][] = $invitation_elements;
