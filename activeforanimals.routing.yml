@@ -7,15 +7,6 @@ activeforanimals.frontpage:
   requirements:
     _permission: 'access content'
 
-# Debug: result page overview
-activeforanimals.result_test:
-  path: '/result-test'
-  defaults:
-    _controller: '\Drupal\effective_activism\Controller\ResultOverviewController::content'
-    _title: Active for Animals
-  requirements:
-    _permission: 'access content'
-
 # Organizations overview
 activeforanimals.organization.overview:
   path: '/o'
