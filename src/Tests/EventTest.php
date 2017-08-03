@@ -22,7 +22,7 @@ class EventTest extends WebTestBase {
   const ENDDATE = '2016-01-01';
   const ENDDATEFORMATTED = '01/01/2016';
   const ENDTIME = '12:00';
-  const LOCATION_ADDRESS = '';
+  const LOCATION_ADDRESS = 'Copenhagen, Denmark';
   const LOCATION_EXTRA_INFORMATION = 'Test location';
 
   /**
@@ -98,6 +98,7 @@ class EventTest extends WebTestBase {
     $this->assertText('Created event.', 'Added a new event entity.');
     $this->assertText(self::TITLE, 'Set title correctly.');
     $this->assertText(self::DESCRIPTION, 'Set description correctly.');
+    $this->assertText(self::LOCATION_ADDRESS, 'Set location address correctly.');
     $this->assertText(self::LOCATION_EXTRA_INFORMATION, 'Set location extra information correctly.');
     $this->assertText(self::STARTDATEFORMATTED, 'Set start date correctly.');
     $this->assertText(self::STARTTIME, 'Set start time correctly.');

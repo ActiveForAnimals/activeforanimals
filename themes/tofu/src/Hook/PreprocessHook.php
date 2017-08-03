@@ -12,6 +12,7 @@ use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
+use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
@@ -34,6 +35,7 @@ use Drupal\tofu\Preprocessor\InvitationPreprocessor;
 use Drupal\tofu\Preprocessor\ImportFormPreprocessor;
 use Drupal\tofu\Preprocessor\ImportOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ImportPreprocessor;
+use Drupal\tofu\Preprocessor\InvitationOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ManagementToolboxPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationFormPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationOverviewPreprocessor;
@@ -145,6 +147,10 @@ class PreprocessHook implements HookInterface {
 
       case ImportOverviewController::THEME_ID:
         $preprocessor = new ImportOverviewPreprocessor($variables);
+        break;
+
+      case InvitationOverviewController::THEME_ID:
+        $preprocessor = new InvitationOverviewPreprocessor($variables);
         break;
 
       case ManagementToolboxController::THEME_ID:
