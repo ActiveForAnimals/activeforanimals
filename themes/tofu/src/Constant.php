@@ -17,6 +17,7 @@ use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
 use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
 use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
+use Drupal\effective_activism\Controller\ResultOverviewController;
 use Drupal\effective_activism\Form\Invitation\InvitationForm;
 
 /**
@@ -51,6 +52,7 @@ class Constant {
     ManagementToolboxController::THEME_ID,
     OrganizationListBuilder::THEME_ID,
     OrganizerToolboxController::THEME_ID,
+    ResultOverviewController::THEME_ID,
     ResultTypeListBuilder::THEME_ID,
     StaticPageController::THEME_ID,
   ];

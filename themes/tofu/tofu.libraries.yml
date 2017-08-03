@@ -5,7 +5,9 @@ global-styling:
   js:
     js/background.js: {}
     js/help.js: {}
+    js/highcharts.js: {}
   dependencies:
     - core/jquery
     - core/drupal
     - core/drupalSettings
+
