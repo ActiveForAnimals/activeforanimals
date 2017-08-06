@@ -11,6 +11,9 @@ use Drupal\effective_activism\Constant as EffectiveActivismConstant;
  */
 class PathAliasHelper {
 
+  /**
+   * Path templates for entities.
+   */
   const PATH_TEMPLATE = [
     EffectiveActivismConstant::ENTITY_ORGANIZATION => [
       '' => '',
@@ -37,7 +40,7 @@ class PathAliasHelper {
       'publish' => 'publish',
     ],
     EffectiveActivismConstant::ENTITY_RESULT_TYPE => [
-      'edit' => 'edit',
+      '' => '',
     ],
   ];
 
@@ -51,38 +54,9 @@ class PathAliasHelper {
     if (in_array($entity->getEntityType()->id(), array_keys(self::PATH_TEMPLATE))) {
       // Determine system path and any parent entity paths.
       $system_path = sprintf('/%s', $entity->toUrl()->getInternalPath());
-      $path = NULL;
-      switch ($entity->getEntityType()->id()) {
-        case EffectiveActivismConstant::ENTITY_ORGANIZATION:
-          $path = self::ensureUniquePath(sprintf('/o/%s', self::getSlug($entity->label())));
-          self::connect('/manage/groups/add', sprintf('%s/%s', $path, 'add-group'));
-          break;
-
-        case EffectiveActivismConstant::ENTITY_GROUP:
-          $path = self::ensureUniquePath(sprintf('%s/g/%s', self::get($entity->get('organization')->entity), self::getSlug($entity->label())));
-          self::connect('/manage/events/add', sprintf('%s/%s', $path, 'add-event'));
-          self::connect('/manage/imports/add', sprintf('%s/%s', $path, 'add-import'));
-          break;
-
-        case EffectiveActivismConstant::ENTITY_IMPORT:
-          $path = self::ensureUniquePath(sprintf('%s/i/%d', self::get($entity->get('parent')->entity), self::getSlug($entity->label())));
-          break;
-
-        case EffectiveActivismConstant::ENTITY_EVENT:
-          $path = self::ensureUniquePath(sprintf('%s/e/%d', self::get($entity->get('parent')->entity), self::getSlug($entity->label())));
-          break;
-
-        case EffectiveActivismConstant::ENTITY_RESULT_TYPE:
-          $path = self::ensureUniquePath(sprintf('%s/t/%s', self::get($entity->get('parent')->entity), self::getSlug($entity->label())));
-          break;
-      }
-      // Apply path template to populate entity aliases.
-      if (!empty($path)) {
-        foreach (self::PATH_TEMPLATE[$entity->getEntityType()->id()] as $system_slug => $alias) {
-          $system_path_format = empty($system_slug) ? '%s' : '%s/%s';
-          $alias_path_format = empty($alias) ? '%s' : '%s/%s';
-          self::connect(sprintf($system_path_format, $system_path, $system_slug), sprintf($alias_path_format, $path, $alias));
-        }
+      $alias_path = self::createPathAlias($entity);
+      if ($alias_path !== FALSE) {
+        self::addSlugs($entity, $system_path, $alias_path);
       }
     }
   }
@@ -97,19 +71,14 @@ class PathAliasHelper {
     if (in_array($entity->getEntityType()->id(), array_keys(self::PATH_TEMPLATE))) {
       // Apply path template to populate missing entity aliases.
       $system_path = sprintf('/%s', $entity->toUrl()->getInternalPath());
-      $path = $entity->toUrl()->toString();
+      $alias_path = $entity->toUrl()->toString();
       // If entity doesn't have a path alias, create a new one.
-      if ($system_path === $path) {
-        
+      if ($system_path === $alias_path) {
+        self::add($entity);
       }
-      if (!empty($path)) {
-        foreach (self::PATH_TEMPLATE[$entity->getEntityType()->id()] as $system_slug => $alias) {
-          $system_path_format = empty($system_slug) ? '%s' : '%s/%s';
-          $alias_path_format = empty($alias) ? '%s' : '%s/%s';
-          if (!self::checkAliasExists(sprintf($alias_path_format, $path, $alias))) {
-            self::connect(sprintf($system_path_format, $system_path, $system_slug), sprintf($alias_path_format, $path, $alias));
-          }
-        }
+      // Else, add any missing slugs.
+      elseif (!empty($alias_path)) {
+        self::addSlugs($entity, $system_path, $alias_path);
       }
     }
   }
@@ -130,6 +99,65 @@ class PathAliasHelper {
   }
 
   /**
+   * Returns a base path alias for the entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to process.
+   *
+   * @return string|bool
+   *   The base path alias for the entity or FALSE if entity is not supported.
+   */
+  private static function createPathAlias($entity) {
+    $alias_path = FALSE;
+    switch ($entity->getEntityType()->id()) {
+      case EffectiveActivismConstant::ENTITY_ORGANIZATION:
+        $alias_path = self::ensureUniquePath(sprintf('o/%s', self::transliterate($entity->label())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_GROUP:
+        $alias_path = self::ensureUniquePath(sprintf('%s/g/%s', self::get($entity->get('organization')->entity), self::transliterate($entity->label())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_IMPORT:
+        $alias_path = self::ensureUniquePath(sprintf('%s/i/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_EVENT:
+        $alias_path = self::ensureUniquePath(sprintf('%s/e/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_RESULT_TYPE:
+        $alias_path = self::ensureUniquePath(sprintf('%s/t/%s/%s', 'result-types', self::transliterate($entity->id()), 'edit'));
+        break;
+    }
+    // Make sure that there is a leading front-slash.
+    if ($alias_path !== FALSE && substr($alias_path, 0, 1) !== '/') {
+      $alias_path = sprintf('/%s', $alias_path);
+    }
+    return $alias_path;
+  }
+
+  /**
+   * Adds all subpaths for an entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity to process.
+   * @param string $system_path
+   *   The system path of the entity.
+   * @param string $alias_path
+   *   The base path alias of the entity.
+   */
+  private static function addSlugs(EntityInterface $entity, $system_path, $alias_path) {
+    foreach (self::PATH_TEMPLATE[$entity->getEntityType()->id()] as $system_slug => $alias_slug) {
+      $system_path_format = empty($system_slug) ? '%s' : '%s/%s';
+      $alias_path_format = empty($alias_slug) ? '%s' : '%s/%s';
+      if (!self::checkAliasExists(sprintf($alias_path_format, $alias_path, $alias_slug))) {
+        self::connect(sprintf($system_path_format, $system_path, $system_slug), sprintf($alias_path_format, $alias_path, $alias_slug));
+      }
+    }
+  }
+
+  /**
    * Returns an ascii-friendly slug from a text string.
    *
    * @param string $text
@@ -138,7 +166,7 @@ class PathAliasHelper {
    * @return string|bool
    *   Returns a slug based on the text.
    */
-  private static function getSlug($text) {
+  private static function transliterate($text) {
     $slug = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $text);
     $slug = strtolower($slug);
     $slug = str_replace(" ", "-", $slug);
@@ -157,8 +185,8 @@ class PathAliasHelper {
    *   Returns TRUE if path exists, FALSE otherwise.
    */
   private static function checkAliasExists($path) {
-    $path = Drupal::service('path.alias_storage')->load(['alias' => $path]); 
-    return $path === FALSE ? FALSE : TRUE;
+    $alias = Drupal::service('path.alias_storage')->load(['alias' => $path]); 
+    return $alias === FALSE ? FALSE : TRUE;
   }
 
   /**
