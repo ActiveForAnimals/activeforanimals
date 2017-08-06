@@ -148,6 +148,11 @@
   background-image: url(../images/group.svg);
 }
 
+.view.element-view_results {
+  @extend %element-icon;
+  background-image: url(../images/result.svg);
+}
+
 .view.element-manage_results {
   @extend %element-icon;
   background-image: url(../images/result.svg);
