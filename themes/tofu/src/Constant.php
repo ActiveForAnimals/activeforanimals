@@ -12,6 +12,7 @@ use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
+use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
@@ -48,6 +49,7 @@ class Constant {
     GroupOverviewController::THEME_ID,
     HeaderMenuController::THEME_ID,
     InvitationController::THEME_ID,
+    InvitationOverviewController::THEME_ID,
     ImportOverviewController::THEME_ID,
     ManagementToolboxController::THEME_ID,
     OrganizationListBuilder::THEME_ID,

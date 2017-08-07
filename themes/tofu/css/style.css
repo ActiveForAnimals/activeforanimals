@@ -317,7 +317,10 @@ input.form-submit,
 .breadcrumb,
 .section,
 .form.element-inline_entity_form,
-.element-inline_entity_form .ief-form-bottom {
+.form.element-result_types,
+.element-inline_entity_form .ief-form-bottom,
+.members,
+.tip-module-effective-activism {
   border-radius: 8px;
 }
 
@@ -748,6 +751,26 @@ input.form-submit:focus,
   background-image: url(../images/help.svg);
 }
 
+.form.element-datatypes .form-checkboxes .form-item {
+  margin-bottom: 1em !important;
+}
+
+.form.element-result_types {
+  background-color: #d1d2d0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.form.element-result_types .form-checkboxes .form-item {
+  margin-top: 1em !important;
+}
+
+.form.element-result_types .description {
+  display: block;
+  margin-top: 0.5em;
+}
+
 /**
  * @file
  * Inline entity form definitions.
@@ -843,6 +866,10 @@ input.form-submit:focus,
   display: none;
 }
 
+.members {
+  background-color: #d1d2d0;
+}
+
 /**
  * @file
  * Form definitions.
@@ -878,6 +905,16 @@ input.form-submit:focus,
   border-bottom: 1px solid #9ea09c;
   margin-bottom: 1.5em;
   padding-bottom: 1em;
+}
+
+.list.invitations {
+  margin: 0 1.5em 1.5em 1.5em;
+  padding-bottom: 1em;
+}
+
+.list.invitations li {
+  border-bottom: 0;
+  margin-bottom: 0;
 }
 
 /**
@@ -959,5 +996,14 @@ input.form-submit:focus,
   .header-menu .element-profile_link {
     margin-top: 1.5em;
 } }
+
+/**
+ * @file
+ * The tips definition.
+ */
+.tip-module-effective-activism {
+  background-color: #d1d2d0;
+  color: #333;
+}
 
 /*# sourceMappingURL=style.css.map */

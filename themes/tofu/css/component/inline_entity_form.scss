@@ -108,3 +108,7 @@ $inline-entity-form-padding: 1em;
   display: none;
 }
 
+.members {
+  @extend %corner;
+  background-color: $gray1;
+}
