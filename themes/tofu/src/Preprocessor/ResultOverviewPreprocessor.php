@@ -2,8 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-
-
 /**
  * Preprocessor for FrontPage.
  */

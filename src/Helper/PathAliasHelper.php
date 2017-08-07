@@ -107,7 +107,7 @@ class PathAliasHelper {
    * @return string|bool
    *   The base path alias for the entity or FALSE if entity is not supported.
    */
-  private static function createPathAlias($entity) {
+  private static function createPathAlias(EntityInterface $entity) {
     $alias_path = FALSE;
     switch ($entity->getEntityType()->id()) {
       case EffectiveActivismConstant::ENTITY_ORGANIZATION:
@@ -185,7 +185,7 @@ class PathAliasHelper {
    *   Returns TRUE if path exists, FALSE otherwise.
    */
   private static function checkAliasExists($path) {
-    $alias = Drupal::service('path.alias_storage')->load(['alias' => $path]); 
+    $alias = Drupal::service('path.alias_storage')->load(['alias' => $path]);
     return $alias === FALSE ? FALSE : TRUE;
   }
 
