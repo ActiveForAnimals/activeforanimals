@@ -503,6 +503,7 @@ input.form-submit:focus,
 .view.element-parent,
 .view.element-edit_page,
 .view.element-manage_groups,
+.view.element-view_results,
 .view.element-manage_results,
 .view.element-add_organization,
 .view.element-add_group,
@@ -633,6 +634,10 @@ input.form-submit:focus,
 
 .view.element-manage_groups {
   background-image: url(../images/group.svg);
+}
+
+.view.element-view_results {
+  background-image: url(../images/result.svg);
 }
 
 .view.element-manage_results {
