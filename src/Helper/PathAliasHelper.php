@@ -111,7 +111,7 @@ class PathAliasHelper {
     $alias_path = FALSE;
     switch ($entity->getEntityType()->id()) {
       case EffectiveActivismConstant::ENTITY_ORGANIZATION:
-        $alias_path = self::ensureUniquePath(sprintf('o/%s', self::transliterate($entity->label())));
+        $alias_path = self::ensureUniquePath(sprintf('/o/%s', self::transliterate($entity->label())));
         break;
 
       case EffectiveActivismConstant::ENTITY_GROUP:
@@ -204,7 +204,7 @@ class PathAliasHelper {
     // Check if a variant path already exists.
     while (self::checkAliasExists($path) !== FALSE) {
       $variant += 1;
-      $path = substr($original_path, 0, 30 - (count($variant) + 1)) . sprintf('-%d', $variant);
+      $path = sprintf('%s-%d', substr($original_path, 0, 30 - (count($variant) + 1)), $variant);
     }
     return $path;
   }
