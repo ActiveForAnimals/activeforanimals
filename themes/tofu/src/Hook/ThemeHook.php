@@ -52,6 +52,10 @@ class ThemeHook implements HookInterface {
     $theme['user_pass-form']['render element'] = 'form';
     $theme['user_pass-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_pass_form');
     $theme['user_pass-form']['template'] = 'user_pass_form';
+    // Update user register form.
+    $theme['user_register-form']['render element'] = 'form';
+    $theme['user_register-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_register_form');
+    $theme['user_register-form']['template'] = 'user_register_form';
     // Update organization publish form.
     $theme['publish_organization-form']['render element'] = 'form';
     $theme['publish_organization-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_organization');

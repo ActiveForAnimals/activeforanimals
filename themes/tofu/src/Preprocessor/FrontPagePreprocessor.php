@@ -23,7 +23,6 @@ class FrontPagePreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['step_1'] = $image_controller->view($step_1, 'step');
     $this->variables['content']['step_2'] = $image_controller->view($step_2, 'step');
     $this->variables['content']['step_3'] = $image_controller->view($step_3, 'step');
-    $this->variables['content']['beta_signup'] = Drupal::formBuilder()->getForm('Drupal\activeforanimals\Form\BetaSignupForm');
     return $this->variables;
   }
 

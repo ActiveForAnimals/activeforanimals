@@ -4,7 +4,6 @@ namespace Drupal\tofu\Hook;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
-use Drupal\activeforanimals\Form\BetaSignupForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
@@ -53,6 +52,7 @@ use Drupal\tofu\Preprocessor\UserFormPreprocessor;
 use Drupal\tofu\Preprocessor\UserLoginFormPreprocessor;
 use Drupal\tofu\Preprocessor\UserPasswordFormPreprocessor;
 use Drupal\tofu\Preprocessor\UserPreprocessor;
+use Drupal\tofu\Preprocessor\UserRegisterFormPreprocessor;
 
 /**
  * Implements hook_preprocess().
@@ -87,15 +87,11 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new ContactInformationPreprocessor($variables);
         break;
 
-      case BetaSignupForm::THEME_ID:
-        $preprocessor = new BetaSignupFormPreprocessor($variables);
-        break;
-
       case 'event':
         $preprocessor = new EventPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'event'):
+      case 'event-form':
         $preprocessor = new EventFormPreprocessor($variables);
         break;
 
@@ -119,7 +115,7 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new GroupPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'group'):
+      case 'group-form':
         $preprocessor = new GroupFormPreprocessor($variables);
         break;
 
@@ -143,7 +139,7 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new ImportPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'import'):
+      case 'import-form':
         $preprocessor = new ImportFormPreprocessor($variables);
         break;
 
@@ -163,7 +159,7 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new OrganizationPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'organization'):
+      case 'organization-form':
         $preprocessor = new OrganizationFormPreprocessor($variables);
         break;
 
@@ -183,11 +179,11 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new ResultFormPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'publish_group'):
+      case 'publish_group-form':
         $preprocessor = new PublishGroupFormPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'result_type'):
+      case 'result_type-form':
         $preprocessor = new ResultTypeFormPreprocessor($variables);
         break;
 
@@ -207,17 +203,22 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new UserPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'user'):
+      case 'user-form':
         $preprocessor = new UserFormPreprocessor($variables);
         break;
 
-      case sprintf('%s-form', 'user_pass'):
+      case 'user_pass-form':
         $preprocessor = new UserPasswordFormPreprocessor($variables);
         break;
 
       case 'user_login-form':
         $preprocessor = new UserLoginFormPreprocessor($variables);
         break;
+
+      case 'user_register-form':
+        $preprocessor = new UserRegisterFormPreprocessor($variables);
+        break;
+
     }
     if (!empty($preprocessor)) {
       return $preprocessor->preprocess();

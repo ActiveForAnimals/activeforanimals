@@ -121,32 +121,4 @@ class Settings {
     return $key;
   }
 
-  /**
-   * Return e-mail address for beta signup.
-   *
-   * @return string
-   *   The API key.
-   */
-  public static function getBetaSignupRecipient() {
-    $email_address = NULL;
-    if (defined('PANTHEON_ENVIRONMENT')) {
-      $data = self::getSettings();
-      switch (PANTHEON_ENVIRONMENT) {
-        case self::ENVIRONMENT_LIVE:
-          $email_address = isset($data['beta_signup']['recipient']) ? $data['beta_signup']['recipient'] : NULL;
-          break;
-
-        case self::ENVIRONMENT_TEST:
-          $email_address = isset($data['beta_signup']['recipient']) ? $data['beta_signup']['recipient'] : NULL;
-          break;
-
-        case self::ENVIRONMENT_DEV:
-          $email_address = isset($data['beta_signup']['recipient']) ? $data['beta_signup']['recipient'] : NULL;
-          break;
-
-      }
-    }
-    return $email_address;
-  }
-
 }
