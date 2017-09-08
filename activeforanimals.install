@@ -21,7 +21,7 @@ function activeforanimals_install() {
   $user_settings = Drupal::configFactory()->getEditable('user.settings');
   $user_settings
     ->set('register', USER_REGISTER_VISITORS)
-    ->set('verify_mail', 0)
+    ->set('verify_mail', FALSE)
     ->save(TRUE);
   // Disable user time zones.
   // This is required in order for events to register correct time.
