@@ -19,21 +19,34 @@ function activeforanimals_install() {
   Drupal::getContainer()->get('config.factory')->getEditable('system.site')->set('page.front', '/front')->save();
   // Allow visitor account creation with administrative approval.
   $user_settings = Drupal::configFactory()->getEditable('user.settings');
-  $user_settings->set('register', USER_REGISTER_ADMINISTRATORS_ONLY)->save(TRUE);
+  $user_settings
+    ->set('register', USER_REGISTER_VISITORS)
+    ->set('verify_mail', FALSE)
+    ->save(TRUE);
   // Disable user time zones.
   // This is required in order for events to register correct time.
   $system_date = Drupal::configFactory()->getEditable('system.date');
-  $system_date->set('timezone.user.configurable', FALSE)->save(TRUE);
+  $system_date
+    ->set('timezone.user.configurable', FALSE)
+    ->save(TRUE);
+  // Set 'from' e-mail address for site notifications.
+  $system_site = Drupal::configFactory()->getEditable('system.site');
+  $system_site
+    ->set('mail_notification', 'info@activeforanimals.com')
+    ->save(TRUE);
   // Setup apis.
   $location_settings = Drupal::configFactory()->getEditable('effective_activism.settings');
-  $location_settings->set('google_maps_api_key', Settings::getGoogleMapsApiKey());
-  $location_settings->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey());
-  $location_settings->set('darksky_api_key', Settings::getDarkskyApiKey());
-  $location_settings->save(TRUE);
+  $location_settings
+    ->set('google_maps_api_key', Settings::getGoogleMapsApiKey())
+    ->set('google_static_maps_api_key', Settings::getGoogleStaticMapsApiKey())
+    ->set('darksky_api_key', Settings::getDarkskyApiKey())
+    ->save(TRUE);
   // Allow authenticated users access to tours.
   $authenticated_role = Role::load(RoleInterface::AUTHENTICATED_ID);
   if ($authenticated_role) {
-    $authenticated_role->grantPermission(AFA_PERMISSION_TOUR_ACCESS);
-    $authenticated_role->trustData()->save();
+    $authenticated_role
+      ->grantPermission(AFA_PERMISSION_TOUR_ACCESS)
+      ->trustData()
+      ->save();
   }
 }

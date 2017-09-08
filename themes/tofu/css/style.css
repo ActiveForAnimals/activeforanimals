@@ -513,6 +513,7 @@ input.form-submit:focus,
 .view.element-type,
 .view.element-publish,
 .view.element-username,
+.form.element-username input,
 .view.element-group_count,
 .view.element-data_types,
 .form.element-your_organization input,
@@ -690,6 +691,10 @@ input.form-submit:focus,
   background-image: url(../images/person.svg);
 }
 
+.form.element-username input {
+  background-image: url(../images/person.svg);
+}
+
 .form.element-inline_entity_form {
   background-color: #d1d2d0;
   margin-top: 1em;
@@ -769,6 +774,16 @@ input.form-submit:focus,
 .form.element-result_types .description {
   display: block;
   margin-top: 0.5em;
+}
+
+.form.element-afa_challenge label,
+.form.element-afa_challenge .description {
+  display: block;
+}
+
+#user-register-form .form.element-username .description,
+#user-register-form .form.element-email_address .description {
+  display: block;
 }
 
 /**
@@ -973,27 +988,31 @@ input.form-submit:focus,
 } }
 
 .header-menu .element-login_link,
+.header-menu .element-logout_link,
 .header-menu .element-profile_link,
-.header-menu .element-logout_link {
+.header-menu .element-register_link {
   margin-top: 0;
   width: 7em;
   float: right;
 }
 @media only screen and (min-width: 1024px) {
   .header-menu .element-login_link,
+  .header-menu .element-logout_link,
   .header-menu .element-profile_link,
-  .header-menu .element-logout_link {
+  .header-menu .element-register_link {
     margin-top: 1.4em;
 } }
 
-.header-menu .element-profile_link {
+.header-menu .element-profile_link,
+.header-menu .element-register_link {
   margin-top: 0;
   width: 5em;
   float: right;
   text-transform: uppercase;
 }
 @media only screen and (min-width: 1024px) {
-  .header-menu .element-profile_link {
+  .header-menu .element-profile_link,
+  .header-menu .element-register_link {
     margin-top: 1.5em;
 } }
 

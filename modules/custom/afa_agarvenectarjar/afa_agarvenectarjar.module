@@ -7,50 +7,6 @@
  * Inspired by https://drupal.org/project/honeypot.
  */
 
-use Drupal\activeforanimals\Form\BetaSignupForm;
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\afa_agarvenectarjar\Constant;
 
-/**
- * Implements hook_form_alter().
- *
- * Adds a hidden form element to attempt tricking spambots.
- */
-function afa_agarvenectarjar_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (
-    $form_id === 'user_register_form' ||
-    $form_id === BetaSignupForm::FORM_ID
-  ) {
-    $form['afa_username'] = [
-      '#type' => 'textfield',
-      '#title' => t('Leave this field blank'),
-      '#size' => 20,
-      '#weight' => 100,
-      '#attributes' => ['autocomplete' => 'off'],
-      '#element_validate' => ['_afa_agarvenectarjar_validate'],
-      '#prefix' => '<div class="afa-username">',
-      '#suffix' => '</div>',
-      '#attached' => [
-        'html_head' => [
-          [
-            [
-              '#tag' => 'style',
-              '#value' => '.afa-username { display: none !important; }',
-            ],
-            'agarvenectarjar_css',
-          ],
-        ],
-      ],
-    ];
-  }
-}
-
-/**
- * Validate agarvenectarjar field.
- */
-function _afa_agarvenectarjar_validate($element, FormStateInterface $form_state) {
-  // Make sure it's empty.
-  if (!empty($element['#value'])) {
-    \Drupal::logger('afa_agarvenectarjar')->notice('Spambot access attempt');
-    $form_state->setErrorByName('', t('There was a problem with your form submission. Please refresh the page and try again.'));
-  }
-}
+include drupal_get_path('module', Constant::MODULE_NAME) . '/includes/hooks.inc';

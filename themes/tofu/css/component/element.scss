@@ -212,6 +212,11 @@
   background-image: url(../images/person.svg);
 }
 
+.form.element-username input {
+  @extend %element-icon;
+  background-image: url(../images/person.svg);
+}
+
 .form.element-inline_entity_form {
   @extend %corner;
   background-color: $gray1;
@@ -301,4 +306,14 @@
 .form.element-result_types .description {
   display: block;
   margin-top: 0.5em;
+}
+
+.form.element-afa_challenge label,
+.form.element-afa_challenge .description {
+  display: block;
+}
+
+#user-register-form .form.element-username .description,
+#user-register-form .form.element-email_address .description {
+  display: block;
 }

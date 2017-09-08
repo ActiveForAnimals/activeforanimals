@@ -4,7 +4,6 @@ namespace Drupal\tofu;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
-use Drupal\activeforanimals\Form\BetaSignupForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
@@ -32,7 +31,6 @@ class Constant {
    * Element templates.
    */
   const CONTROLLER_TEMPLATES = [
-    BetaSignupForm::THEME_ID,
     'inline_entity_form_data',
     'inline_entity_form_person',
     'inline_entity_form_result',
