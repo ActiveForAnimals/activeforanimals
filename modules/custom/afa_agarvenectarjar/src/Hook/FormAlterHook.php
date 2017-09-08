@@ -3,7 +3,6 @@
 namespace Drupal\afa_agarvenectarjar\Hook;
 
 use Drupal\afa_agarvenectarjar\Constant;
-use Drupal\afa_agarvenectarjar\Helper\FormHelper;
 
 /**
  * Implements hook_form_alter().
@@ -37,7 +36,7 @@ class FormAlterHook implements HookInterface {
     if (in_array($form_id, Constant::FORM_ID_LIST)) {
       $form['account'][Constant::HIDDEN_FORM_ELEMENT_MACHINE_NAME] = [
         '#type' => 'textfield',
-        '#title' => t(Constant::HIDDEN_FORM_ELEMENT_TITLE),
+        '#title' => Constant::HIDDEN_FORM_ELEMENT_TITLE,
         '#size' => 20,
         '#weight' => -100,
         '#attributes' => ['autocomplete' => 'off'],
@@ -58,8 +57,8 @@ class FormAlterHook implements HookInterface {
       ];
       $form['account'][Constant::SHOWN_FORM_ELEMENT_MACHINE_NAME] = [
         '#type' => 'textfield',
-        '#title' => t(Constant::SHOWN_FORM_ELEMENT_TITLE),
-        '#description' => t(Constant::SHOWN_FORM_ELEMENT_DESCRIPTION),
+        '#title' => Constant::SHOWN_FORM_ELEMENT_TITLE,
+        '#description' => Constant::SHOWN_FORM_ELEMENT_DESCRIPTION,
         '#size' => 20,
         '#weight' => -100,
         '#attributes' => ['autocomplete' => 'off'],

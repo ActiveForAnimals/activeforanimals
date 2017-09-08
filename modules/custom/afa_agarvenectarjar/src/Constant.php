@@ -13,7 +13,7 @@ class Constant {
   const MODULE_NAME = 'afa_agarvenectarjar';
 
   /**
-   * Form constants
+   * Form constants.
    */
   const FORM_ID_LIST = [
     'user_register_form',
