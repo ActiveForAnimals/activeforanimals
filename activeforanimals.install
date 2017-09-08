@@ -21,13 +21,18 @@ function activeforanimals_install() {
   $user_settings = Drupal::configFactory()->getEditable('user.settings');
   $user_settings
     ->set('register', USER_REGISTER_VISITORS)
-    ->set('email_verification', 0)
+    ->set('verify_mail', 0)
     ->save(TRUE);
   // Disable user time zones.
   // This is required in order for events to register correct time.
   $system_date = Drupal::configFactory()->getEditable('system.date');
   $system_date
     ->set('timezone.user.configurable', FALSE)
+    ->save(TRUE);
+  // Set 'from' e-mail address for site notifications.
+  $system_site = Drupal::configFactory()->getEditable('system.site');
+  $system_site
+    ->set('mail_notification', 'info@activeforanimals.com')
     ->save(TRUE);
   // Setup apis.
   $location_settings = Drupal::configFactory()->getEditable('effective_activism.settings');
