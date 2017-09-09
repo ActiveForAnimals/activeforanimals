@@ -38,9 +38,9 @@ The first row must contain the following column names:
 The rows after the first row contain the events to be imported.  
 Example:
 
-| 1 | start_date | end_date | address | address_extra_information | title | description | results |
-| - | ---------- | -------- | ------- | ------------------------- | ----- | ----------- | ------- |
-| 2 | 2016-12-13 11:00 | 2016-12-13 13:00 | Kultorvet, Copenhagen, Denmark | By the fountain | My custom title | My custom description | leafleting \| 4 \| 0 \| 1 \| 0 \| 1000 \| Flyer design B |
+1 | start_date | end_date | address | address_extra_information | title | description | results
+- | ---------- | -------- | ------- | ------------------------- | ----- | ----------- | -------
+2 | 2016-12-13 11:00 | 2016-12-13 13:00 | Kultorvet, Copenhagen, Denmark | By the fountain | My custom title | My custom description | leafleting \| 4 \| 0 \| 1 \| 0 \| 1000 \| Flyer design B
 
 
 ### Start date and end date

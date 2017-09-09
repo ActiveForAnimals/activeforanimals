@@ -6,7 +6,8 @@ not meant to supercede your organization.
 
 Subsections:
 
-- [Leafleting and signature collections](../guide/leafleting-and-signature-collections)
+- [Leafleting and signature collections](
+../guide/leafleting-and-signature-collections)
 - [Pay-per-view](../guide/pay-per-view)
 
 All people, young and old, have the potential to help animals. Our shared goal

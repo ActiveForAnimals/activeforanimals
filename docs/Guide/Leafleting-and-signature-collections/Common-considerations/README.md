@@ -7,10 +7,10 @@ On this page:
 
 - [How many fliers should I bring?](#how-many-fliers-should-i-bring)
 - [What if people get angry?](#what-if-people-get-angry)
-- [What if people ask me something that I can't answer?](#what-if-people-ask-me-something-i-cant-answer)
+- [What if I don't know the answer?](#what-if-i-dont-know-the-answer)
 - [Leafleting is scary!](#leafleting-is-scary)
 - [Do you give fliers to children?](#do-you-give-fliers-to-children)
-- [What does the law say and what about police?](#what-does-the-law-say-and-what-about-police)
+- [What about the law and police?](#what-about-the-law-and-police)
 
 ## <a name="how-many-fliers-should-i-bring"></a>How many fliers should I bring?
 
@@ -34,8 +34,7 @@ good mood. If you engage in negative discussions, nobody wins. The chance of
 convincing an angry person is very small, and negative discussions rarely help
 the mood.
 
-## <a name="what-if-people-ask-me-something-i-cant-answer"></a>What if people
-ask me something that I can't answer?
+## <a name="what-if-i-dont-know-the-answer"></a>What if I don't know the answer?
 
 Sometimes people ask us questions that we can't answer. There is no shame in
 being unable to answer. Admit that you can't answer the question, and perhaps
@@ -67,8 +66,7 @@ children often ask their parents for a flier, and if the child reaches out after
   within our primary target group and they are old enough to understand the
   information and make up their own mind.
 
-## <a name="what-does-the-law-say-and-what-about-police"></a>What does the law
-say and what about police?
+## <a name="what-about-the-law-and-police"></a>What about the law and police?
 
 Your own country laws will apply to leafleting events. Usually, in European
 countries, you can hand out fliers without a permit, as long as you are standing

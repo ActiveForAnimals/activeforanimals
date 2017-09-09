@@ -2,9 +2,11 @@
 
 Subsections:
 
-- [Common considerations](./leafleting-and-signature-collections/common-considerations)
+- [Common considerations](
+./leafleting-and-signature-collections/common-considerations)
 - [Stuff to remember](./leafleting-and-signature-collections/stuff-to-remember)
-- [When, where and for how long do you do street activism?](./leafleting-and-signature-collections/when-where-and-for-how-long-do-you-do-street-activism)
+- [When, where and for how long?](
+./leafleting-and-signature-collections/when-where-and-for-how-long)
 
 On this page:
 
