@@ -148,6 +148,11 @@
   background-image: url(../images/group.svg);
 }
 
+.view.element-view_results {
+  @extend %element-icon;
+  background-image: url(../images/result.svg);
+}
+
 .view.element-manage_results {
   @extend %element-icon;
   background-image: url(../images/result.svg);
@@ -203,6 +208,11 @@
 }
 
 .view.element-username {
+  @extend %element-icon;
+  background-image: url(../images/person.svg);
+}
+
+.form.element-username input {
   @extend %element-icon;
   background-image: url(../images/person.svg);
 }
@@ -296,4 +306,14 @@
 .form.element-result_types .description {
   display: block;
   margin-top: 0.5em;
+}
+
+.form.element-afa_challenge label,
+.form.element-afa_challenge .description {
+  display: block;
+}
+
+#user-register-form .form.element-username .description,
+#user-register-form .form.element-email_address .description {
+  display: block;
 }

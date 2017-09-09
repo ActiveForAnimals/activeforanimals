@@ -45,6 +45,10 @@ class FormAlterHook implements HookInterface {
         $form['#theme'] = 'user_pass-form';
         break;
 
+      case 'user_register_form':
+        $form['#theme'] = 'user_register-form';
+        break;
+
       case 'import_csv_add_form':
       case 'import_csv_edit_form':
         $form['#theme'] = 'import-form';

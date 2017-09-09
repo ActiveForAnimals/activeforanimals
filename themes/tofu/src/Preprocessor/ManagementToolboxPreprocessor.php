@@ -54,6 +54,11 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
             'group' => $entity->id(),
           ]
         ));
+        $this->variables['content']['results'] = $element_controller->view(t('View results'), 'view_results', new Url(
+          'entity.group.results', [
+            'group' => $entity->id(),
+          ]
+        ));
         $this->variables['content']['manage_results'] = $element_controller->view(t('Manage results'), 'manage_results', new Url('entity.result_type.collection'));
         $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(

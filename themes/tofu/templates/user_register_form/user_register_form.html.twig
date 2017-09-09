@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * The user register form.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Create an account'|t }}
+    </div>
+    <div class="content">
+      <div class="section">
+        <div class="column-wrapper">
+          <div class="column-5-15 no-spacing">
+            <div class="column-wrapper">
+              <div class="column-15-15 no-spacing">
+                {{ form.account.name }}
+              </div>
+              <div class="column-15-15 no-spacing">
+                {{ form.account.mail }}
+              </div>
+            </div>
+          </div>
+          <div class="column-5-15 no-spacing">
+          </div>
+          <div class="column-5-15 no-spacing">
+            {{ form.account.pass }}
+          </div>
+          <div class="column-5-15 no-spacing">
+            {{ form.account.afa_challenge }}
+            {{ form.account.afa_username }}
+          </div>
+          <div class="column-10-15 no-spacing">
+          </div>
+          <div class="column-15-15 no-spacing">
+            {{ form.actions.submit }}
+          </div>
+        </div>
+      </div>
+    </div>
+</form>

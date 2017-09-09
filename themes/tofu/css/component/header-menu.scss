@@ -50,8 +50,9 @@ $header-menu-height-small: 8em;
 }
 
 .header-menu .element-login_link,
+.header-menu .element-logout_link,
 .header-menu .element-profile_link,
-.header-menu .element-logout_link {
+.header-menu .element-register_link {
   @media only screen and (min-width: $medium-min-width) {
     margin-top: 1.4em;
   }
@@ -60,7 +61,8 @@ $header-menu-height-small: 8em;
   float: right;
 }
 
-.header-menu .element-profile_link {
+.header-menu .element-profile_link,
+.header-menu .element-register_link {
   @media only screen and (min-width: $medium-min-width) {
     margin-top: 1.5em;
   }
