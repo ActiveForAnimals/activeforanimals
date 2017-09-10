@@ -14,7 +14,8 @@ On this page:
 - [Consider the weather](#consider-the-weather)
 - [Consider the duration](#consider-the-duration)
 
-## <a name="consider-the-place"></a>Consider the place
+<a name="consider-the-place"></a>
+## Consider the place
 The best places to leaflet are where there are many people on pedestrian streets
 or in shopping areas. People are usually not very busy there, and they are on
 foot.    
@@ -31,7 +32,8 @@ are more than one, place yourselves with enough space between you that people
 have to pass through you. This way, you can offer the most fliers to as many
 people as possible.
 
-## <a name="consider-the-time"></a>Consider the time
+<a name="consider-the-time"></a>
+## Consider the time
 When leafleting, some time periods of the day are better than others. It's all
 about meeting as many people as possible. On work days, the best time is when
 people are going to work or when they are off work, typically between 7 to 10
@@ -42,7 +44,8 @@ time. On sunday stores may be closed, so it may be better to focus on parks or
 other places of social gatherings. Assuming of crouse, that the weather is
 acceptable.
 
-## <a name="consider-the-weather"></a>Consider the weather
+<a name="consider-the-weather"></a>
+## Consider the weather
 It is obviously not very effective to hand out fliers in pouring rain. People
 will only be busy getting out of the rain and fliers get wet and soggy.    
 That being said, it doesn't have to be perfect sunshine for effective leafleting
@@ -55,7 +58,8 @@ stay under cover. The same applies to wind. Strong winds make it difficult to
 hand out fliers, but a shelter or half-shelter can be a great help. If it is
 cold, remember to wear a lot of clothes.
 
-## <a name="consider-the-duration"></a>Consider the duration
+<a name="consider-the-duration"></a>
+## Consider the duration
 The longer you hand out fliers, the better. Yet you might risk burning out if
 you are out too long every time. Try to get a feel of how much time works for
 you.    

@@ -8,7 +8,8 @@ On this page:
 - [Follow the leader](#follow-the-leader)
 - [Fliers on the ground](#fliers-on-the-ground)
 
-## <a name="follow-the-leader"></a>Follow the leader
+<a name="follow-the-leader"></a>
+## Follow the leader
 
 Even if some people claim that they don't care about others opinion, it is a
 fact that our behavior is affected by the people around us. It is important to
@@ -23,7 +24,8 @@ it might be a good idea to step back for a moment and let some people pass
 before you begin again. In this way, they won't be influenced negatively by the
 people in front of them.
 
-## <a name="fliers-on-the-ground"></a>Fliers on the ground
+<a name="fliers-on-the-ground"></a>
+## Fliers on the ground
 
 The fact that peoples behavior is influenced by people around them is also
 important for another reason when you do leafleting.    
