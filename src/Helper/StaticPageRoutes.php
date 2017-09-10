@@ -99,7 +99,8 @@ class StaticPageRoutes {
               [
                 '_controller' => self::CONTROLLER,
                 '_title' => $title,
-                'filepath' => $element_path,
+                'filepath' => $path,
+                'filename' => $element,
               ],
               self::PERMISSIONS
             ));
