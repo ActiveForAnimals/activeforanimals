@@ -30,7 +30,7 @@ class StaticPageController extends ControllerBase {
   public function content($filepath = NULL, $filename = NULL) {
     $content['#filepath'] = $filepath;
     $content['#filename'] = $filename;
-    $content['#imagepath'] = sprintf('./%s/images', drupal_get_path('profile', 'activeforanimals'));
+    $content['#imagepath'] = sprintf('/%s/images', drupal_get_path('profile', 'activeforanimals'));
     $content['#theme'] = self::THEME_ID;
     $content['#cache'] = [
       'max-age' => self::CACHE_MAX_AGE,
