@@ -6,6 +6,3 @@ please select the guide above appropriate to your role. If you have general
 questions on using the site, please read on.
 
 <!--common-issues.md-->
-<!--getting-started.md-->
-<!--organizers.md-->
-<!--managers.md-->

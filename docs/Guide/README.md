@@ -1,14 +1,10 @@
 # Guide
 
-> This is a general-purpose guide meant to help animal lovers who want to create
+This is a general-purpose guide meant to help animal lovers who want to create
 as much change as possible through effective activism.  
-> Your organization may have different strategies and procedures. This guide is 
+Your organization may have different strategies and procedures. This guide is 
 not meant to supercede your organization.  
 
-<figure class="align-left">
-  <img src="guide-1.jpg" alt="Photo courtesy of Basel Vegan">
-  <figcaption>Photo courtesy of <a target="_blank" href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
-</figure>
 All people, young and old, have the potential to help animals. Our shared goal
 is to inform people about the living conditions of animals and the moral issues
 that surrounds animal farming. There are different approaches to effective
@@ -41,10 +37,3 @@ Thank you for your time and desire to help the animals!
 To begin, select a subsection that you would like to know more about. If you
 have never done outreach work before, it is recommended to start with the
 section on leafleting and signature collections.
-
-Subsections:
-
-- [Leafleting and signature collections](
-../guide/leafleting-and-signature-collections)
-- [How to host pay-per-view events](../guide/how-to-host-pay-per-view-events)
-
