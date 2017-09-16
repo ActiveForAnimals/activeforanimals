@@ -21,12 +21,16 @@ class StaticPageController extends ControllerBase {
    *
    * @param string $filepath
    *   The path to the static content.
+   * @param string $filename
+   *   The file name of the static content.
    *
    * @return array
    *   A render array.
    */
-  public function content($filepath = NULL) {
+  public function content($filepath = NULL, $filename = NULL) {
     $content['#filepath'] = $filepath;
+    $content['#filename'] = $filename;
+    $content['#imagepath'] = sprintf('/%s/images', drupal_get_path('profile', 'activeforanimals'));
     $content['#theme'] = self::THEME_ID;
     $content['#cache'] = [
       'max-age' => self::CACHE_MAX_AGE,

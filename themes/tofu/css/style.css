@@ -360,6 +360,25 @@ input.form-submit,
   text-align: left;
 }
 
+.path-guide .region-content .align-left,
+.path-help .region-content .align-right {
+  float: left;
+  margin: 0 1em 0 0;
+}
+
+.path-guide .region-content figcaption,
+.path-help .region-content figcaption {
+  font-size: 0.7em;
+  font-style: italic;
+  line-height: 0.7em;
+  text-align: right;
+}
+
+.path-guide .region-content img,
+.path-help .region-content img {
+  width: 100%;
+}
+
 /**
  * @file
  * The button definition.

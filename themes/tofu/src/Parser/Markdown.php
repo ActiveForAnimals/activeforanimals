@@ -11,39 +11,25 @@ class Markdown {
 
   private $parser;
 
-  private $raw;
-
-  private $structure;
-
   /**
    * Constructor.
-   *
-   * @param string $filepath
-   *   The file path of the markdown document to render.
    */
-  public function __construct($filepath) {
-    $this->raw = file_get_contents($filepath);
+  public function __construct() {
     $this->parser = new Parsedown();
   }
 
   /**
    * Returns a markdown document rendered as HTML.
    *
+   * @param string $filepath
+   *   The path to the markdown document to render.
+   *
    * @return string
    *   HTML from a markdown document.
    */
-  public function getContent() {
-    return $this->parse();
-  }
-
-  /**
-   * Renders HTML from markdown content.
-   *
-   * @return string
-   *   Derived HTML.
-   */
-  private function parse() {
-    return $this->parser->text($this->raw);
+  public function render($filepath) {
+    $raw = file_get_contents($filepath);
+    return $this->parser->text($raw);
   }
 
 }
