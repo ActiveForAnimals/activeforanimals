@@ -18,4 +18,5 @@ to you.
 
 ## Create account
 To create an account, simply go to
-[activeforanimals.com/user/register](/user/register) and follow the instructions.
+[activeforanimals.com/user/register](/user/register) and follow the
+instructions.

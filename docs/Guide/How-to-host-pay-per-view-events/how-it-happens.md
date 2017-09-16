@@ -2,7 +2,8 @@
 
 <figure class="align-right">
   <img src="guide-payperview-1.jpg" alt="Photo courtesy of Farm Sanctuary"/>
-  <figcaption>Photo courtesy of <a target="_blank" href="https://farmsanctuary.org">Farm Sanctuary</a></figcaption>
+  <figcaption>Photo courtesy of <a target="_blank"
+  href="https://farmsanctuary.org">Farm Sanctuary</a></figcaption>
 </figure>
 
 You set up one or more laptops on a table on a pedestrian street. People walking

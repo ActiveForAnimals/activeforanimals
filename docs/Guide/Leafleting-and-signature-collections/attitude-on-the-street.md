@@ -2,7 +2,8 @@
 
 <figure class="align-right">
   <img src="guide-leafleting-1.jpg" alt="Photo courtesy of Basel Vegan"/>
-  <figcaption>Photo courtesy of <a target="_blank" href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
+  <figcaption>Photo courtesy of <a target="_blank"
+  href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
 </figure>
 
 When you are out leafleting, your attitude is important. If you come off as

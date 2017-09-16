@@ -1,6 +1,7 @@
 <figure class="align-right">
   <img src="guide-leafleting-2.jpg" alt="Photo courtesy of Basel Vegan"/>
-  <figcaption>Photo courtesy of <a target="_blank" href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
+  <figcaption>Photo courtesy of <a target="_blank"
+  href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
 </figure>
 
 ## Who should get a flier?

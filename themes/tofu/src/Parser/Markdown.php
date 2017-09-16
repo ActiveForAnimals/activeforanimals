@@ -13,9 +13,6 @@ class Markdown {
 
   /**
    * Constructor.
-   *
-   * @param string $filepath
-   *   The path to the markdown document to render.
    */
   public function __construct() {
     $this->parser = new Parsedown();
@@ -23,6 +20,9 @@ class Markdown {
 
   /**
    * Returns a markdown document rendered as HTML.
+   *
+   * @param string $filepath
+   *   The path to the markdown document to render.
    *
    * @return string
    *   HTML from a markdown document.

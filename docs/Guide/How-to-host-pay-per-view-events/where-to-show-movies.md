@@ -1,6 +1,7 @@
 <figure class="align-left">
   <img src="guide-payperview-2.jpg" alt="Photo courtesy of Mercy for Animals"/>
-  <figcaption>Photo courtesy of <a target="_blank" href="http://www.mercyforanimals.org">Mercy for Animals</a></figcaption>
+  <figcaption>Photo courtesy of <a target="_blank"
+  href="http://www.mercyforanimals.org">Mercy for Animals</a></figcaption>
 </figure>
 
 ## Where to show movies

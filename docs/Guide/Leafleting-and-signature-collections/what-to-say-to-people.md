@@ -1,6 +1,7 @@
 <figure class="align-left">
   <img src="guide-leafleting-3.jpg" alt="Photo courtesy of Basel Vegan"/>
-  <figcaption>Photo courtesy of <a target="_blank" href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
+  <figcaption>Photo courtesy of <a target="_blank"
+  href="http://basel-vegan.ch">Basel Vegan</a></figcaption>
 </figure>
 
 ## What to say to people?

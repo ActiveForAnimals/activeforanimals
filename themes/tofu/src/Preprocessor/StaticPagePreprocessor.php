@@ -83,7 +83,7 @@ class StaticPagePreprocessor extends Preprocessor implements PreprocessorInterfa
       $full_path = sprintf('%s/%s', $this->filepath, $filename);
       if (is_dir($full_path) && !in_array($filename, [
         '.',
-        '..'
+        '..',
       ])) {
         // Strip profiles/activeforanimals/docs from full path.
         $relative_path = strtolower(str_replace('profiles/activeforanimals/docs/', '', $full_path));
@@ -136,7 +136,7 @@ class StaticPagePreprocessor extends Preprocessor implements PreprocessorInterfa
    * @param DOMElement $index
    *   An optional index to add links to anchors.
    */
-  private function anchorHeadings($heading_tag, $index = NULL) {
+  private function anchorHeadings($heading_tag, DOMElement $index = NULL) {
     foreach ($this->structure->getElementsByTagName($heading_tag) as $heading) {
       $href = Html::cleanCssIdentifier($heading->nodeValue);
       // Create anchor link.
