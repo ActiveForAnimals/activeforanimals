@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use DOMDocument;
+use DOMElement;
 use DOMXPath;
 use Drupal;
 use Drupal\Component\Utility\Html;
