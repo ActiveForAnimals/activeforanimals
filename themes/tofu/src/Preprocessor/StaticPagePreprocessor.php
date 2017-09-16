@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use DOMDocument;
+use DOMElement;
 use DOMXPath;
 use Drupal;
 use Drupal\Component\Utility\Html;
@@ -133,7 +134,7 @@ class StaticPagePreprocessor extends Preprocessor implements PreprocessorInterfa
    *
    * @param string $heading_tag
    *   A tag such as 'h2' to add anchors to.
-   * @param DOMElement $index
+   * @param \DOMElement $index
    *   An optional index to add links to anchors.
    */
   private function anchorHeadings($heading_tag, DOMElement $index = NULL) {
