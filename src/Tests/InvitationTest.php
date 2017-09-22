@@ -7,7 +7,6 @@ use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Constant as EffectiveActivismConstant;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Entity\Organization;
-use Drupal\effective_activism\Helper\InvitationHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -40,14 +39,14 @@ class InvitationTest extends WebTestBase {
   /**
    * The test organization.
    *
-   * @var Organization
+   * @var \Drupal\effective_activism\Entity\Organization
    */
   private $organization;
 
   /**
    * The test group.
    *
-   * @var Group
+   * @var \Drupal\effective_activism\Entity\Group
    */
   private $group;
 
