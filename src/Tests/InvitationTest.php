@@ -144,6 +144,7 @@ class InvitationTest extends WebTestBase {
     $this->assertText(self::TEST_NAME, 'User is manager of organization');
     $this->assertText('No current invitations');
     // Test invitations for organizers.
+    $this->drupalLogout();
     $this->drupalLogin($this->manager);
     $group_edit_path = sprintf('%s/edit', $this->group->toUrl()->toString());
     $this->drupalGet($group_edit_path);
