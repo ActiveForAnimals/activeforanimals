@@ -18,7 +18,6 @@ use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
 use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
 use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
-use Drupal\tofu\Preprocessor\BetaSignupFormPreprocessor;
 use Drupal\tofu\Preprocessor\ContactInformationPreprocessor;
 use Drupal\tofu\Preprocessor\EventPreprocessor;
 use Drupal\tofu\Preprocessor\EventFormPreprocessor;

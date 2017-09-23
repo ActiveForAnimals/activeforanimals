@@ -1,13 +1,9 @@
 # Guide
-> This is a general purpose guide meant to help animal lovers who want to create
+
+This is a general-purpose guide meant to help animal lovers who want to create
 as much change as possible through effective activism.  
-> Your organization may have different strategies and procedures. This guide is 
+Your organization may have different strategies and procedures. This guide is 
 not meant to supercede your organization.  
-
-Subsections:
-
-- [Leafleting and signature collections](../guide/leafleting-and-signature-collections)
-- [Pay-per-view](../guide/pay-per-view)
 
 All people, young and old, have the potential to help animals. Our shared goal
 is to inform people about the living conditions of animals and the moral issues
@@ -37,3 +33,7 @@ a place in history as those that worked for the most important freedom movement
 of our century.  
 
 Thank you for your time and desire to help the animals!
+
+To begin, select a subsection that you would like to know more about. If you
+have never done outreach work before, it is recommended to start with the
+section on leafleting and signature collections.
