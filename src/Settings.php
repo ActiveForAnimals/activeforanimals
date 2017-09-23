@@ -56,7 +56,7 @@ class Settings {
           $key = isset($data['google_maps_api_key']) ? $data['google_maps_api_key'] : NULL;
           break;
 
-        case self::ENVIRONMENT_DEV:
+        default:
           $key = isset($data['google_maps_api_key']) ? $data['google_maps_api_key'] : NULL;
           break;
 
@@ -84,7 +84,7 @@ class Settings {
           $key = isset($data['google_static_maps_api_key']) ? $data['google_static_maps_api_key'] : NULL;
           break;
 
-        case self::ENVIRONMENT_DEV:
+        default:
           $key = isset($data['google_static_maps_api_key']) ? $data['google_static_maps_api_key'] : NULL;
           break;
 
@@ -112,7 +112,7 @@ class Settings {
           $key = isset($data['darksky_api_key']) ? $data['darksky_api_key'] : NULL;
           break;
 
-        case self::ENVIRONMENT_DEV:
+        default:
           $key = isset($data['darksky_api_key']) ? $data['darksky_api_key'] : NULL;
           break;
 
