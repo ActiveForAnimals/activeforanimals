@@ -70,7 +70,6 @@ class RegisterUserTest extends WebTestBase {
       'afa_username' => '',
     ], t('Create new account'));
     $this->assertText('Registration successful. You are now logged in.', 'Successfully created user');
-
   }
 
 }
