@@ -10,6 +10,8 @@ module: effective_activism
 routes:
   -
     route_name: activeforanimals.event.create
+  -
+    route_name: entity.event.edit_form
 tips:
   create-and-edit-events:
     id: create-and-edit-events
