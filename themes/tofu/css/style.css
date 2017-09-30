@@ -21,7 +21,7 @@ body {
 
 a,
 .link {
-  color: #244163;
+  color: black;
   text-decoration: none;
 }
 
@@ -49,13 +49,17 @@ ul {
 .layout-container {
   background-repeat: no-repeat;
   background-position: top center;
-  background-color: #4072ad;
-  padding: 1em 2em;
-  font-family: "Source Sans Pro", sans-serif;
+  background-color: #0b453d;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   color: #6b6d69;
   line-height: 1.2em;
   overflow-wrap: break-word;
+  padding: 0;
+  margin: 0;
+}
+.layout-container .layout-content {
+  padding: 1em 2em;
 }
 
 /**
@@ -326,15 +330,55 @@ input.form-submit,
 
 /**
  * @file
+ * The footer definition.
+ */
+footer {
+  background-color: #f5f5f5;
+  padding: 1em;
+}
+
+footer ul {
+  margin-left: 1em;
+  list-style-type: disc;
+}
+
+footer a {
+  color: #6b6d69;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 1024px) {
+  footer .right-spacer {
+    border-right: 2px solid #d1d2d0;
+} }
+
+footer .element-facebook_logo,
+footer .element-github_logo {
+  padding-top: 0.2em;
+  text-align: center;
+}
+
+/**
+ * @file
  * Various text effects.
  */
 .point {
   font-size: 30px;
-  color: #4072ad;
+  color: #0b453d;
 }
 
 .emphasis {
   font-weight: bold;
+}
+
+/**
+ * @file
+ * Splash images.
+ */
+.path-frontpage header {
+  height: 20em;
+  background-position: center;
+  background-size: 'cover';
 }
 
 /**
@@ -379,6 +423,11 @@ input.form-submit,
   width: 100%;
 }
 
+.path-guide .region-content h1,
+.path-help .region-content h1 {
+  line-height: 1em;
+}
+
 /**
  * @file
  * The button definition.
@@ -391,7 +440,7 @@ input.form-submit,
 .element-inline_entity_form fieldset .invite_new,
 .element-inline_entity_form .ief-form-bottom .invite,
 .element-inline_entity_form .ief-form-bottom .cancel {
-  background-color: #e97230;
+  background-color: #047f70;
   color: #ffffff;
   padding: 6px 20px;
   text-transform: uppercase;
@@ -415,7 +464,7 @@ input.form-submit:focus,
 .element-inline_entity_form fieldset .invite_new:focus,
 .element-inline_entity_form .ief-form-bottom .invite:focus,
 .element-inline_entity_form .ief-form-bottom .cancel:focus {
-  background-color: #e76219;
+  background-color: #03665a;
 }
 
 #activeforanimals_help.button {
@@ -438,6 +487,9 @@ input.form-submit:focus,
   padding-right: 0.5em;
   padding-top: 0;
   padding-bottom: 0 !important;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   font-size: 16px;
   letter-spacing: 1px;
   color: #ffffff;
@@ -445,6 +497,10 @@ input.form-submit:focus,
 
 .breadcrumb a {
   color: #ffffff;
+}
+
+.path-frontpage .breadcrumb {
+  display: none;
 }
 
 /**
@@ -457,7 +513,7 @@ input.form-submit:focus,
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   font-size: 30px;
-  color: #4072ad;
+  color: #0b453d;
   border-bottom: 1px solid #d1d2d0;
 }
 
@@ -466,11 +522,6 @@ input.form-submit:focus,
   margin-top: 1em;
   margin-bottom: 1em;
   padding: 1em;
-}
-
-.section.transparent {
-  background-color: #ffffff;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), white);
 }
 
 .section .footer {
@@ -870,13 +921,13 @@ input.form-submit:focus,
 }
 
 .element-inline_entity_form fieldset .invite_new {
-  background-color: #59d48d;
+  background-color: #047f70;
   margin-top: 1em;
   width: 15em;
 }
 
 .element-inline_entity_form .ief-form-bottom .invite {
-  background-color: #59d48d;
+  background-color: #047f70;
   width: 12em;
   margin-top: 0.5em;
 }
@@ -1032,7 +1083,7 @@ input.form-submit:focus,
 @media only screen and (min-width: 1024px) {
   .header-menu .element-profile_link,
   .header-menu .element-register_link {
-    margin-top: 1.5em;
+    margin-top: 1.4em;
 } }
 
 /**

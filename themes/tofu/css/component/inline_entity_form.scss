@@ -76,21 +76,21 @@ $inline-entity-form-padding: 1em;
 
 .element-inline_entity_form fieldset .invite_new {
   @extend %button-base;
-  background-color: $green;
+  background-color: $button-color2;
   margin-top: 1em;
   width: 15em;
 }
 
 .element-inline_entity_form .ief-form-bottom .invite {
   @extend %button-base;
-  background-color: $green;
+  background-color: $button-color2;
   width: 12em;
   margin-top: 0.5em;
 }
 
 .element-inline_entity_form .ief-form-bottom .cancel {
   @extend %button-base;
-  background-color: $gray2;
+  background-color: $button-color3;
   width: 10em;
   margin-top: 0.5em;
   margin-bottom: 1em;
