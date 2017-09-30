@@ -10,31 +10,37 @@
 {{ form.form_token }}
 {{ form.form_id }}
   <div class="section">
-    <div class="title">
-      {{ 'Account'|t }}
-    </div>
-    <div class="content">
-      <div class="section">
-        {{ form.account.current_pass }}
-      </div>
-      <div class="section">
+    <div class="column-wrapper">
+      <div class="column-8-15 first-column">
         <div class="title">
-          {{ 'Change e-mail address'|t }}
+          {{ 'Account'|t }}
         </div>
         <div class="content">
-          {{ form.account.mail }}
+          <div class="section">
+            {{ form.account.current_pass }}
+          </div>
+          <div class="section">
+            <div class="title">
+              {{ 'Change e-mail address'|t }}
+            </div>
+            <div class="content">
+              {{ form.account.mail }}
+            </div>
+          </div>
+          <div class="section">
+            <div class="title">
+              {{ 'Change password'|t }}
+            </div>
+            <div class="content">
+              {{ form.account.pass }}
+            </div>
+          </div>
+          <div class="footer">
+            {{ form.actions }}
+          </div>
         </div>
       </div>
-      <div class="section">
-        <div class="title">
-          {{ 'Change password'|t }}
-        </div>
-        <div class="content">
-          {{ form.account.pass }}
-        </div>
-      </div>
-      <div class="footer">
-        {{ form.actions }}
+      <div class="column-7-15 last-column">
       </div>
     </div>
   </div>
