@@ -1,0 +1,38 @@
+/**
+ * @file
+ * The footer definition.
+ */
+
+$footer-padding: 1em;
+$footer-ul-margin: 1em;
+$footer-spacer-border: 2px solid $gray1;
+$footer-spacer-margin: 2em;
+$footer-spacer-height: 8em;
+$footer-element-logo-padding: 0.2em;
+
+footer {
+  background-color: $white2;
+  padding: $footer-padding;
+}
+
+footer ul {
+  margin-left: $footer-ul-margin;
+  list-style-type: disc;
+}
+
+footer a {
+  color: $gray3;
+  font-size: $small-font-size;
+}
+
+footer .right-spacer {
+  @media only screen and (min-width: $medium-min-width) {
+    border-right: $footer-spacer-border;
+  }
+}
+
+footer .element-facebook_logo,
+footer .element-github_logo, {
+  padding-top: $footer-element-logo-padding;
+  text-align: center;
+}

@@ -12,7 +12,8 @@
   color: $color;
   line-height: $line-height;
   overflow-wrap: break-word;
-  
+  padding: 0;
+  margin: 0;
   .layout-content {
     padding: 1em 2em;
   }
