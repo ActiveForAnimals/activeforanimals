@@ -8,7 +8,7 @@ $button-padding: 6px 20px;
 
 %button-base {
   @extend %corner;
-  background-color: $orange;
+  background-color: $button-color1;
   color: $white1;
   padding: $button-padding;
   text-transform: uppercase;
@@ -17,7 +17,7 @@ $button-padding: 6px 20px;
   border: 0 none;
   &:hover,
   &:focus {
-    background-color: darken($orange, 5%);
+    background-color: darken($button-color1, 5%);
   }
 }
 

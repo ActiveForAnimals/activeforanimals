@@ -29,11 +29,6 @@ $section-content-spacing-top: 2em;
   padding: $section-padding;
 }
 
-.section.transparent {
-  background-color: $white1;
-  background: $transparent-gradient;
-}
-
 .section .title {
   @extend %section-title;
 }

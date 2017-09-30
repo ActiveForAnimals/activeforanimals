@@ -4,6 +4,7 @@
  */
 
 $breadcrumb-padding: 0.5em;
+$breadcrumb-margin: 0.5em;
 
 .breadcrumb {
   @extend %corner;
@@ -14,6 +15,9 @@ $breadcrumb-padding: 0.5em;
   padding-right: $breadcrumb-padding;
   padding-top: 0;
   padding-bottom: 0 !important;
+  margin-top: $breadcrumb-margin;
+  margin-left: $breadcrumb-margin;
+  margin-right: $breadcrumb-margin;
   font-size: $small-font-size;
   letter-spacing: 1px;
   color: $white1;
@@ -21,4 +25,9 @@ $breadcrumb-padding: 0.5em;
 
 .breadcrumb a {
   color: $white1;
+}
+
+// Hide breadcrumbs on front page.
+.path-frontpage .breadcrumb {
+  display: none;
 }
