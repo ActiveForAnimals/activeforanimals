@@ -54,6 +54,11 @@ class FormAlterHook implements HookInterface {
         $form['#theme'] = 'import-form';
         break;
 
+      case 'export_csv_add_form':
+      case 'export_csv_edit_form':
+        $form['#theme'] = 'export-form';
+        break;
+
       case 'publish_organization':
         $form['#theme'] = 'publish_organization-form';
         break;
@@ -68,6 +73,10 @@ class FormAlterHook implements HookInterface {
 
       case 'publish_event':
         $form['#theme'] = 'publish_event-form';
+        break;
+
+      case 'publish_export':
+        $form['#theme'] = 'publish_export-form';
         break;
     }
     foreach (Constant::FORM_TEMPLATES as $form_template) {

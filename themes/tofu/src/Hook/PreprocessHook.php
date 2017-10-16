@@ -10,6 +10,7 @@ use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
+use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
@@ -21,6 +22,9 @@ use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
 use Drupal\tofu\Preprocessor\ContactInformationPreprocessor;
 use Drupal\tofu\Preprocessor\EventPreprocessor;
 use Drupal\tofu\Preprocessor\EventFormPreprocessor;
+use Drupal\tofu\Preprocessor\ExportPreprocessor;
+use Drupal\tofu\Preprocessor\ExportOverviewPreprocessor;
+use Drupal\tofu\Preprocessor\ExportFormPreprocessor;
 use Drupal\tofu\Preprocessor\GroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\GroupOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\EventListPreprocessor;
@@ -92,6 +96,18 @@ class PreprocessHook implements HookInterface {
 
       case 'event-form':
         $preprocessor = new EventFormPreprocessor($variables);
+        break;
+
+      case 'export':
+        $preprocessor = new ExportPreprocessor($variables);
+        break;
+
+      case 'export-form':
+        $preprocessor = new ExportFormPreprocessor($variables);
+        break;
+
+      case ExportOverviewController::THEME_ID:
+        $preprocessor = new ExportOverviewPreprocessor($variables);
         break;
 
       case EventListController::THEME_ID:

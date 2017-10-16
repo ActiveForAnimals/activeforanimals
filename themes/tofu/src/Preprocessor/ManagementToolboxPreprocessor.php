@@ -54,6 +54,11 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
             'group' => $entity->id(),
           ]
         ));
+        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
+          'entity.group.exports', [
+            'group' => $entity->id(),
+          ]
+        ));
         $this->variables['content']['results'] = $element_controller->view(t('View results'), 'view_results', new Url(
           'entity.group.results', [
             'group' => $entity->id(),
@@ -78,6 +83,20 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
           'entity.import.publish_form', [
             'import' => $entity->id(),
+          ]
+        ));
+        break;
+
+      case 'export':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.export.edit_form', [
+            'export' => $entity->id(),
+          ]
+        ));
+        $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
+        $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
+          'entity.export.publish_form', [
+            'export' => $entity->id(),
           ]
         ));
         break;
