@@ -105,7 +105,7 @@ class CSVImportTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the import.', 'Added a new import entity.');
-    $this->assertText('2 items imported.', 'Successfully imported event');
+    $this->assertText('3 items imported.', 'Successfully imported event');
     // Get imported events.
     $events = GroupHelper::getEvents($this->group);
     $this->assertEqual(count($events), self::NUMBER_OF_IMPORTED_EVENTS, 'Imported two events');
