@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * An export page.
+ *
+ */
+#}
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    <div class="section">
+      <div class="column-wrapper">
+        <div class="column-8-15 first-column">
+          <div class="title">
+            {{ 'Export'|t }}
+          </div>
+          <div class="content">
+            {{ content.parent }}
+            {{ content.type }}
+            {{ content.source }}
+            {{ content.created }}
+            {{ content.event_count }}
+          </div>
+        </div>
+        <div class="column-7-15 last-column">
+          {{ content.management_toolbox }}
+          {{ content.organizer_toolbox }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column-4-15 last-column">
+    <div class="section">
+      {{ content.groups }}
+    </div>
+  </div>
+</div>

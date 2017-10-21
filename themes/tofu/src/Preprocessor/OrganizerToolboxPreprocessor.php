@@ -37,12 +37,25 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
             'group' => $entity->id(),
           ]
         ));
+        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
+          'entity.group.exports', [
+            'group' => $entity->id(),
+          ]
+        ));
         break;
 
       case 'import':
         $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
           'entity.import.edit_form', [
             'import' => $entity->id(),
+          ]
+        ));
+        break;
+
+      case 'export':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.export.edit_form', [
+            'export' => $entity->id(),
           ]
         ));
         break;

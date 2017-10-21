@@ -39,7 +39,7 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal --destination=~/build --drupal-project-rename="drupal"
+  - ~/.composer/vendor/bin/drush dl drupal-8.3.7 --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
@@ -48,7 +48,7 @@ before_script:
   # Install drupal.
   - cd $DRUPAL_PATH
   - composer install
-  - ~/.composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE"
+  - ~/.composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
   - ~/.composer/vendor/bin/drush --yes en simpletest
   # Start a webserver in the background and wait for initialization.
   - ~/.composer/vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
