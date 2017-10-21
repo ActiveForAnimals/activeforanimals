@@ -2,7 +2,6 @@
 
 namespace Drupal\activeforanimals\Tests\Helper;
 
-use Drupal\Component\Utility\Random;
 use Drupal\effective_activism\ContentMigration\Import\CSV\CSVParser as ImportCSVParser;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Import;

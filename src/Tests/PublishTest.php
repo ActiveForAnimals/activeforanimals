@@ -142,7 +142,7 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('4 items unpublished.');
+    $this->assertText('9 items unpublished.');
 
     // Verify that organizer cannot access group and event.
     $this->drupalLogin($this->organizer);
@@ -163,10 +163,10 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText('4 items published.');
+    $this->assertText('9 items published.');
     $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('10 items unpublished.');
+    $this->assertText('11 items unpublished.');
 
     // Verify that organizer cannot access organization, group and event.
     $this->drupalLogin($this->organizer);
