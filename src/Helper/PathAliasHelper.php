@@ -15,17 +15,22 @@ class PathAliasHelper {
    * Path templates for entities.
    */
   const PATH_TEMPLATE = [
-    EffectiveActivismConstant::ENTITY_ORGANIZATION => [
+    EffectiveActivismConstant::ENTITY_EVENT => [
       '' => '',
       'edit' => 'edit',
       'publish' => 'publish',
-      'groups' => 'g',
+    ],
+    EffectiveActivismConstant::ENTITY_EXPORT => [
+      '' => '',
+      'edit' => 'edit',
+      'publish' => 'publish',
     ],
     EffectiveActivismConstant::ENTITY_GROUP => [
       '' => '',
       'edit' => 'edit',
       'publish' => 'publish',
-      'imports' => 'i',
+      'imports' => 'imports',
+      'exports' => 'exports',
       'events' => 'e',
       'results' => 'r',
     ],
@@ -34,10 +39,11 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
     ],
-    EffectiveActivismConstant::ENTITY_EVENT => [
+    EffectiveActivismConstant::ENTITY_ORGANIZATION => [
       '' => '',
       'edit' => 'edit',
       'publish' => 'publish',
+      'groups' => 'g',
     ],
     EffectiveActivismConstant::ENTITY_RESULT_TYPE => [
       '' => '',
@@ -119,7 +125,11 @@ class PathAliasHelper {
         break;
 
       case EffectiveActivismConstant::ENTITY_IMPORT:
-        $alias_path = self::ensureUniquePath(sprintf('%s/i/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        $alias_path = self::ensureUniquePath(sprintf('%s/imports/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_EXPORT:
+        $alias_path = self::ensureUniquePath(sprintf('%s/exports/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
         break;
 
       case EffectiveActivismConstant::ENTITY_EVENT:

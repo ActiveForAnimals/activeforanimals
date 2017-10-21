@@ -36,8 +36,6 @@ class ThemeHook implements HookInterface {
     foreach (Constant::FORM_TEMPLATES as $form_template) {
       $theme[sprintf('%s-form', $form_template)] = $this->getForm(str_replace('_', '-', $form_template));
     }
-    // Update import forms.
-    $theme['import-form'] = $this->getForm('import');
     // Update html element.
     $theme['html']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'html');
     $theme['html']['template'] = 'html';
@@ -68,6 +66,10 @@ class ThemeHook implements HookInterface {
     $theme['publish_import-form']['render element'] = 'form';
     $theme['publish_import-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_import');
     $theme['publish_import-form']['template'] = 'publish_import';
+    // Update export publish form.
+    $theme['publish_export-form']['render element'] = 'form';
+    $theme['publish_export-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_export');
+    $theme['publish_export-form']['template'] = 'publish_export';
     // Update event publish form.
     $theme['publish_event-form']['render element'] = 'form';
     $theme['publish_event-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event');

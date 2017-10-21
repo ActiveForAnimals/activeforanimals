@@ -47,6 +47,19 @@ activeforanimals.import:
       import_type:
         type: entity:import_type
 
+# Add export.
+activeforanimals.export:
+  path: '/export/{export_type}'
+  defaults:
+    _entity_form: 'export.add'
+    _title: Export events
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
+  options:
+    parameters:
+      export_type:
+        type: entity:export_type
+
 # Add event.
 activeforanimals.event.create:
   path: '/create-event'

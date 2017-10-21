@@ -580,6 +580,7 @@ input.form-submit:focus,
 .view.element-add_event,
 .view.element-manage_events,
 .view.element-manage_imports,
+.view.element-manage_exports,
 .view.element-type,
 .view.element-publish,
 .view.element-username,
@@ -732,6 +733,10 @@ input.form-submit:focus,
 }
 
 .view.element-manage_imports {
+  background-image: url(../images/export.svg);
+}
+
+.view.element-manage_exports {
   background-image: url(../images/export.svg);
 }
 

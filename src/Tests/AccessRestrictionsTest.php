@@ -273,7 +273,7 @@ class AccessRestrictionsTest extends WebTestBase {
 
     // Verify that manager2 cannot manage import.
     $this->drupalLogin($this->manager2);
-    $this->drupalGet(sprintf('%s/i/1', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf('%s/imports/1', $this->group1->toUrl()->toString()));
     $this->assertResponse(403);
   }
 
