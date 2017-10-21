@@ -3,7 +3,9 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
+use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Entity\Export;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -15,8 +17,8 @@ use Drupal\simpletest\WebTestBase;
 class CSVExportTest extends WebTestBase {
 
   const ADD_CSV_EXPORT_PATH = '/export/csv';
-  const RESULTTYPE = 'leafleting';
-  const RESULT = 'leafleting | 4 | 0 | 1 | 0 | 1000 | Flyer A';
+  const TEST_TITLE_1 = 'test 1';
+  const TEST_TITLE_2 = 'test 2';
   const STARTDATE = '12/13/2016';
   const STARTTIME = '11:00';
   const ENDDATE = '12/13/2016';
@@ -50,6 +52,20 @@ class CSVExportTest extends WebTestBase {
   private $group;
 
   /**
+   * The 1st test event.
+   *
+   * @var Event
+   */
+  private $event1;
+
+  /**
+   * The 2nd test event.
+   *
+   * @var Event
+   */
+  private $event2;
+
+  /**
    * The test manager.
    *
    * @var User
@@ -79,6 +95,11 @@ class CSVExportTest extends WebTestBase {
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
     $groups = OrganizationHelper::getGroups($this->organization);
     $this->group = array_pop($groups);
+    $this->event1 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_1))->execute();
+    $this->event2 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_2))->execute();
+    // Create directory structure beforehand, otherwise testing will fail.
+    $path = drupal_realpath(file_default_scheme() . '://') . sprintf('/export/csv/%s', date('Y-m'));
+    mkdir($path, 0777, TRUE);
   }
 
   /**
@@ -94,7 +115,16 @@ class CSVExportTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the export.', 'Added a new export entity.');
-    $this->assertText(sprintf('%d items exported.', self::NUMBER_OF_EXPORTED_EVENTS), 'Successfully exported events');
+    $this->assertText(sprintf('%d events exported.', self::NUMBER_OF_EXPORTED_EVENTS), 'Successfully exported events');
+    // Examine file content.
+    $export = Export::load(1);
+    $file = $export->field_file_csv->entity;
+    $filepath = drupal_realpath($file->getFileUri());
+    $handle = fopen($filepath, 'r');
+    $content = fread($handle, filesize($filepath));
+    fclose($handle);
+    $this->assertTrue(strpos($content, self::TEST_TITLE_1), 'Test event 1 found');
+    $this->assertTrue(strpos($content, self::TEST_TITLE_2), 'Test event 2 found');
   }
 
 }
