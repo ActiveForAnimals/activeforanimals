@@ -142,7 +142,7 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('2 items unpublished.');
+    $this->assertText('4 items unpublished.');
 
     // Verify that organizer cannot access group and event.
     $this->drupalLogin($this->organizer);
@@ -163,7 +163,7 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText('2 items published.');
+    $this->assertText('4 items published.');
     $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
     $this->assertText('10 items unpublished.');
@@ -179,20 +179,14 @@ class PublishTest extends WebTestBase {
     // User does not have access to event page.
     $this->drupalGet($this->event->toUrl()->toString());
     $this->assertResponse(403);
-
-    // Unpublish import and events.
-    $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->import->toUrl()->toString()));
-    $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('6 items unpublished.');
-
-    // Verify that organizer cannot access import and events.
-    $this->drupalLogin($this->organizer);
     // User does not have access to import page.
     $this->drupalGet($this->import->toUrl()->toString());
     $this->assertResponse(403);
     // User does not have access to event page.
     $this->drupalGet(sprintf('%s/e/2', $this->group->toUrl()->toString()));
+    $this->assertResponse(403);
+    // User does not have access to export page.
+    $this->drupalGet($this->export->toUrl()->toString());
     $this->assertResponse(403);
 
     // Publish import and events.
@@ -210,27 +204,14 @@ class PublishTest extends WebTestBase {
     $this->drupalGet(sprintf('%s/e/2', $this->group->toUrl()->toString()));
     $this->assertResponse(200);
 
-    // Unpublish export.
-    $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->export->toUrl()->toString()));
-    $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('One item unpublished.');
-
-    // Verify that organizer cannot access export.
-    $this->drupalLogin($this->organizer);
-    // User does not have access to export page.
-    $this->drupalGet($this->export->toUrl()->toString());
-    $this->assertResponse(403);
-
-    // Publish import and events.
+    // Publish export.
     $this->drupalLogin($this->manager);
     $this->drupalGet(sprintf('%s/publish', $this->export->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('One item published.');
 
-    // Verify that organizer can access import and events.
+    // Verify that organizer can access export.
     $this->drupalLogin($this->organizer);
-    // User has access to import page.
     $this->drupalGet($this->export->toUrl()->toString());
     $this->assertResponse(200);
   }

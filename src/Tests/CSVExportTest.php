@@ -4,7 +4,6 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -96,7 +95,6 @@ class CSVExportTest extends WebTestBase {
     $this->assertResponse(200);
     $this->assertText('Created the export.', 'Added a new export entity.');
     $this->assertText(sprintf('%d items exported.', self::NUMBER_OF_EXPORTED_EVENTS), 'Successfully exported events');
-    
   }
 
 }

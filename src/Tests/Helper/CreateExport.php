@@ -47,7 +47,7 @@ class CreateExport {
       $rows[] = $csvParser->processItem($item);
     }
     $headers = ExportCSVParser::buildHeaders($rows);
-    $csv = ExportCSVParser::convertToCSV($rows, $headers);
+    $csv = ExportCSVParser::convert($rows, $headers);
     // Save CSV string to file and attach it to export entity.
     $file = file_save_data($csv);
     $export->set('field_file_csv', $file->id())->save();

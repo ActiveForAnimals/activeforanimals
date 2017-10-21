@@ -269,11 +269,11 @@ class AccessRestrictionsTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the import.', 'Added a new import entity.');
-    $this->assertText('3 items imported.', 'Successfully imported event');
+    $this->assertText('2 items imported.', 'Successfully imported event');
 
     // Verify that manager2 cannot manage import.
     $this->drupalLogin($this->manager2);
-    $this->drupalGet(sprintf('%s/i/1', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf('%s/import/1', $this->group1->toUrl()->toString()));
     $this->assertResponse(403);
   }
 

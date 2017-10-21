@@ -2,7 +2,6 @@
 
 namespace Drupal\activeforanimals\Tests;
 
-use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
