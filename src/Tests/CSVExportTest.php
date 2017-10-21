@@ -97,9 +97,6 @@ class CSVExportTest extends WebTestBase {
     $this->group = array_pop($groups);
     $this->event1 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_1))->execute();
     $this->event2 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_2))->execute();
-    // Create directory structure beforehand, otherwise testing will fail.
-    $path = drupal_realpath(file_default_scheme() . '://') . sprintf('/export/csv/%s', date('Y-m'));
-    mkdir($path, 0777, TRUE);
   }
 
   /**
