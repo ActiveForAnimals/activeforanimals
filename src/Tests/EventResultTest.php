@@ -2,9 +2,11 @@
 
 namespace Drupal\activeforanimals\Tests;
 
+use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
+use Drupal\effective_activism\Entity\DataType;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\effective_activism\Constant;
 use Drupal\simpletest\WebTestBase;
@@ -92,6 +94,7 @@ class EventResultTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->organizer);
+    $entityManager = Drupal::service('entity_field.manager');
     foreach (Constant::DEFAULT_RESULT_TYPES as $import_name => $options) {
       $this->drupalGet(sprintf('%s/edit', $this->event->toUrl()->toString()));
       $this->assertResponse(200);
@@ -105,8 +108,15 @@ class EventResultTest extends WebTestBase {
       // We search with Xpath by a subset of the name to match them all.
       $data_fields = [];
       foreach ($options['datatypes'] as $key => $value) {
-        $datatype_name = $this->getElementName(sprintf('//input[contains(@name, "[inline_entity_form][field_%s][0][value]")]', $key));
-        $data_fields[$datatype_name] = '300';
+        foreach ($entityManager->getFieldDefinitions('data', $key) as $field) {
+          if (strpos($field->getName(), 'field_') === 0 && in_array($field->getType(), [
+            'integer',
+            'decimal',
+          ])) {
+            $datatype_name = $this->getElementName(sprintf('//input[contains(@name, "[inline_entity_form][%s][0][value]")]', $field->getName()));
+            $data_fields[$datatype_name] = '300';
+          }
+        }
       }
       $post_data = array_merge([
         $this->getElementName('//input[contains(@name, "[participant_count][0][value]")]') => '1',
