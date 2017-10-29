@@ -1,0 +1,4 @@
+page:
+  403: /other/403
+  404: /other/404
+  front: /front
