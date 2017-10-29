@@ -6,7 +6,6 @@ use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
-use Drupal\effective_activism\Entity\DataType;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\effective_activism\Constant;
 use Drupal\simpletest\WebTestBase;
