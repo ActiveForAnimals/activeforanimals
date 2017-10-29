@@ -45,8 +45,11 @@ before_script:
   # Add modules.
   - git clone https://github.com/EffectiveActivism/effective_activism.git $MODULE_PATH/effective_activism
   - git clone --branch 8.x-1.x https://git.drupal.org/project/inline_entity_form.git $MODULE_PATH/inline_entity_form
-  # Install drupal.
+  # Add theme dependencies.
   - cd $DRUPAL_PATH
+  - sed -ie 's/"core\/composer.json"/"core\/composer.json",\n                "profiles\/activeforanimals\/themes\/tofu\/composer.json"/g' composer.json
+  # Install drupal.
+  - composer update
   - composer install
   - ~/.composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
   - ~/.composer/vendor/bin/drush --yes en simpletest
