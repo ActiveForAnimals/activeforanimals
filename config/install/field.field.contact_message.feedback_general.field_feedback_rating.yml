@@ -1,0 +1,23 @@
+uuid: bc1f30d6-d1be-459c-80c0-5aa24c0ae281
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.feedback_general
+    - field.storage.contact_message.field_feedback_rating
+id: contact_message.feedback_general.field_feedback_rating
+field_name: field_feedback_rating
+entity_type: contact_message
+bundle: feedback_general
+label: Rating
+description: 'How is your experience on Active for Animals? Please rate between 1 and 6 stars, with one being worst and six being best.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 6
+  prefix: ''
+  suffix: ''
+field_type: integer

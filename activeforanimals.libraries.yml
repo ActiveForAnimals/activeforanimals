@@ -1,0 +1,6 @@
+rate:
+  js:
+    assets/js/rate.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

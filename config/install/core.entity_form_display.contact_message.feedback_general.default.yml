@@ -1,0 +1,35 @@
+uuid: 9ebc6350-d001-44a7-b590-eb4a2cb05b44
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.feedback_general
+    - field.field.contact_message.feedback_general.field_feedback_message
+    - field.field.contact_message.feedback_general.field_feedback_rating
+id: contact_message.feedback_general.default
+targetEntityType: contact_message
+bundle: feedback_general
+mode: default
+content:
+  field_feedback_message:
+    weight: 0
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_feedback_rating:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  copy: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true
