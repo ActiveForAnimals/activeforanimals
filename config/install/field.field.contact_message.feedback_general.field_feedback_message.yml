@@ -1,0 +1,19 @@
+uuid: 93cfa15a-b9bb-4367-ab8b-3a4a76e8bfb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.feedback_general
+    - field.storage.contact_message.field_feedback_message
+id: contact_message.feedback_general.field_feedback_message
+field_name: field_feedback_message
+entity_type: contact_message
+bundle: feedback_general
+label: Feedback
+description: 'Please tell us your experience using the site, how we can improve, which new features you would like or what you think about our policies and terms of conditions.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
