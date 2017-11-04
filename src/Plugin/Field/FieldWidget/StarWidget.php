@@ -47,10 +47,12 @@ class StarWidget extends WidgetBase implements WidgetInterface {
     $element['#max'] = $settings['max'];
     $element['#default_value'] = $rating;
     $element['#required'] = FALSE;
-    $element['#element_validate'] = [[
-      $this,
-      'validateStars',
-    ]];
+    $element['#element_validate'] = [
+      [
+        $this,
+        'validateStars',
+      ],
+    ];
     return ['value' => $element];
   }
 
