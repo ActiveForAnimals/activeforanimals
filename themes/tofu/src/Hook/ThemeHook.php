@@ -42,6 +42,10 @@ class ThemeHook implements HookInterface {
     // Update page element.
     $theme['page']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'page');
     $theme['page']['template'] = 'page';
+    // Update general feedback contact form.
+    $theme['contact_message_feedback_general_form']['render element'] = 'form';
+    $theme['contact_message_feedback_general_form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'contact');
+    $theme['contact_message_feedback_general_form']['template'] = 'feedback-general';
     // Update user login form.
     $theme['user_login-form']['render element'] = 'form';
     $theme['user_login-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_login_form');

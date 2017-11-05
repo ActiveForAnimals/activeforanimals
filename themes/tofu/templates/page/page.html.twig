@@ -135,6 +135,9 @@
       <div class="column-4-15 last-column">
         Contact
         {{ footer.email_address }}
+        {% if logged_in %}
+          {{ footer.feedback }}
+        {% endif %}
       </div>
     </div>
   </footer>

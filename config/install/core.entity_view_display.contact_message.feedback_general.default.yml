@@ -1,0 +1,31 @@
+uuid: d1e4522f-e7cf-4862-b295-fbcb91b7417b
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.feedback_general
+    - field.field.contact_message.feedback_general.field_feedback_message
+    - field.field.contact_message.feedback_general.field_feedback_rating
+id: contact_message.feedback_general.default
+targetEntityType: contact_message
+bundle: feedback_general
+mode: default
+content:
+  field_feedback_message:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_feedback_rating:
+    weight: 0
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden:
+  message: true

@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Rating definition.
+ */
+
+.star-rate {
+  display: none;
+}
+
+.stars {
+  padding: 2em;
+}
+
+.stars .star {
+  width: 1em;
+  height: 1em;
+  background-image: url('../images/star-hollow.svg');
+  background-size: cover;
+  float: left;
+  margin-right: 0.5em;
+}
+
+.stars .star.hover {
+  background-image: url('../images/star-hollow-bold.svg');
+}
+
+.stars .star.selected {
+  background-image: url('../images/star.svg');
+}
