@@ -5,9 +5,24 @@
  * Contains profile hook implements.
  */
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\activeforanimals\Hook\EntityInsertHook;
 use Drupal\activeforanimals\Hook\EntityUpdateHook;
+use Drupal\activeforanimals\Hook\FormAlterHook;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function activeforanimals_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $hook = FormAlterHook::getInstance();
+  $args = [
+    'form' => $form,
+    'form_state' => $form_state,
+    'form_id' => $form_id,
+  ];
+  $form = $hook->invoke($args);
+}
 
 /**
  * Implements hook_entity_insert().

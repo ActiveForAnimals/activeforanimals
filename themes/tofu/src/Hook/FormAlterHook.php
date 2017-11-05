@@ -5,7 +5,7 @@ namespace Drupal\tofu\Hook;
 use Drupal\tofu\Constant;
 
 /**
- * Implements hook_theme().
+ * Implements hook_form_alter().
  */
 class FormAlterHook implements HookInterface {
 
