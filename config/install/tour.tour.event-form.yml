@@ -81,5 +81,5 @@ tips:
     label: 'Read more'
     weight: -93
     attributes: {  }
-    body: '<p>When you are done, click on <em>Save</em>. The event page will be created or updated and made visible to the public.</p><p>To read more about managing events, click <a href="/help/organizer/events" target="_blank">here</a>.<p>'
+    body: '<p>When you are done, click on <em>Save</em>. The event page will be created or updated and made visible to the public.</p><p>To read more about managing events, click <a href="/help/events" target="_blank">here</a>.<p>'
     location: top

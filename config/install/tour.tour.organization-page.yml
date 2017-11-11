@@ -71,7 +71,7 @@ tips:
     weight: -94
     attributes:
       data-class: element-manage_results
-    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/manager/result-types/">result types</a>.</p>'
+    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/result-types/">result types</a>.</p>'
     location: left
   unpublish:
     id: unpublish
