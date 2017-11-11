@@ -7,5 +7,3 @@
   <img src="help-export-unpublish.png" alt="Click on 'Unpublish'."/>
   <figcaption>Unpublish your exported events.</figcaption>
 </figure>
-
-

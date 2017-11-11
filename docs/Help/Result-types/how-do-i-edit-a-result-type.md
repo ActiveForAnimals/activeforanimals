@@ -7,7 +7,8 @@
 
 <figure>
   <img src="help-organization-edit.png" alt="Click on 'Edit this page'."/>
-  <figcaption>Go to your organization page and click on 'Edit this page'.</figcaption>
+  <figcaption>Go to your organization page and click on 'Edit this page'.
+  </figcaption>
 </figure>
 
 If you want to add or remove a group to the result type, you can also edit the

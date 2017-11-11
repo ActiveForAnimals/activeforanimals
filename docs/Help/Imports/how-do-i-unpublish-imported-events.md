@@ -9,5 +9,3 @@
 </figure>
 
 When you unpublish your import, all its events are unpublished.
-
-

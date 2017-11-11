@@ -19,5 +19,3 @@ are unpublished as well.
 
 When something is unpublished, it is only accessable to managers of the
 organization it belongs to.
-
-

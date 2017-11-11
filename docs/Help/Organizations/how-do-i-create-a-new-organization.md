@@ -13,7 +13,8 @@ Otherwise, follow these steps:
 1. Fill out the required fields in the form and click *Save*.
 
 <figure>
-  <img src="help-organization-create.png" alt="Click on 'Create a new organization'."/>
+  <img src="help-organization-create.png"
+  alt="Click on 'Create a new organization'."/>
   <figcaption>Create an organization from the 'Organizations' overview.
   </figcaption>
 </figure>
