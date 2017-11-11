@@ -47,3 +47,10 @@ $static-pages-h1-line-height: 1em;
 .path-help .region-content h1 {
   line-height: $static-pages-h1-line-height;
 }
+
+.path-guide .region-content table,
+.path-help .region-content table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.7em;
+}
