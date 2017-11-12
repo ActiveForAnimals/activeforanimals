@@ -45,5 +45,5 @@ tips:
     label: 'Read more'
     weight: -97
     attributes: {  }
-    body: '<p>When you are done, click on <em>Save</em>. The CSV file will be imported into the selected group.</p><p>To read more about importing events, click <a href="/help/organizer/imports" target="_blank">here</a>.<p>'
+    body: '<p>When you are done, click on <em>Save</em>. The CSV file will be imported into the selected group.</p><p>To read more about importing events, click <a href="/help/imports" target="_blank">here</a>.<p>'
     location: top

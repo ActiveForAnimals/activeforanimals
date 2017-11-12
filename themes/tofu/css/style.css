@@ -428,6 +428,13 @@ footer .element-github_logo {
   line-height: 1em;
 }
 
+.path-guide .region-content table,
+.path-help .region-content table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.7em;
+}
+
 /**
  * @file
  * The button definition.

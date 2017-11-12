@@ -61,5 +61,5 @@ tips:
     label: 'Read more'
     weight: -95
     attributes: {  }
-    body: '<p>To read more about the event page, <a href="/help/organizer/events">click here</a>.</p>'
+    body: '<p>To read more about the event page, <a href="/help/events">click here</a>.</p>'
     location: top

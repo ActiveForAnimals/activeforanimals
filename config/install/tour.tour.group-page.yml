@@ -80,7 +80,7 @@ tips:
     weight: -93
     attributes:
       data-class: element-manage_results
-    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/manager/result-types/">result types</a>.</p>'
+    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/result-types/">result types</a>.</p>'
     location: left
   read-more:
     id: read-more
@@ -88,5 +88,5 @@ tips:
     label: 'Read more'
     weight: -92
     attributes: {  }
-    body: '<p>To read more about the group page, <a href="/help/manager/groups">click here</a>.</p>'
+    body: '<p>To read more about the group page, <a href="/help/groups">click here</a>.</p>'
     location: top

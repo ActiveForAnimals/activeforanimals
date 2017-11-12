@@ -115,5 +115,5 @@ tips:
     label: 'Read more'
     weight: -89
     attributes: {  }
-    body: '<p>When you are done, click on <em>Save</em>. Your organization page will be updated.</p><p>To read more about organizations, click <a href="/help/manager/organizations" target="_blank">here</a>.</p>'
+    body: '<p>When you are done, click on <em>Save</em>. Your organization page will be updated.</p><p>To read more about organizations, click <a href="/help/organizations" target="_blank">here</a>.</p>'
     location: top
