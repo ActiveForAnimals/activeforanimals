@@ -88,5 +88,5 @@ tips:
     label: 'Read more'
     weight: -92
     attributes: {  }
-    body: '<p>To read more about the organization page, click here.</p><p>To read more about managing groups, click here.</p>'
+    body: '<p>To read more about the organization page, click <a href="/help/organizations">here</a>.</p><p>To read more about managing groups, click <a href="/help/groups">here</a>.</p>'
     location: top
