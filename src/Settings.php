@@ -121,4 +121,60 @@ class Settings {
     return $key;
   }
 
+  /**
+   * Return client id for ArcGIS.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getArcGisClientId() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['arcgis_client_id']) ? $data['arcgis_client_id'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['arcgis_client_id']) ? $data['arcgis_client_id'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['arcgis_client_id']) ? $data['arcgis_client_id'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
+   * Return client secret for ArcGIS.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getArcGisClientSecret() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['arcgis_client_secret']) ? $data['arcgis_client_secret'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['arcgis_client_secret']) ? $data['arcgis_client_secret'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['arcgis_client_secret']) ? $data['arcgis_client_secret'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
 }
