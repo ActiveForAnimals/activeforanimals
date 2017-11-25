@@ -125,7 +125,7 @@ class Settings {
    * Return client id for ArcGIS.
    *
    * @return string
-   *   The API key.
+   *   The client id.
    */
   public static function getArcGisClientId() {
     $key = NULL;
@@ -153,7 +153,7 @@ class Settings {
    * Return client secret for ArcGIS.
    *
    * @return string
-   *   The API key.
+   *   The client secret.
    */
   public static function getArcGisClientSecret() {
     $key = NULL;
@@ -170,6 +170,62 @@ class Settings {
 
         default:
           $key = isset($data['arcgis_client_secret']) ? $data['arcgis_client_secret'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
+   * Return API key for Mailchimp.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getMailchimpApiKey() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['mailchimp_api_key']) ? $data['mailchimp_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['mailchimp_api_key']) ? $data['mailchimp_api_key'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['mailchimp_api_key']) ? $data['mailchimp_api_key'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
+   * Return list id for Mailchimp.
+   *
+   * @return string
+   *   The list id.
+   */
+  public static function getMailchimpListId() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['mailchimp_list_id']) ? $data['mailchimp_list_id'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['mailchimp_list_id']) ? $data['mailchimp_list_id'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['mailchimp_list_id']) ? $data['mailchimp_list_id'] : NULL;
           break;
 
       }

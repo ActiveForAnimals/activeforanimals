@@ -2,6 +2,8 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
+use Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm;
 use Drupal\effective_activism\Controller\Element\ImageController;
 use Drupal\tofu\Constant;
 
@@ -22,6 +24,7 @@ class FrontPagePreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['step_1'] = $image_controller->view($step_1, 'step');
     $this->variables['content']['step_2'] = $image_controller->view($step_2, 'step');
     $this->variables['content']['step_3'] = $image_controller->view($step_3, 'step');
+    $this->variables['content']['newsletter_signup_form'] = Drupal::formBuilder()->getForm(NewsletterSignUpForm::class);
     return $this->variables;
   }
 
