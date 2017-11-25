@@ -15,7 +15,11 @@ class Constant {
   /**
    * Form constants.
    */
-  const FORM_ID_LIST = [
+  const HIDDEN_ELEMENT_LIST = [
+    'user_register_form',
+    'newsletter_signup',
+  ];
+  const CHALLENGE_ELEMENT_LIST = [
     'user_register_form',
   ];
   const HIDDEN_FORM_ELEMENT_MACHINE_NAME = 'afa_username';
