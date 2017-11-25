@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\effective_activism\Controller\Element\FieldController;
 
 /**

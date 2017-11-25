@@ -7,7 +7,6 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use GuzzleHttp\Exception\ClientException;
 
-
 /**
  * Provides an invitation response form.
  */
