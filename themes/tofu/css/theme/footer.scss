@@ -28,11 +28,13 @@ footer a {
 footer .right-spacer {
   @media only screen and (min-width: $medium-min-width) {
     border-right: $footer-spacer-border;
+    margin-bottom: 1em;
   }
 }
 
 footer .element-facebook_logo,
-footer .element-github_logo, {
+footer .element-github_logo,
+footer .element-mailchimp_logo {
   padding-top: $footer-element-logo-padding;
   text-align: center;
 }
