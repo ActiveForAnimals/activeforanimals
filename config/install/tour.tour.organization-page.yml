@@ -71,7 +71,7 @@ tips:
     weight: -94
     attributes:
       data-class: element-manage_results
-    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/manager/result-types/">result types</a>.</p>'
+    body: '<p>Modify existing result types and add new ones. Read more about <a href="/help/result-types/">result types</a>.</p>'
     location: left
   unpublish:
     id: unpublish
@@ -88,5 +88,5 @@ tips:
     label: 'Read more'
     weight: -92
     attributes: {  }
-    body: '<p>To read more about the organization page, click here.</p><p>To read more about managing groups, click here.</p>'
+    body: '<p>To read more about the organization page, click <a href="/help/organizations">here</a>.</p><p>To read more about managing groups, click <a href="/help/groups">here</a>.</p>'
     location: top

@@ -115,5 +115,5 @@ tips:
     label: 'Read more'
     weight: -89
     attributes: {  }
-    body: '<p>When you are done, click on <em>Save</em>. Your organization page will be created and made visible to the public.</p><p>To read more about the process, click <a href="/help/manager/organizations#how-do-i-create-a-new-organization" target="_blank">here</a>.<p><p>To read more about managing groups, click <a href="/help/manager/groups" target="_blank">here</a>.</p>'
+    body: '<p>When you are done, click on <em>Save</em>. Your organization page will be created and made visible to the public.</p><p>To read more about the process, click <a href="/help/organizations#How-do-I-create-a-new-organization" target="_blank">here</a>.<p><p>To read more about managing groups, click <a href="/help/groups" target="_blank">here</a>.</p>'
     location: top

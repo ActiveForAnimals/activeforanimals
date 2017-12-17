@@ -87,5 +87,14 @@ activeforanimals.result_type.create:
   requirements:
     _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
 
+# Newsletter sign up page.
+activeforanimals.newsletter.sign_up:
+  path: '/newsletter'
+  defaults:
+    _form: '\Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm'
+    _title: Sign up to our newsletter
+  requirements:
+    _permission: 'access content'
+
 route_callbacks:
   - '\Drupal\activeforanimals\Helper\StaticPageRoutes::routes'

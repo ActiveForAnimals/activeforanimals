@@ -25,8 +25,8 @@ class UserRegisterFormPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['form']['account']['name'] = $field_controller->form($form['account']['name'], 'username');
     $this->variables['form']['account']['mail'] = $field_controller->form($form['account']['mail'], 'email_address');
     $this->variables['form']['account']['pass'] = $field_controller->form($form['account']['pass'], 'password');
-    $this->variables['form']['account'][AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME] = $field_controller->form($form['account'][AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME], AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME);
-    $this->variables['form']['account'][AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME] = $field_controller->form($form['account'][AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME], AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME);
+    $this->variables['form'][AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME] = $field_controller->form($form[AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME], AfaAlgarveNectarJarConstant::SHOWN_FORM_ELEMENT_MACHINE_NAME);
+    $this->variables['form'][AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME] = $field_controller->form($form[AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME], AfaAlgarveNectarJarConstant::HIDDEN_FORM_ELEMENT_MACHINE_NAME);
     $this->variables['form']['actions']['submit'] = $field_controller->form($form['actions']['submit'], 'submit');
     return $this->variables;
   }

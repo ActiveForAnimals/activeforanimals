@@ -91,14 +91,6 @@
           </li>
           <li>
             <a href="/guide">Guide</a>
-            <ul>
-              <li>
-                <a href="/guide/how-to-host-pay-per-view-events">Pay-per-view</a>
-              </li>
-              <li>
-                <a href="/guide/leafleting-and-signature-collections">Leafleting and signature collections</a>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>
@@ -110,14 +102,6 @@
           </li>
           <li>
             <a href="/help">Help</a>
-            <ul>
-              <li>
-                <a href="/help/manager">Managers</a>
-              </li>
-              <li>
-                <a href="/help/organizer">Organizers</a>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>
@@ -130,6 +114,12 @@
           <div class="column-13-15 no-spacing">
             {{ footer.facebook_link }}
           </div>
+          <div class="column-2-15 no-spacing">
+            {{ footer.mailchimp_logo }}
+          </div>
+          <div class="column-13-15 no-spacing">
+            {{ footer.mailchimp_link }}
+          </div>
         </div>
       </div>
       <div class="column-4-15 last-column">
@@ -138,6 +128,16 @@
         {% if logged_in %}
           {{ footer.feedback }}
         {% endif %}
+      </div>
+    </div>
+    <div class="column-wrapper">
+      <div class="section">
+        <div class="column-10-15">
+          {{ footer.afa_message }}
+        </div>
+        <div class="column-5-15">
+          {{ footer.darksky_message }}
+        </div>
       </div>
     </div>
   </footer>

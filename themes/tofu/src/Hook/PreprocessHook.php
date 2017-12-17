@@ -4,6 +4,7 @@ namespace Drupal\tofu\Hook;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
+use Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
@@ -40,6 +41,7 @@ use Drupal\tofu\Preprocessor\ImportOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ImportPreprocessor;
 use Drupal\tofu\Preprocessor\InvitationOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ManagementToolboxPreprocessor;
+use Drupal\tofu\Preprocessor\NewsletterSignUpFormPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationFormPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationPreprocessor;
@@ -168,6 +170,10 @@ class PreprocessHook implements HookInterface {
 
       case ManagementToolboxController::THEME_ID:
         $preprocessor = new ManagementToolboxPreprocessor($variables);
+        break;
+
+      case sprintf('%s-form', NewsletterSignUpForm::FORM_ID):
+        $preprocessor = new NewsletterSignUpFormPreprocessor($variables);
         break;
 
       case 'organization':
