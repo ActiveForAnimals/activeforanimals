@@ -5,8 +5,11 @@ namespace Drupal\activeforanimals\Tests;
 use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Entity\Data;
 use Drupal\effective_activism\Entity\Export;
+use Drupal\effective_activism\Entity\Result;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -24,6 +27,20 @@ class CSVExportTest extends WebTestBase {
   const ENDDATE = '12/13/2016';
   const ENDTIME = '13:00';
   const NUMBER_OF_EXPORTED_EVENTS = 2;
+  const RESULT = [
+    'participant_count' => 1,
+    'duration_minutes' => 0,
+    'duration_hours' => 1,
+    'duration_days' => 0,
+  ];
+  const DATA_1 = [
+    'type' => 'leaflets',
+  ];
+  const DATA_2 = [
+    'type' => 'signatures',
+  ];
+  const TEST_RESULT_1 = 111111111;
+  const TEST_RESULT_2 = 222222222;
 
   /**
    * {@inheritdoc}
@@ -97,6 +114,42 @@ class CSVExportTest extends WebTestBase {
     $this->group = array_pop($groups);
     $this->event1 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_1))->execute();
     $this->event2 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_2))->execute();
+    // Get leafleting result type for the organization.
+    $leafleting_result_type = ResultTypeHelper::getResultTypeByImportName('leafleting', $this->organization->id());
+    $signature_collection_result_type = ResultTypeHelper::getResultTypeByImportName('signature_collection', $this->organization->id());
+    // Add one result to event1.
+    $data1_array = self::DATA_1;
+    $data1_array['field_leaflets'] = self::TEST_RESULT_1;
+    $data1 = Data::create($data1_array);
+    $data1->save();
+    $result1_array = array_merge(self::RESULT, [
+      'type' => $leafleting_result_type->id(),
+      'data_leaflets' => [
+        'target_id' => $data1->id(),
+      ],
+    ]);
+    $result1 = Result::create($result1_array);
+    $result1->save();
+    $this->event1->results[] = [
+      'target_id' => $result1->id(),
+    ];
+    // Add another result to event1.
+    $data2_array = self::DATA_2;
+    $data2_array['field_leaflets'] = self::TEST_RESULT_2;
+    $data2 = Data::create($data2_array);
+    $data2->save();
+    $result2_array = array_merge(self::RESULT, [
+      'type' => $signature_collection_result_type->id(),
+      'data_leaflets' => [
+        'target_id' => $data2->id(),
+      ],
+    ]);
+    $result2 = Result::create($result2_array);
+    $result2->save();
+    $this->event1->results[] = [
+      'target_id' => $result2->id(),
+    ];
+    $this->event1->save();
   }
 
   /**
@@ -122,6 +175,8 @@ class CSVExportTest extends WebTestBase {
     fclose($handle);
     $this->assertTrue(strpos($content, self::TEST_TITLE_1), 'Test event 1 found');
     $this->assertTrue(strpos($content, self::TEST_TITLE_2), 'Test event 2 found');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_1), 'Test result 1 found');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_2), 'Test result 2 found');
   }
 
 }
