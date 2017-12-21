@@ -27,6 +27,8 @@ class CSVExportTest extends WebTestBase {
   const ENDDATE = '12/13/2016';
   const ENDTIME = '13:00';
   const NUMBER_OF_EXPORTED_EVENTS = 2;
+  const TEST_RESULT_1 = 111111111;
+  const TEST_RESULT_2 = 222222222;
   const RESULT = [
     'participant_count' => 1,
     'duration_minutes' => 0,
@@ -35,12 +37,13 @@ class CSVExportTest extends WebTestBase {
   ];
   const DATA_1 = [
     'type' => 'leaflets',
+    'field_leaflets' => self::TEST_RESULT_1,
   ];
   const DATA_2 = [
     'type' => 'signatures',
+    'field_signatures' => self::TEST_RESULT_2,
   ];
-  const TEST_RESULT_1 = 111111111;
-  const TEST_RESULT_2 = 222222222;
+
 
   /**
    * {@inheritdoc}
@@ -118,9 +121,7 @@ class CSVExportTest extends WebTestBase {
     $leafleting_result_type = ResultTypeHelper::getResultTypeByImportName('leafleting', $this->organization->id());
     $signature_collection_result_type = ResultTypeHelper::getResultTypeByImportName('signature_collection', $this->organization->id());
     // Add one result to event1.
-    $data1_array = self::DATA_1;
-    $data1_array['field_leaflets'] = self::TEST_RESULT_1;
-    $data1 = Data::create($data1_array);
+    $data1 = Data::create(self::DATA_1);
     $data1->save();
     $result1_array = array_merge(self::RESULT, [
       'type' => $leafleting_result_type->id(),
@@ -134,13 +135,11 @@ class CSVExportTest extends WebTestBase {
       'target_id' => $result1->id(),
     ];
     // Add another result to event1.
-    $data2_array = self::DATA_2;
-    $data2_array['field_leaflets'] = self::TEST_RESULT_2;
-    $data2 = Data::create($data2_array);
+    $data2 = Data::create(self::DATA_2);
     $data2->save();
     $result2_array = array_merge(self::RESULT, [
       'type' => $signature_collection_result_type->id(),
-      'data_leaflets' => [
+      'data_signatures' => [
         'target_id' => $data2->id(),
       ],
     ]);
