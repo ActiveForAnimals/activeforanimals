@@ -78,6 +78,11 @@ class FormAlterHook implements HookInterface {
       case 'publish_export':
         $form['#theme'] = 'publish_export-form';
         break;
+
+      case 'publish_filter':
+        $form['#theme'] = 'publish_filter-form';
+        break;
+
     }
     foreach (Constant::FORM_TEMPLATES as $form_template) {
       if ($form_id === sprintf('%s_edit_form', $form_template) || $form_id === sprintf('%s_add_form', $form_template)) {

@@ -129,7 +129,7 @@ class PathAliasHelper {
         break;
 
       case EffectiveActivismConstant::ENTITY_EXPORT:
-        $alias_path = self::ensureUniquePath(sprintf('%s/exports/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        $alias_path = self::ensureUniquePath(sprintf('%s/exports/%d', self::get($entity->get('organization')->entity), self::transliterate($entity->id())));
         break;
 
       case EffectiveActivismConstant::ENTITY_EVENT:

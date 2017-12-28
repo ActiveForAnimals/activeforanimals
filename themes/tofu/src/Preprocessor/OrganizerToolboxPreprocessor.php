@@ -24,6 +24,11 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
             'organization' => $entity->id(),
           ]
         ));
+        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
+          'entity.organization.exports', [
+            'organization' => $entity->id(),
+          ]
+        ));
         break;
 
       case 'group':
@@ -34,11 +39,6 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
         ));
         $this->variables['content']['manage_imports'] = $element_controller->view(t('Manage imports'), 'manage_imports', new Url(
           'entity.group.imports', [
-            'group' => $entity->id(),
-          ]
-        ));
-        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
-          'entity.group.exports', [
             'group' => $entity->id(),
           ]
         ));
