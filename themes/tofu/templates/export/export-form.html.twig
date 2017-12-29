@@ -13,13 +13,19 @@
     <div class="title">
       {{ 'Export'|t }}
     </div>
-    <div class="column-wrapper">
-      <div class="column-8-15 first-column">
-        {{ form.organization }}
-        {{ form.field_file_csv }}
+    {{ form.organization }}
+    <div class="section">
+      <div class="column-wrapper">
+        <div class="column-7-15 first-column">
+          {{ form.filter }}
+        </div>
       </div>
-      <div class="column-7-15 last-column">
-      </div>
+    </div>
+    <div class="title">
+      {{ 'File'|t }}
+    </div>
+    <div class="content">
+      {{ form.field_file_csv }}
     </div>
     <div class="footer">
       {{ form.actions.submit }}

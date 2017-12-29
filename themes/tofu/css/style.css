@@ -471,7 +471,7 @@ input.form-submit,
 .form.element-website input, .view.element-phone_number,
 .form.element-phone_number input, .view.element-email_address,
 .form.element-email_address input, .view.element-location,
-.form.element-location .address, .form.element-location .extra-information, .view.element-event_count, .view.element-start_date, .view.element-end_date, .view.element-created, .view.element-parent, .view.element-edit_page, .view.element-manage_groups, .view.element-view_results, .view.element-manage_results, .view.element-add_organization, .view.element-add_group, .view.element-add_event, .view.element-manage_events, .view.element-manage_imports, .view.element-add_import, .view.element-manage_exports, .view.element-add_export, .view.element-manage_filters, .view.element-add_filter, .view.element-filter, .view.element-type, .view.element-publish, .view.element-organization, .view.element-username, .form.element-username input, .view.element-group_count, .view.element-data_types, .form.element-your_organization input, .view.element-help_link, .element-inline_entity_form .inline-entity-form-user-label, .element-inline_entity_form .ief-form-bottom .form-type-email input {
+.form.element-location .address, .form.element-location .extra-information, .view.element-event_count, .view.element-start_date, .view.element-end_date, .view.element-created, .view.element-parent, .view.element-edit_page, .view.element-manage_groups, .view.element-view_results, .view.element-manage_results, .view.element-add_organization, .view.element-add_group, .view.element-add_event, .view.element-manage_events, .view.element-manage_imports, .view.element-add_import, .view.element-manage_exports, .view.element-add_export, .view.element-manage_filters, .view.element-add_filter, .view.element-filter, .form.element-filter, .view.element-type, .view.element-publish, .view.element-organization, .view.element-username, .form.element-username input, .view.element-group_count, .view.element-data_types, .form.element-your_organization input, .view.element-help_link, .element-inline_entity_form .inline-entity-form-user-label, .element-inline_entity_form .ief-form-bottom .form-type-email input {
   padding-left: 1.5em !important;
   background-repeat: no-repeat;
   background-size: 1.25em auto;
@@ -602,6 +602,13 @@ input.form-submit,
 
 .view.element-filter {
   background-image: url(../images/filter.svg); }
+
+.form.element-filter {
+  background-image: url(../images/filter.svg); }
+
+.form.element-filter label,
+.form.element-filter .description {
+  display: block; }
 
 .view.element-type {
   background-image: url(../images/export.svg); }

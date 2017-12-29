@@ -13,9 +13,10 @@ use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
-use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\ExportListController;
+use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\FilterListController;
+use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
@@ -118,6 +119,14 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new ExportFormPreprocessor($variables);
         break;
 
+      case 'filter':
+        $preprocessor = new FilterPreprocessor($variables);
+        break;
+
+      case 'filter-form':
+        $preprocessor = new FilterFormPreprocessor($variables);
+        break;
+
       case ExportListBuilder::THEME_ID:
         $preprocessor = new ExportListPreprocessor($variables);
         break;
@@ -140,6 +149,10 @@ class PreprocessHook implements HookInterface {
 
       case FilterListBuilder::THEME_ID:
         $preprocessor = new FilterListPreprocessor($variables);
+        break;
+
+      case FilterOverviewController::THEME_ID:
+        $preprocessor = new FilterOverviewPreprocessor($variables);
         break;
 
       case FrontPageController::THEME_ID:

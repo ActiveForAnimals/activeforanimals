@@ -17,7 +17,7 @@ class FilterFormPreprocessor extends Preprocessor implements PreprocessorInterfa
     $form = $this->variables['form'];
     // Wrap form elements.
     $field_controller = new FieldController();
-    $this->variables['form']['organization'] = $field_controller->form($form['organization'], 'organization');
+    $this->variables['form']['name'] = $field_controller->form($form['name'], 'title');
     return $this->variables;
   }
 

@@ -213,6 +213,16 @@
   background-image: url(../images/filter.svg);
 }
 
+.form.element-filter {
+  @extend %element-icon;
+  background-image: url(../images/filter.svg);
+}
+
+.form.element-filter label,
+.form.element-filter .description {
+  display: block;
+}
+
 .view.element-type {
   @extend %element-icon;
   background-image: url(../images/export.svg);
