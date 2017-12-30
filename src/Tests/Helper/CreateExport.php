@@ -3,8 +3,9 @@
 namespace Drupal\activeforanimals\Tests\Helper;
 
 use Drupal\effective_activism\ContentMigration\Export\CSV\CSVParser as ExportCSVParser;
-use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Export;
+use Drupal\effective_activism\Entity\Filter;
+use Drupal\effective_activism\Entity\Organization;
 use Drupal\user\Entity\User;
 
 /**
@@ -12,23 +13,26 @@ use Drupal\user\Entity\User;
  */
 class CreateExport {
 
-  private $group;
+  private $organization;
 
-  private $organizer;
+  private $filter;
+
+  private $manager;
 
   private $file;
 
   /**
    * Constructor.
    *
-   * @param \Drupal\effective_activism\Entity\Group $group
-   *   The group the export belongs to.
-   * @param \Drupal\user\Entity\User $organizer
-   *   The organizer of the group.
+   * @param \Drupal\effective_activism\Entity\Organization $organization
+   *   The organization the export belongs to.
+   * @param \Drupal\user\Entity\User $manager
+   *   The manager of the organization.
    */
-  public function __construct(Group $group, User $organizer) {
-    $this->group = $group;
-    $this->organizer = $organizer;
+  public function __construct(Organization $organization, Filter $filter, User $manager) {
+    $this->organization = $organization;
+    $this->filter = $filter;
+    $this->manager = $manager;
   }
 
   /**
@@ -37,12 +41,13 @@ class CreateExport {
   public function execute() {
     $export = Export::create([
       'type' => 'csv',
-      'user_id' => $this->organizer->id(),
-      'parent' => $this->group->id(),
+      'user_id' => $this->manager->id(),
+      'organization' => $this->organization->id(),
+      'filter' => $this->filter->id(),
     ]);
     $export->save();
     $rows = [];
-    $csvParser = new ExportCSVParser($this->group, $export);
+    $csvParser = new ExportCSVParser($this->organization, $export);
     foreach ($csvParser->getNextBatch(0) as $item) {
       $rows[] = $csvParser->processItem($item);
     }

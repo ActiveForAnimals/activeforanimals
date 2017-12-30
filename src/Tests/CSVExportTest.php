@@ -4,6 +4,7 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
+use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Data;
 use Drupal\effective_activism\Entity\Export;
@@ -72,6 +73,13 @@ class CSVExportTest extends WebTestBase {
   private $group;
 
   /**
+   * The test filter.
+   *
+   * @var Filter
+   */
+  private $filter;
+
+  /**
    * The 1st test event.
    *
    * @var Event
@@ -113,6 +121,7 @@ class CSVExportTest extends WebTestBase {
     $this->manager = $this->drupalCreateUser();
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
+    $this->filter = (new CreateFilter($this->organization, $this->manager))->execute();
     $groups = OrganizationHelper::getGroups($this->organization);
     $this->group = array_pop($groups);
     $this->event1 = (new CreateEvent($this->group, $this->organizer, self::TEST_TITLE_1))->execute();
@@ -156,11 +165,12 @@ class CSVExportTest extends WebTestBase {
    */
   public function testDo() {
     // Export CSV file.
-    $this->drupalLogin($this->organizer);
+    $this->drupalLogin($this->manager);
     $this->drupalGet(self::ADD_CSV_EXPORT_PATH);
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'parent[0][target_id]' => $this->group->id(),
+      'organization[0][target_id]' => $this->organization->id(),
+      'filter[0][target_id]' => $this->filter->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created the export.', 'Added a new export entity.');

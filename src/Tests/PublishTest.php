@@ -3,6 +3,7 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
+use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateImport;
 use Drupal\activeforanimals\Tests\Helper\CreateExport;
@@ -50,6 +51,13 @@ class PublishTest extends WebTestBase {
   private $organization;
 
   /**
+   * Container for a filter.
+   *
+   * @var \Drupal\effective_activism\Entity\Filter
+   */
+  private $filter;
+
+  /**
    * Container for a group.
    *
    * @var \Drupal\effective_activism\Entity\Group
@@ -93,11 +101,12 @@ class PublishTest extends WebTestBase {
     $this->organizer = $this->drupalCreateUser();
     // Create organizational structure.
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
+    $this->filter = (new CreateFilter($this->organization, $this->manager))->execute();
     $this->group = (new CreateGroup($this->organization, $this->organizer, NULL, TRUE))->execute();
     $this->event = (new CreateEvent($this->group, $this->organizer))->execute();
     $this->csvfilepath = $this->container->get('file_system')->realpath(drupal_get_path('profile', 'activeforanimals') . '/src/Tests/testdata/sample.csv');
     $this->import = (new CreateImport($this->group, $this->organizer, $this->csvfilepath))->execute();
-    $this->export = (new CreateExport($this->group, $this->organizer))->execute();
+    $this->export = (new CreateExport($this->organization, $this->filter, $this->manager))->execute();
   }
 
   /**
@@ -142,7 +151,7 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('9 items unpublished.');
+    $this->assertText('8 items unpublished.');
 
     // Verify that organizer cannot access group and event.
     $this->drupalLogin($this->organizer);
@@ -163,10 +172,10 @@ class PublishTest extends WebTestBase {
     $this->assertText('One item published.');
     $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Publish'));
-    $this->assertText('9 items published.');
+    $this->assertText('8 items published.');
     $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('11 items unpublished.');
+    $this->assertText('12 items unpublished.');
 
     // Verify that organizer cannot access organization, group and event.
     $this->drupalLogin($this->organizer);

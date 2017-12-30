@@ -4,6 +4,7 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
@@ -19,6 +20,8 @@ class AccessRestrictionsTest extends WebTestBase {
   const ADD_CSV_IMPORT_PATH = 'import/csv';
   const RESULT_TYPE_1 = 'leafleting';
   const RESULT_TYPE_2 = 'pay_per_view_event';
+  const FILTER_TITLE_1 = 'Test filter 1';
+  const FILTER_TITLE_2 = 'Test filter 2';
   const GROUP_TITLE_1 = 'Test group 1';
   const GROUP_TITLE_1_MODIFIED = 'Test group 1 (updated)';
   const GROUP_TITLE_2 = 'Test group 2';
@@ -53,6 +56,20 @@ class AccessRestrictionsTest extends WebTestBase {
    * @var Organization
    */
   private $organization2;
+
+  /**
+   * Container for the filter1 filter.
+   *
+   * @var Filter
+   */
+  private $filter1;
+
+  /**
+   * Container for the filter2 filter.
+   *
+   * @var Filter
+   */
+  private $filter2;
 
   /**
    * Container for the group1 group.
@@ -108,6 +125,8 @@ class AccessRestrictionsTest extends WebTestBase {
     // Create organizational structure.
     $this->organization1 = (new CreateOrganization($this->manager1, $this->organizer1))->execute();
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2))->execute();
+    $this->filter1 = (new CreateFilter($this->organization1, $this->manager1, self::FILTER_TITLE_1))->execute();
+    $this->filter2 = (new CreateFilter($this->organization2, $this->manager2, self::FILTER_TITLE_2))->execute();
     $this->group1 = (new CreateGroup($this->organization1, $this->organizer1, self::GROUP_TITLE_1))->execute();
     $this->group2 = (new CreateGroup($this->organization2, $this->organizer2, self::GROUP_TITLE_2))->execute();
     // Add leafleting result type to group1.
@@ -124,9 +143,13 @@ class AccessRestrictionsTest extends WebTestBase {
    * Run test.
    */
   public function testDo() {
-    // Verify that manager1 can manage group1 and not group2.
+    // Verify that manager1 can manage filter1 and not filter2.
     $this->drupalLogin($this->manager1);
-    // User has access to group overview page.
+    $this->drupalGet($this->filter1->toUrl()->toString());
+    $this->assertResponse(200);
+    $this->drupalGet($this->filter2->toUrl()->toString());
+    $this->assertResponse(403);
+    // Verify that manager1 can manage group1 and not group2.
     $this->drupalGet(sprintf('%s/g', $this->organization1->toUrl()->toString()));
     $this->assertResponse(200);
     // User has access to group.
