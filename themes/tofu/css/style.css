@@ -589,9 +589,16 @@ input.form-submit:focus,
 .view.element-add_event,
 .view.element-manage_events,
 .view.element-manage_imports,
+.view.element-add_import,
 .view.element-manage_exports,
+.view.element-add_export,
+.view.element-manage_filters,
+.view.element-add_filter,
+.view.element-filter,
+.form.element-filter,
 .view.element-type,
 .view.element-publish,
+.view.element-organization,
 .view.element-username,
 .form.element-username input,
 .view.element-group_count,
@@ -745,8 +752,37 @@ input.form-submit:focus,
   background-image: url(../images/export.svg);
 }
 
+.view.element-add_import {
+  background-image: url(../images/export.svg);
+}
+
 .view.element-manage_exports {
   background-image: url(../images/export.svg);
+}
+
+.view.element-add_export {
+  background-image: url(../images/export.svg);
+}
+
+.view.element-manage_filters {
+  background-image: url(../images/filter.svg);
+}
+
+.view.element-add_filter {
+  background-image: url(../images/filter.svg);
+}
+
+.view.element-filter {
+  background-image: url(../images/filter.svg);
+}
+
+.form.element-filter {
+  background-image: url(../images/filter.svg);
+}
+
+.form.element-filter label,
+.form.element-filter .description {
+  display: block;
 }
 
 .view.element-type {
@@ -755,6 +791,10 @@ input.form-submit:focus,
 
 .view.element-publish {
   background-image: url(../images/publish.svg);
+}
+
+.view.element-organization {
+  background-image: url(../images/organization.svg);
 }
 
 .form.element-instructions table {

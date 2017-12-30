@@ -25,12 +25,16 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
     ],
+    EffectiveActivismConstant::ENTITY_FILTER => [
+      '' => '',
+      'edit' => 'edit',
+      'publish' => 'publish',
+    ],
     EffectiveActivismConstant::ENTITY_GROUP => [
       '' => '',
       'edit' => 'edit',
       'publish' => 'publish',
       'imports' => 'imports',
-      'exports' => 'exports',
       'events' => 'e',
       'results' => 'r',
     ],
@@ -44,6 +48,8 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
       'groups' => 'g',
+      'exports' => 'exports',
+      'filters' => 'filters',
     ],
     EffectiveActivismConstant::ENTITY_RESULT_TYPE => [
       '' => '',
@@ -129,11 +135,15 @@ class PathAliasHelper {
         break;
 
       case EffectiveActivismConstant::ENTITY_EXPORT:
-        $alias_path = self::ensureUniquePath(sprintf('%s/exports/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        $alias_path = self::ensureUniquePath(sprintf('%s/exports/%d', self::get($entity->get('organization')->entity), self::transliterate($entity->id())));
         break;
 
       case EffectiveActivismConstant::ENTITY_EVENT:
         $alias_path = self::ensureUniquePath(sprintf('%s/e/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_FILTER:
+        $alias_path = self::ensureUniquePath(sprintf('%s/filters/%d', self::get($entity->get('organization')->entity), self::transliterate($entity->id())));
         break;
 
       case EffectiveActivismConstant::ENTITY_RESULT_TYPE:

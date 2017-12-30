@@ -183,9 +183,44 @@
   background-image: url(../images/export.svg);
 }
 
+.view.element-add_import {
+  @extend %element-icon;
+  background-image: url(../images/export.svg);
+}
+
 .view.element-manage_exports {
   @extend %element-icon;
   background-image: url(../images/export.svg);
+}
+
+.view.element-add_export {
+  @extend %element-icon;
+  background-image: url(../images/export.svg);
+}
+
+.view.element-manage_filters {
+  @extend %element-icon;
+  background-image: url(../images/filter.svg);
+}
+
+.view.element-add_filter {
+  @extend %element-icon;
+  background-image: url(../images/filter.svg);
+}
+
+.view.element-filter {
+  @extend %element-icon;
+  background-image: url(../images/filter.svg);
+}
+
+.form.element-filter {
+  @extend %element-icon;
+  background-image: url(../images/filter.svg);
+}
+
+.form.element-filter label,
+.form.element-filter .description {
+  display: block;
 }
 
 .view.element-type {
@@ -196,6 +231,11 @@
 .view.element-publish {
   @extend %element-icon;
   background-image: url(../images/publish.svg);
+}
+
+.view.element-organization {
+  @extend %element-icon;
+  background-image: url(../images/organization.svg);
 }
 
 .form.element-instructions table {

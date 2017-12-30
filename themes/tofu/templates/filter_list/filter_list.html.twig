@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Filter list.
+ *
+ */
+#}
+<div class="section">
+  <div class="list filters">
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="content">
+      <ul>
+        {% if content.filters is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for filter in content.filters %}
+        <li>
+          <div class="column-wrapper">
+            <div class="column-10-15 first-column">
+              {{ filter.name }}
+              {{ filter.organization }}
+            </div>
+            <div class="column-5-15 last-column">
+              {{ filter.more_info }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="footer">
+      {{ content.create_link }}
+    </div>
+  </div>
+</div>

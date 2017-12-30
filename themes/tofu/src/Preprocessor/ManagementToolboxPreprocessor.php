@@ -30,6 +30,16 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
           ]
         ));
         $this->variables['content']['manage_results'] = $element_controller->view(t('Manage results'), 'manage_results', new Url('entity.result_type.collection'));
+        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
+          'entity.organization.exports', [
+            'organization' => $entity->id(),
+          ]
+        ));
+        $this->variables['content']['manage_filters'] = $element_controller->view(t('Manage filters'), 'manage_filters', new Url(
+          'entity.organization.filters', [
+            'organization' => $entity->id(),
+          ]
+        ));
         $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
           'entity.organization.publish_form', [
@@ -51,11 +61,6 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         ));
         $this->variables['content']['manage_imports'] = $element_controller->view(t('Manage imports'), 'manage_imports', new Url(
           'entity.group.imports', [
-            'group' => $entity->id(),
-          ]
-        ));
-        $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
-          'entity.group.exports', [
             'group' => $entity->id(),
           ]
         ));
@@ -97,6 +102,20 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
           'entity.export.publish_form', [
             'export' => $entity->id(),
+          ]
+        ));
+        break;
+
+      case 'filter':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.filter.edit_form', [
+            'filter' => $entity->id(),
+          ]
+        ));
+        $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
+        $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
+          'entity.filter.publish_form', [
+            'filter' => $entity->id(),
           ]
         ));
         break;

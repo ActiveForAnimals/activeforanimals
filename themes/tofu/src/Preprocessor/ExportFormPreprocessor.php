@@ -22,10 +22,10 @@ class ExportFormPreprocessor extends Preprocessor implements PreprocessorInterfa
       case 'export_csv_add_form':
         $this->variables['type'] = 'csv';
         $this->variables['form']['field_file_csv'] = $field_controller->form($form['field_file_csv'], 'file');
+        $this->variables['form']['filter'] = $field_controller->form($form['filter'], 'filter');
         break;
 
     }
-    $this->variables['form']['parent'] = $field_controller->form($form['parent'], 'parent');
     return $this->variables;
   }
 

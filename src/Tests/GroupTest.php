@@ -12,7 +12,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class GroupTest extends WebTestBase {
 
-  const ADD_ORGANIZATION_PATH = '/create-group';
+  const ADD_GROUP_PATH = '/create-group';
   const TITLE = 'Test group';
   const DESCRIPTION = 'Test group description';
   const WEBSITE = 'http://example.com';
@@ -63,7 +63,7 @@ class GroupTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->manager);
-    $this->drupalGet(self::ADD_ORGANIZATION_PATH);
+    $this->drupalGet(self::ADD_GROUP_PATH);
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'title[0][value]' => self::TITLE,
