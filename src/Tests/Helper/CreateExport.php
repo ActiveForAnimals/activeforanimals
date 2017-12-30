@@ -26,6 +26,8 @@ class CreateExport {
    *
    * @param \Drupal\effective_activism\Entity\Organization $organization
    *   The organization the export belongs to.
+   * @param \Drupal\effective_activism\Entity\Filter $filter
+   *   The filter to use with the export.
    * @param \Drupal\user\Entity\User $manager
    *   The manager of the organization.
    */

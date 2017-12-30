@@ -2,7 +2,6 @@
 
 namespace Drupal\activeforanimals\Tests\Helper;
 
-use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Entity\Filter;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\user\Entity\User;

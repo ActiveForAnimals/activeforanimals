@@ -2,14 +2,10 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
-use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
 use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
-use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
-use Drupal\effective_activism\Controller\Overview\GroupListController;
 
 /**
  * Preprocessor for Filter.
