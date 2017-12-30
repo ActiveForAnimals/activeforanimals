@@ -2,6 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
@@ -22,7 +23,14 @@ class OrganizationListPreprocessor extends Preprocessor implements PreprocessorI
     $field_controller = new FieldController();
     $element_controller = new ElementController();
     $this->variables['content']['title'] = $element_controller->view(t('Organizations'), 'title');
-    $this->variables['content']['empty'] = t('No organizations created yet.');
+    $this->variables['content']['empty'] = t('You are not part of any organization yet. To start, @create_new_organization or join an existing one.', [
+      '@create_new_organization' => Drupal::l(
+        t('create a new organization'),
+        new Url(
+          'activeforanimals.organization.create'
+        )
+      ),
+    ]);
     foreach ($this->variables['elements']['#storage']['entities']['organizations'] as $organization) {
       $organization_elements = [];
       $organization_link = new Url(
