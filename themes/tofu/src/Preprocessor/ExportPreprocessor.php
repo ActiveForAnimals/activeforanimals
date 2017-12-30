@@ -26,7 +26,7 @@ class ExportPreprocessor extends Preprocessor implements PreprocessorInterface {
     $element_controller = new ElementController();
     $image_controller = new ImageController();
     $field_controller = new FieldController();
-    $this->variables['content']['parent'] = $field_controller->view($export->get('parent'));
+    $this->variables['content']['organization'] = $field_controller->view($export->organization);
     $this->variables['content']['type'] = $element_controller->view($export->type->entity->label(), 'type');
     switch ($export->bundle()) {
       case 'csv':
@@ -39,7 +39,7 @@ class ExportPreprocessor extends Preprocessor implements PreprocessorInterface {
     $create_date = Drupal::service('date.formatter')->format($export->get('created')->value);
     $this->variables['content']['created'] = $element_controller->view($create_date, 'created');
     // Get organization groups.
-    $organization = $export->get('parent')->entity->get('organization')->entity;
+    $organization = $export->organization->entity;
     $groups = OrganizationHelper::getGroups($organization, 0, GroupListController::GROUP_DISPLAY_LIMIT);
     $group_list_controller = new GroupListController([
       'organization' => $organization,

@@ -6,10 +6,14 @@ use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
+use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
+use Drupal\effective_activism\Controller\Overview\ExportListController;
 use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
+use Drupal\effective_activism\Controller\Overview\FilterListController;
+use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
@@ -37,6 +41,7 @@ class Constant {
     'inline_entity_form_result',
     'event',
     'export',
+    'filter',
     'import',
     'group',
     'organization',
@@ -45,6 +50,10 @@ class Constant {
     EventListController::THEME_ID,
     EventOverviewController::THEME_ID,
     ExportOverviewController::THEME_ID,
+    ExportListController::THEME_ID,
+    ExportListBuilder::THEME_ID,
+    FilterOverviewController::THEME_ID,
+    FilterListController::THEME_ID,
     FrontPageController::THEME_ID,
     GroupListController::THEME_ID,
     GroupOverviewController::THEME_ID,
@@ -66,6 +75,7 @@ class Constant {
   const FORM_TEMPLATES = [
     'event',
     'export',
+    'filter',
     'group',
     'import',
     InvitationForm::FORM_ID,
@@ -81,6 +91,7 @@ class Constant {
   const ENTITY_TYPES = [
     'event',
     'export',
+    'filter',
     'group',
     'import',
     'organization',

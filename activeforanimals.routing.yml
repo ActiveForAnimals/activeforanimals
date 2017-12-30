@@ -69,6 +69,16 @@ activeforanimals.event.create:
   requirements:
     _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
 
+
+# Add filter.
+activeforanimals.filter.create:
+  path: '/create-filter'
+  defaults:
+    _entity_form: 'filter.add'
+    _title: Create filter
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
+
 # Result type overview.
 activeforanimals.result_type.overview:
   path: '/result-types'

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * An export form page.
+ * A filter form page.
  *
  */
 #}
@@ -11,21 +11,15 @@
 {{ form.form_id }}
   <div class="section">
     <div class="title">
-      {{ 'Export'|t }}
-    </div>
-    {{ form.organization }}
-    <div class="section">
-      <div class="column-wrapper">
-        <div class="column-7-15 first-column">
-          {{ form.filter }}
-        </div>
-      </div>
+      {{ 'Filter'|t }}
     </div>
     <div class="title">
-      {{ 'File'|t }}
+      {{ form.name }}
     </div>
-    <div class="content">
-      {{ form.field_file_csv }}
+    {{ form.organization }}
+    <div class="column-wrapper">
+      <div class="column-15-15 first-column">
+      </div>
     </div>
     <div class="footer">
       {{ form.actions.submit }}

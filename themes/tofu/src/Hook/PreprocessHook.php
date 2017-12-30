@@ -7,11 +7,15 @@ use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
+use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
+use Drupal\effective_activism\Helper\ListBuilder\FilterListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
+use Drupal\effective_activism\Controller\Overview\ExportListController;
 use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
+use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
 use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
@@ -26,6 +30,11 @@ use Drupal\tofu\Preprocessor\EventFormPreprocessor;
 use Drupal\tofu\Preprocessor\ExportPreprocessor;
 use Drupal\tofu\Preprocessor\ExportOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ExportFormPreprocessor;
+use Drupal\tofu\Preprocessor\ExportListPreprocessor;
+use Drupal\tofu\Preprocessor\FilterPreprocessor;
+use Drupal\tofu\Preprocessor\FilterOverviewPreprocessor;
+use Drupal\tofu\Preprocessor\FilterFormPreprocessor;
+use Drupal\tofu\Preprocessor\FilterListPreprocessor;
 use Drupal\tofu\Preprocessor\GroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\GroupOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\EventListPreprocessor;
@@ -43,7 +52,7 @@ use Drupal\tofu\Preprocessor\InvitationOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ManagementToolboxPreprocessor;
 use Drupal\tofu\Preprocessor\NewsletterSignUpFormPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationFormPreprocessor;
-use Drupal\tofu\Preprocessor\OrganizationOverviewPreprocessor;
+use Drupal\tofu\Preprocessor\OrganizationListPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizationPreprocessor;
 use Drupal\tofu\Preprocessor\OrganizerToolboxPreprocessor;
 use Drupal\tofu\Preprocessor\PagePreprocessor;
@@ -108,8 +117,24 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new ExportFormPreprocessor($variables);
         break;
 
+      case 'filter':
+        $preprocessor = new FilterPreprocessor($variables);
+        break;
+
+      case 'filter-form':
+        $preprocessor = new FilterFormPreprocessor($variables);
+        break;
+
+      case ExportListBuilder::THEME_ID:
+        $preprocessor = new ExportListPreprocessor($variables);
+        break;
+
       case ExportOverviewController::THEME_ID:
         $preprocessor = new ExportOverviewPreprocessor($variables);
+        break;
+
+      case ExportListController::THEME_ID:
+        $preprocessor = new ExportListPreprocessor($variables);
         break;
 
       case EventListController::THEME_ID:
@@ -118,6 +143,14 @@ class PreprocessHook implements HookInterface {
 
       case EventOverviewController::THEME_ID:
         $preprocessor = new EventOverviewPreprocessor($variables);
+        break;
+
+      case FilterListBuilder::THEME_ID:
+        $preprocessor = new FilterListPreprocessor($variables);
+        break;
+
+      case FilterOverviewController::THEME_ID:
+        $preprocessor = new FilterOverviewPreprocessor($variables);
         break;
 
       case FrontPageController::THEME_ID:
@@ -185,7 +218,7 @@ class PreprocessHook implements HookInterface {
         break;
 
       case OrganizationListBuilder::THEME_ID:
-        $preprocessor = new OrganizationOverviewPreprocessor($variables);
+        $preprocessor = new OrganizationListPreprocessor($variables);
         break;
 
       case OrganizerToolboxController::THEME_ID:
