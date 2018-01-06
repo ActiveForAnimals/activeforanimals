@@ -15,7 +15,7 @@ class GroupTest extends WebTestBase {
   const ADD_GROUP_PATH = '/create-group';
   const TITLE = 'Test group';
   const DESCRIPTION = 'Test group description';
-  const WEBSITE = 'http://example.com';
+  const WEBSITE = 'https://example.com';
   const PHONE_NUMBER = '+45 12345678';
   const EMAIL_ADDRESS = 'test@example.com';
   const LOCATION_ADDRESS = '';

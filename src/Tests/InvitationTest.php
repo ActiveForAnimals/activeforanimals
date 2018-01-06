@@ -22,8 +22,8 @@ class InvitationTest extends WebTestBase {
   const TEST_EMAIL_ADDRESS = 'no-reply@activeforanimals.com';
   const TEST_MANAGER_SUBJECT = '[AFA] Invitation to join %s';
   const TEST_ORGANIZER_SUBJECT = '[AFA] Invitation to join the group \'%s\' of %s';
-  const TEST_MANAGER_BODY = 'Hello  You have been invited to join %s as manager on http://www.activeforanimals.com.  To join, follow these steps:  - Create an account at http://www.activeforanimals.com/user using the e-mail address that this e-mail was sent to.  - When logged in, confirm that you want to join %s.';
-  const TEST_ORGANIZER_BODY = 'Hello  You have been invited to join the group \'%s\' of the organizaiton %s as organizer on http://www.activeforanimals.com.  To join, follow these steps:  - Create an account at http://www.activeforanimals.com/user using the e-mail address that this e-mail was sent to.  - When logged in, confirm that you want to join \'%s.\'';
+  const TEST_MANAGER_BODY = 'Hello  You have been invited to join %s as manager on https://www.activeforanimals.com.  To join, follow these steps:  - Create an account at https://www.activeforanimals.com/user using the e-mail address that this e-mail was sent to.  - When logged in, confirm that you want to join %s.';
+  const TEST_ORGANIZER_BODY = 'Hello  You have been invited to join the group \'%s\' of the organizaiton %s as organizer on https://www.activeforanimals.com.  To join, follow these steps:  - Create an account at https://www.activeforanimals.com/user using the e-mail address that this e-mail was sent to.  - When logged in, confirm that you want to join \'%s.\'';
   const CHALLENGE_RESPONSE = 'fruit';
 
   /**
