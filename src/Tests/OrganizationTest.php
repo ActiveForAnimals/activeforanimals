@@ -14,7 +14,7 @@ class OrganizationTest extends WebTestBase {
   const ADD_ORGANIZATION_PATH = 'create-organization';
   const TITLE = 'Test organization';
   const DESCRIPTION = 'Test organization description';
-  const WEBSITE = 'http://example.com';
+  const WEBSITE = 'https://example.com';
   const PHONE_NUMBER = '+45 12345678';
   const EMAIL_ADDRESS = 'test@example.com';
   const LOCATION_ADDRESS = '';

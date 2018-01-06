@@ -38,7 +38,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['results'] = $field_controller->view($event->get('results'));
     $this->variables['content']['results'] = $field_controller->view($event->get('results'));
     // Render map.
-    $icon_path = sprintf('http://%s/%s/images/location.png', Drupal::request()->getHost(), drupal_get_path('theme', Constant::MACHINE_NAME));
+    $icon_path = sprintf('https://%s/%s/images/location.png', Drupal::request()->getHost(), drupal_get_path('theme', Constant::MACHINE_NAME));
     $google_static_maps_api_key = Drupal::config('effective_activism.settings')->get('google_static_maps_api_key');
     $locations = $event->get('location')->getValue();
     $location = array_pop($locations);
