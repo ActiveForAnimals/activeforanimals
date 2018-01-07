@@ -5,14 +5,17 @@ namespace Drupal\tofu\Hook;
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm;
+use Drupal\effective_activism\Form\EventTemplate\EventTemplateSelectionForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
+use Drupal\effective_activism\Helper\ListBuilder\EventTemplateListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\FilterListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
+use Drupal\effective_activism\Controller\Overview\EventTemplateOverviewController;
 use Drupal\effective_activism\Controller\Overview\ExportListController;
 use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
@@ -27,6 +30,8 @@ use Drupal\effective_activism\Controller\Misc\OrganizerToolboxController;
 use Drupal\tofu\Preprocessor\ContactInformationPreprocessor;
 use Drupal\tofu\Preprocessor\EventPreprocessor;
 use Drupal\tofu\Preprocessor\EventFormPreprocessor;
+use Drupal\tofu\Preprocessor\EventTemplatePreprocessor;
+use Drupal\tofu\Preprocessor\EventTemplateFormPreprocessor;
 use Drupal\tofu\Preprocessor\ExportPreprocessor;
 use Drupal\tofu\Preprocessor\ExportOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ExportFormPreprocessor;
@@ -39,6 +44,9 @@ use Drupal\tofu\Preprocessor\GroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\GroupOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\EventListPreprocessor;
 use Drupal\tofu\Preprocessor\EventOverviewPreprocessor;
+use Drupal\tofu\Preprocessor\EventTemplateListPreprocessor;
+use Drupal\tofu\Preprocessor\EventTemplateOverviewPreprocessor;
+use Drupal\tofu\Preprocessor\EventTemplateSelectionFormPreprocessor;
 use Drupal\tofu\Preprocessor\FrontPagePreprocessor;
 use Drupal\tofu\Preprocessor\GroupListPreprocessor;
 use Drupal\tofu\Preprocessor\GroupPreprocessor;
@@ -109,6 +117,18 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new EventFormPreprocessor($variables);
         break;
 
+      case 'event_template':
+        $preprocessor = new EventTemplatePreprocessor($variables);
+        break;
+
+      case 'event_template-form':
+        $preprocessor = new EventTemplateFormPreprocessor($variables);
+        break;
+
+      case EventTemplateSelectionForm::THEME_ID:
+        $preprocessor = new EventTemplateSelectionFormPreprocessor($variables);
+        break;
+
       case 'export':
         $preprocessor = new ExportPreprocessor($variables);
         break;
@@ -143,6 +163,14 @@ class PreprocessHook implements HookInterface {
 
       case EventOverviewController::THEME_ID:
         $preprocessor = new EventOverviewPreprocessor($variables);
+        break;
+
+      case EventTemplateListBuilder::THEME_ID:
+        $preprocessor = new EventTemplateListPreprocessor($variables);
+        break;
+
+      case EventTemplateOverviewController::THEME_ID:
+        $preprocessor = new EventTemplateOverviewPreprocessor($variables);
         break;
 
       case FilterListBuilder::THEME_ID:

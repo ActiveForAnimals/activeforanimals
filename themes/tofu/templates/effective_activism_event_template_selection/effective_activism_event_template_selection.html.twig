@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Event template selection form.
+ *
+ */
+#}
+<form{{ elements.form.attributes }}>
+  {{ elements.form.form_build_id }}
+  {{ elements.form.form_token }}
+  {{ elements.form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Select an event template'|t }}
+    </div>
+    <div class="content">
+      <div class="column-wrapper">
+        <div class="column-8-15 first-column">
+          {{ elements.form.organization }}
+        </div>
+        <div class="column-7-15 last column">
+          {{ elements.form.event_template }}
+        </div>
+      </div>
+      {{ elements.form.select }}
+    </div>
+  </div>
+</form>

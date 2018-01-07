@@ -20,6 +20,11 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
     ],
+    EffectiveActivismConstant::ENTITY_EVENT_TEMPLATE => [
+      '' => '',
+      'edit' => 'edit',
+      'publish' => 'publish',
+    ],
     EffectiveActivismConstant::ENTITY_EXPORT => [
       '' => '',
       'edit' => 'edit',
@@ -48,6 +53,7 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
       'groups' => 'g',
+      'event_templates' => 'event_templates',
       'exports' => 'exports',
       'filters' => 'filters',
     ],
@@ -132,6 +138,10 @@ class PathAliasHelper {
 
       case EffectiveActivismConstant::ENTITY_IMPORT:
         $alias_path = self::ensureUniquePath(sprintf('%s/imports/%d', self::get($entity->get('parent')->entity), self::transliterate($entity->id())));
+        break;
+
+      case EffectiveActivismConstant::ENTITY_EVENT_TEMPLATE:
+        $alias_path = self::ensureUniquePath(sprintf('%s/event-templates/%d', self::get($entity->get('organization')->entity), self::transliterate($entity->id())));
         break;
 
       case EffectiveActivismConstant::ENTITY_EXPORT:

@@ -78,6 +78,10 @@ class ThemeHook implements HookInterface {
     $theme['publish_filter-form']['render element'] = 'form';
     $theme['publish_filter-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_filter');
     $theme['publish_filter-form']['template'] = 'publish_filter';
+    // Update event_template publish form.
+    $theme['publish_event_template-form']['render element'] = 'form';
+    $theme['publish_event_template-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event_template');
+    $theme['publish_event_template-form']['template'] = 'publish_event_template';
     // Update event publish form.
     $theme['publish_event-form']['render element'] = 'form';
     $theme['publish_event-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event');

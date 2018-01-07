@@ -29,6 +29,7 @@ class EventOverviewPreprocessor extends Preprocessor implements PreprocessorInte
     }
     $this->variables['content']['title'] = $element_controller->view(t('Events'), 'title', $event_overview_link);
     $this->variables['content']['create_link'] = $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create'));
+    $this->variables['content']['create_from_template_link'] = $element_controller->view(t('Create event from template'), 'event_template', new Url('activeforanimals.event_template.select'));
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];
