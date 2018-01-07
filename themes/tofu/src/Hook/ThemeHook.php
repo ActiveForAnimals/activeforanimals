@@ -90,6 +90,10 @@ class ThemeHook implements HookInterface {
     $theme['newsletter_signup-form']['render element'] = 'form';
     $theme['newsletter_signup-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'newsletter_signup');
     $theme['newsletter_signup-form']['template'] = 'newsletter_signup-form';
+    // Event template selection form.
+    $theme['effective_activism_event_template_selection-form']['render element'] = 'form';
+    $theme['effective_activism_event_template_selection-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'effective_activism_event_template_selection');
+    $theme['effective_activism_event_template_selection-form']['template'] = 'effective_activism_event_template_selection-form';
     return $theme;
   }
 

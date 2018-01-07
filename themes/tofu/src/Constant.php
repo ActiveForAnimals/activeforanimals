@@ -4,7 +4,6 @@ namespace Drupal\tofu;
 
 use Drupal\activeforanimals\Controller\FrontPageController;
 use Drupal\activeforanimals\Controller\StaticPageController;
-use Drupal\effective_activism\Form\EventTemplate\EventTemplateSelectionForm;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
@@ -44,7 +43,6 @@ class Constant {
     'inline_entity_form_result',
     'event',
     'event-template',
-    EventTemplateSelectionForm::THEME_ID,
     'export',
     'filter',
     'import',

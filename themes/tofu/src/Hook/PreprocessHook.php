@@ -125,7 +125,7 @@ class PreprocessHook implements HookInterface {
         $preprocessor = new EventTemplateFormPreprocessor($variables);
         break;
 
-      case EventTemplateSelectionForm::THEME_ID:
+      case sprintf('%s-form', EventTemplateSelectionForm::FORM_ID):
         $preprocessor = new EventTemplateSelectionFormPreprocessor($variables);
         break;
 
