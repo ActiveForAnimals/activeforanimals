@@ -18,6 +18,8 @@ class EventTemplateFormPreprocessor extends Preprocessor implements Preprocessor
     // Wrap form elements.
     $field_controller = new FieldController();
     $this->variables['form']['name'] = $field_controller->form($form['name'], 'title');
+    $this->variables['form']['event_title'] = $field_controller->form($form['event_title'], 'title');
+    $this->variables['form']['event_description'] = $field_controller->form($form['event_description'], 'description');
     return $this->variables;
   }
 
