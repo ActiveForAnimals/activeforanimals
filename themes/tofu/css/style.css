@@ -590,6 +590,10 @@ input.form-submit:focus,
 .view.element-manage_events,
 .view.element-manage_imports,
 .view.element-add_import,
+.view.element-manage_event_templates,
+.view.element-add_event_template,
+.view.element-event_template,
+.view.element-event_template_options,
 .view.element-manage_exports,
 .view.element-add_export,
 .view.element-manage_filters,
@@ -754,6 +758,27 @@ input.form-submit:focus,
 
 .view.element-add_import {
   background-image: url(../images/export.svg);
+}
+
+.view.element-manage_event_templates {
+  background-image: url(../images/template.svg);
+}
+
+.view.element-add_event_template {
+  background-image: url(../images/template.svg);
+}
+
+.view.element-event_template {
+  background-image: url(../images/template.svg);
+}
+
+.view.element-event_template_options {
+  background-image: url(../images/template.svg);
+}
+
+.form.element-event_template_options label,
+.form.element-event_template_options .description {
+  display: block;
 }
 
 .view.element-manage_exports {

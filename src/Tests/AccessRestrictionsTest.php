@@ -3,9 +3,10 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
-use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\activeforanimals\Tests\Helper\CreateEventTemplate;
 use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
+use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -17,9 +18,12 @@ use Drupal\simpletest\WebTestBase;
 class AccessRestrictionsTest extends WebTestBase {
 
   const PATH_EVENT_ADD = 'create-event';
-  const ADD_CSV_IMPORT_PATH = 'import/csv';
+  const PATH_ADD_CSV_IMPORT = 'import/csv';
+  const PATH_SELECT_EVENT_TEMPLATE = '/select-event-template';
   const RESULT_TYPE_1 = 'leafleting';
   const RESULT_TYPE_2 = 'pay_per_view_event';
+  const EVENT_TEMPLATE_TITLE_1 = 'Test event template 1';
+  const EVENT_TEMPLATE_TITLE_2 = 'Test event template 2';
   const FILTER_TITLE_1 = 'Test filter 1';
   const FILTER_TITLE_2 = 'Test filter 2';
   const GROUP_TITLE_1 = 'Test group 1';
@@ -56,6 +60,20 @@ class AccessRestrictionsTest extends WebTestBase {
    * @var Organization
    */
   private $organization2;
+
+  /**
+   * Container for the eventtemplate1 event template.
+   *
+   * @var EventTemplate
+   */
+  private $eventtemplate1;
+
+  /**
+   * Container for the eventtemplate2 event template.
+   *
+   * @var EventTemplate
+   */
+  private $eventtemplate2;
 
   /**
    * Container for the filter1 filter.
@@ -127,6 +145,8 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2))->execute();
     $this->filter1 = (new CreateFilter($this->organization1, $this->manager1, self::FILTER_TITLE_1))->execute();
     $this->filter2 = (new CreateFilter($this->organization2, $this->manager2, self::FILTER_TITLE_2))->execute();
+    $this->eventtemplate1 = (new CreateEventTemplate($this->organization1, $this->manager1, self::EVENT_TEMPLATE_TITLE_1))->execute();
+    $this->eventtemplate2 = (new CreateEventTemplate($this->organization2, $this->manager2, self::EVENT_TEMPLATE_TITLE_2))->execute();
     $this->group1 = (new CreateGroup($this->organization1, $this->organizer1, self::GROUP_TITLE_1))->execute();
     $this->group2 = (new CreateGroup($this->organization2, $this->organizer2, self::GROUP_TITLE_2))->execute();
     // Add leafleting result type to group1.
@@ -149,7 +169,26 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->assertResponse(200);
     $this->drupalGet($this->filter2->toUrl()->toString());
     $this->assertResponse(403);
+    // Verify that manager1 can manage eventtemplate1 and not eventtemplate2.
+    $this->drupalLogin($this->manager1);
+    $this->drupalGet($this->eventtemplate1->toUrl()->toString());
+    $this->assertResponse(200);
+    $this->drupalGet($this->eventtemplate2->toUrl()->toString());
+    $this->assertResponse(403);
+
+    // Verify that organizer1 can use eventtemplate1 and not eventtemplate2.
+    $this->drupalLogin($this->organizer1);
+    $this->drupalGet(self::PATH_SELECT_EVENT_TEMPLATE);
+    $this->assertText(self::EVENT_TEMPLATE_TITLE_1);
+    $this->assertNoText(self::EVENT_TEMPLATE_TITLE_2);
+    $this->drupalPostForm(NULL, [
+      'organization' => $this->organization1->id(),
+      'event_template' => $this->eventtemplate1->id(),
+    ], t('Select'));
+    $this->assertResponse(200);
+
     // Verify that manager1 can manage group1 and not group2.
+    $this->drupalLogin($this->manager1);
     $this->drupalGet(sprintf('%s/g', $this->organization1->toUrl()->toString()));
     $this->assertResponse(200);
     // User has access to group.
@@ -284,7 +323,7 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->assertText('Created event.', 'Added a new event entity.');
 
     // Import event.
-    $this->drupalGet(self::ADD_CSV_IMPORT_PATH);
+    $this->drupalGet(self::PATH_ADD_CSV_IMPORT);
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'parent[0][target_id]' => $this->group1->id(),

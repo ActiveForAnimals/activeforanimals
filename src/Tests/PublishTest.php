@@ -3,6 +3,7 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
+use Drupal\activeforanimals\Tests\Helper\CreateEventTemplate;
 use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateImport;
@@ -19,7 +20,8 @@ use Drupal\simpletest\WebTestBase;
  */
 class PublishTest extends WebTestBase {
 
-  const PATH_EVENT_ADD = 'create-event';
+  const PATH_SELECT_EVENT_TEMPLATE = '/select-event-template';
+  const PATH_EVENT_ADD_FROM_TEMPLATE = '/create-event/1';
   const ADD_CSV_IMPORT_PATH = 'import/csv';
   const ADD_CSV_EXPORT_PATH = 'export/csv';
   const GROUP_TITLE_1 = 'Test group 1';
@@ -49,6 +51,13 @@ class PublishTest extends WebTestBase {
    * @var \Drupal\effective_activism\Entity\Organization
    */
   private $organization;
+
+  /**
+   * Container for an event template.
+   *
+   * @var \Drupal\effective_activism\Entity\EventTemplate
+   */
+  private $eventtemplate;
 
   /**
    * Container for a filter.
@@ -101,6 +110,7 @@ class PublishTest extends WebTestBase {
     $this->organizer = $this->drupalCreateUser();
     // Create organizational structure.
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
+    $this->eventtemplate = (new CreateEventTemplate($this->organization, $this->manager))->execute();
     $this->filter = (new CreateFilter($this->organization, $this->manager))->execute();
     $this->group = (new CreateGroup($this->organization, $this->organizer, NULL, TRUE))->execute();
     $this->event = (new CreateEvent($this->group, $this->organizer))->execute();
@@ -118,6 +128,13 @@ class PublishTest extends WebTestBase {
     // User has access to organization page.
     $this->drupalGet($this->organization->toUrl()->toString());
     $this->assertResponse(200);
+    // User has access to event template selection form.
+    $this->drupalGet(self::PATH_SELECT_EVENT_TEMPLATE);
+    $this->assertResponse(200);
+    // User has access to event form with template selected.
+    $this->drupalGet(self::PATH_EVENT_ADD_FROM_TEMPLATE);
+    $this->assertResponse(200);
+    $this->assertText(CreateEventTemplate::EVENT_DESCRIPTION);
     // User has access to group page.
     $this->drupalGet($this->group->toUrl()->toString());
     $this->assertResponse(200);
@@ -175,7 +192,7 @@ class PublishTest extends WebTestBase {
     $this->assertText('8 items published.');
     $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
-    $this->assertText('12 items unpublished.');
+    $this->assertText('13 items unpublished.');
 
     // Verify that organizer cannot access organization, group and event.
     $this->drupalLogin($this->organizer);
@@ -197,6 +214,18 @@ class PublishTest extends WebTestBase {
     // User does not have access to export page.
     $this->drupalGet($this->export->toUrl()->toString());
     $this->assertResponse(403);
+    // User does not have access to filter page.
+    $this->drupalGet($this->filter->toUrl()->toString());
+    $this->assertResponse(403);
+    // User does not have access to event template page.
+    $this->drupalGet($this->eventtemplate->toUrl()->toString());
+    $this->assertResponse(403);
+    // User has access to event form with template selected but template is
+    // not added.
+    $this->drupalGet(self::PATH_EVENT_ADD_FROM_TEMPLATE);
+    $this->assertResponse(200);
+    $this->assertNoText(CreateEventTemplate::EVENT_TITLE);
+    $this->assertNoText(CreateEventTemplate::EVENT_DESCRIPTION);
 
     // Publish import and events.
     $this->drupalLogin($this->manager);

@@ -188,6 +188,31 @@
   background-image: url(../images/export.svg);
 }
 
+.view.element-manage_event_templates {
+  @extend %element-icon;
+  background-image: url(../images/template.svg);
+}
+
+.view.element-add_event_template {
+  @extend %element-icon;
+  background-image: url(../images/template.svg);
+}
+
+.view.element-event_template {
+  @extend %element-icon;
+  background-image: url(../images/template.svg);
+}
+
+.view.element-event_template_options {
+  @extend %element-icon;
+  background-image: url(../images/template.svg);
+}
+
+.form.element-event_template_options label,
+.form.element-event_template_options .description {
+  display: block;
+}
+
 .view.element-manage_exports {
   @extend %element-icon;
   background-image: url(../images/export.svg);
