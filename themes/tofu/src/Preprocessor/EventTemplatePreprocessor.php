@@ -22,8 +22,9 @@ class EventTemplatePreprocessor extends Preprocessor implements PreprocessorInte
     $element_controller = new ElementController();
     $image_controller = new ImageController();
     $field_controller = new FieldController();
-    $this->variables['content']['organization'] = $field_controller->view($event_template->get('organization'));
     $this->variables['content']['title'] = $field_controller->view($event_template->get('name'));
+    $this->variables['content']['event_title'] = $field_controller->view($event_template->get('event_title'));
+    $this->variables['content']['event_description'] = $field_controller->view($event_template->get('event_description'));
     // Manager toolbox.
     $management_toolbox_controller = new ManagementToolboxController($event_template);
     if ($management_toolbox_controller->access()) {

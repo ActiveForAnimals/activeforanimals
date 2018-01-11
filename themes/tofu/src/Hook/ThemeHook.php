@@ -34,7 +34,7 @@ class ThemeHook implements HookInterface {
       $theme[$element] = $this->getElements($element);
     }
     foreach (Constant::FORM_TEMPLATES as $form_template) {
-      $theme[sprintf('%s-form', $form_template)] = $this->getForm(str_replace('_', '-', $form_template));
+      $theme[sprintf('%s-form', $form_template)] = $this->getForm($form_template);
     }
     // Update html element.
     $theme['html']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'html');

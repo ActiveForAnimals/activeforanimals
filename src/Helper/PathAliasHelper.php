@@ -53,7 +53,7 @@ class PathAliasHelper {
       'edit' => 'edit',
       'publish' => 'publish',
       'groups' => 'g',
-      'event_templates' => 'event_templates',
+      'event-templates' => 'event-templates',
       'exports' => 'exports',
       'filters' => 'filters',
     ],

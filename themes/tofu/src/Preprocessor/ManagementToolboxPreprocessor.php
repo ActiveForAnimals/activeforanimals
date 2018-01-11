@@ -97,6 +97,20 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         ));
         break;
 
+      case 'event_template':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.event_template.edit_form', [
+            'event_template' => $entity->id(),
+          ]
+        ));
+        $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
+        $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
+          'entity.event_template.publish_form', [
+            'event_template' => $entity->id(),
+          ]
+        ));
+        break;
+
       case 'export':
         $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
           'entity.export.edit_form', [

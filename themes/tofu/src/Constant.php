@@ -42,7 +42,7 @@ class Constant {
     'inline_entity_form_person',
     'inline_entity_form_result',
     'event',
-    'event-template',
+    'event_template',
     'export',
     'filter',
     'import',
