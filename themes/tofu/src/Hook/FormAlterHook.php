@@ -71,6 +71,10 @@ class FormAlterHook implements HookInterface {
         $form['#theme'] = 'publish_import-form';
         break;
 
+      case 'publish_event_template':
+        $form['#theme'] = 'publish_event_template-form';
+        break;
+
       case 'publish_event':
         $form['#theme'] = 'publish_event-form';
         break;

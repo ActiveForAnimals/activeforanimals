@@ -40,6 +40,11 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
             'organization' => $entity->id(),
           ]
         ));
+        $this->variables['content']['manage_event_templates'] = $element_controller->view(t('Manage event templates'), 'manage_event_templates', new Url(
+          'entity.organization.event_templates', [
+            'organization' => $entity->id(),
+          ]
+        ));
         $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
           'entity.organization.publish_form', [
@@ -88,6 +93,20 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
           'entity.import.publish_form', [
             'import' => $entity->id(),
+          ]
+        ));
+        break;
+
+      case 'event_template':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.event_template.edit_form', [
+            'event_template' => $entity->id(),
+          ]
+        ));
+        $publish_state = $entity->isPublished() ? t('Unpublish') : t('Publish');
+        $this->variables['content']['publish'] = $element_controller->view($publish_state, 'publish', new Url(
+          'entity.event_template.publish_form', [
+            'event_template' => $entity->id(),
           ]
         ));
         break;

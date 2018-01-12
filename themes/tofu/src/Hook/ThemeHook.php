@@ -34,7 +34,7 @@ class ThemeHook implements HookInterface {
       $theme[$element] = $this->getElements($element);
     }
     foreach (Constant::FORM_TEMPLATES as $form_template) {
-      $theme[sprintf('%s-form', $form_template)] = $this->getForm(str_replace('_', '-', $form_template));
+      $theme[sprintf('%s-form', $form_template)] = $this->getForm($form_template);
     }
     // Update html element.
     $theme['html']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'html');
@@ -78,6 +78,10 @@ class ThemeHook implements HookInterface {
     $theme['publish_filter-form']['render element'] = 'form';
     $theme['publish_filter-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_filter');
     $theme['publish_filter-form']['template'] = 'publish_filter';
+    // Update event_template publish form.
+    $theme['publish_event_template-form']['render element'] = 'form';
+    $theme['publish_event_template-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event_template');
+    $theme['publish_event_template-form']['template'] = 'publish_event_template';
     // Update event publish form.
     $theme['publish_event-form']['render element'] = 'form';
     $theme['publish_event-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event');
@@ -86,6 +90,10 @@ class ThemeHook implements HookInterface {
     $theme['newsletter_signup-form']['render element'] = 'form';
     $theme['newsletter_signup-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'newsletter_signup');
     $theme['newsletter_signup-form']['template'] = 'newsletter_signup-form';
+    // Event template selection form.
+    $theme['effective_activism_event_template_selection-form']['render element'] = 'form';
+    $theme['effective_activism_event_template_selection-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'effective_activism_event_template_selection');
+    $theme['effective_activism_event_template_selection-form']['template'] = 'effective_activism_event_template_selection-form';
     return $theme;
   }
 

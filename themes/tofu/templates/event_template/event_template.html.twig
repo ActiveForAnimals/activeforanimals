@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * An event template page.
+ *
+ */
+#}
+<div class="section">
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="content">
+      <div class="column-wrapper">
+        <div class="column-15-15 first-column last-column">
+          <div class="section">
+            <div class="title">
+              {{ 'Event'|t }}
+            </div>
+            <div class="content">
+              <div class="column-wrapper">
+                <div class="column-1-1">
+                </div>
+                <div class="column-8-15 first-column">
+                  {{ content.event_title }}
+                  <div class="column-wrapper">
+                    <div class="column-7-15 first-column">
+                    </div>
+                    <div class="column-7-15 last-column">
+                    </div>
+                  </div>
+                  {{ content.event_description }}
+                </div>
+                <div class="column-7-15 last-column">
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="column-15-15 first-column last-column">
+          {{ content.management_toolbox }}
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
+    </div>
+  </div>

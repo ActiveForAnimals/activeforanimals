@@ -10,6 +10,8 @@ use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
+use Drupal\effective_activism\Controller\Overview\EventTemplateListController;
+use Drupal\effective_activism\Controller\Overview\EventTemplateOverviewController;
 use Drupal\effective_activism\Controller\Overview\ExportListController;
 use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\FilterListController;
@@ -40,6 +42,7 @@ class Constant {
     'inline_entity_form_person',
     'inline_entity_form_result',
     'event',
+    'event_template',
     'export',
     'filter',
     'import',
@@ -49,6 +52,8 @@ class Constant {
     ContactInformationController::THEME_ID,
     EventListController::THEME_ID,
     EventOverviewController::THEME_ID,
+    EventTemplateOverviewController::THEME_ID,
+    EventTemplateListController::THEME_ID,
     ExportOverviewController::THEME_ID,
     ExportListController::THEME_ID,
     ExportListBuilder::THEME_ID,
@@ -74,6 +79,7 @@ class Constant {
    */
   const FORM_TEMPLATES = [
     'event',
+    'event_template',
     'export',
     'filter',
     'group',
@@ -90,6 +96,7 @@ class Constant {
    */
   const ENTITY_TYPES = [
     'event',
+    'event_template',
     'export',
     'filter',
     'group',

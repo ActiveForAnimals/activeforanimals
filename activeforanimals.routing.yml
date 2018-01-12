@@ -69,6 +69,36 @@ activeforanimals.event.create:
   requirements:
     _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
 
+# Add event.
+activeforanimals.event.from-template:
+  path: '/create-event/{event_template}'
+  defaults:
+    _entity_form: 'event.add'
+    _title: Create event
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
+  options:
+    parameters:
+      event_template:
+        type: entity:event_template
+
+# Add event template.
+activeforanimals.event_template.create:
+  path: '/create-event-template'
+  defaults:
+    _entity_form: 'event_template.add'
+    _title: Create event template
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
+
+# Select event template.
+activeforanimals.event_template.select:
+  path: '/select-event-template'
+  defaults:
+    _form: '\Drupal\effective_activism\Form\EventTemplate\EventTemplateSelectionForm'
+    _title: Select event template
+  requirements:
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
 
 # Add filter.
 activeforanimals.filter.create:
