@@ -17,7 +17,19 @@
       {{ content.description }}
     </div>
     <div class="column-4-15 last-column">
-      {{ content.contact_information }}
+      <div class="contact-information">
+        <div class="title">
+          {{ 'Contact Details'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            <li>{{ content.website }}</li>
+            <li>{{ content.phone_number }}</li>
+            <li>{{ content.email_address }}</li>
+            <li>{{ content.location }}</li>
+          </ul>
+        </div>
+      </div>
       {{ content.management_toolbox }}
       {{ content.organizer_toolbox }}
     </div>

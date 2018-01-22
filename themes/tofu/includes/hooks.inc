@@ -11,19 +11,6 @@ use Drupal\tofu\Hook\PreprocessHook;
 use Drupal\tofu\Hook\ThemeHook;
 
 /**
- * Implements hook_form_alter().
- */
-function tofu_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
-  $hook = FormAlterHook::getInstance();
-  $args = [
-    'form' => $form,
-    'form_state' => $form_state,
-    'form_id' => $form_id,
-  ];
-  $form = $hook->invoke($args);
-}
-
-/**
  * Implements hook_preprocess().
  */
 function tofu_preprocess(array &$variables, $hook_name) {

@@ -124,7 +124,7 @@ class EventResultTest extends WebTestBase {
         $this->getElementName('//select[contains(@name, "[duration_days]")]') => '0',
       ], $data_fields);
       $this->drupalPostAjaxForm(NULL, $post_data, $this->getElementName('//input[@type="submit" and @value="Create result"]'));
-      $this->drupalPostForm(sprintf('%s/edit', $this->event->toUrl()->toString()), [], t('Save'));
+      $this->drupalPostForm(NULL, [], t('Save'));
       $this->assertResponse(200);
       $this->assertText('Saved the event.', 'Saved the event entity.');
     }
