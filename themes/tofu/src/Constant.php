@@ -7,6 +7,7 @@ use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\effective_activism\Helper\ListBuilder\OrganizationListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ResultTypeListBuilder;
 use Drupal\effective_activism\Helper\ListBuilder\ExportListBuilder;
+use Drupal\effective_activism\Form\Chart\ChartForm;
 use Drupal\effective_activism\Controller\Overview\GroupOverviewController;
 use Drupal\effective_activism\Controller\Overview\EventListController;
 use Drupal\effective_activism\Controller\Overview\EventOverviewController;
@@ -19,7 +20,6 @@ use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
 use Drupal\effective_activism\Controller\Overview\GroupListController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
-use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
@@ -69,7 +69,6 @@ class Constant {
     ManagementToolboxController::THEME_ID,
     OrganizationListBuilder::THEME_ID,
     OrganizerToolboxController::THEME_ID,
-    ResultOverviewController::THEME_ID,
     ResultTypeListBuilder::THEME_ID,
     StaticPageController::THEME_ID,
   ];
@@ -81,6 +80,7 @@ class Constant {
     'event',
     'event_template',
     'export',
+    ChartForm::FORM_ID,
     'filter',
     'group',
     'import',

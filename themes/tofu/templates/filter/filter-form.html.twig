@@ -16,9 +16,35 @@
     <div class="title">
       {{ form.name }}
     </div>
-    {{ form.organization }}
-    <div class="column-wrapper">
-      <div class="column-15-15 first-column">
+    <div class="content">
+      <div class="column-wrapper">
+        <div class="column-15-15">
+          {{ form.organization }}
+        </div>
+        <div class="column-15-15">
+          <div class="section">
+            Filter by dates
+            <div class="content">
+              <div class="column-7-15 first-column">
+                {{ form.start_date }}
+              </div>
+              <div class="column-7-15 last-column">
+                {{ form.end_date }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column-5-15">
+          <div class="section">
+            Filter by location
+            <div class="content">
+              {{ form.location }}
+            </div>
+          </div>
+        </div>
+        <div class="column-10-15">
+          &nbsp;
+        </div>
       </div>
     </div>
     <div class="footer">
