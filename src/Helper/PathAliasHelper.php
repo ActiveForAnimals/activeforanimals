@@ -41,7 +41,6 @@ class PathAliasHelper {
       'publish' => 'publish',
       'imports' => 'imports',
       'events' => 'e',
-      'results' => 'r',
     ],
     EffectiveActivismConstant::ENTITY_IMPORT => [
       '' => '',
@@ -56,6 +55,7 @@ class PathAliasHelper {
       'event-templates' => 'event-templates',
       'exports' => 'exports',
       'filters' => 'filters',
+      'results' => 'r',
     ],
     EffectiveActivismConstant::ENTITY_RESULT_TYPE => [
       '' => '',
