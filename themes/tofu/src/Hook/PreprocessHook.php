@@ -21,7 +21,6 @@ use Drupal\effective_activism\Controller\Overview\ExportOverviewController;
 use Drupal\effective_activism\Controller\Overview\FilterOverviewController;
 use Drupal\effective_activism\Controller\Overview\ImportOverviewController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
-use Drupal\effective_activism\Controller\Overview\ResultOverviewController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
 use Drupal\effective_activism\Controller\Misc\InvitationController;
@@ -66,7 +65,6 @@ use Drupal\tofu\Preprocessor\OrganizerToolboxPreprocessor;
 use Drupal\tofu\Preprocessor\PagePreprocessor;
 use Drupal\tofu\Preprocessor\PublishGroupFormPreprocessor;
 use Drupal\tofu\Preprocessor\ResultFormPreprocessor;
-use Drupal\tofu\Preprocessor\ResultOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ResultTypeOverviewPreprocessor;
 use Drupal\tofu\Preprocessor\ResultTypeFormPreprocessor;
 use Drupal\tofu\Preprocessor\StaticPagePreprocessor;
@@ -267,10 +265,6 @@ class PreprocessHook implements HookInterface {
 
       case 'result_type-form':
         $preprocessor = new ResultTypeFormPreprocessor($variables);
-        break;
-
-      case ResultOverviewController::THEME_ID:
-        $preprocessor = new ResultOverviewPreprocessor($variables);
         break;
 
       case ResultTypeListBuilder::THEME_ID:
