@@ -30,6 +30,11 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
           ]
         ));
         $this->variables['content']['manage_results'] = $element_controller->view(t('Manage results'), 'manage_results', new Url('entity.result_type.collection'));
+        $this->variables['content']['results'] = $element_controller->view(t('View results'), 'view_results', new Url(
+          'entity.organization.results', [
+            'organization' => $entity->id(),
+          ]
+        ));
         $this->variables['content']['manage_exports'] = $element_controller->view(t('Manage exports'), 'manage_exports', new Url(
           'entity.organization.exports', [
             'organization' => $entity->id(),
@@ -42,11 +47,6 @@ class ManagementToolboxPreprocessor extends Preprocessor implements Preprocessor
         ));
         $this->variables['content']['manage_event_templates'] = $element_controller->view(t('Manage event templates'), 'manage_event_templates', new Url(
           'entity.organization.event_templates', [
-            'organization' => $entity->id(),
-          ]
-        ));
-        $this->variables['content']['results'] = $element_controller->view(t('View results'), 'view_results', new Url(
-          'entity.organization.results', [
             'organization' => $entity->id(),
           ]
         ));
