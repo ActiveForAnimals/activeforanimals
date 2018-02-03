@@ -248,8 +248,7 @@ class PublishTest extends WebTestBase {
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('One item published.');
 
-    // Verify that organizer can access export.
-    $this->drupalLogin($this->organizer);
+    // Verify that manager can access export.
     $this->drupalGet($this->export->toUrl()->toString());
     $this->assertResponse(200);
   }
