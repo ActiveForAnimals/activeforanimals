@@ -3,6 +3,8 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Entity\Event;
+use Drupal\effective_activism\Entity\EventTemplate;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -86,6 +88,10 @@ class EventTemplateTest extends WebTestBase {
     $this->drupalPostForm(NULL, [], t('Save'));
     $this->assertText(self::EVENT_TITLE);
     $this->assertText(self::EVENT_DESCRIPTION);
+    // Verify that event template is added to event.
+    $event_template = EventTemplate::load('1');
+    $event = Event::load('1');
+    $this->assertTrue($event->event_template->target_id === $event_template->id(), 'Event template added to event');
   }
 
 }
