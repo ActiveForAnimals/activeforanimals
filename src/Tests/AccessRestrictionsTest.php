@@ -19,6 +19,7 @@ class AccessRestrictionsTest extends WebTestBase {
 
   const PATH_EVENT_ADD = 'create-event';
   const PATH_ADD_CSV_IMPORT = 'import/csv';
+  const PATH_ADD_CSV_EXPORT = 'export/csv';
   const PATH_SELECT_EVENT_TEMPLATE = '/select-event-template';
   const RESULT_TYPE_1 = 'leafleting';
   const RESULT_TYPE_2 = 'pay_per_view_event';
@@ -258,6 +259,9 @@ class AccessRestrictionsTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
+    // Verify that user doesn't have access to create exports.
+    $this->drupalGet(self::PATH_ADD_CSV_EXPORT);
+    $this->assertResponse(403);
 
     // Verify that organizer2 cannot manage events from group1.
     $this->drupalLogin($this->organizer2);
