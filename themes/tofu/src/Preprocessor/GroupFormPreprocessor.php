@@ -2,10 +2,12 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Misc\ContactInformationController;
 use Drupal\effective_activism\Controller\Overview\InvitationOverviewController;
+use Drupal\effective_activism\Helper\AccountHelper;
 
 /**
  * Preprocessor for GroupForm.
@@ -18,6 +20,8 @@ class GroupFormPreprocessor extends Preprocessor implements PreprocessorInterfac
   public function preprocess() {
     // Fetch form array.
     $form = $this->variables['form'];
+    $entity = Drupal::request()->attributes->get('group');
+    $this->variables['is_manager'] = AccountHelper::isManagerOfGroup($entity, Drupal::currentUser());
     // Wrap form elements.
     $field_controller = new FieldController();
     $element_controller = new ElementController();
