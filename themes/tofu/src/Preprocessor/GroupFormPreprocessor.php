@@ -21,7 +21,8 @@ class GroupFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     // Fetch form array.
     $form = $this->variables['form'];
     $entity = Drupal::request()->attributes->get('group');
-    $this->variables['is_manager'] = AccountHelper::isManagerOfGroup($entity, Drupal::currentUser());
+    // Entity will be NULL for group creation. In this case, we assume the user is a manager, as they have exclusive create access.
+    $this->variables['is_manager'] = empty($entity) ? TRUE : AccountHelper::isManagerOfGroup($entity, Drupal::currentUser());
     // Wrap form elements.
     $field_controller = new FieldController();
     $element_controller = new ElementController();
