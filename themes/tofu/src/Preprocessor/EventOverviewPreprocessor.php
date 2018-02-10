@@ -6,6 +6,7 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\Element\ButtonController;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
+use Drupal\effective_activism\Constant;
 
 /**
  * Preprocessor for EventOverview.
@@ -20,16 +21,26 @@ class EventOverviewPreprocessor extends Preprocessor implements PreprocessorInte
     $field_controller = new FieldController();
     $button_controller = new ButtonController();
     $element_controller = new ElementController();
+    $group = !empty($this->variables['elements']['#storage']['entities']['group']) ? $this->variables['elements']['#storage']['entities']['group'] : NULL;
+    $organization = !empty($this->variables['elements']['#storage']['entities']['organization']) ? $this->variables['elements']['#storage']['entities']['organization'] : NULL;
     $event_overview_link = NULL;
     if (!empty($this->variables['elements']['#storage']['entities']['group'])) {
       $event_overview_link = new Url(
       'entity.group.events', [
-        'group' => $this->variables['elements']['#storage']['entities']['group']->id(),
+        'group' => $group->id(),
       ]);
     }
+    // Determine which event creation links should be shown.
+    $event_create_option = isset($organization) ? $organization->event_creation->value : $group->organization->entity->event_creation->value;
+    $this->variables['content']['create_from_template_link'] = in_array($event_create_option, [
+      Constant::EVENT_CREATION_ALL,
+      Constant::EVENT_CREATION_EVENT_TEMPLATE,
+    ]) ? $element_controller->view(t('Create an event template'), 'add_event_template', new Url('activeforanimals.event_template.create')) : NULL;
+    $this->variables['content']['create_link'] = in_array($event_create_option, [
+      Constant::EVENT_CREATION_ALL,
+      Constant::EVENT_CREATION_EVENT,
+    ]) ?  $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create')) : NULL;
     $this->variables['content']['title'] = $element_controller->view(t('Events'), 'title', $event_overview_link);
-    $this->variables['content']['create_link'] = $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create'));
-    $this->variables['content']['create_from_template_link'] = $element_controller->view(t('Create event from template'), 'event_template', new Url('activeforanimals.event_template.select'));
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];
