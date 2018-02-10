@@ -17,6 +17,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class AccessRestrictionsTest extends WebTestBase {
 
+  const PATH_GROUP_ADD = 'create-group';
   const PATH_EVENT_ADD = 'create-event';
   const PATH_ADD_CSV_IMPORT = 'import/csv';
   const PATH_ADD_CSV_EXPORT = 'export/csv';
@@ -35,6 +36,9 @@ class AccessRestrictionsTest extends WebTestBase {
   const STARTTIME = '11:00';
   const ENDDATE = '2016-01-01';
   const ENDTIME = '12:00';
+  const PATTERN_ORGANIZATION_SELECTOR = '"edit-organization-wrapper"';
+  const PATTERN_ORGANIZER_SECTION = '"edit-organizers-wrapper"';
+  const PATTERN_RESULT_TYPE_SECTION = '"element-result_types"';
 
   /**
    * {@inheritdoc}
@@ -170,6 +174,7 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->assertResponse(200);
     $this->drupalGet($this->filter2->toUrl()->toString());
     $this->assertResponse(403);
+
     // Verify that manager1 can manage eventtemplate1 and not eventtemplate2.
     $this->drupalLogin($this->manager1);
     $this->drupalGet($this->eventtemplate1->toUrl()->toString());
@@ -218,8 +223,25 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->drupalGet(sprintf('%s/edit', $this->group2->toUrl()->toString()));
     $this->assertResponse(403);
 
-    // Verify that manager1 can create events for group1.
+    // Verify that organizer1 cannot create groups and cannot access
+    // restricted group fields.
+    $this->drupalLogin($this->organizer1);
+    $this->drupalGet(self::PATH_GROUP_ADD);
+    $this->assertResponse(403);
+    $this->drupalGet(sprintf('%s/edit', $this->group1->toUrl()->toString()));
+    $this->assertResponse(200);
+    $this->assertNoPattern(self::PATTERN_RESULT_TYPE_SECTION, 'Result type section not available');
+    $this->assertNoPattern(self::PATTERN_ORGANIZER_SECTION, 'Organizer section not available');
+    $this->assertNoPattern(self::PATTERN_ORGANIZATION_SELECTOR, 'Organization selection not available');
+
+    // Verify that manager1 can access restricted group fields.
     $this->drupalLogin($this->manager1);
+    $this->drupalGet(sprintf('%s/edit', $this->group1->toUrl()->toString()));
+    $this->assertResponse(200);
+    $this->assertPattern(self::PATTERN_RESULT_TYPE_SECTION, 'Result type section available');
+    $this->assertPattern(self::PATTERN_ORGANIZER_SECTION, 'Organizer section available');
+    $this->assertPattern(self::PATTERN_ORGANIZATION_SELECTOR, 'Organization selection available');
+    // Verify that manager1 can create events for group1.
     // User has access to event overview page.
     $this->drupalGet(sprintf('%s/e', $this->group1->toUrl()->toString()));
     $this->assertResponse(200);

@@ -32,6 +32,11 @@ class OrganizerToolboxPreprocessor extends Preprocessor implements PreprocessorI
         break;
 
       case 'group':
+        $this->variables['content']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+          'entity.group.edit_form', [
+            'group' => $entity->id(),
+          ]
+        ));
         $this->variables['content']['manage_events'] = $element_controller->view(t('Manage events'), 'manage_events', new Url(
           'entity.group.events', [
             'group' => $entity->id(),

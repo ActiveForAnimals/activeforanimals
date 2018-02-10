@@ -3,6 +3,7 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Entity\Group;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -13,13 +14,20 @@ use Drupal\simpletest\WebTestBase;
 class GroupTest extends WebTestBase {
 
   const ADD_GROUP_PATH = '/create-group';
-  const TITLE = 'Test group';
-  const DESCRIPTION = 'Test group description';
-  const WEBSITE = 'https://example.com';
-  const PHONE_NUMBER = '+45 12345678';
-  const EMAIL_ADDRESS = 'test@example.com';
-  const LOCATION_ADDRESS = '';
-  const LOCATION_EXTRA_INFORMATION = 'Test location';
+  const TITLE_1 = 'Test group 1';
+  const DESCRIPTION_1 = 'Test group description 1';
+  const WEBSITE_1 = 'https://example.com/1';
+  const PHONE_NUMBER_1 = '+45 12345678';
+  const EMAIL_ADDRESS_1 = 'test1@example.com';
+  const LOCATION_ADDRESS_1 = '';
+  const LOCATION_EXTRA_INFORMATION_1 = 'Test location 1';
+  const TITLE_2 = 'Test group 2';
+  const DESCRIPTION_2 = 'Test group description 2';
+  const WEBSITE_2 = 'https://example.com/2';
+  const PHONE_NUMBER_2 = '+45 87654321';
+  const EMAIL_ADDRESS_2 = 'test2@example.com';
+  const LOCATION_ADDRESS_2 = '';
+  const LOCATION_EXTRA_INFORMATION_2 = 'Test location 2';
 
   /**
    * {@inheritdoc}
@@ -48,6 +56,13 @@ class GroupTest extends WebTestBase {
   private $manager;
 
   /**
+   * The test organizer.
+   *
+   * @var User
+   */
+  private $organizer;
+
+  /**
    * {@inheritdoc}
    */
   public function setUp() {
@@ -66,24 +81,46 @@ class GroupTest extends WebTestBase {
     $this->drupalGet(self::ADD_GROUP_PATH);
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'title[0][value]' => self::TITLE,
-      'description[0][value]' => self::DESCRIPTION,
-      'website[0][value]' => self::WEBSITE,
-      'phone_number[0][value]' => self::PHONE_NUMBER,
-      'email_address[0][value]' => self::EMAIL_ADDRESS,
-      'location[0][address]' => self::LOCATION_ADDRESS,
-      'location[0][extra_information]' => self::LOCATION_EXTRA_INFORMATION,
+      'title[0][value]' => self::TITLE_1,
+      'description[0][value]' => self::DESCRIPTION_1,
+      'website[0][value]' => self::WEBSITE_1,
+      'phone_number[0][value]' => self::PHONE_NUMBER_1,
+      'email_address[0][value]' => self::EMAIL_ADDRESS_1,
+      'location[0][address]' => self::LOCATION_ADDRESS_1,
+      'location[0][extra_information]' => self::LOCATION_EXTRA_INFORMATION_1,
       'organization[0][target_id]' => $this->organization->id(),
       'timezone' => $this->timezone,
     ], t('Save'));
     $this->assertResponse(200);
-    $this->assertText(sprintf('Created the %s group.', self::TITLE), 'Creating a new group.');
-    $this->assertText(self::TITLE, 'Set title correctly.');
-    $this->assertText(self::DESCRIPTION, 'Set description correctly.');
-    $this->assertText(self::WEBSITE, 'Set website correctly.');
-    $this->assertText(self::PHONE_NUMBER, 'Set phone number correctly.');
-    $this->assertText(self::EMAIL_ADDRESS, 'Set e-mail address correctly.');
-    $this->assertText(self::LOCATION_EXTRA_INFORMATION, 'Set location extra information correctly.');
+    $this->assertText(sprintf('Created the %s group.', self::TITLE_1), 'Creating a new group.');
+    $this->assertText(self::TITLE_1, 'Set title correctly.');
+    $this->assertText(self::DESCRIPTION_1, 'Set description correctly.');
+    $this->assertText(self::WEBSITE_1, 'Set website correctly.');
+    $this->assertText(self::PHONE_NUMBER_1, 'Set phone number correctly.');
+    $this->assertText(self::EMAIL_ADDRESS_1, 'Set e-mail address correctly.');
+    $this->assertText(self::LOCATION_EXTRA_INFORMATION_1, 'Set location extra information correctly.');
+
+    // Verity that organizer can edit existing group.
+    $this->drupalLogin($this->organizer);
+    $this->drupalGet(sprintf('%s/edit', Group::load('1')->toUrl()->toString()));
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [
+      'title[0][value]' => self::TITLE_2,
+      'description[0][value]' => self::DESCRIPTION_2,
+      'website[0][value]' => self::WEBSITE_2,
+      'phone_number[0][value]' => self::PHONE_NUMBER_2,
+      'email_address[0][value]' => self::EMAIL_ADDRESS_2,
+      'location[0][address]' => self::LOCATION_ADDRESS_2,
+      'location[0][extra_information]' => self::LOCATION_EXTRA_INFORMATION_2,
+    ], t('Save'));
+    $this->assertResponse(200);
+    $this->assertText(sprintf('Saved the %s group.', self::TITLE_2), 'Updated a group as organizer.');
+    $this->assertText(self::TITLE_2, 'Set title correctly.');
+    $this->assertText(self::DESCRIPTION_2, 'Set description correctly.');
+    $this->assertText(self::WEBSITE_2, 'Set website correctly.');
+    $this->assertText(self::PHONE_NUMBER_2, 'Set phone number correctly.');
+    $this->assertText(self::EMAIL_ADDRESS_2, 'Set e-mail address correctly.');
+    $this->assertText(self::LOCATION_EXTRA_INFORMATION_2, 'Set location extra information correctly.');
   }
 
 }

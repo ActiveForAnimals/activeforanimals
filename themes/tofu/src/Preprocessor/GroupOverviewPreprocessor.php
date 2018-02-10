@@ -2,11 +2,13 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Controller\Element\ElementController;
 use Drupal\effective_activism\Controller\Element\FieldController;
 use Drupal\effective_activism\Controller\Element\ImageController;
+use Drupal\effective_activism\Helper\AccountHelper;
 
 /**
  * Preprocessor for GroupOverview.
@@ -21,6 +23,7 @@ class GroupOverviewPreprocessor extends Preprocessor implements PreprocessorInte
     $image_controller = new ImageController();
     $field_controller = new FieldController();
     $element_controller = new ElementController();
+    $organization = Drupal::request()->attributes->get('organization');
     $group_overview_link = NULL;
     if (!empty($this->variables['elements']['#storage']['entities']['organization'])) {
       $group_overview_link = new Url(
@@ -29,7 +32,9 @@ class GroupOverviewPreprocessor extends Preprocessor implements PreprocessorInte
         ]);
     }
     $this->variables['content']['title'] = $element_controller->view(t('Groups'), 'title', $group_overview_link);
-    $this->variables['content']['create_link'] = $element_controller->view(t('Create group'), 'add_group', new Url('activeforanimals.group.create'));
+    if (AccountHelper::isManager($organization, Drupal::currentUser())) {
+      $this->variables['content']['create_link'] = $element_controller->view(t('Create group'), 'add_group', new Url('activeforanimals.group.create'));
+    }
     $this->variables['content']['empty'] = t('No groups created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['groups'] as $group) {
       $group_elements = [];
