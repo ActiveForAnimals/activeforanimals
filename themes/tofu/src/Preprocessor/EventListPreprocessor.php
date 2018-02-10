@@ -39,7 +39,7 @@ class EventListPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['create_link'] = in_array($event_create_option, [
       Constant::EVENT_CREATION_ALL,
       Constant::EVENT_CREATION_EVENT,
-    ]) ?  $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create')) : NULL;
+    ]) ? $element_controller->view(t('Create event'), 'add_event', new Url('activeforanimals.event.create')) : NULL;
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];
