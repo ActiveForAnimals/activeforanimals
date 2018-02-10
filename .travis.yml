@@ -43,7 +43,7 @@ before_script:
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
-  - git clone https://github.com/EffectiveActivism/effective_activism.git $MODULE_PATH/effective_activism
+  - git clone --branch development https://github.com/EffectiveActivism/effective_activism.git $MODULE_PATH/effective_activism
   - git clone --branch 8.x-1.x https://git.drupal.org/project/inline_entity_form.git $MODULE_PATH/inline_entity_form
   # Apply patches.
   - cd $MODULE_PATH/inline_entity_form
