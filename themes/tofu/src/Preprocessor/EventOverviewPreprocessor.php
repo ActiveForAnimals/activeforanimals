@@ -35,7 +35,7 @@ class EventOverviewPreprocessor extends Preprocessor implements PreprocessorInte
     $this->variables['content']['create_from_template_link'] = in_array($event_create_option, [
       Constant::EVENT_CREATION_ALL,
       Constant::EVENT_CREATION_EVENT_TEMPLATE,
-    ]) ? $element_controller->view(t('Create an event template'), 'add_event_template', new Url('activeforanimals.event_template.create')) : NULL;
+    ]) ? $element_controller->view(t('Create event from template'), 'add_event_template', new Url('activeforanimals.event_template.select')) : NULL;
     $this->variables['content']['create_link'] = in_array($event_create_option, [
       Constant::EVENT_CREATION_ALL,
       Constant::EVENT_CREATION_EVENT,
