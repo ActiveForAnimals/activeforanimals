@@ -54,7 +54,7 @@ activeforanimals.export:
     _entity_form: 'export.add'
     _title: Export events
   requirements:
-    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyStaff'
+    _custom_access: '\Drupal\effective_activism\Permission\Permission::isAnyManager'
   options:
     parameters:
       export_type:

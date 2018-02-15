@@ -658,6 +658,11 @@ input.form-submit:focus,
   font-weight: bold;
 }
 
+.form.element-event_creation label {
+  display: block;
+  font-weight: bold;
+}
+
 .form.element-instructions label {
   display: block;
   font-weight: bold;
