@@ -30,11 +30,14 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
         $group->get('logo')->entity->getFileUri(),
         'logo',
         self::LOGO_110X110,
-        new Url('entity.group.canonical', ['group' => $group->id()])
+        new Url('entity.group.canonical', [
+          'organization' => PathHelper::transliterate($group->organization->entity->label()),
+          'group' => PathHelper::transliterate($group->label()),
+        ])
       ) : NULL;
       $group_elements['title'] = $this->wrapField($group->get('title'), new Url('entity.group.canonical', [
-        'organization_title' => PathHelper::transliterate($group->organization->entity->label()),
-        'group_title' => PathHelper::transliterate($group->label()),
+        'organization' => PathHelper::transliterate($group->organization->entity->label()),
+        'group' => PathHelper::transliterate($group->label()),
       ]));
       $group_elements['location'] = !$group->get('location')->isEmpty() ? $this->wrapField($group->get('location')) : NULL;
       $group_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [

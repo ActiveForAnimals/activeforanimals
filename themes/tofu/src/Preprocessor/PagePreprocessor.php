@@ -18,7 +18,7 @@ class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
   public function preprocess() {
     $this->variables['content']['logo'] = $this->wrapImage(sprintf('%s/images/logo.png', drupal_get_path('theme', Constant::MACHINE_NAME)), 'logo', NULL, new Url('activeforanimals.frontpage'));
     $this->variables['content']['guide'] = $this->wrapElement(t('Guide'), 'guide', new Url('activeforanimals.guide'));
-    $this->variables['content']['organizations'] = $this->wrapElement(t('Organizations'), 'organizations', new Url('activeforanimals.organization.overview'));
+    $this->variables['content']['organizations'] = $this->wrapElement(t('Organizations'), 'organizations', new Url('entity.organization.collection'));
     $this->variables['content']['help'] = $this->wrapElement(t('Help'), 'help', new Url('activeforanimals.help'));
     $this->variables['content']['register_link'] = $this->wrapButton(t('Register'), 'register_link', new Url('user.register'));
     $this->variables['content']['login_link'] = $this->wrapButton(t('Log in'), 'login_link', new Url('user.login'));

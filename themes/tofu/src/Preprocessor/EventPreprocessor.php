@@ -10,7 +10,7 @@ use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\tofu\Constant;
 
 /**
- * Preprocessor for Event.
+ * Preprocessor for Event entities.
  */
 class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
 
