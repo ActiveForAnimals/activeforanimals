@@ -24,6 +24,7 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['form']['description'] = $field_controller->form($form['description'], 'description');
     $this->variables['form']['timezone'] = $field_controller->form($form['timezone'], 'timezone');
     $this->variables['form']['managers'] = $field_controller->form($form['managers'], 'inline_entity_form');
+    $this->variables['form']['event_creation'] = $field_controller->form($form['event_creation'], 'event_creation');
     // Get contact information.
     $contact_information_controller = new ContactInformationController();
     $this->variables['form']['contact_information'] = $contact_information_controller->form($form);

@@ -48,6 +48,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     // Get organization events.
     $events = OrganizationHelper::getEvents($organization, 0, EventListController::EVENT_DISPLAY_LIMIT);
     $event_list_controller = new EventListController([
+      'organization' => $organization,
       'events' => $events,
     ]);
     $this->variables['content']['events'] = $event_list_controller->view();
