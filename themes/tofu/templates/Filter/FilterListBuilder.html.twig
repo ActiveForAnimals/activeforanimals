@@ -1,25 +1,23 @@
 {#
 /**
  * @file
- * Group list.
+ * Filter list.
  *
  */
 #}
 <div class="section">
-  <div class="list groups">
+  <div class="list filters">
     <div class="title">
       {{ content.title }}
     </div>
     <div class="content">
       <ul>
-        {% for group in content.groups %}
+        {% for filter in content.filters %}
         <li>
           <div class="column-wrapper">
             <div class="column-15-15">
-              {{ group.logo }}
-              {{ group.title }}
-              {{ group.location }}
-              {{ group.event_count }}
+              {{ filter.title }}
+              {{ filter.event_count }}
             </div>
           </div>
         </li>

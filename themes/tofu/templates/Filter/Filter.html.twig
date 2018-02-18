@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * An organization page.
+ * A group page.
  *
  */
 #}
@@ -30,29 +30,21 @@
           </ul>
         </div>
       </div>
-      <div class="links">
-        <div class="title">
-          {{ 'Operations'|t }}
-        </div>
-        <div class="content">
-          <ul>
-            {% for element in content.links %}
-            {% if element|render %}
-            <li>{{ element }}</li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-
+      {{ content.management_toolbox }}
+      {{ content.organizer_toolbox }}
     </div>
   </div>
 </div>
+
 <div class="column-wrapper">
   <div class="column-11-15 first-column">
-    {{ content.events }}
+    <div class="section">
+      {{ content.events }}
+    </div>
   </div>
   <div class="column-4-15 last-column">
-    {{ content.groups }}
+    <div class="section">
+      {{ content.groups }}
+    </div>
   </div>
 </div>

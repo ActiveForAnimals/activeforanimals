@@ -31,7 +31,6 @@ class EntityInsertHook implements HookInterface {
    */
   public function invoke(array $args) {
     $entity = $args['entity'];
-    PathAliasHelper::add($entity);
   }
 
 }

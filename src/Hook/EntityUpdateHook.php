@@ -31,7 +31,6 @@ class EntityUpdateHook implements HookInterface {
    */
   public function invoke(array $args) {
     $entity = $args['entity'];
-    PathAliasHelper::update($entity);
   }
 
 }

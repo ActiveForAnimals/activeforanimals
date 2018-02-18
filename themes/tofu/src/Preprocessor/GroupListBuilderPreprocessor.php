@@ -17,10 +17,10 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
   public function preprocess() {
     $group_overview_link = NULL;
     if (!empty($this->variables['elements']['#storage']['entities']['organization'])) {
-      //$group_overview_link = new Url(
-      //  'entity.organization.groups', [
-      //    'organization' => $this->variables['elements']['#storage']['entities']['organization']->id(),
-      //  ]);
+      $group_overview_link = new Url(
+        'entity.organization.groups', [
+          'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+      ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Groups'), 'title', $group_overview_link);
     $this->variables['content']['empty'] = t('No groups created yet.');
