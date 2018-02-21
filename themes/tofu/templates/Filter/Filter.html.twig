@@ -1,50 +1,42 @@
 {#
 /**
  * @file
- * A group page.
+ * A filter page.
  *
  */
 #}
-<div class="section">
-  <div class="column-wrapper">
-    <div class="column-3-15 first-column">
-      {{ content.logo }}
-    </div>
-    <div class="column-8-15">
-      <div class="title">
-        {{ content.title }}
-      </div>
-      {{ content.description }}
-    </div>
-    <div class="column-4-15 last-column">
-      <div class="contact-information">
-        <div class="title">
-          {{ 'Contact Details'|t }}
-        </div>
-        <div class="content">
-          <ul>
-            <li>{{ content.website }}</li>
-            <li>{{ content.phone_number }}</li>
-            <li>{{ content.email_address }}</li>
-            <li>{{ content.location }}</li>
-          </ul>
-        </div>
-      </div>
-      {{ content.management_toolbox }}
-      {{ content.organizer_toolbox }}
-    </div>
-  </div>
-</div>
-
 <div class="column-wrapper">
-  <div class="column-11-15 first-column">
+  <div class="column-15-15 first-column">
     <div class="section">
-      {{ content.events }}
-    </div>
-  </div>
-  <div class="column-4-15 last-column">
-    <div class="section">
-      {{ content.groups }}
+    <div class="title">
+        {{ 'Filter'|t }}
+      </div>
+      <div class="content">
+        <div class="column-wrapper">
+          <div class="column-8-15 first-column">
+            {{ content.title }}
+            {{ content.organization }}
+          </div>
+          <div class="column-7-15 last-column">
+            {% if content.links is not empty %}
+            <div class="links">
+              <div class="title">
+                {{ 'Operations'|t }}
+              </div>
+              <div class="content">
+                <ul>
+                  {% for element in content.links %}
+                  {% if element|render %}
+                  <li>{{ element }}</li>
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

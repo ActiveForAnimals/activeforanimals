@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * A group form page.
+ * A filter form page.
  *
  */
 #}
@@ -10,39 +10,46 @@
 {{ form.form_token }}
 {{ form.form_id }}
   <div class="section">
-    <div class="column-wrapper">
-      <div class="column-3-15 first-column">
-        {{ form.logo }}
-        {% if is_manager %}
+    <div class="title">
+      {{ 'Filter'|t }}
+    </div>
+    <div class="title">
+      {{ form.name }}
+    </div>
+    <div class="content">
+      <div class="column-wrapper">
+        <div class="column-15-15">
           {{ form.organization }}
-        {% endif %}
-      </div>
-      <div class="column-8-15">
-        <div class="title">
-          {{ form.title }}
         </div>
-        {{ form.description }}
-        {{ form.timezone }}
-        {% if is_manager %}
-          {{ form.result_types }}
-        {% endif %}
-      </div>
-      <div class="column-4-15 last-column">
-        {{ form.contact_information }}
+        <div class="column-15-15">
+          <div class="section">
+            Filter by dates
+            <div class="content">
+              <div class="column-7-15 first-column">
+                {{ form.start_date }}
+              </div>
+              <div class="column-7-15 last-column">
+                {{ form.end_date }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column-5-15">
+          <div class="section">
+            Filter by location
+            <div class="content">
+              {{ form.location }}
+            </div>
+          </div>
+        </div>
+        <div class="column-10-15">
+          &nbsp;
+        </div>
       </div>
     </div>
-    {% if is_manager %}
-      <div class="title">
-        {{ 'Organizers'|t }}
-      </div>
-      <div class="content members">
-        {{ form.organizers }}
-        {{ form.invitations }}
-      </div>
-    {% endif %}
     <div class="footer">
       {{ form.actions.submit }}
       {{ help_button }}
     </div>
-</div>
+  </div>
 </form>

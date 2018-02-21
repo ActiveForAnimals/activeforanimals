@@ -28,7 +28,17 @@
         {% endif %}
       </div>
       <div class="column-4-15 last-column">
-        {{ form.contact_information }}
+        <div class="title">
+          {{ 'Contact Details'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            <li>{{ form.website }}</li>
+            <li>{{ form.phone_number }}</li>
+            <li>{{ form.email_address }}</li>
+            <li>{{ form.location }}</li>
+          </ul>
+        </div>
       </div>
     </div>
     {% if is_manager %}
@@ -46,3 +56,11 @@
     </div>
 </div>
 </form>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

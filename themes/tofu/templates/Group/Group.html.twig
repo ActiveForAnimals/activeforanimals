@@ -30,21 +30,30 @@
           </ul>
         </div>
       </div>
-      {{ content.management_toolbox }}
-      {{ content.organizer_toolbox }}
+      {% if content.links is not empty %}
+      <div class="links">
+        <div class="title">
+          {{ 'Operations'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            {% for element in content.links %}
+            {% if element|render %}
+            <li>{{ element }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>
-
 <div class="column-wrapper">
   <div class="column-11-15 first-column">
-    <div class="section">
-      {{ content.events }}
-    </div>
+    {{ content.events }}
   </div>
   <div class="column-4-15 last-column">
-    <div class="section">
-      {{ content.groups }}
-    </div>
+    {{ content.groups }}
   </div>
 </div>

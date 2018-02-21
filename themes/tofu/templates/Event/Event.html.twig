@@ -5,18 +5,18 @@
  *
  */
 #}
-<div class="column-wrapper">
-  <div class="column-11-15 first-column">
-    <div class="section">
+<div class="section">
+  <div class="column-wrapper">
+    <div class="column-11-15 first-column">
       <div class="title">
         {{ 'Event'|t }}
       </div>
       <div class="content">
         <div class="column-wrapper">
-          <div class="column-1-1">
+          <div class="column-15-15">
             {{ content.map }}
           </div>
-          <div class="column-8-15 first-column">
+          <div class="column-15-15 first-column">
             {{ content.title }}
             {{ content.location }}
             <div class="column-wrapper">
@@ -28,22 +28,35 @@
               </div>
             </div>
             {{ content.description }}
-            {{ content.results }}
-            {{ content.management_toolbox }}
-            {{ content.organizer_toolbox }}
-          </div>
-          <div class="column-7-15 last-column">
           </div>
         </div>
       </div>
     </div>
-    <div class="section">
-      {{ content.events }}
+    <div class="column-4-15 last-column">
+      {% if content.links is not empty %}
+      <div class="links">
+        <div class="title">
+          {{ 'Operations'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            {% for element in content.links %}
+            {% if element|render %}
+            <li>{{ element }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
+</div>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
   <div class="column-4-15 last-column">
-    <div class="section">
-      {{ content.groups }}
-    </div>
+    {{ content.groups }}
   </div>
 </div>

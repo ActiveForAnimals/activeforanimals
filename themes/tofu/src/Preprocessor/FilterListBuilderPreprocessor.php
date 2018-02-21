@@ -28,7 +28,7 @@ class FilterListBuilderPreprocessor extends Preprocessor implements Preprocessor
       $filter_elements = [];
       $filter_elements['title'] = $this->wrapField($filter->get('name'), new Url('entity.filter.canonical', [
         'organization' => PathHelper::transliterate($filter->organization->entity->label()),
-        'filter' => PathHelper::transliterate($filter->label()),
+        'filter' => $filter->id(),
       ]));
       $filter_elements['location'] = !$filter->get('location')->isEmpty() ? $this->wrapField($filter->get('location')) : NULL;
       $filter_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [

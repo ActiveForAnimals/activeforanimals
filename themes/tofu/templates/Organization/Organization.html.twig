@@ -30,6 +30,7 @@
           </ul>
         </div>
       </div>
+      {% if content.links is not empty %}
       <div class="links">
         <div class="title">
           {{ 'Operations'|t }}
@@ -44,7 +45,7 @@
           </ul>
         </div>
       </div>
-
+      {% endif %}
     </div>
   </div>
 </div>

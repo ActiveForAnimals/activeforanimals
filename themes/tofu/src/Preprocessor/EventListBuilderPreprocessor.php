@@ -16,16 +16,26 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
    */
   public function preprocess() {
     $event_overview_link = NULL;
+    $event_add_link = NULL;
+    $event_add_from_template_link = NULL;
     if (!empty($this->variables['elements']['#storage']['entities']['group'])) {
       $event_overview_link = new Url(
         'entity.group.events', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
           'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
       ]);
+      $event_add_link = new Url('entity.event.add_form', [
+        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+        'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+      ]);
+      $event_add_from_template_link = new Url('entity.event.add_from_template', [
+        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+        'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+      ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Events'), 'title', $event_overview_link);
-    $this->variables['content']['create_link'] = $this->wrapElement(t('Create event'), 'add_event', new Url('entity.event.add_form'));
-    $this->variables['content']['create_from_template_link'] = $this->wrapElement(t('Create event from template'), 'event_template', new Url('entity.event_template.add_form'));
+    $this->variables['content']['create_link'] = $this->wrapElement(t('Create event'), 'add_event', $event_add_link);
+    $this->variables['content']['create_from_template_link'] = $this->wrapElement(t('Create event from template'), 'event_template', $event_add_from_template_link);
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];

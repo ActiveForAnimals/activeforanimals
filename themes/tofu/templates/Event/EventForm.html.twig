@@ -6,36 +6,59 @@
  */
 #}
 <form{{ attributes }}>
-{{ form.form_build_id }}
-{{ form.form_token }}
-{{ form.form_id }}
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
   <div class="section">
-    <div class="title">
-      {{ 'Event'|t }}
-    </div>
-    <div class="title">
-      {{ form.title }}
-    </div>
-    {{ form.parent }}
-    {{ form.location }}
     <div class="column-wrapper">
-      <div class="column-7-15 first-column">
-        {{ form.start_date }}
+      <div class="column-11-15 first-column">
+        <div class="title">
+          {{ 'Event'|t }}
+        </div>
+        <div class="content">
+          {{ form.parent }}
+          <div class="column-wrapper">
+            <div class="column-15-15">
+              {{ content.map }}
+            </div>
+            <div class="column-15-15 first-column">
+              {{ form.title }}
+              {{ form.location }}
+              <div class="column-wrapper">
+                <div class="column-7-15 first-column">
+                  {{ form.start_date }}
+                </div>
+                <div class="column-7-15 last-column">
+                  {{ form.end_date }}
+                </div>
+              </div>
+              {{ form.description }}
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="column-7-15 last-column">
-        {{ form.end_date }}
+      <div class="column-4-15 last-column">
       </div>
-    </div>
-    {{ form.description }}
-    <div class="title">
-      {{ 'Results'|t }}
-    </div>
-    <div class="content">
-      {{ form.results }}
-    </div>
-    <div class="footer">
-      {{ form.actions.submit }}
-      {{ help_button }}
+      <div class="column-15-15 last-column">
+        <div class="title">
+          {{ 'Results'|t }}
+        </div>
+        <div class="content">
+          {{ form.results }}
+        </div>
+      </div>
     </div>
   </div>
+  <div class="footer">
+    {{ form.actions.submit }}
+    {{ help_button }}
+  </div>
 </form>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

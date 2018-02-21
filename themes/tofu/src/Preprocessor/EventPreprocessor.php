@@ -3,10 +3,13 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
+use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
+use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\tofu\Constant;
 
 /**
@@ -66,15 +69,34 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['map'] = $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
-    //$management_toolbox_controller = new ManagementToolboxController($event);
-    //if ($management_toolbox_controller->access()) {
-    //  $this->variables['content']['management_toolbox'] = $management_toolbox_controller->view();
-    //}
-    // Organizer toolbox.
-    //$organizer_toolbox_controller = new OrganizerToolboxController($event);
-    //if ($organizer_toolbox_controller->access()) {
-    //  $this->variables['content']['organizer_toolbox'] = $organizer_toolbox_controller->view();
-    //}
+    // Add manager links.
+    if (AccountHelper::isManager($event->parent->entity->organization->entity)) {
+      $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
+        'entity.event.edit_form', [
+          'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+          'group' => PathHelper::transliterate($event->parent->entity->label()),
+          'event' => $event->id(),
+        ]
+      ));
+      $publish_state = $event->isPublished() ? t('Unpublish') : t('Publish');
+      $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
+        'entity.event.publish_form', [
+          'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+          'group' => PathHelper::transliterate($event->parent->entity->label()),
+          'event' => $event->id(),
+        ]
+      ));
+    }
+    // Add organizer links.
+    elseif (AccountHelper::isOrganizer($event->parent->entity)) {
+      $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
+        'entity.event.edit_form', [
+          'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+          'group' => PathHelper::transliterate($event->parent->entity->label()),
+          'event' => $event->id(),
+        ]
+      ));
+    }
     return $this->variables;
   }
 
