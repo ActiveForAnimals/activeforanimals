@@ -23,17 +23,23 @@ class FilterListBuilderPreprocessor extends Preprocessor implements Preprocessor
       ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Filters'), 'title', $filter_overview_link);
+    $this->variables['content']['create_link'] = $this->wrapElement(t('Create filter'), 'add_filter', new Url(
+      'entity.filter.add_form', [
+        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+      ]
+    ));
     $this->variables['content']['empty'] = t('No filters created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['filters'] as $filter_id => $filter) {
       $filter_elements = [];
-      $filter_elements['title'] = $this->wrapField($filter->get('name'), new Url('entity.filter.canonical', [
+      $filter_link = new Url('entity.filter.canonical', [
         'organization' => PathHelper::transliterate($filter->organization->entity->label()),
         'filter' => $filter->id(),
-      ]));
-      $filter_elements['location'] = !$filter->get('location')->isEmpty() ? $this->wrapField($filter->get('location')) : NULL;
+      ]);
+      $filter_elements['title'] = $this->wrapField($filter->get('name'), $filter_link);
       $filter_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [
         '@event_count' => count(FilterHelper::getEvents($filter, 0, 0, FALSE)),
       ]), 'event_count');
+      $filter_elements['more_info'] = $this->wrapButton(t('More info'), 'more_info', $filter_link);
       $this->variables['content']['filters'][] = $filter_elements;
     }
     return $this->variables;

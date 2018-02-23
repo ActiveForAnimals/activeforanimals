@@ -6,7 +6,7 @@ use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\effective_activism\Helper\AccountHelper;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -59,18 +59,17 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
    */
   public function preprocess() {
     $event = $this->variables['elements']['#event'];
-    $this->variables['content']['title'] = $this->wrapField($event->get('title'));
-    $this->variables['content']['location'] = $this->wrapField($event->get('location'));
-    $this->variables['content']['description'] = $this->wrapField($event->get('description'));
-    $this->variables['content']['start_date'] = $this->wrapField($event->get('start_date'));
-    $this->variables['content']['end_date'] = $this->wrapField($event->get('end_date'));
-    $this->variables['content']['results'] = $this->wrapField($event->get('results'));
-    $this->variables['content']['results'] = $this->wrapField($event->get('results'));
+    $this->variables['content']['title'] = $event->get('title')->isEmpty() ? NULL : $this->wrapField($event->get('title'));
+    $this->variables['content']['location'] = $event->get('location')->isEmpty() ? NULL : $this->wrapField($event->get('location'));
+    $this->variables['content']['description'] = $event->get('description')->isEmpty() ? NULL : $this->wrapField($event->get('description'));
+    $this->variables['content']['start_date'] = $event->get('start_date')->isEmpty() ? NULL : $this->wrapField($event->get('start_date'));
+    $this->variables['content']['end_date'] = $event->get('end_date')->isEmpty() ? NULL : $this->wrapField($event->get('end_date'));
+    $this->variables['content']['results'] = $event->get('results')->isEmpty() ? NULL : $this->wrapField($event->get('results'));
     $this->variables['content']['map'] = $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
     // Add manager links.
-    if (AccountHelper::isManager($event->parent->entity->organization->entity)) {
+    if (AccessControl::isManager($event->parent->entity->organization->entity)) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.event.edit_form', [
           'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
@@ -88,7 +87,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       ));
     }
     // Add organizer links.
-    elseif (AccountHelper::isOrganizer($event->parent->entity)) {
+    elseif (AccessControl::isOrganizer($event->parent->entity)) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.event.edit_form', [
           'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),

@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
 use Drupal\effective_activism\Helper\GroupHelper;
@@ -68,7 +69,7 @@ class GroupFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = isset($this->eventListBuilder) ? $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render() : NULL;
     // Entity will be NULL for group creation. In this case, we assume the user is a manager, as they have exclusive create access.
-    $this->variables['is_manager'] = empty($entity) ? TRUE : AccountHelper::isManagerOfGroup($entity, Drupal::currentUser());
+    $this->variables['is_manager'] = empty($entity) ? TRUE : AccessControl::isManager($entity->organization->entity, Drupal::currentUser());
     return $this->variables;
   }
 

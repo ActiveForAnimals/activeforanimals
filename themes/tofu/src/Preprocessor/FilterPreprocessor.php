@@ -4,9 +4,9 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
 use Drupal\Core\Url;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -27,7 +27,7 @@ class FilterPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['organization'] = $filter->get('organization')->isEmpty() ? NULL : $this->wrapField($filter->get('organization'));
     $this->variables['content']['title'] = $filter->get('name')->isEmpty() ? NULL : $this->wrapField($filter->get('name'));
     // Add manager links.
-    if (AccountHelper::isManager($filter->get('organization')->entity)) {
+    if (AccessControl::isManager($filter->get('organization')->entity)) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.filter.edit_form', [
           'organization' => PathHelper::transliterate($filter->get('organization')->entity->label()),

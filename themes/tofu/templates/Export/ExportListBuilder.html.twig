@@ -1,32 +1,36 @@
 {#
 /**
  * @file
- * Filter list.
+ * Export list.
  *
  */
 #}
 <div class="section">
-  <div class="list filters">
+  <div class="list exports">
     <div class="title">
       {{ content.title }}
     </div>
     <div class="content">
       <ul>
-        {% for filter in content.filters %}
+        {% if content.exports is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for export in content.exports %}
         <li>
           <div class="column-wrapper">
-            <div class="column-8-15 first-column">
-              {{ filter.title }}
+            <div class="column-3-15 first-column">
+              {{ export.created }}
             </div>
-            <div class="column-3-15">
-              {{ filter.event_count }}
+            <div class="column-8-15 first-column">
+              {{ export.filter }}
             </div>
             <div class="column-4-15 last-column">
-              {{ filter.more_info }}
+              {{ export.more_info }}
             </div>
           </div>
         </li>
         {% endfor %}
+        {% endif %}
       </ul>
     </div>
     <div class="footer">

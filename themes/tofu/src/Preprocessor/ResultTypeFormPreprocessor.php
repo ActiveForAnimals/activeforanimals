@@ -25,7 +25,6 @@ class ResultTypeFormPreprocessor extends Preprocessor implements PreprocessorInt
     $this->variables['form']['importname'] = $this->wrapFormElement($form['importname'], 'importname');
     $this->variables['form']['description'] = $this->wrapFormElement($form['description'], 'description');
     $this->variables['form']['datatypes'] = $this->wrapFormElement($form['datatypes'], 'datatypes');
-    $this->variables['form']['organization'] = $this->wrapFormElement($form['organization'], 'organization');
     $this->variables['form']['groups'] = $this->wrapFormElement($form['groups'], 'groups');
     $this->variables['help_button'] = [
       '#id' => 'activeforanimals_help',

@@ -4,9 +4,9 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
 use Drupal\Core\Url;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -64,7 +64,7 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
     // Add manager links.
-    if (AccountHelper::isManager($group->organization->entity)) {
+    if (AccessControl::isManager($group->organization->entity)) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.group.edit_form', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
@@ -92,7 +92,7 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
       ));
     }
     // Add organizer links.
-    elseif (AccountHelper::isOrganizer($group)) {
+    elseif (AccessControl::isOrganizer($group)) {
       $this->variables['content']['links']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
         'entity.group.edit_form', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),

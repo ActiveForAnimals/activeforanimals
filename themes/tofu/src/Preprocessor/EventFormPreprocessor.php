@@ -54,7 +54,6 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
   public function preprocess() {
     $event = Drupal::request()->get('event');
     $this->variables['form']['title'] = $this->wrapFormElement($this->variables['form']['title'], 'title');
-    $this->variables['form']['parent'] = $this->wrapFormElement($this->variables['form']['parent'], 'parent');
     $this->variables['form']['description'] = $this->wrapFormElement($this->variables['form']['description'], 'description');
     $this->variables['form']['location'] = $this->wrapFormElement($this->variables['form']['location'], 'location');
     $this->variables['form']['start_date'] = $this->wrapFormElement($this->variables['form']['start_date'], 'start_date');

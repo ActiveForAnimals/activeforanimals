@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * An export form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Export'|t }}
+    </div>
+    <div class="section">
+      <div class="column-wrapper">
+        <div class="column-7-15 first-column">
+          {{ form.filter }}
+        </div>
+      </div>
+    </div>
+    <div class="title">
+      {{ 'File'|t }}
+    </div>
+    <div class="content">
+      {{ form.field_file_csv }}
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
+    </div>
+  </div>
+</form>

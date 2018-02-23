@@ -6,11 +6,11 @@
  */
 #}
 <div class="section">
+  <div class="title">
+    {{ 'Event'|t }}
+  </div>
   <div class="column-wrapper">
     <div class="column-11-15 first-column">
-      <div class="title">
-        {{ 'Event'|t }}
-      </div>
       <div class="content">
         <div class="column-wrapper">
           <div class="column-15-15">
@@ -18,21 +18,15 @@
           </div>
           <div class="column-15-15 first-column">
             {{ content.title }}
-            {{ content.location }}
-            <div class="column-wrapper">
-              <div class="column-7-15 first-column">
-                {{ content.start_date }}
-              </div>
-              <div class="column-7-15 last-column">
-                {{ content.end_date }}
-              </div>
-            </div>
             {{ content.description }}
           </div>
         </div>
       </div>
     </div>
     <div class="column-4-15 last-column">
+      {{ content.start_date }}
+      {{ content.end_date }}
+      {{ content.location }}
       {% if content.links is not empty %}
       <div class="links">
         <div class="title">

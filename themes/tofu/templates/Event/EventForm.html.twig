@@ -10,48 +10,41 @@
   {{ form.form_token }}
   {{ form.form_id }}
   <div class="section">
+    <div class="title">
+      {{ 'Event'|t }}
+    </div>
     <div class="column-wrapper">
       <div class="column-11-15 first-column">
-        <div class="title">
-          {{ 'Event'|t }}
-        </div>
         <div class="content">
-          {{ form.parent }}
           <div class="column-wrapper">
             <div class="column-15-15">
               {{ content.map }}
             </div>
             <div class="column-15-15 first-column">
               {{ form.title }}
-              {{ form.location }}
-              <div class="column-wrapper">
-                <div class="column-7-15 first-column">
-                  {{ form.start_date }}
-                </div>
-                <div class="column-7-15 last-column">
-                  {{ form.end_date }}
-                </div>
-              </div>
               {{ form.description }}
+            </div>
+            <div class="column-15-15 last-column">
+              <div class="title">
+                {{ 'Results'|t }}
+              </div>
+              <div class="content">
+                {{ form.results }}
+              </div>
+            </div>
+            <div class="footer">
+              {{ form.actions.submit }}
+              {{ help_button }}
             </div>
           </div>
         </div>
       </div>
       <div class="column-4-15 last-column">
-      </div>
-      <div class="column-15-15 last-column">
-        <div class="title">
-          {{ 'Results'|t }}
-        </div>
-        <div class="content">
-          {{ form.results }}
-        </div>
+        {{ form.start_date }}
+        {{ form.end_date }}
+        {{ form.location }}
       </div>
     </div>
-  </div>
-  <div class="footer">
-    {{ form.actions.submit }}
-    {{ help_button }}
   </div>
 </form>
 <div class="column-wrapper">

@@ -152,7 +152,12 @@ abstract class Preprocessor implements PreprocessorInterface {
       sprintf(self::ELEMENT_CLASS_FORMAT, $field->getName()),
     ]);
     if (empty($url)) {
-      $content['element'] = $field->view('full');
+      $content['element'] = $field->view([
+        'label' => 'hidden',
+        'settings' => [
+          'link' => FALSE
+        ],
+      ]);
     }
     else {
       $content['element'] = [
