@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\PathHelper;
 
@@ -27,7 +26,7 @@ class EventTemplateListBuilderPreprocessor extends Preprocessor implements Prepr
     $this->variables['content']['create_link'] = $this->wrapElement(t('Create event template'), 'add_event_template', new Url(
       'entity.event_template.add_form', [
         'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-    ]));
+      ]));
     $this->variables['content']['empty'] = t('No event templates created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['event_templates'] as $event_template) {
       $event_template_elements = [];

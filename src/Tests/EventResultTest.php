@@ -3,7 +3,6 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
-use Drupal\Core\Url;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;

@@ -57,7 +57,7 @@ class ThemeHook implements HookInterface {
         $handlers = $entity_type->get('handlers');
         // Add forms.
         if (!empty($handlers['form'])) {
-          // Filter duplicates, as typical with add and edit form handlers. 
+          // Filter duplicates, as typical with add and edit form handlers.
           $form_classes = array_unique(array_values($handlers['form']));
           foreach ($form_classes as $form_class) {
             $pieces = explode('\\', $form_class);

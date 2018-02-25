@@ -21,7 +21,7 @@ class ImportListBuilderPreprocessor extends Preprocessor implements Preprocessor
         'entity.group.imports', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
           'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
-      ]);
+        ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Imports'), 'title', $import_overview_link);
     $this->variables['content']['create_link'] = $this->wrapElement(t('Create import'), 'add_import', new Url(

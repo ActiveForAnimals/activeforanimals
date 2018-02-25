@@ -5,7 +5,6 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Entity\DataType;
 use Drupal\effective_activism\Entity\Organization;
-use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 
 /**
@@ -22,7 +21,7 @@ class ResultTypeListBuilderPreprocessor extends Preprocessor implements Preproce
       $result_type_overview_link = new Url(
         'entity.organization.result_types', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-      ]);
+        ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Result types'), 'title', $result_type_overview_link);
     $this->variables['content']['create_link'] = $this->wrapElement(t('Create result type'), 'add_result_type', new Url(

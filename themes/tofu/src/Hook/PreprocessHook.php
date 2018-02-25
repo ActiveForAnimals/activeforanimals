@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Hook;
 
-use Drupal;
 use Drupal\tofu\Helper\ThemeHelper;
 
 /**
@@ -41,7 +40,5 @@ class PreprocessHook implements HookInterface {
     }
     return !empty($preprocessor) ? $preprocessor->preprocess() : $variables;
   }
-
-  
 
 }

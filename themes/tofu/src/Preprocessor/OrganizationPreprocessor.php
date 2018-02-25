@@ -2,15 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\effective_activism\Helper\GroupHelper;
-use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
-use Drupal\tofu\Constant;
 
 /**
  * Preprocessor for Organization entities.
@@ -55,7 +51,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     $organization = $this->variables['elements']['#organization'];
     $this->variables['content']['title'] = $this->wrapField($organization->get('title'));
     $this->variables['content']['description'] = $this->wrapField($organization->get('description'));
-    $this->variables['content']['logo'] = !$organization->get('logo')->isEmpty() ?  $this->wrapImage(
+    $this->variables['content']['logo'] = !$organization->get('logo')->isEmpty() ? $this->wrapImage(
       $organization->get('logo')->entity->getFileUri(),
       'logo',
       self::LOGO_200X200,

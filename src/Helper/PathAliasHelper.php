@@ -2,8 +2,6 @@
 
 namespace Drupal\activeforanimals\Helper;
 
-use Drupal;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\effective_activism\Constant as EffectiveActivismConstant;
 
 /**

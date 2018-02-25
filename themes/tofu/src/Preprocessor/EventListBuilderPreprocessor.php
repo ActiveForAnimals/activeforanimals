@@ -4,7 +4,6 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
-use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Helper\PathHelper;
 
 /**
@@ -24,7 +23,7 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
         'entity.group.events', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
           'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
-      ]);
+        ]);
       $event_add_link = new Url('entity.event.add_form', [
         'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
         'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
@@ -52,7 +51,7 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
           'organization' => PathHelper::transliterate($event->get('parent')->entity->organization->entity->label()),
           'group' => PathHelper::transliterate($event->get('parent')->entity->label()),
           'event' => $event->id(),
-      ]));
+        ]));
       $this->variables['content']['events'][] = $event_elements;
     }
     return $this->variables;

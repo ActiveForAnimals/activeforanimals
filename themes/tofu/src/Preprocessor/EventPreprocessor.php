@@ -7,8 +7,6 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
-use Drupal\effective_activism\Helper\GroupHelper;
-use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\tofu\Constant;
 

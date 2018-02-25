@@ -7,9 +7,6 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\effective_activism\Helper\GroupHelper;
-use Drupal\effective_activism\Helper\OrganizationHelper;
-use Drupal\tofu\Constant;
 
 /**
  * Preprocessor for Group add/edit page.
@@ -81,7 +78,8 @@ class GroupFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['content']['invitations']['title'] = t('Current invitations');
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = isset($this->eventListBuilder) ? $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render() : NULL;
-    // Entity will be NULL for group creation. In this case, we assume the user is a manager, as they have exclusive create access.
+    // Entity will be NULL for group creation. In this case, we assume the user
+    // is a manager, as they have exclusive create access.
     $this->variables['is_manager'] = AccessControl::isManager(Drupal::request()->get('organization'))->isAllowed();
     return $this->variables;
   }

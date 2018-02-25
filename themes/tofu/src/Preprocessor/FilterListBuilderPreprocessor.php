@@ -20,7 +20,7 @@ class FilterListBuilderPreprocessor extends Preprocessor implements Preprocessor
       $filter_overview_link = new Url(
         'entity.organization.filters', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-      ]);
+        ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Filters'), 'title', $filter_overview_link);
     $this->variables['content']['create_link'] = $this->wrapElement(t('Create filter'), 'add_filter', new Url(

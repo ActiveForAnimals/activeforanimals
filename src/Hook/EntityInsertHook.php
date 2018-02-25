@@ -2,8 +2,6 @@
 
 namespace Drupal\activeforanimals\Hook;
 
-use Drupal\activeforanimals\Helper\PathAliasHelper;
-
 /**
  * Implements hook_entity_insert().
  */

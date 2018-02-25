@@ -27,7 +27,7 @@ class OrganizationListBuilderPreprocessor extends Preprocessor implements Prepro
     ]);
     foreach ($this->variables['elements']['#storage']['entities']['organizations'] as $organization_id => $organization) {
       $organization_elements = [];
-      $organization_elements['logo'] = !$organization->get('logo')->isEmpty() ?  $this->wrapImage(
+      $organization_elements['logo'] = !$organization->get('logo')->isEmpty() ? $this->wrapImage(
         $organization->get('logo')->entity->getFileUri(),
         'logo',
         self::LOGO_200X200,

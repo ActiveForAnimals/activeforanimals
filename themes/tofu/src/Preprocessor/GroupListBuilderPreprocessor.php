@@ -21,7 +21,7 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
       $group_overview_link = new Url(
         'entity.organization.groups', [
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-      ]);
+        ]);
       $group_add_link = new Url('entity.group.add_form', [
         'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
       ]);
@@ -31,7 +31,7 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['content']['empty'] = t('No groups created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['groups'] as $groud_id => $group) {
       $group_elements = [];
-      $group_elements['logo'] = !$group->get('logo')->isEmpty() ?  $this->wrapImage(
+      $group_elements['logo'] = !$group->get('logo')->isEmpty() ? $this->wrapImage(
         $group->get('logo')->entity->getFileUri(),
         'logo',
         self::LOGO_110X110,

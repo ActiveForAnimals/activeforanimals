@@ -2,9 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
-use Drupal\tofu\Constant;
-
 /**
  * Preprocessor for HTML.
  */

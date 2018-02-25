@@ -4,7 +4,6 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\Core\Url;
 
@@ -21,7 +20,7 @@ abstract class Preprocessor implements PreprocessorInterface {
   /**
    * EntityTypeManager.
    *
-   * @var  \Drupal\Core\Entity\EntityTypeManager;
+   * @var \Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
@@ -155,7 +154,7 @@ abstract class Preprocessor implements PreprocessorInterface {
       $content['element'] = $field->view([
         'label' => 'hidden',
         'settings' => [
-          'link' => FALSE
+          'link' => FALSE,
         ],
       ]);
     }
@@ -174,10 +173,10 @@ abstract class Preprocessor implements PreprocessorInterface {
   /**
    * Returns a render array for a form element.
    *
-   * @param array $field
+   * @param array $form_element
    *   The form element to process.
-   * @param string $field_name
-   *   The field name.
+   * @param string $form_element_name
+   *   The form element name.
    *
    * @return array
    *   A render array.

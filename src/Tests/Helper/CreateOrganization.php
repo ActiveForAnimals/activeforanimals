@@ -34,7 +34,7 @@ class CreateOrganization {
    * @param \Drupal\user\Entity\User $organizer
    *   The organizer of the group.
    * @param string $title
-   *   An optional title for the organization
+   *   An optional title for the organization.
    */
   public function __construct(User $manager, User $organizer, $title = NULL) {
     $this->manager = $manager;
