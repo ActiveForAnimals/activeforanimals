@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Import list.
+ *
+ */
+#}
+<div class="section">
+  <div class="list imports">
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="content">
+      <ul>
+        {% if content.imports is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for import in content.imports %}
+        <li>
+          <div class="column-wrapper">
+            <div class="column-3-15 first-column">
+              {{ import.created }}
+            </div>
+            <div class="column-8-15 first-column">
+            </div>
+            <div class="column-4-15 last-column">
+              {{ import.more_info }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="footer">
+      {{ content.pager }}
+      {{ content.create_link }}
+    </div>
+  </div>
+</div>

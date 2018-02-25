@@ -6,6 +6,7 @@ use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\effective_activism\Constant;
 use Drupal\simpletest\WebTestBase;
@@ -17,7 +18,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class EventResultTest extends WebTestBase {
 
-  const EDIT_EVENT_PATH = 'create-event';
+  const EDIT_EVENT_PATH = '/o/%s/g/%s/e/%d/edit';
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
   const STARTDATE = '2016-01-01';
@@ -94,8 +95,13 @@ class EventResultTest extends WebTestBase {
   public function testDo() {
     $this->drupalLogin($this->organizer);
     $entityManager = Drupal::service('entity_field.manager');
+    $this->drupalGet(sprintf(
+      self::EDIT_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     foreach (Constant::DEFAULT_RESULT_TYPES as $import_name => $options) {
-      $this->drupalGet(sprintf('%s/edit', $this->event->toUrl()->toString()));
       $this->assertResponse(200);
       $this->assertFieldByXPath('//input[@type="submit" and @value="Add new result"]', NULL, 'Button to add new results exists');
       $result_type = ResultTypeHelper::getResultTypeByImportName($import_name, $this->organization->id());
@@ -124,10 +130,18 @@ class EventResultTest extends WebTestBase {
         $this->getElementName('//select[contains(@name, "[duration_days]")]') => '0',
       ], $data_fields);
       $this->drupalPostAjaxForm(NULL, $post_data, $this->getElementName('//input[@type="submit" and @value="Create result"]'));
-      $this->drupalPostForm(sprintf('%s/edit', $this->event->toUrl()->toString()), [], t('Save'));
       $this->assertResponse(200);
-      $this->assertText('Saved the event.', 'Saved the event entity.');
     }
+    $this->drupalPostForm(sprintf(
+      self::EDIT_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ), [
+      'title[0][value]' => 'abc',
+    ], t('Save'));
+    $this->assertResponse(200);
+    $this->assertText('Saved the event.', 'Saved the event entity.');
   }
 
   /**

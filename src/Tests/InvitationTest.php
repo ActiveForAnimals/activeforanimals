@@ -6,6 +6,7 @@ use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Constant as EffectiveActivismConstant;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Entity\Organization;
 use Drupal\simpletest\WebTestBase;
 
@@ -17,6 +18,8 @@ use Drupal\simpletest\WebTestBase;
 class InvitationTest extends WebTestBase {
 
   const PATH_REGISTER_USER = 'user/register';
+  const EDIT_ORGANIZATION_PATH = '/o/%s/edit';
+  const EDIT_GROUP_PATH = '/o/%s/g/%s/edit';
   const TEST_NAME = 'Test user';
   const TEST_PASSWORD = 'GoVegan';
   const TEST_EMAIL_ADDRESS = 'no-reply@activeforanimals.com';
@@ -97,7 +100,10 @@ class InvitationTest extends WebTestBase {
     Drupal::state()->set('system.test_mail_collector', []);
     // Test invitations for managers.
     $this->drupalLogin($this->manager);
-    $organization_edit_path = sprintf('%s/edit', $this->organization->toUrl()->toString());
+    $organization_edit_path = sprintf(
+      self::EDIT_ORGANIZATION_PATH,
+      PathHelper::transliterate($this->organization->label())
+    );
     $this->drupalGet($organization_edit_path);
     $this->assertResponse(200);
     // Verify that only one user is manager.
@@ -146,7 +152,11 @@ class InvitationTest extends WebTestBase {
     // Test invitations for organizers.
     $this->drupalLogout();
     $this->drupalLogin($this->manager);
-    $group_edit_path = sprintf('%s/edit', $this->group->toUrl()->toString());
+    $group_edit_path = sprintf(
+      self::EDIT_GROUP_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    );
     $this->drupalGet($group_edit_path);
     $this->assertResponse(200);
     // Verify that the test user is not organizer.

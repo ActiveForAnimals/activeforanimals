@@ -2,7 +2,15 @@
 
 namespace Drupal\tofu\Hook;
 
-use Drupal\tofu\Constant;
+use Drupal;
+use Drupal\Core\Form\FormBase;
+use Drupal\activeforanimals\Controller\FrontPageController;
+use Drupal\activeforanimals\Controller\StaticPageController;
+use Drupal\activeforanimals\Form\NewsletterSignUpForm;
+use Drupal\effective_activism\Controller\InvitationController;
+use Drupal\effective_activism\Form\InvitationForm;
+use Drupal\tofu\Helper\ThemeHelper;
+use ReflectionClass;
 
 /**
  * Implements hook_theme().
@@ -30,105 +38,78 @@ class ThemeHook implements HookInterface {
    * {@inheritdoc}
    */
   public function invoke(array $args) {
-    foreach (Constant::CONTROLLER_TEMPLATES as $element) {
-      $theme[$element] = $this->getElements($element);
-    }
-    foreach (Constant::FORM_TEMPLATES as $form_template) {
-      $theme[sprintf('%s-form', $form_template)] = $this->getForm($form_template);
-    }
-    // Update html element.
-    $theme['html']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'html');
-    $theme['html']['template'] = 'html';
-    // Update page element.
-    $theme['page']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'page');
-    $theme['page']['template'] = 'page';
-    // Update general feedback contact form.
-    $theme['contact_message_feedback_general_form']['render element'] = 'form';
-    $theme['contact_message_feedback_general_form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'contact');
-    $theme['contact_message_feedback_general_form']['template'] = 'feedback-general';
-    // Update user login form.
-    $theme['user_login-form']['render element'] = 'form';
-    $theme['user_login-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_login_form');
-    $theme['user_login-form']['template'] = 'user_login_form';
-    // Update user password reset form.
-    $theme['user_pass-form']['render element'] = 'form';
-    $theme['user_pass-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_pass_form');
-    $theme['user_pass-form']['template'] = 'user_pass_form';
-    // Update user register form.
-    $theme['user_register-form']['render element'] = 'form';
-    $theme['user_register-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'user_register_form');
-    $theme['user_register-form']['template'] = 'user_register_form';
-    // Update organization publish form.
-    $theme['publish_organization-form']['render element'] = 'form';
-    $theme['publish_organization-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_organization');
-    $theme['publish_organization-form']['template'] = 'publish_organization';
-    // Update group publish form.
-    $theme['publish_group-form']['render element'] = 'form';
-    $theme['publish_group-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_group');
-    $theme['publish_group-form']['template'] = 'publish_group';
-    // Update import publish form.
-    $theme['publish_import-form']['render element'] = 'form';
-    $theme['publish_import-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_import');
-    $theme['publish_import-form']['template'] = 'publish_import';
-    // Update export publish form.
-    $theme['publish_export-form']['render element'] = 'form';
-    $theme['publish_export-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_export');
-    $theme['publish_export-form']['template'] = 'publish_export';
-    // Update filter publish form.
-    $theme['publish_filter-form']['render element'] = 'form';
-    $theme['publish_filter-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_filter');
-    $theme['publish_filter-form']['template'] = 'publish_filter';
-    // Update event_template publish form.
-    $theme['publish_event_template-form']['render element'] = 'form';
-    $theme['publish_event_template-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event_template');
-    $theme['publish_event_template-form']['template'] = 'publish_event_template';
-    // Update event publish form.
-    $theme['publish_event-form']['render element'] = 'form';
-    $theme['publish_event-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'publish_event');
-    $theme['publish_event-form']['template'] = 'publish_event';
-    // Newsletter sign-up form.
-    $theme['newsletter_signup-form']['render element'] = 'form';
-    $theme['newsletter_signup-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'newsletter_signup');
-    $theme['newsletter_signup-form']['template'] = 'newsletter_signup-form';
-    // Event template selection form.
-    $theme['effective_activism_event_template_selection-form']['render element'] = 'form';
-    $theme['effective_activism_event_template_selection-form']['path'] = sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), 'effective_activism_event_template_selection');
-    $theme['effective_activism_event_template_selection-form']['template'] = 'effective_activism_event_template_selection-form';
-    return $theme;
-  }
-
-  /**
-   * Returns an entity theming item.
-   *
-   * @param string $element
-   *   The name of the render element to return theming information for.
-   *
-   * @return array
-   *   The theme item.
-   */
-  private function getElements($element) {
-    return [
-      'render element' => 'elements',
-      'path' => sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), $element),
-      'template' => $element,
-    ];
-  }
-
-  /**
-   * Returns an entity form theming item.
-   *
-   * @param string $form
-   *   The name of the form to return theming information for.
-   *
-   * @return array
-   *   The theme item.
-   */
-  private function getForm($form) {
-    return [
+    $theme = [];
+    $entity_type_manager = Drupal::entityTypeManager();
+    $entity_types = $entity_type_manager->getDefinitions();
+    // Define template for inline result forms.
+    $theme['inline_entity_form_result'] = [
       'render element' => 'form',
-      'path' => sprintf('%s/templates/%s', drupal_get_path('theme', 'tofu'), $form),
-      'template' => sprintf('%s-form', $form),
+      'template' => sprintf('%s/%s', 'Result', ThemeHelper::convertToClassName('inline_entity_form_result')),
     ];
+    // Define templates for entities.
+    foreach ($entity_types as $machine_name => $entity_type) {
+      if ($entity_type->getProvider() === 'effective_activism') {
+        $entity_class_name = ThemeHelper::convertToClassName($entity_type->id());
+        $theme[$machine_name] = [
+          'render element' => 'elements',
+          'template' => sprintf('%s/%s', $entity_class_name, $entity_class_name),
+        ];
+        $handlers = $entity_type->get('handlers');
+        // Add forms.
+        if (!empty($handlers['form'])) {
+          // Filter duplicates, as typical with add and edit form handlers.
+          $form_classes = array_unique(array_values($handlers['form']));
+          foreach ($form_classes as $form_class) {
+            $pieces = explode('\\', $form_class);
+            $theme[end($pieces)] = [
+              'render element' => 'form',
+              'template' => sprintf('%s/%s', $entity_class_name, end($pieces)),
+            ];
+          }
+        }
+        // Add list builders.
+        if (!empty($handlers['list_builder'])) {
+          $pieces = explode('\\', $handlers['list_builder']);
+          $theme[end($pieces)] = [
+            'render element' => 'elements',
+            'template' => sprintf('%s/%s', $entity_class_name, end($pieces)),
+          ];
+        }
+      }
+    }
+    // Add theme information for non-entity templates.
+    foreach ([
+      FrontPageController::class,
+      InvitationController::class,
+      InvitationForm::class,
+      NewsletterSignUpForm::class,
+      StaticPageController::class,
+    ] as $class) {
+      $class_information = new ReflectionClass($class);
+      $short_name = $class_information->getShortName();
+      $theme[$short_name] = [
+        'render element' => $class_information->getParentClass()->getName() === FormBase::class ? 'form' : 'elements',
+        'template' => $short_name,
+      ];
+    }
+    // Manually add theme information for other templates.
+    $theme['user'] = [
+      'render element' => 'elements',
+      'template' => 'User/User',
+    ];
+    $theme['user_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserForm',
+    ];
+    $theme['user_register_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserRegisterForm',
+    ];
+    $theme['user_login_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserLoginForm',
+    ];
+    return $theme;
   }
 
 }

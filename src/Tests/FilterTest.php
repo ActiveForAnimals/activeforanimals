@@ -3,6 +3,7 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -12,7 +13,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class FilterTest extends WebTestBase {
 
-  const ADD_FILTER_PATH = '/create-filter';
+  const ADD_FILTER_PATH = '/o/%s/filters/add';
   const TITLE = 'Test filter';
 
   /**
@@ -63,11 +64,13 @@ class FilterTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->manager);
-    $this->drupalGet(self::ADD_FILTER_PATH);
+    $this->drupalGet(sprintf(
+      self::ADD_FILTER_PATH,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'name[0][value]' => self::TITLE,
-      'organization[0][target_id]' => $this->organization->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText(sprintf('Created the %s filter.', self::TITLE), 'Created a new filter.');

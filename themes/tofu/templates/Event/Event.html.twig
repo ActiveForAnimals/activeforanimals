@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * An event page.
+ *
+ */
+#}
+<div class="section">
+  <div class="title">
+    {{ 'Event'|t }}
+  </div>
+  <div class="column-wrapper">
+    <div class="column-11-15 first-column">
+      <div class="content">
+        <div class="column-wrapper">
+          <div class="column-15-15">
+            {{ content.map }}
+          </div>
+          <div class="column-15-15 first-column">
+            {{ content.title }}
+            {{ content.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column-4-15 last-column">
+      {{ content.start_date }}
+      {{ content.end_date }}
+      {{ content.location }}
+      {% if content.links is not empty %}
+      <div class="links">
+        <div class="title">
+          {{ 'Operations'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            {% for element in content.links %}
+            {% if element|render %}
+            <li>{{ element }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

@@ -2,8 +2,6 @@
 
 namespace Drupal\activeforanimals\Hook;
 
-use Drupal\activeforanimals\Helper\PathAliasHelper;
-
 /**
  * Implements hook_entity_update().
  */
@@ -31,7 +29,6 @@ class EntityUpdateHook implements HookInterface {
    */
   public function invoke(array $args) {
     $entity = $args['entity'];
-    PathAliasHelper::update($entity);
   }
 
 }

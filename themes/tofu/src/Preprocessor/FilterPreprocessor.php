@@ -2,32 +2,39 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Element\ElementController;
-use Drupal\effective_activism\Controller\Element\FieldController;
-use Drupal\effective_activism\Controller\Element\ImageController;
-use Drupal\effective_activism\Controller\Misc\ManagementToolboxController;
+use Drupal\Core\Url;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
+use Drupal\effective_activism\Helper\PathHelper;
 
 /**
- * Preprocessor for Filter.
+ * Preprocessor for Filter entities.
  */
 class FilterPreprocessor extends Preprocessor implements PreprocessorInterface {
+
+  const EVENT_LIST_LIMIT = 3;
 
   /**
    * {@inheritdoc}
    */
   public function preprocess() {
-    // Fetch Filter Entity Object.
     $filter = $this->variables['elements']['#filter'];
-    // Wrap elements.
-    $element_controller = new ElementController();
-    $image_controller = new ImageController();
-    $field_controller = new FieldController();
-    $this->variables['content']['organization'] = $field_controller->view($filter->get('organization'));
-    $this->variables['content']['title'] = $field_controller->view($filter->get('name'));
-    // Manager toolbox.
-    $management_toolbox_controller = new ManagementToolboxController($filter);
-    if ($management_toolbox_controller->access()) {
-      $this->variables['content']['management_toolbox'] = $management_toolbox_controller->view();
+    $this->variables['content']['organization'] = $filter->get('organization')->isEmpty() ? NULL : $this->wrapField($filter->get('organization'));
+    $this->variables['content']['title'] = $filter->get('name')->isEmpty() ? NULL : $this->wrapField($filter->get('name'));
+    // Add manager links.
+    if (AccessControl::isManager($filter->get('organization')->entity)->isAllowed()) {
+      $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
+        'entity.filter.edit_form', [
+          'organization' => PathHelper::transliterate($filter->get('organization')->entity->label()),
+          'filter' => $filter->id(),
+        ]
+      ));
+      $publish_state = $filter->isPublished() ? t('Unpublish') : t('Publish');
+      $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
+        'entity.filter.publish_form', [
+          'organization' => PathHelper::transliterate($filter->get('organization')->entity->label()),
+          'filter' => $filter->id(),
+        ]
+      ));
     }
     return $this->variables;
   }

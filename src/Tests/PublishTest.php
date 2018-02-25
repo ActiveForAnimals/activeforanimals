@@ -11,6 +11,7 @@ use Drupal\activeforanimals\Tests\Helper\CreateExport;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Entity\Organization;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -20,10 +21,23 @@ use Drupal\simpletest\WebTestBase;
  */
 class PublishTest extends WebTestBase {
 
-  const PATH_SELECT_EVENT_TEMPLATE = '/select-event-template';
-  const PATH_EVENT_ADD_FROM_TEMPLATE = '/create-event/1';
-  const ADD_CSV_IMPORT_PATH = 'import/csv';
-  const ADD_CSV_EXPORT_PATH = 'export/csv';
+  const PATH_SELECT_EVENT_TEMPLATE = '/o/%s/g/%s/e/add-from-template';
+  const PATH_EVENT_ADD_FROM_TEMPLATE = '/o/%s/g/%s/e/add/%d';
+  const PATH_ORGANIZATION_PAGE = '/o/%s';
+  const PATH_ORGANIZATION_PUBLISH_PAGE = '/o/%s/publish';
+  const PATH_GROUP_PAGE = '/o/%s/g/%s';
+  const PATH_GROUP_PUBLISH_PAGE = '/o/%s/g/%s/publish';
+  const PATH_EVENT_PAGE = '/o/%s/g/%s/e/%d';
+  const PATH_EVENT_EDIT_PAGE = '/o/%s/g/%s/e/%d/edit';
+  const PATH_EVENT_PUBLISH_PAGE = '/o/%s/g/%s/e/%d/publish';
+  const PATH_IMPORT_PAGE = '/o/%s/g/%s/imports/%d';
+  const PATH_IMPORT_PUBLISH_PAGE = '/o/%s/g/%s/imports/%d/publish';
+  const PATH_EXPORT_PAGE = '/o/%s/exports/%d';
+  const PATH_EXPORT_PUBLISH_PAGE = '/o/%s/exports/%d/publish';
+  const PATH_FILTER_PAGE = '/o/%s/filters/%d';
+  const PATH_EVENT_TEMPLATE_PAGE = '/o/%s/event-templates/%d';
+  const ADD_CSV_IMPORT_PATH = '/o/%s/g/%s/imports/add/csv';
+  const ADD_CSV_EXPORT_PATH = '/o/%s/exports/add/csv';
   const GROUP_TITLE_1 = 'Test group 1';
   const GROUP_TITLE_1_MODIFIED = 'Test group 1 (updated)';
   const GROUP_TITLE_2 = 'Test group 2';
@@ -126,130 +140,262 @@ class PublishTest extends WebTestBase {
     // Verify that organizer can access all parts of organization.
     $this->drupalLogin($this->organizer);
     // User has access to organization page.
-    $this->drupalGet($this->organization->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_PAGE,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(200);
     // User has access to event template selection form.
-    $this->drupalGet(self::PATH_SELECT_EVENT_TEMPLATE);
+    $this->drupalGet(sprintf(
+      self::PATH_SELECT_EVENT_TEMPLATE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     // User has access to event form with template selected.
-    $this->drupalGet(self::PATH_EVENT_ADD_FROM_TEMPLATE);
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD_FROM_TEMPLATE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->eventtemplate->id()
+    ));
     $this->assertResponse(200);
     $this->assertText(CreateEventTemplate::EVENT_DESCRIPTION);
     // User has access to group page.
-    $this->drupalGet($this->group->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     // User has access to event page.
-    $this->drupalGet($this->event->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->assertResponse(200);
 
     // Unpublish event.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
-    // User may create event.
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
     $this->assertText('One item unpublished.');
 
     // Verify that organizer cannot access event.
     $this->drupalLogin($this->organizer);
     // User has access to organization page.
-    $this->drupalGet($this->organization->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_PAGE,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(200);
     // User has access to group page.
-    $this->drupalGet($this->group->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     // User does not have access to event page.
-    $this->drupalGet($this->event->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->assertResponse(403);
 
     // Publish event and unpublish group.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('One item published.');
-    $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
     $this->assertText('8 items unpublished.');
 
     // Verify that organizer cannot access group and event.
     $this->drupalLogin($this->organizer);
     // User has access to organization page.
-    $this->drupalGet($this->organization->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_PAGE,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(200);
     // User does not have access to group page.
-    $this->drupalGet($this->group->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(403);
     // User does not have access to event page.
-    $this->drupalGet($this->event->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->assertResponse(403);
 
     // Publish event and group and unpublish organization.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->event->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('One item published.');
-    $this->drupalGet(sprintf('%s/publish', $this->group->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('8 items published.');
-    $this->drupalGet(sprintf('%s/publish', $this->organization->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->drupalPostForm(NULL, [], t('Unpublish'));
     $this->assertText('13 items unpublished.');
 
     // Verify that organizer cannot access organization, group and event.
     $this->drupalLogin($this->organizer);
     // User does not have access to organization page.
-    $this->drupalGet($this->organization->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_PAGE,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(403);
     // User does not have access to group page.
-    $this->drupalGet($this->group->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(403);
     // User does not have access to event page.
-    $this->drupalGet($this->event->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->event->id()
+    ));
     $this->assertResponse(403);
     // User does not have access to import page.
-    $this->drupalGet($this->import->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_IMPORT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->import->id()
+    ));
     $this->assertResponse(403);
     // User does not have access to event page.
-    $this->drupalGet(sprintf('%s/e/2', $this->group->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      2
+    ));
     $this->assertResponse(403);
     // User does not have access to export page.
-    $this->drupalGet($this->export->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EXPORT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      $this->export->id()
+    ));
     $this->assertResponse(403);
     // User does not have access to filter page.
-    $this->drupalGet($this->filter->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_FILTER_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      $this->filter->id()
+    ));
     $this->assertResponse(403);
     // User does not have access to event template page.
-    $this->drupalGet($this->eventtemplate->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_TEMPLATE_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      $this->eventtemplate->id()
+    ));
     $this->assertResponse(403);
     // User has access to event form with template selected but template is
     // not added.
-    $this->drupalGet(self::PATH_EVENT_ADD_FROM_TEMPLATE);
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD_FROM_TEMPLATE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->eventtemplate->id()
+    ));
     $this->assertResponse(200);
     $this->assertNoText(CreateEventTemplate::EVENT_TITLE);
     $this->assertNoText(CreateEventTemplate::EVENT_DESCRIPTION);
 
     // Publish import and events.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->import->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_IMPORT_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->import->id()
+    ));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('6 items published.');
 
     // Verify that organizer can access import and events.
     $this->drupalLogin($this->organizer);
     // User has access to import page.
-    $this->drupalGet($this->import->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_IMPORT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      $this->import->id()
+    ));
     $this->assertResponse(200);
     // User has access to event page.
-    $this->drupalGet(sprintf('%s/e/2', $this->group->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      2
+    ));
     $this->assertResponse(200);
 
     // Publish export.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf('%s/publish', $this->export->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EXPORT_PUBLISH_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      $this->export->id()
+    ));
     $this->drupalPostForm(NULL, [], t('Publish'));
     $this->assertText('One item published.');
 
     // Verify that manager can access export.
-    $this->drupalGet($this->export->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EXPORT_PAGE,
+      PathHelper::transliterate($this->organization->label()),
+      $this->export->id()
+    ));
     $this->assertResponse(200);
   }
 

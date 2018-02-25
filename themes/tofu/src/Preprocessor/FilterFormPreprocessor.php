@@ -2,8 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Element\FieldController;
-
 /**
  * Preprocessor for FilterForm.
  */
@@ -13,13 +11,17 @@ class FilterFormPreprocessor extends Preprocessor implements PreprocessorInterfa
    * {@inheritdoc}
    */
   public function preprocess() {
-    // Fetch form array.
-    $form = $this->variables['form'];
-    // Wrap form elements.
-    $field_controller = new FieldController();
-    $this->variables['form']['name'] = $field_controller->form($form['name'], 'title');
-    $this->variables['form']['start_date'] = $field_controller->form($form['start_date'], 'date');
-    $this->variables['form']['end_date'] = $field_controller->form($form['end_date'], 'date');
+    $this->variables['form']['name'] = $this->wrapFormElement($this->variables['form']['name'], 'title');
+    $this->variables['form']['start_date'] = $this->wrapFormElement($this->variables['form']['start_date'], 'date');
+    $this->variables['form']['end_date'] = $this->wrapFormElement($this->variables['form']['end_date'], 'date');
+    $this->variables['help_button'] = [
+      '#id' => 'activeforanimals_help',
+      '#type' => 'button',
+      '#value' => '',
+      '#attributes' => [
+        'title' => t('Help'),
+      ],
+    ];
     return $this->variables;
   }
 

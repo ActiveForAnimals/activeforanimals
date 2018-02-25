@@ -4,13 +4,12 @@ namespace Drupal\activeforanimals\Controller;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\ControllerBase;
+use ReflectionClass;
 
 /**
  * Controller class for static pages.
  */
 class StaticPageController extends ControllerBase {
-
-  const THEME_ID = 'static_page';
 
   const CACHE_MAX_AGE = Cache::PERMANENT;
 
@@ -31,7 +30,7 @@ class StaticPageController extends ControllerBase {
     $content['#filepath'] = $filepath;
     $content['#filename'] = $filename;
     $content['#imagepath'] = sprintf('/%s/images', drupal_get_path('profile', 'activeforanimals'));
-    $content['#theme'] = self::THEME_ID;
+    $content['#theme'] = (new ReflectionClass($this))->getShortName();
     $content['#cache'] = [
       'max-age' => self::CACHE_MAX_AGE,
       'tags' => self::CACHE_TAGS,

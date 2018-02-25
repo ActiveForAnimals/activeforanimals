@@ -5,6 +5,7 @@ namespace Drupal\activeforanimals\Tests;
 use Drupal\activeforanimals\Tests\Helper\CreateData;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -14,7 +15,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class ResultTest extends WebTestBase {
 
-  const ADD_RESULT_PATH = 'manage/result-types/add';
+  const ADD_RESULT_PATH = '/o/%s/result-types/add';
   const GROUPTITLE = 'Test group';
   const LABEL = 'Test';
   const IMPORT_NAME = 'result_type_test';
@@ -84,18 +85,17 @@ class ResultTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->manager);
-    $this->drupalGet(self::ADD_RESULT_PATH);
+    $this->drupalGet(sprintf(
+      self::ADD_RESULT_PATH,
+      PathHelper::transliterate($this->organization->label())
+    ));
     $this->assertResponse(200);
     // Create a result type.
-    $this->drupalPostAjaxForm(NULL, [
-      'organization' => $this->organization->id(),
-    ], 'organization');
     $this->drupalPostForm(NULL, [
       'label' => self::LABEL,
       'importname' => self::IMPORT_NAME,
       'description' => self::DESCRIPTION,
       sprintf('datatypes[%s]', CreateData::ID) => CreateData::ID,
-      'organization' => $this->organization->id(),
       'groups[]' => $this->group->id(),
     ], t('Save'));
     $this->assertResponse(200);
