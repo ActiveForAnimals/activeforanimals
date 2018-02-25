@@ -4,6 +4,7 @@ namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
+use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Helper\PathHelper;
 
 /**
@@ -24,14 +25,27 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
           'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
           'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
         ]);
-      $event_add_link = new Url('entity.event.add_form', [
-        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-        'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
-      ]);
-      $event_add_from_template_link = new Url('entity.event.add_from_template', [
-        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-        'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
-      ]);
+      $event_create_option = $this->variables['elements']['#storage']['entities']['organization']->event_creation->value;
+      // Only add create event link if enabled.
+      if (in_array($event_create_option, [
+        Constant::EVENT_CREATION_ALL,
+        Constant::EVENT_CREATION_EVENT,
+      ])) {
+        $event_add_link = new Url('entity.event.add_form', [
+          'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+          'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+        ]);
+      }
+      // Only add create from event template link if enabled.
+      if (in_array($event_create_option, [
+        Constant::EVENT_CREATION_ALL,
+        Constant::EVENT_CREATION_EVENT_TEMPLATE,
+      ])) {
+        $event_add_from_template_link = new Url('entity.event.add_from_template', [
+          'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+          'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+        ]);
+      }
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Events'), 'title', $event_overview_link);
     $this->variables['content']['create_link'] = (!empty($event_add_link) && AccessControl::isGroupStaff([$this->variables['elements']['#storage']['entities']['group']])->isAllowed()) ? $this->wrapElement(t('Create event'), 'add_event', $event_add_link) : NULL;
