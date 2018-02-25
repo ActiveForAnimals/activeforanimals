@@ -69,7 +69,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
     // Add manager links.
-    if (AccessControl::isManager($event->parent->entity->organization->entity)) {
+    if (AccessControl::isManager($event->parent->entity->organization->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.event.edit_form', [
           'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
@@ -87,7 +87,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       ));
     }
     // Add organizer links.
-    elseif (AccessControl::isOrganizer($event->parent->entity)) {
+    elseif (AccessControl::isOrganizer($event->parent->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.event.edit_form', [
           'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),

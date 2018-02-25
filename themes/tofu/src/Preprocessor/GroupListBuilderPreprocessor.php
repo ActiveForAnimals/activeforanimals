@@ -5,6 +5,7 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\PathHelper;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 
 /**
  * Preprocessor for GroupListBuilder.
@@ -26,7 +27,7 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
       ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Groups'), 'title', $group_overview_link);
-    $this->variables['content']['create_link'] = $this->wrapElement(t('Create group'), 'add_group', $group_add_link);
+    $this->variables['content']['create_link'] = AccessControl::isManager($this->variables['elements']['#storage']['entities']['organization'])->isAllowed() ? $this->wrapElement(t('Create group'), 'add_group', $group_add_link) : NULL;
     $this->variables['content']['empty'] = t('No groups created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['groups'] as $groud_id => $group) {
       $group_elements = [];

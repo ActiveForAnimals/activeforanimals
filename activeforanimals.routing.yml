@@ -11,7 +11,7 @@ activeforanimals.frontpage:
 activeforanimals.newsletter.sign_up:
   path: '/newsletter'
   defaults:
-    _form: '\Drupal\activeforanimals\Form\NewsletterSignUp\NewsletterSignUpForm'
+    _form: '\Drupal\activeforanimals\Form\NewsletterSignUpForm'
     _title: Sign up to our newsletter
   requirements:
     _permission: 'access content'

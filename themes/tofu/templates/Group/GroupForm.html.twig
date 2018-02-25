@@ -44,7 +44,32 @@
       </div>
       <div class="content members">
         {{ form.organizers }}
-        {{ form.invitations }}
+        <div class="list invitations">
+          {% if content.invitations.items is empty %}
+            {{ content.invitations.empty_message }}
+          {% else %}
+            {{ content.invitations.title }}
+          {% endif %}
+          <div class="content">
+            <ul>
+              {% for invitation in content.invitations.items %}
+              <li>
+                <div class="column-wrapper">
+                  <div class="column-8-15">
+                    {{ invitation.email_address }}
+                  </div>
+                  <div class="column-3-15">
+                    {{ invitation.timestamp }}
+                  </div>
+                  <div class="column-4-15">
+                    {{ invitation.remove }}
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
     {% endif %}
     <div class="footer">

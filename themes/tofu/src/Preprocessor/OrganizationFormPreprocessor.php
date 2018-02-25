@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
+use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
 use Drupal\effective_activism\Helper\GroupHelper;
@@ -16,6 +17,7 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
 
   const FORM_ID_EDIT_ORGANIZATION = 'organization_edit_form';
   const EVENT_LIST_LIMIT = 5;
+  const DATE_FORMAT = 'F jS, Y';
 
   /**
    * Event list builder.
@@ -46,9 +48,6 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
         $this->entityTypeManager->getDefinition('group'),
         $this->entityTypeManager->getStorage('group')
       );
-      //$this->invitations = new InvitationOverview(
-      //  $this->variables['form']['#invitation_list']
-      //);
     }
   }
 
@@ -67,9 +66,17 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['form']['phone_number'] = $this->wrapFormElement($form['phone_number'], 'phone_number');
     $this->variables['form']['email_address'] = $this->wrapFormElement($form['email_address'], 'email_address');
     $this->variables['form']['location'] = $this->wrapFormElement($form['location'], 'location');
-    // Get invitation list.
-    //$this->variables['form']['invitations'] = NULL;
-    //$this->variables['form']['invitations'] = isset($this->invitations) ? $this->invitations->render() : NULL;
+    foreach ($this->variables['form']['#invitations'] as $invitation) {
+      $invitation_elements = [];
+      $invitation_elements['email_address'] = $this->wrapElement($invitation->email, 'invitation_email');
+      $invitation_elements['timestamp'] = $this->wrapElement(t('Invited on @date', [
+        '@date' => date(self::DATE_FORMAT, $invitation->created),
+      ]), 'invitation_timestamp');
+      $invitation_elements['remove'] = $this->wrapElement(t('Remove'), 'invitation_remove', Url::fromRoute('effective_activism.invitation.remove', ['invitation' => $invitation->id]));
+      $this->variables['content']['invitations']['items'][] = $invitation_elements;
+    }
+    $this->variables['content']['invitations']['empty_message'] = t('No current invitations');
+    $this->variables['content']['invitations']['title'] = t('Current invitations');
     $this->variables['content']['groups'] = isset($this->groupListBuilder) ? $this->groupListBuilder->render() : NULL;
     $this->variables['content']['events'] = isset($this->eventListBuilder) ? $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render() : NULL;
     return $this->variables;

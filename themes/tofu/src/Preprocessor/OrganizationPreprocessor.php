@@ -68,7 +68,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
     // Add manager links.
-    if (AccessControl::isManager($organization)) {
+    if (AccessControl::isManager($organization)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.organization.edit_form', [
           'organization' => PathHelper::transliterate($organization->label()),
@@ -112,7 +112,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
       ));
     }
     // Add organizer links.
-    elseif (AccessControl::isOrganizerOfOrganization($organization)) {
+    elseif (AccessControl::isStaff($organization)->isAllowed()) {
       $this->variables['content']['links']['manage_groups'] = $this->wrapElement(t('Manage groups'), 'manage_groups', new Url(
         'entity.organization.groups', [
           'organization' => PathHelper::transliterate($organization->label()),

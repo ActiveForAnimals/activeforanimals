@@ -27,7 +27,7 @@ class FilterPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['organization'] = $filter->get('organization')->isEmpty() ? NULL : $this->wrapField($filter->get('organization'));
     $this->variables['content']['title'] = $filter->get('name')->isEmpty() ? NULL : $this->wrapField($filter->get('name'));
     // Add manager links.
-    if (AccessControl::isManager($filter->get('organization')->entity)) {
+    if (AccessControl::isManager($filter->get('organization')->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.filter.edit_form', [
           'organization' => PathHelper::transliterate($filter->get('organization')->entity->label()),

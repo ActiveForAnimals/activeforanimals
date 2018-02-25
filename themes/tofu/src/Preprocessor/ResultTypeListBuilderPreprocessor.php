@@ -25,6 +25,11 @@ class ResultTypeListBuilderPreprocessor extends Preprocessor implements Preproce
       ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Result types'), 'title', $result_type_overview_link);
+    $this->variables['content']['create_link'] = $this->wrapElement(t('Create result type'), 'add_result_type', new Url(
+      'entity.result_type.add_form', [
+        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+      ]
+    ));
     $this->variables['content']['empty'] = t('No result types created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['result_types'] as $result_type_id => $result_type) {
       $result_type_elements = [];

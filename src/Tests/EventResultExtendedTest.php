@@ -5,6 +5,7 @@ namespace Drupal\activeforanimals\Tests;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -15,7 +16,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class EventResultExtendedTest extends WebTestBase {
 
-  const CREATE_EVENT_PATH = 'create-event';
+  const CREATE_EVENT_PATH = '/o/%s/g/%s/e/add';
 
   const GROUP_TITLE_1 = 'Group 1';
 
@@ -102,7 +103,11 @@ class EventResultExtendedTest extends WebTestBase {
   public function testDo() {
     // See https://www.drupal.org/project/inline_entity_form/issues/2929727.
     $this->drupalLogin($this->organizer);
-    $this->drupalGet(self::CREATE_EVENT_PATH);
+    $this->drupalGet(sprintf(
+      self::CREATE_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group1->label())
+    ));
     $this->drupalPostAjaxForm(NULL, [
       'title[0][value]' => '',
     ], $this->getElementName('//input[@type="submit" and @value="Add new result"]'));

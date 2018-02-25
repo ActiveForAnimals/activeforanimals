@@ -11,7 +11,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class OrganizationTest extends WebTestBase {
 
-  const ADD_ORGANIZATION_PATH = 'create-organization';
+  const ADD_ORGANIZATION_PATH = '/o/add';
   const TITLE = 'Test organization';
   const DESCRIPTION = 'Test organization description';
   const WEBSITE = 'https://example.com';

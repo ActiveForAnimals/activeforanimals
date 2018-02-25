@@ -1,28 +1,30 @@
 {#
 /**
  * @file
- * Event template list.
+ * Import list.
  *
  */
 #}
 <div class="section">
-  <div class="list event_templates">
+  <div class="list imports">
     <div class="title">
       {{ content.title }}
     </div>
     <div class="content">
       <ul>
-        {% if content.event_templates is empty %}
+        {% if content.imports is empty %}
           {{ content.empty }}
         {% else %}
-        {% for event_template in content.event_templates %}
+        {% for import in content.imports %}
         <li>
           <div class="column-wrapper">
-            <div class="column-10-15 first-column">
-              {{ event_template.title }}
+            <div class="column-3-15 first-column">
+              {{ import.created }}
             </div>
-            <div class="column-5-15 last-column">
-              {{ event_template.more_info }}
+            <div class="column-8-15 first-column">
+            </div>
+            <div class="column-4-15 last-column">
+              {{ import.more_info }}
             </div>
           </div>
         </li>

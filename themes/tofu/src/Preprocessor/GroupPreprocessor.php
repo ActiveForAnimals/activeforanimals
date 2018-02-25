@@ -64,7 +64,7 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
     $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
     // Add manager links.
-    if (AccessControl::isManager($group->organization->entity)) {
+    if (AccessControl::isManager($group->organization->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.group.edit_form', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
@@ -92,20 +92,20 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
       ));
     }
     // Add organizer links.
-    elseif (AccessControl::isOrganizer($group)) {
-      $this->variables['content']['links']['edit_this_page'] = $element_controller->view(t('Edit this page'), 'edit_page', new Url(
+    elseif (AccessControl::isOrganizer($group)->isAllowed()) {
+      $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.group.edit_form', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
           'group' => PathHelper::transliterate($group->label()),
         ]
       ));
-      $this->variables['content']['links']['manage_events'] = $element_controller->view(t('Manage events'), 'manage_events', new Url(
+      $this->variables['content']['links']['manage_events'] = $this->wrapElement(t('Manage events'), 'manage_events', new Url(
         'entity.group.events', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
           'group' => PathHelper::transliterate($group->label()),
         ]
       ));
-      $this->variables['content']['links']['manage_imports'] = $element_controller->view(t('Manage imports'), 'manage_imports', new Url(
+      $this->variables['content']['links']['manage_imports'] = $this->wrapElement(t('Manage imports'), 'manage_imports', new Url(
         'entity.group.imports', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
           'group' => PathHelper::transliterate($group->label()),

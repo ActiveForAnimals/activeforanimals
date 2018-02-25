@@ -3,9 +3,11 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal;
+use Drupal\Core\Url;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -16,7 +18,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class CSVImportTest extends WebTestBase {
 
-  const ADD_CSV_IMPORT_PATH = '/import/csv';
+  const ADD_CSV_IMPORT_PATH = '/o/%s/g/%s/imports/add/csv';
   const RESULTTYPE = 'leafleting';
   const RESULT = 'leafleting | 4 | 0 | 1 | 0 | 1000 | Flyer A';
   const STARTDATE = '12/13/2016';
@@ -97,10 +99,13 @@ class CSVImportTest extends WebTestBase {
   public function testDo() {
     // Import CSV file.
     $this->drupalLogin($this->organizer);
-    $this->drupalGet(self::ADD_CSV_IMPORT_PATH);
+    $this->drupalGet(sprintf(
+      self::ADD_CSV_IMPORT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'parent[0][target_id]' => $this->group->id(),
       'files[field_file_csv_0]' => $this->csvfilepath,
     ], t('Save'));
     $this->assertResponse(200);
@@ -110,7 +115,11 @@ class CSVImportTest extends WebTestBase {
     $events = GroupHelper::getEvents($this->group);
     $this->assertEqual(count($events), self::NUMBER_OF_IMPORTED_EVENTS, 'Imported two events');
     $event = array_shift($events);
-    $event_path = $event->toUrl()->toString();
+    $event_path = new Url('entity.event.canonical', [
+      'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+      'group' => PathHelper::transliterate($event->parent->entity->label()),
+      'event' => $event->id(),
+    ]);
     $this->drupalGet($event_path);
     $this->assertResponse(200);
     $this->assertText(sprintf('%s - %s', self::STARTDATE, self::STARTTIME), 'Start date and time found.');
@@ -120,10 +129,13 @@ class CSVImportTest extends WebTestBase {
     $result_type->groups = [];
     $result_type->save();
     // Fail CSV import.
-    $this->drupalGet(self::ADD_CSV_IMPORT_PATH);
+    $this->drupalGet(sprintf(
+      self::ADD_CSV_IMPORT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'parent[0][target_id]' => $this->group->id(),
       'files[field_file_csv_0]' => $this->csvfilepath,
     ], t('Save'));
     $this->assertResponse(200);

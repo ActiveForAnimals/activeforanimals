@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * An export form page.
+ * An import form page.
  *
  */
 #}
@@ -11,16 +11,7 @@
 {{ form.form_id }}
   <div class="section">
     <div class="title">
-      {{ 'Export'|t }}
-    </div>
-    <div class="section">
-      <div class="column-wrapper">
-        <div class="column-7-15 first-column">
-          {{ form.filter }}
-        </div>
-        <div class="column-8-15 first-column">
-        </div>
-      </div>
+      {{ 'Import'|t }}
     </div>
     <div class="title">
       {{ 'File'|t }}
@@ -34,3 +25,10 @@
     </div>
   </div>
 </form>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

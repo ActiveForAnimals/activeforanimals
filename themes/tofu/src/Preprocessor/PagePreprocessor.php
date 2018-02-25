@@ -3,8 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
-use Drupal\effective_activism\Controller\Misc\HeaderMenuController;
-use Drupal\effective_activism\Controller\Misc\InvitationController;
+use Drupal\effective_activism\Controller\InvitationController;
 use Drupal\tofu\Constant;
 
 /**
@@ -24,7 +23,7 @@ class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['login_link'] = $this->wrapButton(t('Log in'), 'login_link', new Url('user.login'));
     $this->variables['content']['profile_link'] = $this->wrapElement(t('Account'), 'profile_link', new Url('user.page'));
     $this->variables['content']['logout_link'] = $this->wrapButton(t('Log out'), 'logout_link', new Url('user.logout.http'));
-    //$this->variables['invitations'] = (new InvitationController())->view();
+    $this->variables['invitations'] = (new InvitationController())->view();
     // Add external site links.
     $this->variables['footer']['facebook_logo'] = $this->wrapImage(
       sprintf('%s/images/facebook.png', drupal_get_path('theme', Constant::MACHINE_NAME)),

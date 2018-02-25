@@ -10,6 +10,7 @@ use Drupal\effective_activism\Entity\Data;
 use Drupal\effective_activism\Entity\Export;
 use Drupal\effective_activism\Entity\Result;
 use Drupal\effective_activism\Helper\OrganizationHelper;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -20,7 +21,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class CSVExportTest extends WebTestBase {
 
-  const ADD_CSV_EXPORT_PATH = '/export/csv';
+  const ADD_CSV_EXPORT_PATH = '/o/%s/exports/add/csv';
   const TEST_TITLE_1 = 'test 1';
   const TEST_TITLE_2 = 'test 2';
   const STARTDATE = '12/13/2016';
@@ -166,10 +167,9 @@ class CSVExportTest extends WebTestBase {
   public function testDo() {
     // Export CSV file.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(self::ADD_CSV_EXPORT_PATH);
+    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_PATH, PathHelper::transliterate($this->organization->label())));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'organization[0][target_id]' => $this->organization->id(),
       'filter[0][target_id]' => $this->filter->id(),
     ], t('Save'));
     $this->assertResponse(200);

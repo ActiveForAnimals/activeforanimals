@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
+use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\Constant;
 use Drupal\effective_activism\Helper\PathHelper;
 
@@ -34,8 +35,8 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
       ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Events'), 'title', $event_overview_link);
-    $this->variables['content']['create_link'] = empty($event_add_link) ? NULL : $this->wrapElement(t('Create event'), 'add_event', $event_add_link);
-    $this->variables['content']['create_from_template_link'] = empty($event_add_from_template_link) ? NULL : $this->wrapElement(t('Create event from template'), 'event_template', $event_add_from_template_link);
+    $this->variables['content']['create_link'] = (!empty($event_add_link) && AccessControl::isGroupStaff([$this->variables['elements']['#storage']['entities']['group']])->isAllowed()) ? $this->wrapElement(t('Create event'), 'add_event', $event_add_link) : NULL;
+    $this->variables['content']['create_from_template_link'] = (!empty($event_add_from_template_link) && AccessControl::isGroupStaff([$this->variables['elements']['#storage']['entities']['group']])->isAllowed()) ? $this->wrapElement(t('Create event from template'), 'event_template', $event_add_from_template_link) : NULL;
     $this->variables['content']['empty'] = t('No events created yet.');
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];

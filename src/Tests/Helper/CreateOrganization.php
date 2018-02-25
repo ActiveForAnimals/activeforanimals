@@ -22,19 +22,24 @@ class CreateOrganization {
 
   private $organizer;
 
+  private $title;
+
   private $timezone;
 
   /**
    * Constructor.
    *
    * @param \Drupal\user\Entity\User $manager
-   *   The manager of the group.
+   *   The manager of the organization.
    * @param \Drupal\user\Entity\User $organizer
    *   The organizer of the group.
+   * @param string $title
+   *   An optional title for the organization
    */
-  public function __construct(User $manager, User $organizer) {
+  public function __construct(User $manager, User $organizer, $title = NULL) {
     $this->manager = $manager;
     $this->organizer = $organizer;
+    $this->title = empty($title) ? self::TITLE : $title;
     $this->timezone = Drupal::config('system.date')->get('timezone.default');
   }
 
@@ -44,7 +49,7 @@ class CreateOrganization {
   public function execute() {
     $organization = Organization::create([
       'user_id' => $this->manager->id(),
-      'title' => self::TITLE,
+      'title' => $this->title,
       'timezone' => $this->timezone,
       'managers' => $this->manager->id(),
     ]);

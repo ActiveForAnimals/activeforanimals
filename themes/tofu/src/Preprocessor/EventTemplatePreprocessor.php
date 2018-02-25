@@ -26,7 +26,7 @@ class EventTemplatePreprocessor extends Preprocessor implements PreprocessorInte
     $this->variables['content']['event_title'] = $this->wrapField($event_template->get('event_title'));
     $this->variables['content']['event_description'] = $this->wrapField($event_template->get('event_description'));
     // Add manager links.
-    if (AccessControl::isManager($event_template->get('organization')->entity)) {
+    if (AccessControl::isManager($event_template->get('organization')->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.event_template.edit_form', [
           'organization' => PathHelper::transliterate($event_template->organization->entity->label()),

@@ -32,7 +32,7 @@ class ExportPreprocessor extends Preprocessor implements PreprocessorInterface {
 
     }
     // Add manager links.
-    if (AccessControl::isManager($export->get('organization')->entity)) {
+    if (AccessControl::isManager($export->get('organization')->entity)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
         'entity.export.edit_form', [
           'organization' => PathHelper::transliterate($export->get('organization')->entity->label()),

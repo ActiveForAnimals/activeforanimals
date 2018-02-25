@@ -3,7 +3,14 @@
 namespace Drupal\tofu\Hook;
 
 use Drupal;
+use Drupal\Core\Form\FormBase;
+use Drupal\activeforanimals\Controller\FrontPageController;
+use Drupal\activeforanimals\Controller\StaticPageController;
+use Drupal\activeforanimals\Form\NewsletterSignUpForm;
+use Drupal\effective_activism\Controller\InvitationController;
+use Drupal\effective_activism\Form\InvitationForm;
 use Drupal\tofu\Helper\ThemeHelper;
+use ReflectionClass;
 
 /**
  * Implements hook_theme().
@@ -70,6 +77,38 @@ class ThemeHook implements HookInterface {
         }
       }
     }
+    // Add theme information for non-entity templates.
+    foreach ([
+      FrontPageController::class,
+      InvitationController::class,
+      InvitationForm::class,
+      NewsletterSignUpForm::class,
+      StaticPageController::class,
+    ] as $class) {
+      $class_information = new ReflectionClass($class);
+      $short_name = $class_information->getShortName();
+      $theme[$short_name] = [
+        'render element' => $class_information->getParentClass()->getName() === FormBase::class ? 'form' : 'elements',
+        'template' => $short_name,
+      ];
+    }
+    // Manually add theme information for other templates.
+    $theme['user'] = [
+      'render element' => 'elements',
+      'template' => 'User/User',
+    ];
+    $theme['user_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserForm',
+    ];
+    $theme['user_register_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserRegisterForm',
+    ];
+    $theme['user_login_form'] = [
+      'render element' => 'form',
+      'template' => 'User/UserLoginForm',
+    ];
     return $theme;
   }
 
