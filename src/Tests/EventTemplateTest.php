@@ -116,6 +116,7 @@ class EventTemplateTest extends WebTestBase {
       1
     ));
     $this->drupalPostForm(NULL, [], t('Delete'));
+    $this->assertResponse(200);
     $this->assertText(t('This template is in use and cannot be deleted.'));
   }
 
