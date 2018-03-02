@@ -41,7 +41,6 @@ class EventTemplateListBuilderPreprocessor extends Preprocessor implements Prepr
       ]), 'event_count');
       $event_template_elements['title'] = $this->wrapField($event_template->name);
       $event_template_elements['more_info'] = $this->wrapButton(t('More info'), 'more_info', $event_template_link);
-      
       $this->variables['content']['event_templates'][] = $event_template_elements;
     }
     return $this->variables;
