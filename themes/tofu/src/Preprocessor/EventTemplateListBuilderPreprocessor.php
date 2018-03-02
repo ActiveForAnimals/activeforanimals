@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal\Core\Url;
+use Drupal\effective_activism\Helper\EventTemplateHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 
 /**
@@ -35,8 +36,12 @@ class EventTemplateListBuilderPreprocessor extends Preprocessor implements Prepr
           'organization' => PathHelper::transliterate($event_template->organization->entity->label()),
           'event_template' => $event_template->id(),
         ]);
+      $event_template_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [
+        '@event_count' => count(EventTemplateHelper::getEvents($event_template, 0, 0, FALSE)),
+      ]), 'event_count');
       $event_template_elements['title'] = $this->wrapField($event_template->name);
       $event_template_elements['more_info'] = $this->wrapButton(t('More info'), 'more_info', $event_template_link);
+      
       $this->variables['content']['event_templates'][] = $event_template_elements;
     }
     return $this->variables;
