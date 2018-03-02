@@ -263,6 +263,11 @@
   background-image: url(../images/publish.svg);
 }
 
+.view.element-delete {
+  @extend %element-icon;
+  background-image: url(../images/delete.svg);
+}
+
 .view.element-organization {
   @extend %element-icon;
   background-image: url(../images/organization.svg);

@@ -602,6 +602,7 @@ input.form-submit:focus,
 .form.element-filter,
 .view.element-type,
 .view.element-publish,
+.view.element-delete,
 .view.element-organization,
 .view.element-username,
 .form.element-username input,
@@ -821,6 +822,10 @@ input.form-submit:focus,
 
 .view.element-publish {
   background-image: url(../images/publish.svg);
+}
+
+.view.element-delete {
+  background-image: url(../images/delete.svg);
 }
 
 .view.element-organization {

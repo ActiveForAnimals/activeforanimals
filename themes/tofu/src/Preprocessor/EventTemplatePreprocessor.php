@@ -34,6 +34,12 @@ class EventTemplatePreprocessor extends Preprocessor implements PreprocessorInte
           'event_template' => $event_template->id(),
         ]
       ));
+      $this->variables['content']['links']['delete'] = $this->wrapElement(t('Delete'), 'delete', new Url(
+        'entity.event_template.delete_form', [
+          'organization' => PathHelper::transliterate($event_template->organization->entity->label()),
+          'event_template' => $event_template->id(),
+        ]
+      ));
     }
     return $this->variables;
   }

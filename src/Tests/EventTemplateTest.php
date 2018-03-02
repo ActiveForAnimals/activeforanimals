@@ -17,6 +17,7 @@ use Drupal\simpletest\WebTestBase;
 class EventTemplateTest extends WebTestBase {
 
   const ADD_EVENT_TEMPLATE_PATH = '/o/%s/event-templates/add';
+  const DELETE_EVENT_TEMPLATE_PATH = '/o/%s/event-templates/%d/delete';
   const SELECT_EVENT_TEMPLATE_PATH = '/o/%s/g/%s/e/add-from-template';
   const TITLE = 'Test event template';
   const EVENT_TITLE = 'A sample event title';
@@ -108,6 +109,15 @@ class EventTemplateTest extends WebTestBase {
     $event_template = EventTemplate::load('1');
     $event = Event::load('1');
     $this->assertTrue($event->event_template->target_id === $event_template->id(), 'Event template added to event');
+    // Verify that event template cannot be deleted.
+    $this->drupalGet(sprintf(
+      self::DELETE_EVENT_TEMPLATE_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      1
+    ));
+    $this->drupalPostForm(NULL, [], t('Delete'));
+    $this->assertResponse(200);
+    $this->assertText(t('This template is in use and cannot be deleted.'));
   }
 
 }
