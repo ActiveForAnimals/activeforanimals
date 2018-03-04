@@ -43,11 +43,7 @@ class ResultTypeListBuilderPreprocessor extends Preprocessor implements Preproce
       $result_type_elements['group_count'] = $this->wrapElement(t('Groups (@group_count)', [
         '@group_count' => in_array(Constant::RESULT_TYPE_ALL_GROUPS, $result_type->get('groups')) ? count(OrganizationHelper::getGroups(Organization::load($result_type->get('organization'), 0, 0, FALSE))) : count($result_type->get('groups')),
       ]), 'group_count');
-      $event_count = count(ResultTypeHelper::getEvents($result_type, 0, 0, FALSE));
-      $result_type_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [
-        '@event_count' => $event_count,
-      ]), 'event_count');
-      if ($event_count === 0) {
+      if (ResultTypeHelper::hasResults($result_type)) {
         $result_type_elements['delete_link'] = $this->wrapElement(t('Delete'), 'delete', new Url('entity.result_type.delete_form', [
           'organization' => PathHelper::transliterate(Organization::load($result_type->get('organization'))->label()),
           'result_type' => PathHelper::transliterate($result_type->get('importname')),
