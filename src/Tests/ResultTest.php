@@ -125,7 +125,7 @@ class ResultTest extends WebTestBase {
     ));
     $this->drupalPostForm(NULL, [], t('Delete'));
     $this->assertResponse(200);
-    $this->assertText('This result type is used by one event and cannot be deleted.');
+    $this->assertText('This result type is in use and cannot be deleted.');
   }
 
 }
