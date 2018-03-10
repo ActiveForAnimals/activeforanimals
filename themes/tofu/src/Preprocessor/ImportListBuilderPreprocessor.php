@@ -24,11 +24,18 @@ class ImportListBuilderPreprocessor extends Preprocessor implements Preprocessor
         ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Imports'), 'title', $import_overview_link);
-    $this->variables['content']['create_link'] = $this->wrapElement(t('Create import'), 'add_import', new Url(
+    $this->variables['content']['create_csv_link'] = $this->wrapElement(t('Create CSV import'), 'add_import', new Url(
       'entity.import.add_form', [
         'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
         'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
         'import_type' => 'csv',
+      ]
+    ));
+    $this->variables['content']['create_icalendar_link'] = $this->wrapElement(t('Create iCalendar import'), 'add_import', new Url(
+      'entity.import.add_form', [
+        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+        'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+        'import_type' => 'icalendar',
       ]
     ));
     $this->variables['content']['empty'] = t('No imports created yet.');
