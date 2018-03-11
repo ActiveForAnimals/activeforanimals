@@ -13,11 +13,12 @@
     <div class="title">
       {{ 'Import'|t }}
     </div>
-    <div class="title">
-      {{ 'File'|t }}
-    </div>
     <div class="content">
+      <p>
+        <a href="/help/imports#How-do-I-import-events" target="_blank">Click here to read more about importing events.</a>
+      </p>
       {{ form.field_file_csv }}
+      {{ form.field_url }}
     </div>
     <div class="footer">
       {{ form.actions.submit }}
