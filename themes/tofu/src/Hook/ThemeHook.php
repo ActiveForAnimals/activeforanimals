@@ -109,6 +109,10 @@ class ThemeHook implements HookInterface {
       'render element' => 'form',
       'template' => 'User/UserLoginForm',
     ];
+    $theme['inline_entity_form_data'] = [
+      'render element' => 'form',
+      'template' => 'InlineEntityForm/InlineEntityFormData',
+    ];
     return $theme;
   }
 
