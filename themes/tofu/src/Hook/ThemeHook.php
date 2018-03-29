@@ -46,9 +46,16 @@ class ThemeHook implements HookInterface {
       'render element' => 'form',
       'template' => sprintf('%s/%s', 'Result', ThemeHelper::convertToClassName('inline_entity_form_result')),
     ];
+    $theme['inline_entity_form_data'] = [
+      'render element' => 'form',
+      'template' => sprintf('%s/%s', 'Data', ThemeHelper::convertToClassName('inline_entity_form_data')),
+    ];
     // Define templates for entities.
     foreach ($entity_types as $machine_name => $entity_type) {
-      if ($entity_type->getProvider() === 'effective_activism') {
+      if (
+        $entity_type->getProvider() === 'effective_activism' ||
+        $entity_type->id() === 'taxonomy_term'
+      ) {
         $entity_class_name = ThemeHelper::convertToClassName($entity_type->id());
         $theme[$machine_name] = [
           'render element' => 'elements',
@@ -109,10 +116,7 @@ class ThemeHook implements HookInterface {
       'render element' => 'form',
       'template' => 'User/UserLoginForm',
     ];
-    $theme['inline_entity_form_data'] = [
-      'render element' => 'form',
-      'template' => 'InlineEntityForm/InlineEntityFormData',
-    ];
+
     return $theme;
   }
 

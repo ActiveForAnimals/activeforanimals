@@ -218,6 +218,11 @@
   display: block;
 }
 
+.view.element-manage_terms {
+  @extend %element-icon;
+  background-image: url(../images/tag.svg);
+}
+
 .view.element-manage_exports {
   @extend %element-icon;
   background-image: url(../images/export.svg);
