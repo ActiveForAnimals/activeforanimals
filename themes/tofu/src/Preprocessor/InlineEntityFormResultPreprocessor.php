@@ -19,6 +19,7 @@ class InlineEntityFormResultPreprocessor extends Preprocessor implements Preproc
     $this->variables['form']['duration_minutes'] = $this->wrapFormElement($this->variables['form']['duration_minutes'], 'duration_minutes');
     $this->variables['form']['duration_hours'] = $this->wrapFormElement($this->variables['form']['duration_hours'], 'duration_hours');
     $this->variables['form']['duration_days'] = $this->wrapFormElement($this->variables['form']['duration_days'], 'duration_days');
+    $this->variables['form']['tags'] = $this->wrapFormElement($this->variables['form'][sprintf('tags_%d', $result_type->organization)], 'tags');
     foreach ($result_type->datatypes as $key => $value) {
       if ($key === $value) {
         $field_name = sprintf('data_%s', $value);
@@ -28,8 +29,6 @@ class InlineEntityFormResultPreprocessor extends Preprocessor implements Preproc
         ];
       }
     }
-    $this->variables['form']['duration_days'] = $this->wrapFormElement($this->variables['form']['duration_days'], 'duration_days');
-    $this->variables['form']['tags'] = $this->wrapFormElement($this->variables['form'][sprintf('tags_%d', $result_type->organization)], 'tags');
     return $this->variables;
   }
 
