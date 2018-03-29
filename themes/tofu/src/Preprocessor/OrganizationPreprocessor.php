@@ -100,6 +100,11 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
           'organization' => PathHelper::transliterate($organization->label()),
         ]
       ));
+      $this->variables['content']['links']['manage_terms'] = $this->wrapElement(t('Manage tags'), 'manage_terms', new Url(
+        'entity.organization.terms', [
+          'organization' => PathHelper::transliterate($organization->label()),
+        ]
+      ));
       $publish_state = $organization->isPublished() ? t('Unpublish') : t('Publish');
       $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
         'entity.organization.publish_form', [

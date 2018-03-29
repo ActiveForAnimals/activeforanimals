@@ -594,6 +594,7 @@ input.form-submit:focus,
 .view.element-add_event_template,
 .view.element-event_template,
 .view.element-event_template_options,
+.view.element-manage_terms,
 .view.element-manage_exports,
 .view.element-add_export,
 .view.element-manage_filters,
@@ -785,6 +786,10 @@ input.form-submit:focus,
 .form.element-event_template_options label,
 .form.element-event_template_options .description {
   display: block;
+}
+
+.view.element-manage_terms {
+  background-image: url(../images/tag.svg);
 }
 
 .view.element-manage_exports {
