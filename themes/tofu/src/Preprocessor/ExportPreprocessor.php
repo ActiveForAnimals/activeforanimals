@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -18,11 +17,12 @@ class ExportPreprocessor extends Preprocessor implements PreprocessorInterface {
   public function preprocess() {
     // Fetch Group Entity Object.
     $export = $this->variables['elements']['#export'];
-    $this->variables['content']['type'] = $this->wrapElement($export->type->entity->label(), 'type');
-    $this->variables['content']['created'] = $this->wrapElement(Drupal::service('date.formatter')->format($export->get('created')->value), 'created');
+    $this->variables['content']['filter'] = $export->get('filter')->isEmpty() ? NULL : $this->wrapElement($export->get('filter')->entity->label(), 'filter');
     switch ($export->bundle()) {
       case 'csv':
-        $this->variables['content']['source'] = $export->get('field_file_csv')->isEmpty() ? NULL : $this->wrapElement($export->get('field_file_csv')->entity->getFilename(), 'source');
+        $this->variables['content']['field_file_csv'] = $export->get('field_file_csv')->isEmpty() ? NULL : $this->wrapElement(t('@filename (Download)', [
+          '@filename' => $export->get('field_file_csv')->entity->getFilename(),
+        ]), 'file', Url::fromUri(file_create_url($export->get('field_file_csv')->entity->getFileUri())));
         break;
 
     }

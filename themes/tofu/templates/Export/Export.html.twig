@@ -12,10 +12,19 @@
   <div class="content">
     <div class="column-wrapper">
       <div class="column-11-15 first-column">
-        {{ content.type }}
-        {{ content.source }}
-        {{ content.created }}
-        {{ content.event_count }}
+        <div class="section">
+          <div class="column-wrapper">
+            <div class="column-7-15 first-column">
+              {{ content.filter }}
+            </div>
+            <div class="column-8-15 last-column">
+            </div>
+          </div>
+        </div>
+        <div class="title">
+          {{ 'File'|t }}
+        </div>
+        {{ content.field_file_csv }}
       </div>
       <div class="column-4-15 last-column">
         {% if content.links is not empty %}
@@ -36,5 +45,8 @@
         {% endif %}
       </div>
     </div>
+  </div>
+  <div class="footer">
+    {{ help_button }}
   </div>
 </div>
