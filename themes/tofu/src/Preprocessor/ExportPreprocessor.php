@@ -2,7 +2,6 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\Helper\PathHelper;
