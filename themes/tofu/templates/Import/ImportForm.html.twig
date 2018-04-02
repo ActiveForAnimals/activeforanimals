@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * An import form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Import'|t }}
+    </div>
+    <div class="content">
+      <p>
+        <a href="/help/imports#How-do-I-import-events" target="_blank">Click here to read more about importing events.</a>
+      </p>
+      {{ form.field_file_csv }}
+      {{ form.field_url }}
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
+    </div>
+  </div>
+</form>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

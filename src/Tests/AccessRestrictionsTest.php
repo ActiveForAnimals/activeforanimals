@@ -7,6 +7,7 @@ use Drupal\activeforanimals\Tests\Helper\CreateEventTemplate;
 use Drupal\activeforanimals\Tests\Helper\CreateFilter;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\effective_activism\Helper\ResultTypeHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -17,9 +18,22 @@ use Drupal\simpletest\WebTestBase;
  */
 class AccessRestrictionsTest extends WebTestBase {
 
-  const PATH_EVENT_ADD = 'create-event';
-  const PATH_ADD_CSV_IMPORT = 'import/csv';
-  const PATH_SELECT_EVENT_TEMPLATE = '/select-event-template';
+  const PATH_ORGANIZATION_GROUP_OVERVIEW = '/o/%s/g';
+  const PATH_GROUP_ADD = '/o/%s/g/add';
+  const PATH_GROUP_PAGE = '/o/%s/g/%s';
+  const PATH_GROUP_EDIT = '/o/%s/g/%s/edit';
+  const PATH_GROUP_EVENT_OVERVIEW = '/o/%s/g/%s/e';
+  const PATH_FILTER_PAGE = '/o/%s/filters/%d';
+  const PATH_EVENT_ADD = '/o/%s/g/%s/e/add';
+  const PATH_EVENT_PAGE = '/o/%s/g/%s/e/%d';
+  const PATH_EVENT_EDIT = '/o/%s/g/%s/e/%d/edit';
+  const PATH_ADD_CSV_IMPORT = '/o/%s/g/%s/imports/add/csv';
+  const PATH_CSV_IMPORT_PAGE = '/o/%s/g/%s/imports/%d';
+  const PATH_ADD_CSV_EXPORT = '/o/%s/exports/add/csv';
+  const PATH_SELECT_EVENT_TEMPLATE = '/o/%s/g/%s/e/add-from-template';
+  const PATH_EVENT_TEMPLATE_PAGE = '/o/%s/event-templates/%d';
+  const ORGANIZATION_TITLE_1 = 'Test organization 1';
+  const ORGANIZATION_TITLE_2 = 'Test organization 2';
   const RESULT_TYPE_1 = 'leafleting';
   const RESULT_TYPE_2 = 'pay_per_view_event';
   const EVENT_TEMPLATE_TITLE_1 = 'Test event template 1';
@@ -34,6 +48,8 @@ class AccessRestrictionsTest extends WebTestBase {
   const STARTTIME = '11:00';
   const ENDDATE = '2016-01-01';
   const ENDTIME = '12:00';
+  const PATTERN_ORGANIZER_SECTION = '"edit-organizers-wrapper"';
+  const PATTERN_RESULT_TYPE_SECTION = '"element-result_types"';
 
   /**
    * {@inheritdoc}
@@ -141,8 +157,8 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->organizer1 = $this->drupalCreateUser();
     $this->organizer2 = $this->drupalCreateUser();
     // Create organizational structure.
-    $this->organization1 = (new CreateOrganization($this->manager1, $this->organizer1))->execute();
-    $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2))->execute();
+    $this->organization1 = (new CreateOrganization($this->manager1, $this->organizer1, self::ORGANIZATION_TITLE_1))->execute();
+    $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2, self::ORGANIZATION_TITLE_2))->execute();
     $this->filter1 = (new CreateFilter($this->organization1, $this->manager1, self::FILTER_TITLE_1))->execute();
     $this->filter2 = (new CreateFilter($this->organization2, $this->manager2, self::FILTER_TITLE_2))->execute();
     $this->eventtemplate1 = (new CreateEventTemplate($this->organization1, $this->manager1, self::EVENT_TEMPLATE_TITLE_1))->execute();
@@ -165,37 +181,68 @@ class AccessRestrictionsTest extends WebTestBase {
   public function testDo() {
     // Verify that manager1 can manage filter1 and not filter2.
     $this->drupalLogin($this->manager1);
-    $this->drupalGet($this->filter1->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_FILTER_PAGE,
+      PathHelper::transliterate($this->organization1->label()),
+      $this->filter1->id()
+    ));
     $this->assertResponse(200);
-    $this->drupalGet($this->filter2->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_FILTER_PAGE,
+      PathHelper::transliterate($this->organization2->label()),
+      $this->filter2->id()
+    ));
     $this->assertResponse(403);
+
     // Verify that manager1 can manage eventtemplate1 and not eventtemplate2.
     $this->drupalLogin($this->manager1);
-    $this->drupalGet($this->eventtemplate1->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_TEMPLATE_PAGE,
+      PathHelper::transliterate($this->organization1->label()),
+      $this->eventtemplate1->id()
+    ));
     $this->assertResponse(200);
-    $this->drupalGet($this->eventtemplate2->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_TEMPLATE_PAGE,
+      PathHelper::transliterate($this->organization2->label()),
+      $this->eventtemplate2->id()
+    ));
     $this->assertResponse(403);
 
     // Verify that organizer1 can use eventtemplate1 and not eventtemplate2.
     $this->drupalLogin($this->organizer1);
-    $this->drupalGet(self::PATH_SELECT_EVENT_TEMPLATE);
+    $this->drupalGet(sprintf(
+      self::PATH_SELECT_EVENT_TEMPLATE,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate($this->group1->label())
+    ));
     $this->assertText(self::EVENT_TEMPLATE_TITLE_1);
     $this->assertNoText(self::EVENT_TEMPLATE_TITLE_2);
     $this->drupalPostForm(NULL, [
-      'organization' => $this->organization1->id(),
       'event_template' => $this->eventtemplate1->id(),
     ], t('Select'));
     $this->assertResponse(200);
 
     // Verify that manager1 can manage group1 and not group2.
     $this->drupalLogin($this->manager1);
-    $this->drupalGet(sprintf('%s/g', $this->organization1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_GROUP_OVERVIEW,
+      PathHelper::transliterate($this->organization1->label())
+    ));
     $this->assertResponse(200);
     // User has access to group.
-    $this->drupalGet($this->group1->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate($this->group1->label())
+    ));
     $this->assertResponse(200);
     // User has access to group edit page.
-    $this->drupalGet(sprintf('%s/edit', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EDIT,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate($this->group1->label())
+    ));
     $this->assertResponse(200);
     // User may make changes to group.
     $this->drupalPostForm(NULL, [
@@ -211,19 +258,61 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->assertText(sprintf('Saved the %s group.', self::GROUP_TITLE_1_MODIFIED), 'Changed title of the group.');
 
     // User doesn't have access to group page.
-    $this->drupalGet($this->group2->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate($this->group2->label())
+    ));
     $this->assertResponse(403);
     // User doesn't have access to group edit page.
-    $this->drupalGet(sprintf('%s/edit', $this->group2->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EDIT,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate($this->group2->label())
+    ));
     $this->assertResponse(403);
 
-    // Verify that manager1 can create events for group1.
+    // Verify that organizer1 cannot create groups and cannot access
+    // restricted group fields.
+    $this->drupalLogin($this->organizer1);
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_ADD,
+      PathHelper::transliterate($this->organization1->label())
+    ));
+    $this->assertResponse(403);
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EDIT,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
+    $this->assertResponse(200);
+    $this->assertNoPattern(self::PATTERN_RESULT_TYPE_SECTION, 'Result type section not available');
+    $this->assertNoPattern(self::PATTERN_ORGANIZER_SECTION, 'Organizer section not available');
+
+    // Verify that manager1 can access restricted group fields.
     $this->drupalLogin($this->manager1);
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EDIT,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
+    $this->assertResponse(200);
+    $this->assertPattern(self::PATTERN_RESULT_TYPE_SECTION, 'Result type section available');
+    $this->assertPattern(self::PATTERN_ORGANIZER_SECTION, 'Organizer section available');
+    // Verify that manager1 can create events for group1.
     // User has access to event overview page.
-    $this->drupalGet(sprintf('%s/e', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EVENT_OVERVIEW,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User has access to event add page.
-    $this->drupalGet(self::PATH_EVENT_ADD);
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User may create event.
     $this->drupalPostForm(NULL, [
@@ -233,7 +322,6 @@ class AccessRestrictionsTest extends WebTestBase {
       'start_date[0][value][time]' => self::STARTTIME,
       'end_date[0][value][date]' => self::ENDDATE,
       'end_date[0][value][time]' => self::ENDTIME,
-      'parent[0][target_id]' => $this->group1->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
@@ -241,10 +329,18 @@ class AccessRestrictionsTest extends WebTestBase {
     // Verify that organizer1 can create events for group1.
     $this->drupalLogin($this->organizer1);
     // User has access to event overview page.
-    $this->drupalGet(sprintf('%s/e', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EVENT_OVERVIEW,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User has access to event add page.
-    $this->drupalGet(self::PATH_EVENT_ADD);
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User may create event.
     $this->drupalPostForm(NULL, [
@@ -254,25 +350,47 @@ class AccessRestrictionsTest extends WebTestBase {
       'start_date[0][value][time]' => self::STARTTIME,
       'end_date[0][value][date]' => self::ENDDATE,
       'end_date[0][value][time]' => self::ENDTIME,
-      'parent[0][target_id]' => $this->group1->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
+    // Verify that user doesn't have access to create exports.
+    $this->drupalGet(sprintf(
+      self::PATH_ADD_CSV_EXPORT,
+      PathHelper::transliterate($this->organization1->label())
+    ));
+    $this->assertResponse(403);
 
     // Verify that organizer2 cannot manage events from group1.
     $this->drupalLogin($this->organizer2);
     // User cannot create events with group.
-    $this->drupalGet(self::PATH_EVENT_ADD);
-    $this->assertResponse(200);
-    $this->assertNoText($this->group1->get('title')->value, 'User does not have access to group on event creation pages.');
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
+    $this->assertResponse(403);
     // User cannot see events belonging to other groups.
-    $this->drupalGet(sprintf('%s/e', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EVENT_OVERVIEW,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(403);
     // User has no access to event page.
-    $this->drupalGet(sprintf('%s/e/1', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_PAGE,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED),
+      1
+    ));
     $this->assertResponse(403);
     // User has no access to event edit page.
-    $this->drupalGet(sprintf('%s/e/1/edit', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_EDIT,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED),
+      1
+    ));
     $this->assertResponse(403);
 
     // Add manager1 to organization2.
@@ -282,13 +400,24 @@ class AccessRestrictionsTest extends WebTestBase {
     // Verify that manager1 can manage group2.
     $this->drupalLogin($this->manager1);
     // User has access to group overview page.
-    $this->drupalGet(sprintf('%s/g', $this->organization2->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_ORGANIZATION_GROUP_OVERVIEW,
+      PathHelper::transliterate($this->organization2->label())
+    ));
     $this->assertResponse(200);
     // User has access to group.
-    $this->drupalGet($this->group2->toUrl()->toString());
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_PAGE,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate($this->group2->label())
+    ));
     $this->assertResponse(200);
     // User has access to group edit page.
-    $this->drupalGet(sprintf('%s/edit', $this->group2->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EDIT,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate($this->group2->label())
+    ));
     $this->assertResponse(200);
     // User may make changes to group.
     $this->drupalPostForm(NULL, [
@@ -304,10 +433,18 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->assertText(sprintf('Saved the %s group.', self::GROUP_TITLE_2_MODIFIED), 'Changed title of the group.');
 
     // Verify that manager1 can create events for group2.
-    $this->drupalGet(sprintf('%s/e', $this->group2->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_GROUP_EVENT_OVERVIEW,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_2_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User has access to event add page.
-    $this->drupalGet(self::PATH_EVENT_ADD);
+    $this->drupalGet(sprintf(
+      self::PATH_EVENT_ADD,
+      PathHelper::transliterate($this->organization2->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_2_MODIFIED)
+    ));
     $this->assertResponse(200);
     // User may create event.
     $this->drupalPostForm(NULL, [
@@ -317,16 +454,18 @@ class AccessRestrictionsTest extends WebTestBase {
       'start_date[0][value][time]' => self::STARTTIME,
       'end_date[0][value][date]' => self::ENDDATE,
       'end_date[0][value][time]' => self::ENDTIME,
-      'parent[0][target_id]' => $this->group2->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
 
     // Import event.
-    $this->drupalGet(self::PATH_ADD_CSV_IMPORT);
+    $this->drupalGet(sprintf(
+      self::PATH_ADD_CSV_IMPORT,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED)
+    ));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
-      'parent[0][target_id]' => $this->group1->id(),
       'files[field_file_csv_0]' => $this->container->get('file_system')->realpath(drupal_get_path('profile', 'activeforanimals') . '/src/Tests/testdata/sample.csv'),
     ], t('Save'));
     $this->assertResponse(200);
@@ -335,7 +474,12 @@ class AccessRestrictionsTest extends WebTestBase {
 
     // Verify that manager2 cannot manage import.
     $this->drupalLogin($this->manager2);
-    $this->drupalGet(sprintf('%s/imports/1', $this->group1->toUrl()->toString()));
+    $this->drupalGet(sprintf(
+      self::PATH_CSV_IMPORT_PAGE,
+      PathHelper::transliterate($this->organization1->label()),
+      PathHelper::transliterate(self::GROUP_TITLE_1_MODIFIED),
+      1
+    ));
     $this->assertResponse(403);
   }
 

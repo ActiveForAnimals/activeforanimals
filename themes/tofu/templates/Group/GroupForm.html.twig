@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * A group form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="column-wrapper">
+      <div class="column-3-15 first-column">
+        {{ form.logo }}
+      </div>
+      <div class="column-8-15">
+        <div class="title">
+          {{ form.title }}
+        </div>
+        {{ form.description }}
+        {{ form.timezone }}
+        {% if is_manager %}
+          {{ form.result_types }}
+        {% endif %}
+      </div>
+      <div class="column-4-15 last-column">
+        <div class="title">
+          {{ 'Contact Details'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            <li>{{ form.website }}</li>
+            <li>{{ form.phone_number }}</li>
+            <li>{{ form.email_address }}</li>
+            <li>{{ form.location }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% if is_manager %}
+      <div class="title">
+        {{ 'Organizers'|t }}
+      </div>
+      <div class="content members">
+        {{ form.organizers }}
+        <div class="list invitations">
+          {% if content.invitations.items is empty %}
+            {{ content.invitations.empty_message }}
+          {% else %}
+            {{ content.invitations.title }}
+          {% endif %}
+          <div class="content">
+            <ul>
+              {% for invitation in content.invitations.items %}
+              <li>
+                <div class="column-wrapper">
+                  <div class="column-8-15">
+                    {{ invitation.email_address }}
+                  </div>
+                  <div class="column-3-15">
+                    {{ invitation.timestamp }}
+                  </div>
+                  <div class="column-4-15">
+                    {{ invitation.remove }}
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
+    </div>
+</div>
+</form>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

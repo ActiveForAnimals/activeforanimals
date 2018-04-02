@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * A result type form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Result type'|t }}
+    </div>
+    <div class="content">
+      {{ form.label }}
+      {{ form.importname }}
+      {{ form.description }}
+      {{ form.datatypes }}
+      {{ form.groups }}
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+    </div>
+  </div>
+</form>

@@ -4,6 +4,7 @@ namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
+use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -13,7 +14,7 @@ use Drupal\simpletest\WebTestBase;
  */
 class EventTest extends WebTestBase {
 
-  const ADD_EVENT_PATH = 'create-event';
+  const ADD_EVENT_PATH = '/o/%s/g/%s/e/add';
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
   const STARTDATE = '2016-01-01';
@@ -81,7 +82,11 @@ class EventTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->organizer);
-    $this->drupalGet(self::ADD_EVENT_PATH);
+    $this->drupalGet(sprintf(
+      self::ADD_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label())
+    ));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'title[0][value]' => self::TITLE,
@@ -90,7 +95,6 @@ class EventTest extends WebTestBase {
       'start_date[0][value][time]' => self::STARTTIME,
       'end_date[0][value][date]' => self::ENDDATE,
       'end_date[0][value][time]' => self::ENDTIME,
-      'parent[0][target_id]' => $this->group->id(),
       'location[0][address]' => self::LOCATION_ADDRESS,
       'location[0][extra_information]' => self::LOCATION_EXTRA_INFORMATION,
     ], t('Save'));

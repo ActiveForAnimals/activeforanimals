@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * A filter page.
+ *
+ */
+#}
+<div class="section">
+  <div class="title">
+    {{ 'Filter'|t }}
+  </div>
+  <div class="column-wrapper">
+    <div class="column-11-15 first-column">
+      <div class="content">
+        {{ content.title }}
+        {{ content.source }}
+        {{ content.created }}
+        {{ content.event_count }}
+      </div>
+    </div>
+    <div class="column-4-15 last-column">
+      {% if content.links is not empty %}
+      <div class="links">
+        <div class="title">
+          {{ 'Operations'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            {% for element in content.links %}
+            {% if element|render %}
+            <li>{{ element }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

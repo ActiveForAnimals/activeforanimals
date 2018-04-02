@@ -594,6 +594,7 @@ input.form-submit:focus,
 .view.element-add_event_template,
 .view.element-event_template,
 .view.element-event_template_options,
+.view.element-manage_terms,
 .view.element-manage_exports,
 .view.element-add_export,
 .view.element-manage_filters,
@@ -602,6 +603,7 @@ input.form-submit:focus,
 .form.element-filter,
 .view.element-type,
 .view.element-publish,
+.view.element-delete,
 .view.element-organization,
 .view.element-username,
 .form.element-username input,
@@ -654,6 +656,11 @@ input.form-submit:focus,
 }
 
 .form.element-timezone label {
+  display: block;
+  font-weight: bold;
+}
+
+.form.element-event_creation label {
   display: block;
   font-weight: bold;
 }
@@ -781,6 +788,10 @@ input.form-submit:focus,
   display: block;
 }
 
+.view.element-manage_terms {
+  background-image: url(../images/tag.svg);
+}
+
 .view.element-manage_exports {
   background-image: url(../images/export.svg);
 }
@@ -816,6 +827,10 @@ input.form-submit:focus,
 
 .view.element-publish {
   background-image: url(../images/publish.svg);
+}
+
+.view.element-delete {
+  background-image: url(../images/delete.svg);
 }
 
 .view.element-organization {

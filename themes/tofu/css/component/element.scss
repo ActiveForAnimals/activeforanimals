@@ -65,6 +65,11 @@
   font-weight: bold;
 }
 
+.form.element-event_creation label {
+  display: block;
+  font-weight: bold;
+}
+
 .form.element-instructions label {
   display: block;
   font-weight: bold;
@@ -213,6 +218,11 @@
   display: block;
 }
 
+.view.element-manage_terms {
+  @extend %element-icon;
+  background-image: url(../images/tag.svg);
+}
+
 .view.element-manage_exports {
   @extend %element-icon;
   background-image: url(../images/export.svg);
@@ -256,6 +266,11 @@
 .view.element-publish {
   @extend %element-icon;
   background-image: url(../images/publish.svg);
+}
+
+.view.element-delete {
+  @extend %element-icon;
+  background-image: url(../images/delete.svg);
 }
 
 .view.element-organization {

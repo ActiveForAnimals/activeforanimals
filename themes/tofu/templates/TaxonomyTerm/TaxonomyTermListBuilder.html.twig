@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Taxonomy term list.
+ *
+ */
+#}
+<div class="section">
+  <div class="list terms">
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="content">
+      <ul>
+        {% if content.terms is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for term in content.terms %}
+        <li>
+          <div class="column-wrapper">
+            <div class="column-10-15 first-column">
+              {{ term.title }}
+            </div>
+            <div class="column-5-15 last-column">
+              {{ term.event_count }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="footer">
+      {{ content.pager }}
+    </div>
+  </div>
+</div>

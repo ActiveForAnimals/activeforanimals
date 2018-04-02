@@ -2,27 +2,23 @@
 
 namespace Drupal\tofu\Preprocessor;
 
-use Drupal\effective_activism\Controller\Element\FieldController;
-
 /**
- * Preprocessor for ResultTypeForm.
+ * Preprocessor for Organization add/edit page.
  */
 class ResultTypeFormPreprocessor extends Preprocessor implements PreprocessorInterface {
+
+  const EVENT_LIST_LIMIT = 5;
 
   /**
    * {@inheritdoc}
    */
   public function preprocess() {
-    // Fetch form array.
     $form = $this->variables['form'];
-    // Wrap form elements.
-    $field_controller = new FieldController();
-    $this->variables['form']['label'] = $field_controller->form($form['label'], 'title');
-    $this->variables['form']['importname'] = $field_controller->form($form['importname'], 'importname');
-    $this->variables['form']['description'] = $field_controller->form($form['description'], 'description');
-    $this->variables['form']['datatypes'] = $field_controller->form($form['datatypes'], 'datatypes');
-    $this->variables['form']['organization'] = $field_controller->form($form['organization'], 'organization');
-    $this->variables['form']['groups'] = $field_controller->form($form['groups'], 'groups');
+    $this->variables['form']['label'] = $this->wrapFormElement($form['label'], 'title');
+    $this->variables['form']['importname'] = $this->wrapFormElement($form['importname'], 'importname');
+    $this->variables['form']['description'] = $this->wrapFormElement($form['description'], 'description');
+    $this->variables['form']['datatypes'] = $this->wrapFormElement($form['datatypes'], 'datatypes');
+    $this->variables['form']['groups'] = $this->wrapFormElement($form['groups'], 'groups');
     $this->variables['help_button'] = [
       '#id' => 'activeforanimals_help',
       '#type' => 'button',

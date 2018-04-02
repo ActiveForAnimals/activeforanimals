@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * An event template delete form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+      {{ form.description }}
+      {{ form.actions.submit }}
+      {{ form.actions.cancel }}
+      {{ help_button }}
+    </div>
+  </div>
+</form>
+

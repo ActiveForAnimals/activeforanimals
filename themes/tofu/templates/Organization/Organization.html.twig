@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * An organization page.
+ *
+ */
+#}
+<div class="section">
+  <div class="column-wrapper">
+    <div class="column-3-15 first-column">
+      {{ content.logo }}
+    </div>
+    <div class="column-8-15">
+      <div class="title">
+        {{ content.title }}
+      </div>
+      {{ content.description }}
+    </div>
+    <div class="column-4-15 last-column">
+      <div class="contact-information">
+        <div class="title">
+          {{ 'Contact Details'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            <li>{{ content.website }}</li>
+            <li>{{ content.phone_number }}</li>
+            <li>{{ content.email_address }}</li>
+            <li>{{ content.location }}</li>
+          </ul>
+        </div>
+      </div>
+      {% if content.links is not empty %}
+      <div class="links">
+        <div class="title">
+          {{ 'Operations'|t }}
+        </div>
+        <div class="content">
+          <ul>
+            {% for element in content.links %}
+            {% if element|render %}
+            <li>{{ element }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="column-wrapper">
+  <div class="column-11-15 first-column">
+    {{ content.events }}
+  </div>
+  <div class="column-4-15 last-column">
+    {{ content.groups }}
+  </div>
+</div>

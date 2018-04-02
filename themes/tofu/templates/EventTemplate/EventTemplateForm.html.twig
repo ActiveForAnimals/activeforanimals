@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * An event template form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Event template'|t }}
+    </div>
+    <div class="title">
+      {{ form.name }}
+    </div>
+    <div class="column-wrapper">
+      <div class="column-15-15">
+        <div class="section">
+          <div class="title">
+            Event
+          </div>
+          <div class="content">
+            {{ form.event_title }}
+            {{ form.event_description }}
+          </div>
+      </div>
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
+    </div>
+  </div>
+</form>
