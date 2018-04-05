@@ -7,6 +7,4 @@
  * Inspired by https://drupal.org/project/honeypot.
  */
 
-use Drupal\afa_agarvenectarjar\Constant;
-
-include drupal_get_path('module', Constant::MODULE_NAME) . '/includes/hooks.inc';
+include drupal_get_path('module', 'afa_agarvenectarjar') . '/includes/hooks.inc';
