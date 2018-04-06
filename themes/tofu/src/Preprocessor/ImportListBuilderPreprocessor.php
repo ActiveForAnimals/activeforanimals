@@ -39,6 +39,7 @@ class ImportListBuilderPreprocessor extends Preprocessor implements Preprocessor
       ]
     ));
     $this->variables['content']['empty'] = t('No imports created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['imports'] as $import) {
       $import_elements = [];
       $import_link = new Url(

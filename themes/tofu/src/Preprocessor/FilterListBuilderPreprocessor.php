@@ -29,6 +29,7 @@ class FilterListBuilderPreprocessor extends Preprocessor implements Preprocessor
       ]
     ));
     $this->variables['content']['empty'] = t('No filters created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['filters'] as $filter_id => $filter) {
       $filter_elements = [];
       $filter_link = new Url('entity.filter.canonical', [

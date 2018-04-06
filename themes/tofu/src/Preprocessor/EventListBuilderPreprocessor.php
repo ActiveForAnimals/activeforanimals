@@ -51,6 +51,7 @@ class EventListBuilderPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['content']['create_link'] = (!empty($event_add_link) && AccessControl::isGroupStaff([$this->variables['elements']['#storage']['entities']['group']])->isAllowed()) ? $this->wrapElement(t('Create event'), 'add_event', $event_add_link) : NULL;
     $this->variables['content']['create_from_template_link'] = (!empty($event_add_from_template_link) && AccessControl::isGroupStaff([$this->variables['elements']['#storage']['entities']['group']])->isAllowed()) ? $this->wrapElement(t('Create event from template'), 'event_template', $event_add_from_template_link) : NULL;
     $this->variables['content']['empty'] = t('No events created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['events'] as $event) {
       $event_elements = [];
       $event_elements['title'] = !$event->get('title')->isEmpty() ? $this->wrapField($event->get('title')) : NULL;
