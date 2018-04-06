@@ -30,6 +30,7 @@ class ExportListBuilderPreprocessor extends Preprocessor implements Preprocessor
       ]
     ));
     $this->variables['content']['empty'] = t('No exports created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['exports'] as $export) {
       $export_elements = [];
       $export_link = new Url(
