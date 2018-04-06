@@ -6,32 +6,44 @@
  */
 #}
 <div class="section">
-  <form{{ attributes }}>
-  {{ form.form_build_id }}
-  {{ form.form_token }}
-  {{ form.form_id }}
-    <div class="title">
-      {{ 'Bi-weekly newsletter'|t }}
+  <div class="column-wrapper">
+    <div class="column-8-15 first-column">
+      <form{{ attributes }}>
+      {{ form.form_build_id }}
+      {{ form.form_token }}
+      {{ form.form_id }}
+        <div class="title">
+          {{ 'Bi-weekly newsletter'|t }}
+        </div>
+        <div class="content">
+          Sign up to our bi-weekly newsletter to get updates on features, development and future releases!
+          <div class="column-wrapper">
+            <div class="column-15-15 no-spacing">
+              {{ form.email }}
+            </div>
+            <div class="column-15-15 no-spacing">
+              {{ form.first_name }}
+            </div>
+            <div class="column-15-15 no-spacing">
+              {{ form.last_name }}
+            </div>
+            <div class="column-15-15 no-spacing">
+              {{ form.afa_username }}
+            </div>
+            <div class="column-15-15 no-spacing">
+              {{ form.submit }}
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="content">
-      Sign up to our bi-weekly newsletter to get updates on features, development and future releases!
-      <div class="column-wrapper">
-        <div class="column-15-15 no-spacing">
-          {{ form.email }}
-        </div>
-        <div class="column-15-15 no-spacing">
-          {{ form.first_name }}
-        </div>
-        <div class="column-15-15 no-spacing">
-          {{ form.last_name }}
-        </div>
-        <div class="column-15-15 no-spacing">
-          {{ form.afa_username }}
-        </div>
-        <div class="column-15-15 no-spacing">
-          {{ form.submit }}
-        </div>
+    <div class="column-7-15 first-column">
+      <div class="title">
+        {{ 'Latest news'|t }}
+      </div>
+      <div class="content">
+        To see previous news, go to the <a href="/about/news">news archive</a>. You can also follow us on our <a href="https://facebook.com/activeforanimals" target="blank">Facebook page</a>
       </div>
     </div>
-  </form>
+  </div>
 </div>
