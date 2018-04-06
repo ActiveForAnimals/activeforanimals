@@ -388,7 +388,8 @@ footer .element-mailchimp_logo {
  * Formatting for static pages.
  */
 .path-guide .region-content ul,
-.path-help .region-content ul {
+.path-help .region-content ul,
+.path-about .region-content ul {
   list-style-type: disc;
   margin-left: 1em;
 }
@@ -396,24 +397,29 @@ footer .element-mailchimp_logo {
 .path-guide .region-content table th,
 .path-guide .region-content table td,
 .path-help .region-content table th,
-.path-help .region-content table td {
+.path-help .region-content table td,
+.path-about .region-content table th,
+.path-about .region-content table td {
   border: 1px solid #6b6d69;
   padding: 0.5em;
 }
 
 .path-guide .region-content table th,
-.path-help .region-content table th {
+.path-help .region-content table th,
+.path-about .region-content table th {
   text-align: left;
 }
 
 .path-guide .region-content .align-left,
-.path-help .region-content .align-right {
+.path-help .region-content .align-right,
+.path-about .region-content .align-right {
   float: left;
   margin: 0 1em 0 0;
 }
 
 .path-guide .region-content figcaption,
-.path-help .region-content figcaption {
+.path-help .region-content figcaption,
+.path-about .region-content figcaption {
   font-size: 0.7em;
   font-style: italic;
   line-height: 0.7em;
@@ -421,17 +427,20 @@ footer .element-mailchimp_logo {
 }
 
 .path-guide .region-content img,
-.path-help .region-content img {
+.path-help .region-content img,
+.path-about .region-content img {
   width: 100%;
 }
 
 .path-guide .region-content h1,
-.path-help .region-content h1 {
+.path-help .region-content h1,
+.path-about .region-content h1 {
   line-height: 1em;
 }
 
 .path-guide .region-content table,
-.path-help .region-content table {
+.path-help .region-content table,
+.path-about .region-content table {
   width: 100%;
   table-layout: fixed;
   font-size: 0.7em;
