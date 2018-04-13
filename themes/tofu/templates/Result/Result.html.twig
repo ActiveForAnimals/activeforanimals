@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * A result page.
+ *
+ */
+#}
+<div class="section">
+    <div class="title">
+    {{ content.title }}
+  </div>
+  <div class="content">
+    <div class="column-wrapper">
+      <div class="column-6-15 first-column">
+        <div class="content spacing-top">
+          <div class="section">
+            <strong>{{ 'Number of participants'|t }}</strong>
+            <div class="column-wrapper">
+              <div class="column-10-15 no-spacing">
+                {{ content.participant_count }}
+              </div>
+              <div class="column-5-15 no-spacing vertical-align">
+                {{ 'participants'|t }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content spacing-top">
+          <div class="section">
+            <strong>{{ 'Duration'|t }}</strong>
+            <div class="column-wrapper">
+              <div class="column-5-15 no-spacing">
+                {{ 'Minutes'|t }}
+                {{ content.duration_minutes }}
+              </div>
+              <div class="column-5-15 no-spacing">
+                {{ 'Hours'|t }}
+                {{ content.duration_hours }}
+              </div>
+              <div class="column-5-15 no-spacing">
+                {{ 'Days'|t }}
+                {{ content.duration_days }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column-1-15 last-column">
+      </div>
+      <div class="column-8-15 last-column">
+        {% for data_item in content.data_items %}
+        <div class="content spacing-top">
+          <div class="section">
+            <strong>{{ data_item.title }}</strong>
+            {{ data_item.field }}
+          </div>
+        </div>          
+        {% endfor %}
+        <div class="content spacing-top">
+          <div class="section">
+            <strong>{{ 'Tags'|t }}</strong>
+            {{ content.tags }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
