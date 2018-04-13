@@ -17,12 +17,10 @@ class EventTest extends WebTestBase {
   const ADD_EVENT_PATH = '/o/%s/g/%s/e/add';
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
-  const STARTDATE = '2016-01-01';
-  const STARTDATEFORMATTED = '01/01/2016';
-  const STARTTIME = '11:00';
-  const ENDDATE = '2016-01-01';
-  const ENDDATEFORMATTED = '01/01/2016';
-  const ENDTIME = '12:00';
+  const STARTDATE = '2016-01-01 11:00';
+  const STARTDATEFORMATTED = '01/01/2016 11:00';
+  const ENDDATE = '2016-01-01 12:00';
+  const ENDDATEFORMATTED = '01/01/2016 12:00';
   const LOCATION_ADDRESS = 'Copenhagen, Denmark';
   const LOCATION_EXTRA_INFORMATION = 'Test location';
 
@@ -91,10 +89,8 @@ class EventTest extends WebTestBase {
     $this->drupalPostForm(NULL, [
       'title[0][value]' => self::TITLE,
       'description[0][value]' => self::DESCRIPTION,
-      'start_date[0][value][date]' => self::STARTDATE,
-      'start_date[0][value][time]' => self::STARTTIME,
-      'end_date[0][value][date]' => self::ENDDATE,
-      'end_date[0][value][time]' => self::ENDTIME,
+      'start_date[0][value]' => self::STARTDATE,
+      'end_date[0][value]' => self::ENDDATE,
       'location[0][address]' => self::LOCATION_ADDRESS,
       'location[0][extra_information]' => self::LOCATION_EXTRA_INFORMATION,
     ], t('Save'));
@@ -105,9 +101,7 @@ class EventTest extends WebTestBase {
     $this->assertText(self::LOCATION_ADDRESS, 'Set location address correctly.');
     $this->assertText(self::LOCATION_EXTRA_INFORMATION, 'Set location extra information correctly.');
     $this->assertText(self::STARTDATEFORMATTED, 'Set start date correctly.');
-    $this->assertText(self::STARTTIME, 'Set start time correctly.');
     $this->assertText(self::ENDDATEFORMATTED, 'Set end date correctly.');
-    $this->assertText(self::ENDTIME, 'Set end time correctly.');
   }
 
 }
