@@ -708,6 +708,11 @@ input.form-submit:focus,
   display: block;
 }
 
+.form.element-start_date label,
+.form.element-end_date label {
+  display: block;
+}
+
 .form.element-location .extra-information {
   background-image: url(../images/extra_location_information.svg);
 }

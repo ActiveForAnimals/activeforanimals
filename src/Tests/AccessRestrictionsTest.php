@@ -44,10 +44,8 @@ class AccessRestrictionsTest extends WebTestBase {
   const GROUP_TITLE_1_MODIFIED = 'Test group 1 (updated)';
   const GROUP_TITLE_2 = 'Test group 2';
   const GROUP_TITLE_2_MODIFIED = 'Test group 2 (updated)';
-  const STARTDATE = '2016-01-01';
-  const STARTTIME = '11:00';
-  const ENDDATE = '2016-01-01';
-  const ENDTIME = '12:00';
+  const STARTDATE = '2016-01-01 11:00';
+  const ENDDATE = '2016-01-01 12:00';
   const PATTERN_ORGANIZER_SECTION = '"edit-organizers-wrapper"';
   const PATTERN_RESULT_TYPE_SECTION = '"element-result_types"';
 
@@ -156,6 +154,11 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->manager2 = $this->drupalCreateUser();
     $this->organizer1 = $this->drupalCreateUser();
     $this->organizer2 = $this->drupalCreateUser();
+    // Disable user time zones.
+    // This is required in order for events to register correct time.
+    $systemDate = Drupal::configFactory()->getEditable('system.date');
+    $systemDate->set('timezone.default', 'UTC');
+    $systemDate->save(TRUE);
     // Create organizational structure.
     $this->organization1 = (new CreateOrganization($this->manager1, $this->organizer1, self::ORGANIZATION_TITLE_1))->execute();
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2, self::ORGANIZATION_TITLE_2))->execute();
@@ -318,10 +321,8 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->drupalPostForm(NULL, [
       'title[0][value]' => '',
       'description[0][value]' => '',
-      'start_date[0][value][date]' => self::STARTDATE,
-      'start_date[0][value][time]' => self::STARTTIME,
-      'end_date[0][value][date]' => self::ENDDATE,
-      'end_date[0][value][time]' => self::ENDTIME,
+      'start_date[0][value]' => self::STARTDATE,
+      'end_date[0][value]' => self::ENDDATE,
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
@@ -346,10 +347,8 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->drupalPostForm(NULL, [
       'title[0][value]' => '',
       'description[0][value]' => '',
-      'start_date[0][value][date]' => self::STARTDATE,
-      'start_date[0][value][time]' => self::STARTTIME,
-      'end_date[0][value][date]' => self::ENDDATE,
-      'end_date[0][value][time]' => self::ENDTIME,
+      'start_date[0][value]' => self::STARTDATE,
+      'end_date[0][value]' => self::ENDDATE,
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
@@ -450,10 +449,8 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->drupalPostForm(NULL, [
       'title[0][value]' => '',
       'description[0][value]' => '',
-      'start_date[0][value][date]' => self::STARTDATE,
-      'start_date[0][value][time]' => self::STARTTIME,
-      'end_date[0][value][date]' => self::ENDDATE,
-      'end_date[0][value][time]' => self::ENDTIME,
+      'start_date[0][value]' => self::STARTDATE,
+      'end_date[0][value]' => self::ENDDATE,
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText('Created event.', 'Added a new event entity.');
