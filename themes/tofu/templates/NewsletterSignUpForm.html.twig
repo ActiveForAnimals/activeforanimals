@@ -7,7 +7,7 @@
 #}
 <div class="section">
   <div class="column-wrapper">
-    <div class="column-8-15 first-column">
+    <div class="column-15-15 first-column">
       <form{{ attributes }}>
       {{ form.form_build_id }}
       {{ form.form_token }}
@@ -34,16 +34,11 @@
               {{ form.submit }}
             </div>
           </div>
+          <div class="footer">
+            To see previous news, go to the <a href="/about/news">news archive</a>. You can also follow us on our <a href="https://facebook.com/activeforanimals" target="blank">Facebook page</a>
+          </div>
         </div>
       </form>
-    </div>
-    <div class="column-7-15 first-column">
-      <div class="title">
-        {{ 'Latest news'|t }}
-      </div>
-      <div class="content">
-        To see previous news, go to the <a href="/about/news">news archive</a>. You can also follow us on our <a href="https://facebook.com/activeforanimals" target="blank">Facebook page</a>
-      </div>
     </div>
   </div>
 </div>
