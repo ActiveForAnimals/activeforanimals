@@ -154,6 +154,11 @@ class AccessRestrictionsTest extends WebTestBase {
     $this->manager2 = $this->drupalCreateUser();
     $this->organizer1 = $this->drupalCreateUser();
     $this->organizer2 = $this->drupalCreateUser();
+    // Disable user time zones.
+    // This is required in order for events to register correct time.
+    $systemDate = Drupal::configFactory()->getEditable('system.date');
+    $systemDate->set('timezone.default', 'UTC');
+    $systemDate->save(TRUE);
     // Create organizational structure.
     $this->organization1 = (new CreateOrganization($this->manager1, $this->organizer1, self::ORGANIZATION_TITLE_1))->execute();
     $this->organization2 = (new CreateOrganization($this->manager2, $this->organizer2, self::ORGANIZATION_TITLE_2))->execute();

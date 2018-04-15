@@ -2,6 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests;
 
+use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -18,9 +19,9 @@ class EventTest extends WebTestBase {
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
   const STARTDATE = '2016-01-01 11:00';
-  const STARTDATEFORMATTED = '01/01/2016 11:00';
+  const STARTDATEFORMATTED = '01/01/2016 - 11:00';
   const ENDDATE = '2016-01-01 12:00';
-  const ENDDATEFORMATTED = '01/01/2016 12:00';
+  const ENDDATEFORMATTED = '01/01/2016 - 12:00';
   const LOCATION_ADDRESS = 'Copenhagen, Denmark';
   const LOCATION_EXTRA_INFORMATION = 'Test location';
 
@@ -69,6 +70,11 @@ class EventTest extends WebTestBase {
    */
   public function setUp() {
     parent::setUp();
+    // Disable user time zones.
+    // This is required in order for events to register correct time.
+    $systemDate = Drupal::configFactory()->getEditable('system.date');
+    $systemDate->set('timezone.default', 'UTC');
+    $systemDate->save(TRUE);
     $this->manager = $this->drupalCreateUser();
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
