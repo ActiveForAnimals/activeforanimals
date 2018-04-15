@@ -24,6 +24,7 @@ class TaxonomyTermListBuilderPreprocessor extends Preprocessor implements Prepro
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Tags'), 'title', $taxonomy_term_overview_link);
     $this->variables['content']['empty'] = t('No tags created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['taxonomy_terms'] as $term) {
       $term_elements = [];
       $term_elements['title'] = $this->wrapElement($term->label(), 'title');

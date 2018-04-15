@@ -29,6 +29,7 @@ class EventTemplateListBuilderPreprocessor extends Preprocessor implements Prepr
         'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
       ]));
     $this->variables['content']['empty'] = t('No event templates created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['event_templates'] as $event_template) {
       $event_template_elements = [];
       $event_template_link = new Url(

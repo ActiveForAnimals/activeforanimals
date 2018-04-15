@@ -33,6 +33,7 @@ class ResultTypeListBuilderPreprocessor extends Preprocessor implements Preproce
       ]
     ));
     $this->variables['content']['empty'] = t('No result types created yet.');
+    $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['result_types'] as $result_type_id => $result_type) {
       $result_type_elements = [];
       $result_type_elements['label'] = $this->wrapElement($result_type->get('label'), 'label');

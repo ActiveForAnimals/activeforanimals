@@ -6,22 +6,16 @@ dependencies:
   # core dependencies
   - automated_cron
   - block
-  - breakpoint
+  - big_pipe
   - contact
   - config
-  - contextual
   - dblog
   - dynamic_page_cache
-  - history
-  - node
   - options
   - page_cache
-  - path
   - rdf
-  - search
   - taxonomy
   - tour
-  - views
   # effective activism modules
   - effective_activism
   # custom modules
