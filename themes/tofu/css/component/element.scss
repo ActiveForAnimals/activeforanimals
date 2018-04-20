@@ -103,6 +103,12 @@
   background-image: url(../images/address.svg);
 }
 
+.view.element-event_location,
+.form.element-event_location .address {
+  @extend %element-icon;
+  background-image: url(../images/address.svg);
+}
+
 .form.element-file label,
 .form.element-file .description {
   display: block;
@@ -123,12 +129,14 @@
   background-image: url(../images/date.svg);
 }
 
-.view.element-start_date {
+.view.element-start_date,
+.view.element-event_start_date {
   @extend %element-icon;
   background-image: url(../images/date.svg);
 }
 
-.view.element-end_date {
+.view.element-end_date,
+.view.element-event_end_date {
   @extend %element-icon;
   background-image: url(../images/date.svg);
 }
