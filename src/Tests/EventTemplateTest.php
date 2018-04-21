@@ -2,6 +2,7 @@
 
 namespace Drupal\activeforanimals\Tests;
 
+use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Event;
 use Drupal\effective_activism\Entity\EventTemplate;
@@ -22,8 +23,10 @@ class EventTemplateTest extends WebTestBase {
   const TITLE = 'Test event template';
   const EVENT_TITLE = 'A sample event title';
   const EVENT_DESCRIPTION = 'A sample event description';
-  const EVENT_START_DATE = '31/12/2018 - 11:00';
-  const EVENT_END_DATE = '31/12/2018 - 12:00';
+  const EVENT_START_DATE = '2018-12-31 11:00';
+  const EVENT_END_DATE = '2018-12-31 12:00';
+  const EVENT_START_DATE_FORMATTED = '12/31/2018 - 11:00';
+  const EVENT_END_DATE_FORMATTED = '12/31/2018 - 12:00';
   const EVENT_LOCATION_ADDRESS = '';
   const EVENT_LOCATION_EXTRA_INFORMATION = 'A sample location';
 
@@ -72,6 +75,11 @@ class EventTemplateTest extends WebTestBase {
    */
   public function setUp() {
     parent::setUp();
+    // Disable user time zones.
+    // This is required in order for events to register correct time.
+    $systemDate = Drupal::configFactory()->getEditable('system.date');
+    $systemDate->set('timezone.default', 'UTC');
+    $systemDate->save(TRUE);
     $this->manager = $this->drupalCreateUser();
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
@@ -113,9 +121,8 @@ class EventTemplateTest extends WebTestBase {
     $this->drupalPostForm(NULL, [], t('Save'));
     $this->assertText(self::EVENT_TITLE);
     $this->assertText(self::EVENT_DESCRIPTION);
-    $this->assertText(self::EVENT_START_DATE);
-    $this->assertText(self::EVENT_END_DATE);
-    $this->assertText(self::EVENT_LOCATION_ADDRESS);
+    $this->assertText(self::EVENT_START_DATE_FORMATTED);
+    $this->assertText(self::EVENT_END_DATE_FORMATTED);
     $this->assertText(self::EVENT_LOCATION_EXTRA_INFORMATION);
     // Verify that event template is added to event.
     $event_template = EventTemplate::load('1');
