@@ -583,10 +583,14 @@ input.form-submit:focus,
 .form.element-email_address input,
 .view.element-location,
 .form.element-location .address,
+.view.element-event_location,
+.form.element-event_location .address,
 .form.element-location .extra-information,
 .view.element-event_count,
 .view.element-start_date,
+.view.element-event_start_date,
 .view.element-end_date,
+.view.element-event_end_date,
 .view.element-created,
 .view.element-parent,
 .view.element-edit_page,
@@ -703,6 +707,11 @@ input.form-submit:focus,
   background-image: url(../images/address.svg);
 }
 
+.view.element-event_location,
+.form.element-event_location .address {
+  background-image: url(../images/address.svg);
+}
+
 .form.element-file label,
 .form.element-file .description {
   display: block;
@@ -721,11 +730,13 @@ input.form-submit:focus,
   background-image: url(../images/date.svg);
 }
 
-.view.element-start_date {
+.view.element-start_date,
+.view.element-event_start_date {
   background-image: url(../images/date.svg);
 }
 
-.view.element-end_date {
+.view.element-end_date,
+.view.element-event_end_date {
   background-image: url(../images/date.svg);
 }
 
