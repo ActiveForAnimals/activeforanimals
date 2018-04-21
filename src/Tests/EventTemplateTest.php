@@ -22,6 +22,10 @@ class EventTemplateTest extends WebTestBase {
   const TITLE = 'Test event template';
   const EVENT_TITLE = 'A sample event title';
   const EVENT_DESCRIPTION = 'A sample event description';
+  const EVENT_START_DATE = '31/12/2018 - 11:00';
+  const EVENT_END_DATE = '31/12/2018 - 12:00';
+  const EVENT_LOCATION_ADDRESS = '';
+  const EVENT_LOCATION_EXTRA_INFORMATION = 'A sample location';
 
   /**
    * {@inheritdoc}
@@ -89,6 +93,10 @@ class EventTemplateTest extends WebTestBase {
       'name[0][value]' => self::TITLE,
       'event_title[0][value]' => self::EVENT_TITLE,
       'event_description[0][value]' => self::EVENT_DESCRIPTION,
+      'event_start_date[0][value]' => self::EVENT_START_DATE,
+      'event_end_date[0][value]' => self::EVENT_END_DATE,
+      'event_location[0][address]' => self::EVENT_LOCATION_ADDRESS,
+      'event_location[0][extra_information]' => self::EVENT_LOCATION_EXTRA_INFORMATION,
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText(sprintf('Created the %s event template.', self::TITLE), 'Created a new event template.');
@@ -105,6 +113,10 @@ class EventTemplateTest extends WebTestBase {
     $this->drupalPostForm(NULL, [], t('Save'));
     $this->assertText(self::EVENT_TITLE);
     $this->assertText(self::EVENT_DESCRIPTION);
+    $this->assertText(self::EVENT_START_DATE);
+    $this->assertText(self::EVENT_END_DATE);
+    $this->assertText(self::EVENT_LOCATION_ADDRESS);
+    $this->assertText(self::EVENT_LOCATION_EXTRA_INFORMATION);
     // Verify that event template is added to event.
     $event_template = EventTemplate::load('1');
     $event = Event::load('1');
