@@ -22,9 +22,18 @@
           <div class="title">
             Event
           </div>
-          <div class="content">
-            {{ form.event_title }}
-            {{ form.event_description }}
+          <div class="column-wrapper">
+            <div class="column-11-15 first-column">
+              <div class="content">
+                {{ form.event_title }}
+                {{ form.event_description }}
+              </div>
+            </div>
+            <div class="column-4-15 last-column">
+              {{ form.event_start_date }}
+              {{ form.event_end_date }}
+              {{ form.event_location }}
+            </div>
           </div>
       </div>
     </div>

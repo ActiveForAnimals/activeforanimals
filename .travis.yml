@@ -39,7 +39,7 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal-8.5.1 --destination=~/build --drupal-project-rename="drupal"
+  - ~/.composer/vendor/bin/drush dl drupal-8.5.3 --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
@@ -48,7 +48,7 @@ before_script:
   # Apply patches.
   - cd $MODULE_PATH/inline_entity_form
   - wget -q https://www.drupal.org/files/issues/inline_entity_form-include-access-check-2929727-4_0.patch
-  - git apply -v inline_entity_form-include-access-check-2929727-4_0.patch
+  - patch -p1 < inline_entity_form-include-access-check-2929727-4_0.patch
   # Add theme dependencies.
   - cd $DRUPAL_PATH
   - sed -ie 's/"core\/composer.json"/"core\/composer.json",\n                "profiles\/activeforanimals\/themes\/tofu\/composer.json"/g' composer.json
