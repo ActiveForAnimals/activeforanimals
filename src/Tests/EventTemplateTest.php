@@ -25,8 +25,8 @@ class EventTemplateTest extends WebTestBase {
   const EVENT_DESCRIPTION = 'A sample event description';
   const EVENT_START_DATE = '2018-12-31 11:00';
   const EVENT_END_DATE = '2018-12-31 12:00';
-  const EVENT_START_DATE_FORMATTED = '12/31/2018 - 11:00';
-  const EVENT_END_DATE_FORMATTED = '12/31/2018 - 12:00';
+  const EVENT_START_DATE_FORMATTED = '2018-12-31 11:00';
+  const EVENT_END_DATE_FORMATTED = '2018-12-31 12:00';
   const EVENT_LOCATION_ADDRESS = '';
   const EVENT_LOCATION_EXTRA_INFORMATION = 'A sample location';
 
