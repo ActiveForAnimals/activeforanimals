@@ -21,9 +21,9 @@ class CSVImportTest extends WebTestBase {
   const ADD_CSV_IMPORT_PATH = '/o/%s/g/%s/imports/add/csv';
   const RESULTTYPE = 'leafleting';
   const RESULT = 'leafleting | 4 | 0 | 1 | 0 | 1000 | Flyer A';
-  const STARTDATE = '12/13/2016';
+  const STARTDATE = '2016-12-13';
   const STARTTIME = '11:00';
-  const ENDDATE = '12/13/2016';
+  const ENDDATE = '2016-12-13';
   const ENDTIME = '13:00';
   const NUMBER_OF_IMPORTED_EVENTS = 2;
 
@@ -122,8 +122,8 @@ class CSVImportTest extends WebTestBase {
     ]);
     $this->drupalGet($event_path);
     $this->assertResponse(200);
-    $this->assertText(sprintf('%s - %s', self::STARTDATE, self::STARTTIME), 'Start date and time found.');
-    $this->assertText(sprintf('%s - %s', self::ENDDATE, self::ENDTIME), 'End date and time found.');
+    $this->assertText(sprintf('%s %s', self::STARTDATE, self::STARTTIME), 'Start date and time found.');
+    $this->assertText(sprintf('%s %s', self::ENDDATE, self::ENDTIME), 'End date and time found.');
     // Remove result type from group.
     $result_type = ResultTypeHelper::getResultTypeByImportName(self::RESULTTYPE, $this->organization->id());
     $result_type->groups = [];

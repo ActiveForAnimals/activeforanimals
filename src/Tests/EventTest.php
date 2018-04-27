@@ -19,9 +19,9 @@ class EventTest extends WebTestBase {
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
   const STARTDATE = '2016-01-01 11:00';
-  const STARTDATEFORMATTED = '01/01/2016 - 11:00';
+  const STARTDATEFORMATTED = '2016-01-01 11:00';
   const ENDDATE = '2016-01-01 12:00';
-  const ENDDATEFORMATTED = '01/01/2016 - 12:00';
+  const ENDDATEFORMATTED = '2016-01-01 12:00';
   const LOCATION_ADDRESS = 'Copenhagen, Denmark';
   const LOCATION_EXTRA_INFORMATION = 'Test location';
 
