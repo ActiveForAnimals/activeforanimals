@@ -5,36 +5,78 @@
  *
  */
 #}
-<div class="section">
-  <div class="title">
-    {{ 'Filter'|t }}
-  </div>
-  <div class="column-wrapper">
-    <div class="column-11-15 first-column">
-      <div class="content">
-        {{ content.title }}
-        {{ content.source }}
-        {{ content.created }}
-        {{ content.event_count }}
-      </div>
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Filter'|t }}
     </div>
-    <div class="column-4-15 last-column">
-      {% if content.links is not empty %}
-      <div class="links">
-        <div class="title">
-          {{ 'Operations'|t }}
-        </div>
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="column-wrapper">
+      <div class="column-15-15">
         <div class="content">
-          <ul>
-            {% for element in content.links %}
-            {% if element|render %}
-            <li>{{ element }}</li>
-            {% endif %}
-            {% endfor %}
-          </ul>
+          {{ content.event_count }}
         </div>
+        <div class="section">
+          <div class="title">
+            Event
+          </div>
+          <div class="column-wrapper">
+            <div class="column-11-15 first-column">
+              {% if content.event_template is not empty %}
+              <div class="title">
+                Filter by template
+              </div>
+              <div class="content">
+                {{ content.event_template }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="column-4-15 last-column">
+              {% if (content.start_date is not empty or content.end_date is not empty) %}
+              <div class="title">
+                Filter by dates
+              </div>
+              <div class="content">
+                {{ content.start_date }}
+                {{ content.end_date }}
+              </div>
+              {% endif %}
+              {% if content.location is not empty %}
+              <div class="title">
+                Filter by location
+              </div>
+              <div class="content">
+                {{ content.location }}
+              </div>
+              {% endif %}
+              {% if content.links is not empty %}
+              <div class="links">
+                <div class="title">
+                  {{ 'Operations'|t }}
+                </div>
+                <div class="content">
+                  <ul>
+                    {% for element in content.links %}
+                    {% if element|render %}
+                    <li>{{ element }}</li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
       </div>
-      {% endif %}
+    </div>
+    <div class="footer">
+      {{ form.actions.submit }}
+      {{ help_button }}
     </div>
   </div>
-</div>
+</form>
