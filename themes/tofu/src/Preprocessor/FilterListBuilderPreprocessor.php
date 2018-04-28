@@ -2,6 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Helper\FilterHelper;
 use Drupal\effective_activism\Helper\PathHelper;
@@ -37,9 +38,11 @@ class FilterListBuilderPreprocessor extends Preprocessor implements Preprocessor
         'filter' => $filter->id(),
       ]);
       $filter_elements['title'] = $this->wrapField($filter->get('name'), $filter_link);
-      $filter_elements['event_count'] = $this->wrapElement(t('Events (@event_count)', [
-        '@event_count' => count(FilterHelper::getEvents($filter, 0, 0, FALSE)),
-      ]), 'event_count');
+      $filter_elements['event_count'] = $this->wrapElement(Drupal::translation()->formatPlural(
+        count(FilterHelper::getEvents($filter, 0, 0, FALSE)),
+          'One event',
+          '@count events'
+        ), 'event_count');
       $filter_elements['more_info'] = $this->wrapButton(t('More info'), 'more_info', $filter_link);
       $this->variables['content']['filters'][] = $filter_elements;
     }
