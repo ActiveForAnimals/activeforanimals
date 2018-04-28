@@ -13,11 +13,9 @@ class CreateEvent {
 
   const TITLE = 'Test event';
 
-  private $group;
-
   private $timezone;
 
-  private $title;
+  private $values;
 
   /**
    * Constructor.
@@ -28,22 +26,22 @@ class CreateEvent {
    *   The organizer of the group.
    * @param string $title
    *   Optional title of the group.
+   * @param array $values
+   *   Additional values for event.
    */
-  public function __construct(Group $group, User $organizer, $title = NULL) {
-    $this->group = $group;
-    $this->organizer = $organizer;
-    $this->title = empty($title) ? self::TITLE : $title;
+  public function __construct(Group $group, User $organizer, $title = NULL, array $values = []) {
+    $this->values = array_merge([
+      'title' => empty($title) ? self::TITLE : $title,
+      'user_id' => $organizer,
+      'parent' => $group->id(),
+    ], $values);
   }
 
   /**
    * Create event.
    */
   public function execute() {
-    $event = Event::create([
-      'user_id' => $this->organizer->id(),
-      'title' => $this->title,
-      'parent' => $this->group->id(),
-    ]);
+    $event = Event::create($this->values);
     $event->save();
     return $event;
   }
