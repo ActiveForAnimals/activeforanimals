@@ -150,19 +150,22 @@ abstract class Preprocessor implements PreprocessorInterface {
       'view',
       sprintf(self::ELEMENT_CLASS_FORMAT, $field->getName()),
     ]);
+    $display_options = [
+      'label' => 'hidden',
+    ];
+    // Add date format if field is a datefield.
+    if ($field->getItemDefinition()->getDataType() === 'field_item:datetime') {
+      $display_options['settings']['format_type'] = 'iso_8601_weekday';
+    }
     if (empty($url)) {
-      $content['element'] = $field->view([
-        'label' => 'hidden',
-        'settings' => [
-          'link' => FALSE,
-        ],
-      ]);
+      $display_options['settings']['link'] = FALSE;
+      $content['element'] = $field->view($display_options);
     }
     else {
       $content['element'] = [
         '#type' => 'markup',
         '#markup' => Drupal::l(
-          $field->view('full'),
+          $field->view($display_options),
           $url
         ),
       ];

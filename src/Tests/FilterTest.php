@@ -3,6 +3,9 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\activeforanimals\Tests\Helper\CreateEvent;
+use Drupal\activeforanimals\Tests\Helper\CreateEventTemplate;
+use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
@@ -14,6 +17,7 @@ use Drupal\simpletest\WebTestBase;
 class FilterTest extends WebTestBase {
 
   const ADD_FILTER_PATH = '/o/%s/filters/add';
+  const EVENT_TEMPLATE_TITLE = 'Test template';
   const TITLE = 'Test filter';
 
   /**
@@ -34,6 +38,34 @@ class FilterTest extends WebTestBase {
    * @var Organization
    */
   private $organization;
+
+  /**
+   * The group to host the event.
+   *
+   * @var \Drupal\effective_activism\Entity\Group
+   */
+  private $group;
+
+  /**
+   * The first event to test with filters.
+   *
+   * @var \Drupal\effective_activism\Entity\Event
+   */
+  private $event1;
+
+  /**
+   * The second event to test with filters.
+   *
+   * @var \Drupal\effective_activism\Entity\Event
+   */
+  private $event2;
+
+  /**
+   * The event template to test with filters.
+   *
+   * @var \Drupal\effective_activism\Entity\EventTemplate
+   */
+  private $eventTemplate;
 
   /**
    * The test manager.
@@ -57,6 +89,12 @@ class FilterTest extends WebTestBase {
     $this->manager = $this->drupalCreateUser();
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
+    $this->group = Group::load(1);
+    $this->eventTemplate = (new CreateEventTemplate($this->organization, $this->manager, self::EVENT_TEMPLATE_TITLE))->execute();
+    $this->event1 = (new CreateEvent($this->group, $this->organizer))->execute();
+    $this->event2 = (new CreateEvent($this->group, $this->organizer, NULL, [
+      'event_template' => $this->eventTemplate->id(),
+    ]))->execute();
   }
 
   /**
@@ -71,8 +109,11 @@ class FilterTest extends WebTestBase {
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'name[0][value]' => self::TITLE,
+      'event_template' => $this->eventTemplate->id(),
     ], t('Save'));
     $this->assertResponse(200);
+    $this->assertText(self::EVENT_TEMPLATE_TITLE, 'Template found.');
+    $this->assertText('One event', 'One event included.');
     $this->assertText(sprintf('Created the %s filter.', self::TITLE), 'Created a new filter.');
   }
 

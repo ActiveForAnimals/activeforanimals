@@ -16,32 +16,37 @@
     <div class="title">
       {{ form.name }}
     </div>
-    <div class="content">
-      <div class="column-wrapper">
-        <div class="column-15-15">
-          <div class="section">
-            Filter by dates
-            <div class="content">
-              <div class="column-7-15 first-column">
-                {{ form.start_date }}
+    <div class="column-wrapper">
+      <div class="column-15-15">
+        <div class="section">
+          <div class="title">
+            Event
+          </div>
+          <div class="column-wrapper">
+            <div class="column-11-15 first-column">
+              <div class="title">
+                Filter by template
               </div>
-              <div class="column-7-15 last-column">
+              <div class="content">
+                {{ form.event_template }}
+              </div>
+            </div>
+            <div class="column-4-15 last-column">
+              <div class="title">
+                Filter by dates
+              </div>
+              <div class="content">
+                {{ form.start_date }}
                 {{ form.end_date }}
               </div>
+              <div class="title">
+                Filter by location
+              </div>
+              <div class="content">
+                {{ form.location }}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column-5-15">
-          <div class="section">
-            Filter by location
-            <div class="content">
-              {{ form.location }}
-            </div>
-          </div>
-        </div>
-        <div class="column-10-15">
-          &nbsp;
-        </div>
       </div>
     </div>
     <div class="footer">
