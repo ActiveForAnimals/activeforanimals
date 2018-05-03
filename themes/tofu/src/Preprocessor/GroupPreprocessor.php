@@ -79,6 +79,12 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
           'group' => PathHelper::transliterate($group->label()),
         ]
       ));
+      $this->variables['content']['links']['results'] = $this->wrapElement(t('View results'), 'view_results', new Url(
+        'entity.group.results', [
+          'organization' => PathHelper::transliterate($group->organization->entity->label()),
+          'group' => PathHelper::transliterate($group->label()),
+        ]
+      ));
       $publish_state = $group->isPublished() ? t('Unpublish') : t('Publish');
       $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
         'entity.group.publish_form', [
