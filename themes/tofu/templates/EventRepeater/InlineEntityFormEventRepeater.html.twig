@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * An event repeater form page.
+ *
+ */
+#}
+<form{{ attributes }}>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+  <div class="column-wrapper">
+    <div class="column-6-15 no-spacing">
+      Repeat every
+    </div>
+    <div class="column-4-15 no-spacing">
+      {{ form.step }}
+    </div>
+    <div class="column-5-15 no-spacing">
+      {{ form.frequency }}
+    </div>
+    <div class="column-6-15 no-spacing">
+      End on
+    </div>
+    <div class="column-9-15 no-spacing">
+      {{ form.end_on_date }}
+    </div>
+  </div>
+</form>
+

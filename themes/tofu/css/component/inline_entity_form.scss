@@ -112,3 +112,7 @@ $inline-entity-form-padding: 1em;
   @extend %corner;
   background-color: $gray1;
 }
+
+.form-item-event-repeater-0-apply-to label {
+  display: block;
+}

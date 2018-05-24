@@ -56,6 +56,7 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['location'] = $this->wrapFormElement($this->variables['form']['location'], 'location');
     $this->variables['form']['start_date'] = $this->wrapFormElement($this->variables['form']['start_date'], 'start_date');
     $this->variables['form']['end_date'] = $this->wrapFormElement($this->variables['form']['end_date'], 'end_date');
+    $this->variables['form']['event_repeater'] = $this->wrapFormElement($this->variables['form']['event_repeater'], 'event_repeater');
     $this->variables['form']['results'] = $this->wrapFormElement($this->variables['form']['results'], 'inline_entity_form');
     $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
