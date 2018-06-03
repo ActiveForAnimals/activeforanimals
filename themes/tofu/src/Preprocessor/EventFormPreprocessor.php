@@ -5,6 +5,7 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
+use Drupal\effective_activism\Helper\DateHelper;
 use Drupal\tofu\Constant;
 
 /**
@@ -12,7 +13,7 @@ use Drupal\tofu\Constant;
  */
 class EventFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
-  const EVENT_LIST_LIMIT = 3;
+  const EVENT_LIST_LIMIT = 5;
   const GOOGLE_MAP_PARAMETER_TEMPLATE = '%s?markers=icon:%s|%f,%f&zoom=%d&size=640x200&scale=2&key=%s';
   const GOOGLE_MAP_BASE_URL = 'https://maps.googleapis.com/maps/api/staticmap';
   const GOOGLE_MAP_ZOOM_LEVEL = 15;
@@ -60,7 +61,13 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['results'] = $this->wrapFormElement($this->variables['form']['results'], 'inline_entity_form');
     $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder->render();
-    $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
+    $this->variables['content']['events'] = $this->eventListBuilder
+      ->setLimit(self::EVENT_LIST_LIMIT)
+      ->setSortAsc(TRUE)
+      ->setTitle('Upcoming events')
+      ->setFromDate(DateHelper::getNow(Drupal::request()->get('organization'), Drupal::request()->get('group')))
+      ->setEmpty('No upcoming events')
+      ->render();
     $this->variables['help_button'] = [
       '#id' => 'activeforanimals_help',
       '#type' => 'button',
