@@ -315,6 +315,11 @@
   background-image: url(../images/person.svg);
 }
 
+.view.element-repeat_event {
+  @extend %element-icon;
+  background-image: url(../images/repeat.svg);
+}
+
 .form.element-inline_entity_form {
   @extend %corner;
   background-color: $gray1;

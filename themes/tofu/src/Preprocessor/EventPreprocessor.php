@@ -2,6 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use DateTime;
 use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
@@ -58,6 +59,8 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
    */
   public function preprocess() {
     $event = $this->variables['elements']['#event'];
+    $now = DateHelper::getNow($event->parent->entity->organization->entity, $event->parent->entity);
+    $start_date = new DateTime($event->start_date->value);
     $this->variables['content']['title'] = $event->get('title')->isEmpty() ? NULL : $this->wrapField($event->get('title'));
     $this->variables['content']['location'] = $event->get('location')->isEmpty() ? NULL : $this->wrapField($event->get('location'));
     $this->variables['content']['description'] = $event->get('description')->isEmpty() ? NULL : $this->wrapField($event->get('description'));
@@ -70,7 +73,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       ->setLimit(self::EVENT_LIST_LIMIT)
       ->setSortAsc(TRUE)
       ->setTitle('Upcoming events')
-      ->setFromDate(DateHelper::getNow($event->parent->entity->organization->entity, $event->parent->entity))
+      ->setFromDate($now)
       ->setEmpty('No upcoming events')
       ->render();
     // Add manager links.
@@ -82,6 +85,15 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
           'event' => $event->id(),
         ]
       ));
+      if ($start_date->format('U') >= $now->format('U')) {
+        $this->variables['content']['links']['repeat_event'] = $this->wrapElement(t('Repeat this event'), 'repeat_event', new Url(
+          'entity.event.repeat_form', [
+            'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+            'group' => PathHelper::transliterate($event->parent->entity->label()),
+            'event' => $event->id(),
+          ]
+        ));
+      }
       $publish_state = $event->isPublished() ? t('Unpublish') : t('Publish');
       $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
         'entity.event.publish_form', [
@@ -100,6 +112,15 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
           'event' => $event->id(),
         ]
       ));
+      if ($start_date->format('U') >= $now->format('U')) {
+        $this->variables['content']['links']['repeat_event'] = $this->wrapElement(t('Repeat this event'), 'repeat_event', new Url(
+          'entity.event.repeat_form', [
+            'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+            'group' => PathHelper::transliterate($event->parent->entity->label()),
+            'event' => $event->id(),
+          ]
+        ));
+      }
     }
     return $this->variables;
   }
