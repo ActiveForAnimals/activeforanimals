@@ -39,7 +39,7 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal-8.5.3 --destination=~/build --drupal-project-rename="drupal"
+  - ~/.composer/vendor/bin/drush dl drupal-8.5.4 --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
