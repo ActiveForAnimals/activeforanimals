@@ -18,8 +18,8 @@ use Drupal\simpletest\WebTestBase;
  */
 class EventRepeaterTest extends WebTestBase {
 
-  const STEP = 10;
-  const FREQUENCY = 'W';
+  const STEP = 3;
+  const FREQUENCY = 'D';
   const REPEATS = 4;
   const EDIT_EVENT_PATH = '/o/%s/g/%s/e/%d/repeat';
 
