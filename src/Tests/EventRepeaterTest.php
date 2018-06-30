@@ -6,6 +6,7 @@ use DateInterval;
 use DateTime;
 use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
+use Drupal\effective_activism\Entity\Event;
 use Drupal\effective_activism\Entity\EventRepeater;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Helper\DateHelper;
@@ -22,8 +23,8 @@ class EventRepeaterTest extends WebTestBase {
 
   const CREATE_EVENT_PATH = '/o/%s/g/%s/e/add';
   const EDIT_EVENT_PATH = '/o/%s/g/%s/e/%d/edit';
-  const EVENT_ID = '1';
-  const EVENT_ID_2 = '4';
+  const EVENT_ID = 1;
+  const EVENT_ID_2 = 4;
   const STEP = 3;
   const FREQUENCY_DAY = 'D';
   const FREQUENCY_WEEK = 'W';
@@ -105,8 +106,8 @@ class EventRepeaterTest extends WebTestBase {
     $this->organizer = $this->drupalCreateUser();
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
     $this->group = Group::load('1');
-    $this->start_date = new DateTime('today +1 day');
-    $this->end_date = new DateTime('today +1 day +1 hour');
+    $this->start_date = new DateTime('today +6 months +1 day');
+    $this->end_date = new DateTime('today +6 months +1 day +1 hour');
     $this->end_on_date = new DateTime('today +3 days');
   }
 
@@ -146,7 +147,7 @@ class EventRepeaterTest extends WebTestBase {
         self::FREQUENCY_DAY
       )));
     }
-    // Test rescheduling by changing date of later event.
+    // Test rescheduling by changing date of later event to a later day.
     $this->start_date = new DateTime('today +1 year +1 day');
     $this->end_date = new DateTime('today +1 year +1 day +1 hour');
     $this->drupalGet(sprintf(self::EDIT_EVENT_PATH,
@@ -159,10 +160,45 @@ class EventRepeaterTest extends WebTestBase {
       'end_date[0][value]' => $this->end_date->format('Y-m-d H:i'),
     ], t('Save'));
     $this->assertResponse(200);
+    // Flush entity cache, since group events may be stale.
+    drupal_flush_all_caches();
     $events = GroupHelper::getEvents($this->group);
+    // Remove old events.
+    $events = array_splice($events, self::EVENT_ID_2 - 1);
     $this->assertTrue(count($events) === EventRepeater::MAX_REPEATS, 'Correct number of repeated events');
     foreach ($events as $event) {
-      $this->assertEqual($event->start_date->value, $this->start_date->format('Y-m-d\TH:i:s'), 'Event start date matches step and frequency: ' . $event->id());
+      $this->assertEqual($event->start_date->value, $this->start_date->format('Y-m-d\TH:i:s'), 'Event start date matches step and frequency');
+      $this->assertEqual($event->end_date->value, $this->end_date->format('Y-m-d\TH:i:s'), 'Event end date matches step and frequency');
+      $this->start_date->add(new DateInterval(sprintf('P%d%s',
+        self::STEP,
+        self::FREQUENCY_DAY
+      )));
+      $this->end_date->add(new DateInterval(sprintf('P%d%s',
+        self::STEP,
+        self::FREQUENCY_DAY
+      )));
+    }
+    // Test rescheduling by changing date of later event to an older day.
+    $this->start_date = new DateTime('today +1 day');
+    $this->end_date = new DateTime('today +1 day +1 hour');
+    $this->drupalGet(sprintf(self::EDIT_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      self::EVENT_ID_2
+    ));
+    $this->drupalPostForm(NULL, [
+      'start_date[0][value]' => $this->start_date->format('Y-m-d H:i'),
+      'end_date[0][value]' => $this->end_date->format('Y-m-d H:i'),
+    ], t('Save'));
+    $this->assertResponse(200);
+    // Flush entity cache, since group events may be stale.
+    drupal_flush_all_caches();
+    $events = GroupHelper::getEvents($this->group);
+    // Remove newer events.
+    $events = array_splice($events, 0, EventRepeater::MAX_REPEATS);
+    $this->assertTrue(count($events) === EventRepeater::MAX_REPEATS, 'Correct number of repeated events');
+    foreach ($events as $event) {
+      $this->assertEqual($event->start_date->value, $this->start_date->format('Y-m-d\TH:i:s'), 'Event start date matches step and frequency');
       $this->assertEqual($event->end_date->value, $this->end_date->format('Y-m-d\TH:i:s'), 'Event end date matches step and frequency');
       $this->start_date->add(new DateInterval(sprintf('P%d%s',
         self::STEP,
@@ -187,18 +223,20 @@ class EventRepeaterTest extends WebTestBase {
     $this->drupalGet(sprintf(self::EDIT_EVENT_PATH,
       PathHelper::transliterate($this->organization->label()),
       PathHelper::transliterate($this->group->label()),
-      self::EVENT_ID
+      self::EVENT_ID_2
     ));
     $this->drupalPostForm(NULL, [
       $this->getElementName('//input[contains(@name, "[end_on_date]")]') => $this->end_on_date->format('Y-m-d H:i'),
     ], t('Save'));
     $this->assertResponse(200);
-    $events = GroupHelper::getEvents($this->group);
+    $event = Event::load(self::EVENT_ID_2);
+    $events = Event::loadMultiple($event->event_repeater->entity->getUpcomingEvents(DateHelper::getNow($event->parent->entity->organization->entity, $event->parent->entity)));
+    $this->assertTrue(count($events) === 1, 'Correct number of repeated events');
     foreach ($events as $event) {
       $event_start_date = new DateTime($event->start_date->value);
       $this->assertTRUE($event_start_date->format('U') <= $this->end_on_date->format('U'), 'Event start date is older than end on date.');
     }
-    // Test disabling event repeater
+    // Test disabling event repeater.
     $this->drupalGet(sprintf(self::EDIT_EVENT_PATH,
       PathHelper::transliterate($this->organization->label()),
       PathHelper::transliterate($this->group->label()),
@@ -210,9 +248,10 @@ class EventRepeaterTest extends WebTestBase {
     ], t('Save'));
     $this->assertResponse(200);
     $events = GroupHelper::getEvents($this->group);
-    $this->assertTrue(count($events) === 1, 'Correct number of repeated events after disabling repeater');
-    $remaining_event = array_pop($events);
-    $this->assertTrue($remaining_event->id() === self::EVENT_ID, 'Correct event remains');
+    // There should be the original 3 repeated events and event 4 by itself.
+    $this->assertTrue(count($events) === 4, 'Correct number of repeated events after disabling repeater');
+    $latest_event = array_shift($events);
+    $this->assertTrue((int) $latest_event->id() === self::EVENT_ID_2, 'Correct event remains');
   }
 
   /**
