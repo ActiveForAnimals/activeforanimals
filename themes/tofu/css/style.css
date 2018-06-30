@@ -82,7 +82,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-1-15 {
-    width: 6.66667%;
+    width: 6.6666666667%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -96,7 +96,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-2-15 {
-    width: 13.33333%;
+    width: 13.3333333333%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -124,7 +124,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-4-15 {
-    width: 26.66667%;
+    width: 26.6666666667%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -138,7 +138,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-5-15 {
-    width: 33.33333%;
+    width: 33.3333333333%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -166,7 +166,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-7-15 {
-    width: 46.66667%;
+    width: 46.6666666667%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -180,7 +180,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-8-15 {
-    width: 53.33333%;
+    width: 53.3333333333%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -208,7 +208,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-10-15 {
-    width: 66.66667%;
+    width: 66.6666666667%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -222,7 +222,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-11-15 {
-    width: 73.33333%;
+    width: 73.3333333333%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -250,7 +250,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-13-15 {
-    width: 86.66667%;
+    width: 86.6666666667%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -264,7 +264,7 @@ ul {
 }
 @media only screen and (min-width: 1024px) {
   .column-14-15 {
-    width: 93.33333%;
+    width: 93.3333333333%;
     vertical-align: top;
     padding-left: 1em;
     padding-right: 1em;
@@ -1072,6 +1072,10 @@ input.form-submit:focus,
 
 .members {
   background-color: #d1d2d0;
+}
+
+.form-item-event-repeater-0-apply-to label {
+  display: block;
 }
 
 /**

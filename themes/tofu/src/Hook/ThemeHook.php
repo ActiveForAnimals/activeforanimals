@@ -50,6 +50,10 @@ class ThemeHook implements HookInterface {
       'render element' => 'form',
       'template' => sprintf('%s/%s', 'Data', ThemeHelper::convertToClassName('inline_entity_form_data')),
     ];
+    $theme['inline_entity_form_event_repeater'] = [
+      'render element' => 'form',
+      'template' => sprintf('%s/%s', 'EventRepeater', ThemeHelper::convertToClassName('inline_entity_form_event_repeater')),
+    ];
     // Define templates for entities.
     foreach ($entity_types as $machine_name => $entity_type) {
       if (
