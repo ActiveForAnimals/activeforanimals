@@ -4,14 +4,11 @@ namespace Drupal\activeforanimals\Tests;
 
 use DateInterval;
 use DateTime;
-use Drupal;
 use Drupal\activeforanimals\Tests\Helper\CreateEvent;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Helper\GroupHelper;
 use Drupal\effective_activism\Helper\PathHelper;
-use Drupal\effective_activism\Helper\ResultTypeHelper;
-use Drupal\effective_activism\Constant;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -78,14 +75,14 @@ class EventRepeaterTest extends WebTestBase {
    *
    * @var \DateTime
    */
-  private $start_date;
+  private $startDate;
 
   /**
    * End date.
    *
    * @var \DateTime
    */
-  private $end_date;
+  private $endDate;
 
   /**
    * {@inheritdoc}
@@ -97,8 +94,8 @@ class EventRepeaterTest extends WebTestBase {
     $this->organization = (new CreateOrganization($this->manager, $this->organizer))->execute();
     $this->group = Group::load(1);
     $this->event = (new CreateEvent($this->group, $this->organizer))->execute();
-    $this->start_date = new DateTime($this->event->start_date->value);
-    $this->end_date = new DateTime($this->event->end_date->value);
+    $this->startDate = new DateTime($this->event->start_date->value);
+    $this->endDate = new DateTime($this->event->end_date->value);
   }
 
   /**
@@ -106,7 +103,7 @@ class EventRepeaterTest extends WebTestBase {
    */
   public function testDo() {
     $this->drupalLogin($this->organizer);
-    $this->assertEqual(1, count(GroupHelper::getEvents($this->group,0,0, FALSE)), 'One event available');
+    $this->assertEqual(1, count(GroupHelper::getEvents($this->group, 0, 0, FALSE)), 'One event available');
     $this->drupalPostForm(sprintf(
       self::EDIT_EVENT_PATH,
       PathHelper::transliterate($this->organization->label()),
@@ -119,16 +116,16 @@ class EventRepeaterTest extends WebTestBase {
     ], t('Repeat'));
     $this->assertResponse(200);
     $this->assertText(sprintf('Repeated event %d times.', self::REPEATS), 'Repeated event.');
-    $events = GroupHelper::getEvents($this->group,0,0,TRUE);
+    $events = GroupHelper::getEvents($this->group, 0, 0, TRUE);
     $this->assertEqual(self::REPEATS + 1, count($events), sprintf('%d events available', self::REPEATS + 1));
     foreach ($events as $event) {
-      $this->assertEqual($event->start_date->value, $this->start_date->format('Y-m-d\TH:i:s'), 'Event start date matches step and frequency');
-      $this->assertEqual($event->end_date->value, $this->end_date->format('Y-m-d\TH:i:s'), 'Event end date matches step and frequency');
-      $this->start_date->add(new DateInterval(sprintf('P%d%s',
+      $this->assertEqual($event->start_date->value, $this->startDate->format('Y-m-d\TH:i:s'), 'Event start date matches step and frequency');
+      $this->assertEqual($event->end_date->value, $this->endDate->format('Y-m-d\TH:i:s'), 'Event end date matches step and frequency');
+      $this->startDate->add(new DateInterval(sprintf('P%d%s',
         self::STEP,
         self::FREQUENCY
       )));
-      $this->end_date->add(new DateInterval(sprintf('P%d%s',
+      $this->endDate->add(new DateInterval(sprintf('P%d%s',
         self::STEP,
         self::FREQUENCY
       )));
