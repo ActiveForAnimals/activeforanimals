@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Event repeater form.
+ *
+ */
+#}
+<form {{ form.attributes }}>
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+  <div class="section">
+    <div class="title">
+      {{ 'Repeat this event'|t }}
+    </div>
+    <div class="content">
+      <div class="column-wrapper">
+        <div class="column-3-15">
+        </div>
+        <div class="column-9-15">
+          <div class="section">
+            <div class="column-wrapper">
+              <div class="column-5-15 first-column text">
+                Repeat every
+              </div>
+              <div class="column-5-15">
+                {{ form.step }}
+              </div>
+              <div class="column-5-15 last-column">
+                {{ form.frequency }}
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="column-wrapper">
+              <div class="column-5-15 first-column text">
+                Repeat up to
+              </div>
+              <div class="column-5-15">
+                {{ form.repeats }}
+              </div>
+              <div class="column-5-15 last-column text">
+                times
+              </div>
+            </div>
+          </div>
+          {{ form.select }}
+        </div>
+        <div class="column-3-15">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
