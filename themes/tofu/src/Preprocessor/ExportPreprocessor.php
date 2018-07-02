@@ -28,19 +28,24 @@ class ExportPreprocessor extends Preprocessor implements PreprocessorInterface {
     }
     // Add manager links.
     if (AccessControl::isManager($export->get('organization')->entity)->isAllowed()) {
-      $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(
-        'entity.export.edit_form', [
-          'organization' => PathHelper::transliterate($export->get('organization')->entity->label()),
-          'export' => $export->id(),
-        ]
-      ));
       $publish_state = $export->isPublished() ? t('Unpublish') : t('Publish');
-      $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
-        'entity.export.publish_form', [
-          'organization' => PathHelper::transliterate($export->get('organization')->entity->label()),
-          'export' => $export->id(),
-        ]
-      ));
+      if ($export->parent->isEmpty()) {
+        $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
+          'entity.export.publish_form', [
+            'organization' => PathHelper::transliterate($export->get('organization')->entity->label()),
+            'export' => $export->id(),
+          ]
+        ));
+      }
+      else {
+        $this->variables['content']['links']['publish'] = $this->wrapElement($publish_state, 'publish', new Url(
+          'entity.export.group_publish_form', [
+            'organization' => PathHelper::transliterate($export->get('organization')->entity->label()),
+            'group' => PathHelper::transliterate($export->get('parent')->entity->label()),
+            'export' => $export->id(),
+          ]
+        ));
+      }
     }
     return $this->variables;
   }
