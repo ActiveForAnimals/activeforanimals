@@ -19,8 +19,8 @@ class ExportListBuilderPreprocessor extends Preprocessor implements Preprocessor
     if (!empty($this->variables['elements']['#storage']['entities']['organization'])) {
       $export_overview_link = new Url(
         'entity.organization.exports', [
-        'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
-      ]);
+          'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+        ]);
     }
     $this->variables['content']['title'] = $this->wrapElement(t('Exports'), 'title', $export_overview_link);
     if (empty($this->variables['elements']['#storage']['entities']['group'])) {
@@ -51,14 +51,15 @@ class ExportListBuilderPreprocessor extends Preprocessor implements Preprocessor
             'export' => $export->id(),
           ]
         );
-      } else {
+      }
+      else {
         $export_link = new Url(
           'entity.export.group_canonical', [
             'organization' => PathHelper::transliterate($export->organization->entity->label()),
             'group' => PathHelper::transliterate($export->parent->entity->label()),
             'export' => $export->id(),
           ]
-        );
+              );
       }
       $export_elements['filter'] = $export->filter->isEmpty() ? NULL : $this->wrapField($export->filter);
       $export_elements['created'] = $this->wrapElement(Drupal::service('date.formatter')->format($export->get('created')->value), 'created');
