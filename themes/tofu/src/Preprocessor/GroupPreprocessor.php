@@ -86,6 +86,12 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
           'group' => PathHelper::transliterate($group->label()),
         ]
       ));
+      $this->variables['content']['links']['manage_exports'] = $this->wrapElement(t('Manage exports'), 'manage_exports', new Url(
+        'entity.group.exports', [
+          'organization' => PathHelper::transliterate($group->organization->entity->label()),
+          'group' => PathHelper::transliterate($group->label()),
+        ]
+      ));
       $this->variables['content']['links']['results'] = $this->wrapElement(t('View results'), 'view_results', new Url(
         'entity.group.results', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
@@ -116,6 +122,12 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
       ));
       $this->variables['content']['links']['manage_imports'] = $this->wrapElement(t('Manage imports'), 'manage_imports', new Url(
         'entity.group.imports', [
+          'organization' => PathHelper::transliterate($group->organization->entity->label()),
+          'group' => PathHelper::transliterate($group->label()),
+        ]
+      ));
+      $this->variables['content']['links']['manage_exports'] = $this->wrapElement(t('Manage exports'), 'manage_exports', new Url(
+        'entity.group.exports', [
           'organization' => PathHelper::transliterate($group->organization->entity->label()),
           'group' => PathHelper::transliterate($group->label()),
         ]
