@@ -69,6 +69,7 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
       ->setTitle('Upcoming events')
       ->setFromDate(DateHelper::getNow($organization))
       ->setEmpty('No groups have upcoming events')
+      ->setPagerIndex(1)
       ->render();
     // Add manager links.
     if (AccessControl::isManager($organization)->isAllowed()) {
