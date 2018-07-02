@@ -59,7 +59,7 @@ class ExportListBuilderPreprocessor extends Preprocessor implements Preprocessor
             'group' => PathHelper::transliterate($export->parent->entity->label()),
             'export' => $export->id(),
           ]
-              );
+        );
       }
       $export_elements['filter'] = $export->filter->isEmpty() ? NULL : $this->wrapField($export->filter);
       $export_elements['created'] = $this->wrapElement(Drupal::service('date.formatter')->format($export->get('created')->value), 'created');

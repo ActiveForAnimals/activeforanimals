@@ -75,6 +75,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       ->setTitle('Upcoming events')
       ->setFromDate($now)
       ->setEmpty('No upcoming events')
+      ->setPagerIndex(1)
       ->render();
     // Add manager links.
     if (AccessControl::isManager($event->parent->entity->organization->entity)->isAllowed()) {

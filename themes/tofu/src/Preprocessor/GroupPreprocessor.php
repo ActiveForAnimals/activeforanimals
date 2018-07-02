@@ -65,6 +65,7 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
       ->setTitle('Upcoming events')
       ->setFromDate(DateHelper::getNow($group->organization->entity, $group))
       ->setEmpty('No upcoming events')
+      ->setPagerIndex(1)
       ->render();
     // Add manager links.
     if (AccessControl::isManager($group->organization->entity)->isAllowed()) {
