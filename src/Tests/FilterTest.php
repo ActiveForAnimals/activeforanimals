@@ -109,7 +109,7 @@ class FilterTest extends WebTestBase {
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'name[0][value]' => self::TITLE,
-      'event_template' => $this->eventTemplate->id(),
+      sprintf('event_templates[%d]', $this->eventTemplate->id()) => $this->eventTemplate->id(),
     ], t('Save'));
     $this->assertResponse(200);
     $this->assertText(self::EVENT_TEMPLATE_TITLE, 'Template found.');
