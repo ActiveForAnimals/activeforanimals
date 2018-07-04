@@ -216,7 +216,8 @@
   background-image: url(../images/template.svg);
 }
 
-.view.element-event_template {
+.view.element-event_template,
+.view.element-event_templates .field__item {
   @extend %element-icon;
   background-image: url(../images/template.svg);
 }
