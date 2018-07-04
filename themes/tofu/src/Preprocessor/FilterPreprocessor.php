@@ -22,7 +22,7 @@ class FilterPreprocessor extends Preprocessor implements PreprocessorInterface {
     $filter = $this->variables['elements']['#filter'];
     $this->variables['content']['organization'] = $filter->get('organization')->isEmpty() ? NULL : $this->wrapField($filter->get('organization'));
     $this->variables['content']['title'] = $filter->get('name')->isEmpty() ? NULL : $this->wrapField($filter->get('name'));
-    $this->variables['content']['event_template'] = $filter->get('event_template')->isEmpty() ? NULL : $this->wrapField($filter->get('event_template'));
+    $this->variables['content']['event_templates'] = $filter->get('event_templates')->isEmpty() ? NULL : $this->wrapField($filter->get('event_templates'));
     $this->variables['content']['start_date'] = $filter->get('start_date')->isEmpty() ? NULL : $this->wrapField($filter->get('start_date'));
     $this->variables['content']['end_date'] = $filter->get('end_date')->isEmpty() ? NULL : $this->wrapField($filter->get('end_date'));
     $this->variables['content']['location'] = $filter->get('location')->isEmpty() ? NULL : $this->wrapField($filter->get('location'));

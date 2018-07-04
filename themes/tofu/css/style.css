@@ -610,6 +610,7 @@ input.form-submit:focus,
 .view.element-manage_event_templates,
 .view.element-add_event_template,
 .view.element-event_template,
+.view.element-event_templates .field__item,
 .view.element-event_template_options,
 .view.element-manage_terms,
 .view.element-manage_exports,
@@ -805,7 +806,8 @@ input.form-submit:focus,
   background-image: url(../images/template.svg);
 }
 
-.view.element-event_template {
+.view.element-event_template,
+.view.element-event_templates .field__item {
   background-image: url(../images/template.svg);
 }
 
