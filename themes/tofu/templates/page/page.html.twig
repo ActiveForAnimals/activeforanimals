@@ -47,21 +47,86 @@
     <div class="column-3-15 no-spacing">
       {{ content.logo }}
     </div>
-    <div class="column-2-15 no-spacing">
+    <div class="column-1-15 no-spacing">
+    </div>
+    <div class="column-5-15 no-spacing">
+      <div class="column-wrapper">
+        <div class="column-6-15 no-spacing">
+          {{ content.organizations }}
+        </div>
+        <div class="column-3-15 no-spacing">
+          {{ content.guide }}
+        </div>
+        <div class="column-3-15 no-spacing">
+          {{ content.about }}
+        </div>
+        <div class="column-3-15 no-spacing">
+          {{ content.help }}
+        </div>
+      </div>
+    </div>
+    <div class="column-2-15">
+    </div>
+    <div class="column-4-15 no-spacing">
+      {% if not logged_in %}
+      <div class="column-wrapper">
+        <div class="column-5-15 no-spacing">
+        </div>
+        <div class="column-5-15 no-spacing">
+          {{ content.register_link }}
+        </div>
+        <div class="column-5-15 no-spacing">
+          {{ content.login_link }}
+        </div>
+      </div>
+      {% else %}
+      <div class="column-wrapper">
+        <div class="column-5-15 no-spacing">
+          {{ content.my_events_link }}
+        </div>
+        <div class="column-5-15 no-spacing">
+          {{ content.profile_link }}
+        </div>
+        <div class="column-5-15 no-spacing">
+          {{ content.logout_link }}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="header-menu-small">
+  <div class="column-wrapper">
+    <div class="column-3-15 no-spacing">
+        {{ content.logo }}
+    </div>
+    <div class="column-1-15 no-spacing">
     </div>
     <div class="column-10-15 no-spacing">
-      {{ content.guide }}
-      <div class="spacer">&nbsp;</div>
-      {{ content.organizations }}
-      <div class="spacer">&nbsp;</div>
-      {{ content.help }}
-      {% if not logged_in %}
-      {{ content.login_link }}
-      {{ content.register_link }}
-      {% else %}
-      {{ content.logout_link }}
-      {{ content.profile_link }}
-      {% endif %}
+        {% if not logged_in %}
+          <div class="column-wrapper">
+            <div class="column-5-15 no-spacing">
+            </div>
+            <div class="column-5-15 no-spacing">
+                {{ content.register_link }}
+            </div>
+            <div class="column-5-15 no-spacing">
+                {{ content.login_link }}
+            </div>
+          </div>
+        {% else %}
+          <div class="column-wrapper">
+            <div class="column-5-15 no-spacing">
+                {{ content.my_events_link }}
+            </div>
+            <div class="column-5-15 no-spacing">
+                {{ content.profile_link }}
+            </div>
+            <div class="column-5-15 no-spacing">
+                {{ content.logout_link }}
+            </div>
+          </div>
+        {% endif %}
     </div>
   </div>
 </div>
