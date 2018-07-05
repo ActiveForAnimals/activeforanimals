@@ -2,6 +2,7 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\InvitationController;
 use Drupal\tofu\Constant;
@@ -19,8 +20,12 @@ class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['guide'] = $this->wrapElement(t('Guide'), 'guide', new Url('activeforanimals.guide'));
     $this->variables['content']['organizations'] = $this->wrapElement(t('Organizations'), 'organizations', new Url('entity.organization.collection'));
     $this->variables['content']['help'] = $this->wrapElement(t('Help'), 'help', new Url('activeforanimals.help'));
+    $this->variables['content']['about'] = $this->wrapElement(t('About'), 'about', new Url('activeforanimals.about'));
     $this->variables['content']['register_link'] = $this->wrapButton(t('Register'), 'register_link', new Url('user.register'));
     $this->variables['content']['login_link'] = $this->wrapButton(t('Log in'), 'login_link', new Url('user.login'));
+    $this->variables['content']['my_events_link'] = $this->wrapElement(t('My events'), 'my_events_link', new Url('entity.user.events', [
+      'user' => Drupal::currentUser()->id(),
+    ]));
     $this->variables['content']['profile_link'] = $this->wrapElement(t('Account'), 'profile_link', new Url('user.page'));
     $this->variables['content']['logout_link'] = $this->wrapButton(t('Log out'), 'logout_link', new Url('user.logout.http'));
     $this->variables['invitations'] = (new InvitationController())->view();

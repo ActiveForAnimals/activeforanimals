@@ -16,5 +16,14 @@ activeforanimals.newsletter.sign_up:
   requirements:
     _permission: 'access content'
 
+# My events.
+entity.user.events:
+  path: '/user/{user}/events'
+  defaults:
+    _controller: '\Drupal\activeforanimals\Controller\MyEventsController::content'
+    _title: My events
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
 route_callbacks:
   - '\Drupal\activeforanimals\Helper\StaticPageRoutes::routes'

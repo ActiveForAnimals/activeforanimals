@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * User event list.
+ *
+ */
+#}
+<div class="section">
+  <div class="list events">
+    <div class="title">
+      {{ content.title }}
+    </div>
+    <div class="content">
+      <ul>
+        {% if content.events is empty %}
+          {{ content.empty }}
+        {% else %}
+        {% for event in content.events %}
+        <li>
+          <div class="column-wrapper">
+            <div class="column-10-15 first-column">
+              {{ event.title }}
+              {{ event.parent }}
+              {{ event.start_date }}
+              {{ event.location }}
+            </div>
+            <div class="column-5-15 last-column">
+              {{ event.more_info }}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="footer">
+      <div class="column-wrapper">
+        <div class="column-4-15 first-column">
+        </div>
+        <div class="column-7-15 first-column">
+          {{ content.pager }}
+        </div>
+        <div class="column-4-15 last-column">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
