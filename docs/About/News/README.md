@@ -3,6 +3,12 @@
 This archive contains features, announcements and other information sent by
 our newsletter.
 
+<!--2018-07-01.md-->
+---
+<!--2018-05-06.md-->
+---
+<!--2018-04-22.md-->
+---
 <!--2018-04-08.md-->
 ---
 <!--2018-04-01.md-->
