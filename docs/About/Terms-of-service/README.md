@@ -62,7 +62,8 @@ including staff and other organizations while using the website.
 - Spam and send unsolicited messages through the website.
 - Sell any kind of service or data through the website.
 - Sell any part of the service that the website offers.
-- Violate copyright by posting information or data without permission or ownership.
+- Violate copyright by posting information or data without permission or
+ownership.
 - Intentionally harm the website.
 - Impersonate staff of Active for Animals.
 
