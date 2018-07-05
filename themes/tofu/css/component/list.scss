@@ -37,3 +37,8 @@ $list-element-title-padding: 0.5em;
   border-bottom: 0;
   margin-bottom: 0;
 }
+
+.bullet-list {
+  list-style-type: disc;
+  margin-left: 1em;
+}

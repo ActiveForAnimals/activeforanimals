@@ -1132,6 +1132,11 @@ input.form-submit:focus,
   margin-bottom: 0;
 }
 
+.bullet-list {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
 /**
  * @file
  * Header menu
