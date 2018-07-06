@@ -72,8 +72,8 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       AccessControl::isManager($event->parent->entity->organization->entity)->isAllowed() ||
       AccessControl::isOrganizer($event->parent->entity)->isAllowed()
     ) {
-      $field_map = Drupal::service('entity_field.manager')->getFieldMap();
       if (!$event->results->isEmpty()) {
+        $field_map = Drupal::service('entity_field.manager')->getFieldMap();
         foreach ($event->results as $item) {
           // Retrieve result data for result.
           $result_entity_display = entity_get_display('result', $item->entity->getType(), 'default');

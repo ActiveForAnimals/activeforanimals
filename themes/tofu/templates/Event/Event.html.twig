@@ -20,6 +20,7 @@
             {{ content.title }}
             {{ content.description }}
           </div>
+          {% if content.results is not empty %}
           <div class="column-15-15">
             <div class="section">
               <div class="title">
@@ -30,6 +31,7 @@
               </div>
             </div>
           </div>
+          {% endif %}
           <div class="column-5-15">
             {% if content.weather_information is not empty %}
             <div class="section">
