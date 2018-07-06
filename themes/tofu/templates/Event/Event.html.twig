@@ -16,10 +16,61 @@
           <div class="column-15-15">
             {{ content.map }}
           </div>
-          <div class="column-15-15 first-column">
+          <div class="column-15-15">
             {{ content.title }}
             {{ content.description }}
-            {{ content.results }}
+          </div>
+          <div class="column-15-15">
+            <div class="section">
+              <div class="title">
+                Results
+              </div>
+              <div class="content">
+                {{ content.results }}
+              </div>
+            </div>
+          </div>
+          <div class="column-5-15">
+            {% if content.weather_information is not empty %}
+            <div class="section">
+              Weather
+            {% for element in content.weather_information %}
+            {% if element|render %}
+              <div class="column-15-15">
+                {{ element }}
+              </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="column-5-15">
+            {% if content.demographics is not empty %}
+            <div class="section">
+              Demographics (1 km radius)
+            {% for element in content.demographics %}
+            {% if element|render %}
+              <div class="column-15-15">
+                {{ element }}
+              </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="column-5-15">
+            {% if content.extended_location_information is not empty %}
+            <div class="section">
+              Location
+            {% for element in content.extended_location_information %}
+            {% if element|render %}
+              <div class="column-15-15">
+                {{ element }}
+              </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
