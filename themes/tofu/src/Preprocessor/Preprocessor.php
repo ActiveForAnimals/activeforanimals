@@ -170,8 +170,6 @@ abstract class Preprocessor implements PreprocessorInterface {
         ),
       ];
     }
-    // Add suffix, if available.
-
     return $content;
   }
 
