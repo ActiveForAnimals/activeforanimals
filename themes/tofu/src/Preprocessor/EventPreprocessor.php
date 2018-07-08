@@ -8,7 +8,6 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
-use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\effective_activism\Helper\DateHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\tofu\Constant;
@@ -96,7 +95,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
                       $data_field_name === 'field_transaction' &&
                       in_array($data_item->entity->getType(), $data_field_data['bundles'])
                     ) {
-                      $this->variables['content']['results'][$item->entity->getType()][strtolower($data_item->entity->get($data_field_name)->getFieldDefinition()->getLabel())] = $this->wrapElement(t('@type of @currency @transaction ', [
+                      $this->variables['content']['results'][$item->entity->getType()][strtolower($data_item->entity->get($data_field_name)->getFieldDefinition()->getLabel())] = $this->wrapElement(t('@type of @currency @transaction', [
                         '@type' => $data_item->entity->get($data_field_name)->getFieldDefinition()->getLabel(),
                         '@currency' => strtoupper($data_item->entity->get('field_currency')->value),
                         '@transaction' => $data_item->entity->get($data_field_name)->value,
