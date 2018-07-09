@@ -6,7 +6,7 @@ language: php
 sudo: false
 
 php:
-  - 7
+  - '7.1'
 
 matrix:
 
