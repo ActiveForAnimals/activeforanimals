@@ -10,6 +10,7 @@
 .form.element .form-email,
 .form.element .form-time,
 .form.element .form-number,
+.form.element .form-url,
 .form.element select {
   padding: 0.4em;
   width: 100%;
@@ -290,6 +291,12 @@
 .view.element-organization {
   @extend %element-icon;
   background-image: url(../images/organization.svg);
+}
+
+.view.element-link,
+.form.element-link input {
+  @extend %element-icon;
+  background-image: url(../images/website.svg);
 }
 
 .form.element-instructions table {
