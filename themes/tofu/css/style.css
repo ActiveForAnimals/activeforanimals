@@ -573,6 +573,7 @@ input.form-submit:focus,
 .form.element .form-email,
 .form.element .form-time,
 .form.element .form-number,
+.form.element .form-url,
 .form.element select {
   padding: 0.4em;
   width: 100%;
@@ -623,6 +624,8 @@ input.form-submit:focus,
 .view.element-publish,
 .view.element-delete,
 .view.element-organization,
+.view.element-link,
+.form.element-link input,
 .view.element-username,
 .form.element-username input,
 .view.element-repeat_event,
@@ -867,6 +870,11 @@ input.form-submit:focus,
 
 .view.element-organization {
   background-image: url(../images/organization.svg);
+}
+
+.view.element-link,
+.form.element-link input {
+  background-image: url(../images/website.svg);
 }
 
 .form.element-instructions table {
