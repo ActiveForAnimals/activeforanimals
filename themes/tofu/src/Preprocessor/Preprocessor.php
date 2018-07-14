@@ -170,6 +170,14 @@ abstract class Preprocessor implements PreprocessorInterface {
         ),
       ];
     }
+    // Remove superfluous part of url text for link field and set target.
+    if ($field->getItemDefinition()->getDataType() === 'field_item:link') {
+      $content['element'][0]['#title'] = preg_replace('/https?:\/\/(?:www\.)?/', '', $content['element'][0]['#title']);
+      if (strlen($content['element'][0]['#title']) > 40) {
+        $content['element'][0]['#title'] = substr($content['element'][0]['#title'], 0, 33) . '...';
+      }
+      $content['element'][0]['#attributes']['target'] = '_blank';
+    }
     return $content;
   }
 
