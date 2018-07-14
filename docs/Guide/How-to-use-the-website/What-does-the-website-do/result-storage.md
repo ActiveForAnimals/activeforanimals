@@ -24,4 +24,4 @@ Whether you are from organization A or B, you will be using the same basic
  shared across organizations, it becomes easier to do inter-organizational
  comparison of result data. This means that you don't just contribute to the
  betterment of your own efficiency, but to the animal charity movement in
- general. 
+ general.
