@@ -9,13 +9,15 @@ use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 
 /**
- * Function tests for creating events.
+ * Function tests for creating and deleting events.
  *
  * @group activeforanimals
  */
 class EventTest extends WebTestBase {
 
   const ADD_EVENT_PATH = '/o/%s/g/%s/e/add';
+  const EVENT_PATH = '/o/%s/g/%s/e/%d';
+  const DELETE_EVENT_PATH = '/o/%s/g/%s/e/%d/delete';
   const TITLE = 'Test event';
   const DESCRIPTION = 'Test event description';
   const STARTDATE = '2016-01-01 11:00';
@@ -108,6 +110,31 @@ class EventTest extends WebTestBase {
     $this->assertText(self::LOCATION_EXTRA_INFORMATION, 'Set location extra information correctly.');
     $this->assertText(self::STARTDATEFORMATTED, 'Set start date correctly.');
     $this->assertText(self::ENDDATEFORMATTED, 'Set end date correctly.');
+    $this->drupalGet(sprintf(
+      self::DELETE_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      1
+    ));
+    $this->assertResponse(403);
+    $this->drupalLogin($this->manager);
+    $this->drupalGet(sprintf(
+      self::DELETE_EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      1
+    ));
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [], t('Delete'));
+    $this->assertResponse(200);
+    $this->assertText('Deleted event and results.', 'Deleted event entity.');
+    $this->drupalGet(sprintf(
+      self::EVENT_PATH,
+      PathHelper::transliterate($this->organization->label()),
+      PathHelper::transliterate($this->group->label()),
+      1
+    ));
+    $this->assertResponse(404);
   }
 
 }
