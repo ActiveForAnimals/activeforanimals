@@ -205,6 +205,13 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
           'event' => $event->id(),
         ]
       ));
+      $this->variables['content']['links']['delete'] = $this->wrapElement(t('Permanently delete event'), 'delete', new Url(
+        'entity.event.delete_form', [
+          'organization' => PathHelper::transliterate($event->parent->entity->organization->entity->label()),
+          'group' => PathHelper::transliterate($event->parent->entity->label()),
+          'event' => $event->id(),
+        ]
+      ));
     }
     // Add organizer links.
     elseif (AccessControl::isOrganizer($event->parent->entity)->isAllowed()) {
