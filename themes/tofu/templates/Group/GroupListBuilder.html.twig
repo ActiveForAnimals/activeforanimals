@@ -10,21 +10,39 @@
     <div class="title">
       {{ content.title }}
     </div>
-    <div class="content">
-      <ul>
-        {% for group in content.groups %}
-        <li>
-          <div class="column-wrapper">
-            <div class="column-15-15">
-              {{ group.logo }}
-              {{ group.title }}
-              {{ group.location }}
-              {{ group.event_count }}
-            </div>
+    <div class="column-wrapper">
+      {% if displayMap is same as(TRUE) %}
+      <div class="column-8-15">
+      {% else %}
+      <div class="column-15-15">
+      {% endif %}
+        <div class="content">
+          <ul>
+            {% for group in content.groups %}
+            <li>
+              <div class="column-wrapper">
+                <div class="column-10-15">
+                  {{ group.title }}
+                  {{ group.location }}
+                  {{ group.event_count }}
+                </div>
+                <div class="column-5-15">
+                  {{ group.logo }}
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% if displayMap is same as(TRUE) %}
+      <div class="column-7-15">
+        <div class="content">
+          <div id="leaflet-map">
           </div>
-        </li>
-        {% endfor %}
-      </ul>
+        </div>
+      </div>
+      {% endif %}
     </div>
     <div class="footer">
       {{ content.pager }}

@@ -118,8 +118,14 @@ class StaticPageControllerPreprocessor extends Preprocessor implements Preproces
     }
     // Replace image paths.
     foreach ($this->structure->getElementsByTagName('img') as $image) {
+      $image_link = $this->structure->createElement('a');
+      $image_link->setAttribute('target','_blank');
       $src = $image->getAttribute('src');
-      $image->setAttribute('src', sprintf('%s/%s', $this->imagepath, $src));
+      $link = sprintf('%s/%s', $this->imagepath, $src);
+      $image->setAttribute('src', $link);
+      $image_link->setAttribute('href',$link);
+      $image->parentNode->replaceChild($image_link, $image);
+      $image_link->appendChild($image);
     }
     $unsafe_html = $this->structure->saveHTML();
     $this->variables['content'] = [

@@ -62,7 +62,9 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     $this->variables['content']['phone_number'] = $organization->get('phone_number')->isEmpty() ? NULL : $this->wrapField($organization->get('phone_number'));
     $this->variables['content']['email_address'] = $organization->get('email_address')->isEmpty() ? NULL : $this->wrapField($organization->get('email_address'));
     $this->variables['content']['location'] = $organization->get('location')->isEmpty() ? NULL : $this->wrapField($organization->get('location'));
-    $this->variables['content']['groups'] = $this->groupListBuilder->render();
+    $this->variables['content']['groups'] = $this->groupListBuilder
+      ->hideMap()
+      ->render();
     $this->variables['content']['events'] = $this->eventListBuilder
       ->setLimit(self::EVENT_LIST_LIMIT)
       ->setSortAsc(TRUE)
