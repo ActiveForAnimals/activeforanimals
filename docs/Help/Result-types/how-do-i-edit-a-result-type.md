@@ -6,8 +6,8 @@
 1. Edit your result type and click on *Save* when you are done.
 
 <figure>
-  <img src="help-organization-edit.png" alt="Click on 'Edit this page'."/>
-  <figcaption>Go to your organization page and click on 'Edit this page'.
+  <img src="help-result-type-overview.png" alt="Click on 'Result types overview'."/>
+  <figcaption>Go to the result types overview to edit a result type.
   </figcaption>
 </figure>
 
