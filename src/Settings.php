@@ -239,8 +239,7 @@ class Settings {
    * @return string
    *   The api key.
    */
-  public static function getMapboxApiKey()
-  {
+  public static function getMapboxApiKey() {
     $key = NULL;
     if (defined('PANTHEON_ENVIRONMENT')) {
       $data = self::getSettings();

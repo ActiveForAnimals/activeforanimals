@@ -6,7 +6,8 @@
 1. Edit your result type and click on *Save* when you are done.
 
 <figure>
-  <img src="help-result-type-overview.png" alt="Click on 'Result types overview'."/>
+  <img src="help-result-type-overview.png" alt="Click on 'Result types
+overview'."/>
   <figcaption>Go to the result types overview to edit a result type.
   </figcaption>
 </figure>
