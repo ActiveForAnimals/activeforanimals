@@ -58,7 +58,9 @@ class GroupPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['phone_number'] = $group->get('phone_number')->isEmpty() ? NULL : $this->wrapField($group->get('phone_number'));
     $this->variables['content']['email_address'] = $group->get('email_address')->isEmpty() ? NULL : $this->wrapField($group->get('email_address'));
     $this->variables['content']['location'] = $group->get('location')->isEmpty() ? NULL : $this->wrapField($group->get('location'));
-    $this->variables['content']['groups'] = $this->groupListBuilder->render();
+    $this->variables['content']['groups'] = $this->groupListBuilder
+      ->hideMap()
+      ->render();
     $this->variables['content']['events'] = $this->eventListBuilder
       ->setLimit(self::EVENT_LIST_LIMIT)
       ->setSortAsc(TRUE)

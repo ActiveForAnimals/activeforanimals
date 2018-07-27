@@ -233,4 +233,32 @@ class Settings {
     return $key;
   }
 
+  /**
+   * Return mapbox api key.
+   *
+   * @return string
+   *   The api key.
+   */
+  public static function getMapboxApiKey() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['mapbox_api_key']) ? $data['mapbox_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['mapbox_api_key']) ? $data['mapbox_api_key'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['mapbox_api_key']) ? $data['mapbox_api_key'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
 }

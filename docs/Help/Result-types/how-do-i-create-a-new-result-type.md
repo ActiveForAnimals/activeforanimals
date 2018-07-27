@@ -1,9 +1,6 @@
 ## How do I create a new result type?
 
-The quickest way is to follow this link: [create a result type](
-/result-types/create) and follow the instructions.
-
-Otherwise, follow these steps:
+To create a result type, follow these steps:
 
 1. Navigate to your organization page.
 1. On the right, click on *Manage results*.

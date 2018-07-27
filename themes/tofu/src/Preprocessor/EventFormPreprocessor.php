@@ -3,6 +3,7 @@
 namespace Drupal\tofu\Preprocessor;
 
 use Drupal;
+use Drupal\effective_activism\Helper\DateHelper;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
 use Drupal\tofu\Constant;
@@ -51,6 +52,9 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
    */
   public function preprocess() {
     $event = Drupal::request()->get('event');
+    $group = Drupal::request()->get('group');
+    $organization = Drupal::request()->get('organization');
+    $now = DateHelper::getNow($organization, $group);
     $this->variables['form']['title'] = $this->wrapFormElement($this->variables['form']['title'], 'title');
     $this->variables['form']['description'] = $this->wrapFormElement($this->variables['form']['description'], 'description');
     $this->variables['form']['location'] = $this->wrapFormElement($this->variables['form']['location'], 'location');
@@ -59,8 +63,17 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['link'] = $this->wrapFormElement($this->variables['form']['link'], 'link');
     $this->variables['form']['results'] = $this->wrapFormElement($this->variables['form']['results'], 'inline_entity_form');
     $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
-    $this->variables['content']['groups'] = $this->groupListBuilder->render();
-    $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
+    $this->variables['content']['groups'] = $this->groupListBuilder
+      ->hideMap()
+      ->render();
+    $this->variables['content']['events'] = $this->eventListBuilder
+      ->setLimit(self::EVENT_LIST_LIMIT)
+      ->setSortAsc(TRUE)
+      ->setTitle('Upcoming events')
+      ->setFromDate($now)
+      ->setEmpty('No upcoming events')
+      ->setPagerIndex(1)
+      ->render();
     $this->variables['help_button'] = [
       '#id' => 'activeforanimals_help',
       '#type' => 'button',

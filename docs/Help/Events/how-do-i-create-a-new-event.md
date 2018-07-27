@@ -1,11 +1,6 @@
 ## How do I create a new event?
 
-The quickest way is to follow this link: [create an event](/create-event).
-
-If you want an introduction on how to create events, follow this link: [create
-an event with instructions](/create-event?tour=1).
-
-Otherwise, follow these steps:
+To create an event, follow these steps:
 
 1. Navigate to your organization page or your group page.
 1. In the bottom of the *Events* overview, click on *Create event*.

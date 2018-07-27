@@ -362,6 +362,18 @@ footer .element-mailchimp_logo {
 
 /**
  * @file
+ * The map definition.
+ */
+#leaflet-map {
+  height: 60em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5em;
+}
+
+/**
+ * @file
  * Various text effects.
  */
 .point {

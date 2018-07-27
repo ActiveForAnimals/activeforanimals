@@ -170,7 +170,9 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
         }
       }
     }
-    $this->variables['content']['groups'] = $this->groupListBuilder->render();
+    $this->variables['content']['groups'] = $this->groupListBuilder
+      ->hideMap()
+      ->render();
     $this->variables['content']['events'] = $this->eventListBuilder
       ->setLimit(self::EVENT_LIST_LIMIT)
       ->setSortAsc(TRUE)
