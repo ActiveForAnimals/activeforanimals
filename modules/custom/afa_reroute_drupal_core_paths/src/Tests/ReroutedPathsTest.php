@@ -3,6 +3,7 @@
 namespace Drupal\afa_reroute_drupal_core_paths\Tests;
 
 use Drupal\Component\Utility\Random;
+use Drupal\Core\Session\AnonymousUserSession;
 use Drupal\simpletest\WebTestBase;
 
 /**
@@ -50,7 +51,17 @@ class ReroutedPathsTest extends WebTestBase {
     ], t('Create new account'));
     $this->assertResponse(200);
     $this->assertText('Log out', 'Successfully created user');
-    $this->drupalLogout();
+    // Log user out.
+    $this->drupalGet('user/logout', ['query' => ['destination' => self::PATH_LOGIN_USER]]);
+    $this->assertResponse(200, 'User was logged out.');
+    $pass = $this->assertField('name', 'Username field found.', 'Logout');
+    $pass = $pass && $this->assertField('pass', 'Password field found.', 'Logout');
+    if ($pass) {
+      // @see WebTestBase::drupalUserIsLoggedIn()
+      unset($this->loggedInUser->session_id);
+      $this->loggedInUser = FALSE;
+      $this->container->get('current_user')->setAccount(new AnonymousUserSession());
+    }
     // Test successful login.
     $this->drupalGet(self::PATH_LOGIN_USER);
     $this->assertResponse(200);
