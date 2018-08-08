@@ -74,6 +74,20 @@
             </div>
             {% endif %}
           </div>
+          <div class="column-5-15">
+            {% if content.city_pulse is not empty %}
+            <div class="section">
+              City pulse
+            {% for element in content.city_pulse %}
+            {% if element|render %}
+              <div class="column-15-15">
+                  {{ element }}
+              </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
