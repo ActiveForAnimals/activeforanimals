@@ -75,9 +75,9 @@
             {% endif %}
           </div>
           <div class="column-5-15">
-            {% if content.city_pulse is not empty %}
+            {% if content.city_pulse.goldenstein_scale is not empty %}
             <div class="section">
-              City pulse
+              City pulse (10 km radius)
             {% for element in content.city_pulse %}
             {% if element|render %}
               <div class="column-15-15">

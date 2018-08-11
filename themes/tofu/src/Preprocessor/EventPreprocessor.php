@@ -169,8 +169,10 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
               break;
 
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_CITY_PULSE:
-              $this->variables['content']['city_pulse']['goldenstein_scale'] = $item->entity->get('field_goldenstein_scale')->isEmpty() ? NULL : $this->wrapElement(t('Goldenstein scale: @goldenstein_scale', ['@goldenstein_scale' => $item->entity->get('field_goldenstein_scale')->value]), 'goldenstein_scale');
-              $this->variables['content']['city_pulse']['tone'] = $item->entity->get('field_tone')->isEmpty() ? NULL : $this->wrapElement(t('Average tone: @tone', ['@tone' => $item->entity->get('field_tone')->value]), 'tone');
+              $field_goldenstein_scale_allowed_values = $item->entity->get('field_goldenstein_scale')->getItemDefinition()->getSetting('allowed_values');
+              $this->variables['content']['city_pulse']['goldenstein_scale'] = $item->entity->get('field_goldenstein_scale')->isEmpty() ? NULL : $this->wrapElement(t('Goldenstein scale: @goldenstein_scale', ['@goldenstein_scale' => $field_goldenstein_scale_allowed_values[$item->entity->get('field_goldenstein_scale')->value]]), 'goldenstein_scale');
+              $field_tone_allowed_values = $item->entity->get('field_tone')->getItemDefinition()->getSetting('allowed_values');
+              $this->variables['content']['city_pulse']['tone'] = $item->entity->get('field_tone')->isEmpty() ? NULL : $this->wrapElement(t('Average tone: @tone', ['@tone' => $field_tone_allowed_values[$item->entity->get('field_tone')->value]]), 'tone');
               if (!$item->entity->get('field_news_sources')->isEmpty()) {
                 $sources = '';
                 $i = 1;
