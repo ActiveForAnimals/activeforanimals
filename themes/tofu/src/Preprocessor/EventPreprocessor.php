@@ -4,6 +4,7 @@ namespace Drupal\tofu\Preprocessor;
 
 use DateTime;
 use Drupal;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Constant as EffectiveActivismConstant;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
@@ -180,7 +181,8 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
                   $sources .= sprintf('<a href="%s" target="_blank">%d</a> ', $source->getString(), $i);
                   $i++;
                 }
-                $this->variables['content']['city_pulse']['news_sources'] = $this->wrapElement(t('News sources') . ':' . $sources, 'news_sources');
+                $formatted_sources = new FormattableMarkup($sources, []);
+                $this->variables['content']['city_pulse']['news_sources'] = $this->wrapElement(t('News sources: @sources', ['@sources' => $formatted_sources]), 'news_sources');
               }
               else {
                 $this->variables['content']['city_pulse']['news_sources'] = NULL;
