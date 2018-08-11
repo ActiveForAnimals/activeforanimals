@@ -22,6 +22,10 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($user_register_route !== NULL) {
       $user_register_route->setPath('/sign-up');
     }
+    $user_register_route = $collection->get('user.pass');
+    if ($user_register_route !== NULL) {
+      $user_register_route->setPath('/user/reset-password');
+    }
   }
 
 }
