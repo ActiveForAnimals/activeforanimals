@@ -25,11 +25,29 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="column-4-15 last-column">
+        </div>
+        <div class="column-11-15 first-column">
           <div class="title">
-            {{ 'File'|t }}
+              {{ 'Columns'|t }}
+          </div>
+          <div class="column-wrapper">
+            <div class="column-5-15 first-column">
+              {{ form.columns_event }}
+            </div>
+            <div class="column-5-15 first-column">
+              {{ form.columns_result }}
+            </div>
+            <div class="column-5-15 last-column">
+              {{ form.columns_third_party_content }}
+            </div>
+          </div>
+          <div class="title">
+              {{ 'File'|t }}
           </div>
           <div class="content">
-            {{ form.field_file_csv }}
+              {{ form.field_file_csv }}
           </div>
         </div>
         <div class="column-4-15 last-column">

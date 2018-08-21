@@ -32,6 +32,7 @@ class CSVExportTest extends WebTestBase {
   const TEST_TITLE_2 = 'test 2';
   const STARTDATE = '12/13/2016';
   const STARTTIME = '11:00';
+  const STARTDATE_FORMATTED = '2016-12-13T11:00:00';
   const ENDDATE = '12/13/2016';
   const ENDTIME = '13:00';
   const NUMBER_OF_EXPORTED_EVENTS = 2;
@@ -223,6 +224,26 @@ class CSVExportTest extends WebTestBase {
     // Verify that path is inaccessible from organization path.
     $this->drupalGet(self::ORGANIZATION_EXPORT_ILLEGAL_PATH);
     $this->assertText(self::INVALID_PATH_MESSAGE);
+    // Export selected columns.
+    $this->drupalLogin($this->manager);
+    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_ORGANIZATION_PATH, PathHelper::transliterate($this->organization->label())));
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [
+      'filter[0][target_id]' => $this->filter->id(),
+      'columns_event[0][value][start_date]' => 'start_date',
+      'columns_event[0][value][results]' => 'results',
+    ], t('Save'));
+    $this->assertResponse(200);
+    // Examine file content.
+    $export = Export::load(3);
+    $file = $export->field_file_csv->entity;
+    $filepath = drupal_realpath($file->getFileUri());
+    $handle = fopen($filepath, 'r');
+    $content = fread($handle, filesize($filepath));
+    fclose($handle);
+    $this->assertFalse(strpos($content, self::TEST_TITLE_1), 'Title column excluded');
+    $this->assertTrue(strpos($content, self::STARTDATE_FORMATTED), 'Start date included');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_1), 'Test result 1 found');
   }
 
 }
