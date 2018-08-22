@@ -2,9 +2,11 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
+use Drupal\effective_activism\Helper\DateHelper;
 
 /**
  * Preprocessor for Organization add/edit page.
@@ -52,6 +54,7 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
    */
   public function preprocess() {
     $form = $this->variables['form'];
+    $organization = Drupal::request()->get('organization');
     $this->variables['form']['logo'] = $this->wrapFormElement($form['logo'], 'logo');
     $this->variables['form']['title'] = $this->wrapFormElement($form['title'], 'title');
     $this->variables['form']['description'] = $this->wrapFormElement($form['description'], 'description');
@@ -73,8 +76,17 @@ class OrganizationFormPreprocessor extends Preprocessor implements PreprocessorI
     }
     $this->variables['content']['invitations']['empty_message'] = t('No current invitations');
     $this->variables['content']['invitations']['title'] = t('Current invitations');
-    $this->variables['content']['groups'] = isset($this->groupListBuilder) ? $this->groupListBuilder->render() : NULL;
-    $this->variables['content']['events'] = isset($this->eventListBuilder) ? $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render() : NULL;
+    $this->variables['content']['groups'] = isset($this->groupListBuilder) ? $this->groupListBuilder
+      ->hideMap()
+      ->render() : NULL;
+    $this->variables['content']['events'] = isset($this->eventListBuilder) ? $this->eventListBuilder
+      ->setLimit(self::EVENT_LIST_LIMIT)
+      ->setSortAsc(TRUE)
+      ->setTitle('Upcoming events')
+      ->setFromDate(DateHelper::getNow($organization))
+      ->setEmpty('No groups have upcoming events')
+      ->setPagerIndex(1)
+      ->render() : NULL;
     return $this->variables;
   }
 

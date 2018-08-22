@@ -321,6 +321,7 @@ input.form-submit,
 .breadcrumb,
 .section,
 .form.element-inline_entity_form,
+.form.element-event_templates,
 .form.element-result_types,
 .element-inline_entity_form .ief-form-bottom,
 .members,
@@ -358,18 +359,6 @@ footer .element-github_logo,
 footer .element-mailchimp_logo {
   padding-top: 0.2em;
   text-align: center;
-}
-
-/**
- * @file
- * The map definition.
- */
-#leaflet-map {
-  height: 60em;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5em;
 }
 
 /**
@@ -980,6 +969,7 @@ input.form-submit:focus,
   margin-bottom: 1em !important;
 }
 
+.form.element-event_templates,
 .form.element-result_types {
   background-color: #d1d2d0;
   margin-top: 1em;
@@ -987,10 +977,12 @@ input.form-submit:focus,
   padding: 1em;
 }
 
+.form.element-event_templates .form-checkboxes .form-item,
 .form.element-result_types .form-checkboxes .form-item {
   margin-top: 1em !important;
 }
 
+.form.element-event_templates .description,
 .form.element-result_types .description {
   display: block;
   margin-top: 0.5em;
