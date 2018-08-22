@@ -21,13 +21,15 @@ use Drupal\simpletest\WebTestBase;
  */
 class CSVExportTest extends WebTestBase {
 
-  const ADD_CSV_EXPORT_PATH = '/o/%s/exports/add/csv';
+  const ADD_CSV_EXPORT_ORGANIZATION_PATH = '/o/%s/exports/add/csv';
+  const ADD_CSV_EXPORT_GROUP_PATH = '/o/%s/g/%s/exports/add/csv';
+  const ORGANIZATION_EXPORT_RAW_PATH = 'o/test-organization/exports/1';
+  const GROUP_EXPORT_RAW_PATH = 'o/test-organization/g/my-first-group/exports/2';
+  const ORGANIZATION_EXPORT_ILLEGAL_PATH = 'o/test-organization/exports/2';
+  const GROUP_EXPORT_ILLEGAL_PATH = 'o/test-organization/g/my-first-group/exports/1';
+  const INVALID_PATH_MESSAGE = 'Please view this page from the proper path.';
   const TEST_TITLE_1 = 'test 1';
   const TEST_TITLE_2 = 'test 2';
-  const STARTDATE = '12/13/2016';
-  const STARTTIME = '11:00';
-  const ENDDATE = '12/13/2016';
-  const ENDTIME = '13:00';
   const NUMBER_OF_EXPORTED_EVENTS = 2;
   const TEST_RESULT_1 = 111111111;
   const TEST_RESULT_2 = 222222222;
@@ -62,49 +64,49 @@ class CSVExportTest extends WebTestBase {
   /**
    * The test organization.
    *
-   * @var Organization
+   * @var \Drupal\effective_activism\Entity\Organization
    */
   private $organization;
 
   /**
    * The test group.
    *
-   * @var Group
+   * @var \Drupal\effective_activism\Entity\Group
    */
   private $group;
 
   /**
    * The test filter.
    *
-   * @var Filter
+   * @var \Drupal\effective_activism\Entity\Filter
    */
   private $filter;
 
   /**
    * The 1st test event.
    *
-   * @var Event
+   * @var \Drupal\effective_activism\Entity\Event
    */
   private $event1;
 
   /**
    * The 2nd test event.
    *
-   * @var Event
+   * @var \Drupal\effective_activism\Entity\Event
    */
   private $event2;
 
   /**
    * The test manager.
    *
-   * @var User
+   * @var \Drupal\user\Entity\User
    */
   private $manager;
 
   /**
    * The test organizer.
    *
-   * @var User
+   * @var \Drupal\user\Entity\User
    */
   private $organizer;
 
@@ -165,9 +167,9 @@ class CSVExportTest extends WebTestBase {
    * Run test.
    */
   public function testDo() {
-    // Export CSV file.
+    // Export CSV file on organization level.
     $this->drupalLogin($this->manager);
-    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_PATH, PathHelper::transliterate($this->organization->label())));
+    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_ORGANIZATION_PATH, PathHelper::transliterate($this->organization->label())));
     $this->assertResponse(200);
     $this->drupalPostForm(NULL, [
       'filter[0][target_id]' => $this->filter->id(),
@@ -186,6 +188,57 @@ class CSVExportTest extends WebTestBase {
     $this->assertTrue(strpos($content, self::TEST_TITLE_2), 'Test event 2 found');
     $this->assertTrue(strpos($content, (string) self::TEST_RESULT_1), 'Test result 1 found');
     $this->assertTrue(strpos($content, (string) self::TEST_RESULT_2), 'Test result 2 found');
+    // Verify that path is valid.
+    $this->assertUrl(self::ORGANIZATION_EXPORT_RAW_PATH);
+    // Verify that path is inaccessible from group path.
+    $this->drupalGet(self::GROUP_EXPORT_ILLEGAL_PATH);
+    $this->assertText(self::INVALID_PATH_MESSAGE);
+    // Export CSV file on group level.
+    $this->drupalLogin($this->organizer);
+    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_GROUP_PATH, PathHelper::transliterate($this->organization->label()), PathHelper::transliterate($this->group->label())));
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [
+      'filter[0][target_id]' => $this->filter->id(),
+    ], t('Save'));
+    $this->assertResponse(200);
+    $this->assertText('Created the export.', 'Added a new export entity.');
+    $this->assertText(sprintf('%d events exported.', self::NUMBER_OF_EXPORTED_EVENTS), 'Successfully exported events');
+    // Examine file content.
+    $export = Export::load(2);
+    $file = $export->field_file_csv->entity;
+    $filepath = drupal_realpath($file->getFileUri());
+    $handle = fopen($filepath, 'r');
+    $content = fread($handle, filesize($filepath));
+    fclose($handle);
+    $this->assertTrue(strpos($content, self::TEST_TITLE_1), 'Test event 1 found');
+    $this->assertTrue(strpos($content, self::TEST_TITLE_2), 'Test event 2 found');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_1), 'Test result 1 found');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_2), 'Test result 2 found');
+    // Verify that path is valid.
+    $this->assertUrl(self::GROUP_EXPORT_RAW_PATH);
+    // Verify that path is inaccessible from organization path.
+    $this->drupalGet(self::ORGANIZATION_EXPORT_ILLEGAL_PATH);
+    $this->assertText(self::INVALID_PATH_MESSAGE);
+    // Export selected columns.
+    $this->drupalLogin($this->manager);
+    $this->drupalGet(sprintf(self::ADD_CSV_EXPORT_ORGANIZATION_PATH, PathHelper::transliterate($this->organization->label())));
+    $this->assertResponse(200);
+    $this->drupalPostForm(NULL, [
+      'filter[0][target_id]' => $this->filter->id(),
+      'columns_event[title]' => FALSE,
+      'columns_event[results]' => 'results',
+      'columns_result[data_leaflets]' => 'data_leaflets',
+    ], t('Save'));
+    $this->assertResponse(200);
+    // Examine file content.
+    $export = Export::load(3);
+    $file = $export->field_file_csv->entity;
+    $filepath = drupal_realpath($file->getFileUri());
+    $handle = fopen($filepath, 'r');
+    $content = fread($handle, filesize($filepath));
+    fclose($handle);
+    $this->assertFalse(strpos($content, self::TEST_TITLE_1), 'Title column excluded');
+    $this->assertTrue(strpos($content, (string) self::TEST_RESULT_1), 'Test result 1 found');
   }
 
 }

@@ -1,12 +1,6 @@
 ## How do I create a new group?
 
-The quickest way is to follow this link: [create a group](/create-
-group) and follow the instructions.
-
-If you want an introduction on how to create organizations, follow this link:
-[create a group with instructions](/create-group?tour=1).
-
-Otherwise, follow these steps:
+To create a new group, follow these steps:
 
 1. Navigate to your organization page.
 1. In the right side lower section, click on *Groups*

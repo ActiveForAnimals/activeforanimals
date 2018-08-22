@@ -1,0 +1,5 @@
+services:
+  afa_reroute_drupal_core_paths.route_subscriber:
+    class: Drupal\afa_reroute_drupal_core_paths\Routing\RouteSubscriber
+    tags:
+    - { name: event_subscriber }

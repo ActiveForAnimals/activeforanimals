@@ -1,10 +1,7 @@
 ## How do I create a new organization?
 
-The quickest way is to follow this link: [create an organization](/create-
-organization) and follow the instructions.
-
-If you want an introduction on how to create organizations, follow this link:
-[create an organization with instructions](/create-organization?tour=1).
+The quickest way is to follow this link: [create an organization](/o/add) and
+follow the instructions (you need to be logged in to continue).
 
 Otherwise, follow these steps:
 

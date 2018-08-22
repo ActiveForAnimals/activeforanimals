@@ -1,0 +1,5 @@
+name: 'AFA Reroute Drupal Core paths'
+type: module
+description: 'Reroutes common paths to bolster against automated attacks'
+core: 8.x
+package: 'Active for Animals'

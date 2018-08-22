@@ -6,6 +6,7 @@ use Drupal\Core\Url;
 use Drupal\effective_activism\AccessControlHandler\AccessControl;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
+use Drupal\effective_activism\Helper\DateHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 
 /**
@@ -13,7 +14,7 @@ use Drupal\effective_activism\Helper\PathHelper;
  */
 class OrganizationPreprocessor extends Preprocessor implements PreprocessorInterface {
 
-  const EVENT_LIST_LIMIT = 3;
+  const EVENT_LIST_LIMIT = 5;
 
   /**
    * Event list builder.
@@ -61,8 +62,17 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
     $this->variables['content']['phone_number'] = $organization->get('phone_number')->isEmpty() ? NULL : $this->wrapField($organization->get('phone_number'));
     $this->variables['content']['email_address'] = $organization->get('email_address')->isEmpty() ? NULL : $this->wrapField($organization->get('email_address'));
     $this->variables['content']['location'] = $organization->get('location')->isEmpty() ? NULL : $this->wrapField($organization->get('location'));
-    $this->variables['content']['groups'] = $this->groupListBuilder->render();
-    $this->variables['content']['events'] = $this->eventListBuilder->setLimit(self::EVENT_LIST_LIMIT)->render();
+    $this->variables['content']['groups'] = $this->groupListBuilder
+      ->hideMap()
+      ->render();
+    $this->variables['content']['events'] = $this->eventListBuilder
+      ->setLimit(self::EVENT_LIST_LIMIT)
+      ->setSortAsc(TRUE)
+      ->setTitle('Upcoming events')
+      ->setFromDate(DateHelper::getNow($organization))
+      ->setEmpty('No groups have upcoming events')
+      ->setPagerIndex(1)
+      ->render();
     // Add manager links.
     if (AccessControl::isManager($organization)->isAllowed()) {
       $this->variables['content']['links']['edit_this_page'] = $this->wrapElement(t('Edit this page'), 'edit_page', new Url(

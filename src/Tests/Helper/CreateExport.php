@@ -49,7 +49,7 @@ class CreateExport {
     ]);
     $export->save();
     $rows = [];
-    $csvParser = new ExportCSVParser($this->organization, $export);
+    $csvParser = new ExportCSVParser($this->filter, $export);
     foreach ($csvParser->getNextBatch(0) as $item) {
       $rows[] = $csvParser->processItem($item);
     }

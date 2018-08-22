@@ -2,7 +2,10 @@
 
 namespace Drupal\tofu\Preprocessor;
 
+use Drupal;
 use Drupal\effective_activism\Entity\ResultType;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 
 /**
  * Preprocessor for InlineEntityFormResult.
@@ -23,8 +26,21 @@ class InlineEntityFormResultPreprocessor extends Preprocessor implements Preproc
     foreach ($result_type->datatypes as $key => $value) {
       if ($key === $value) {
         $field_name = sprintf('data_%s', $value);
+        $description = NULL;
+        $data_entity = $this->variables['form'][$field_name]['widget'][0]['inline_entity_form']['#entity'];
+        try {
+          $description = Drupal::entityTypeManager()
+            ->getStorage($data_entity->getEntityType()->getBundleEntityType())
+            ->load($data_entity->bundle())
+            ->description;
+        }
+        catch (PluginNotFoundException $exception) {
+        }
+        catch (InvalidPluginDefinitionException $exception) {
+        }
         $this->variables['form']['data_items'][] = [
           'title' => $this->variables['form'][$field_name]['widget']['#title'],
+          'description' => $description,
           'field' => $this->wrapFormElement($this->variables['form'][$field_name], 'data'),
         ];
       }

@@ -5,8 +5,10 @@ namespace Drupal\tofu\Hook;
 use Drupal;
 use Drupal\Core\Form\FormBase;
 use Drupal\activeforanimals\Controller\FrontPageController;
+use Drupal\activeforanimals\Controller\MyEventsController;
 use Drupal\activeforanimals\Controller\StaticPageController;
 use Drupal\activeforanimals\Form\NewsletterSignUpForm;
+use Drupal\activeforanimals\ListBuilder\UserEventsListBuilder;
 use Drupal\effective_activism\Controller\InvitationController;
 use Drupal\effective_activism\Form\InvitationForm;
 use Drupal\tofu\Helper\ThemeHelper;
@@ -91,6 +93,8 @@ class ThemeHook implements HookInterface {
       InvitationForm::class,
       NewsletterSignUpForm::class,
       StaticPageController::class,
+      MyEventsController::class,
+      UserEventsListBuilder::class,
     ] as $class) {
       $class_information = new ReflectionClass($class);
       $short_name = $class_information->getShortName();

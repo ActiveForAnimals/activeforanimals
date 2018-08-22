@@ -8,3 +8,4 @@ strategy of your outreach campaigns.
 
 <!--the-process.md-->
 <!--data-enrichment.md-->
+<!--result-storage.md-->

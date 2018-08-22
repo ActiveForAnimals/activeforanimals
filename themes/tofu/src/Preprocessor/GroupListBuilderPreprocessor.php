@@ -30,6 +30,8 @@ class GroupListBuilderPreprocessor extends Preprocessor implements PreprocessorI
     $this->variables['content']['create_link'] = AccessControl::isManager($this->variables['elements']['#storage']['entities']['organization'])->isAllowed() ? $this->wrapElement(t('Create group'), 'add_group', $group_add_link) : NULL;
     $this->variables['content']['empty'] = t('No groups created yet.');
     $this->variables['content']['pager'] = $this->variables['elements']['pager'];
+    // Add maps if present.
+    $this->variables['displayMap'] = $this->variables['elements']['#display']['map'];
     foreach ($this->variables['elements']['#storage']['entities']['groups'] as $groud_id => $group) {
       $group_elements = [];
       $group_elements['logo'] = !$group->get('logo')->isEmpty() ? $this->wrapImage(

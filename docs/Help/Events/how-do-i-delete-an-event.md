@@ -1,4 +1,6 @@
 ## How do I delete an event?
 
-You cannot delete events, but you can unpublish them, making them unaccessable
-to anyone but managers of the organization that the event belongs to.
+As manager of your organization, you can delete events by going to the event
+page and clicking on "Permanently delete event".
+
+Note that when you delete your event, the event results are deleted as well. 

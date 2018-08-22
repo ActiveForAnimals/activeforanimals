@@ -10,6 +10,7 @@
 .form.element .form-email,
 .form.element .form-time,
 .form.element .form-number,
+.form.element .form-url,
 .form.element select {
   padding: 0.4em;
   width: 100%;
@@ -216,7 +217,8 @@
   background-image: url(../images/template.svg);
 }
 
-.view.element-event_template {
+.view.element-event_template,
+.view.element-event_templates .field__item {
   @extend %element-icon;
   background-image: url(../images/template.svg);
 }
@@ -291,6 +293,12 @@
   background-image: url(../images/organization.svg);
 }
 
+.view.element-link,
+.form.element-link input {
+  @extend %element-icon;
+  background-image: url(../images/website.svg);
+}
+
 .form.element-instructions table {
   font-size: $small-font-size;
   margin-bottom: 1em;
@@ -313,6 +321,11 @@
 .form.element-username input {
   @extend %element-icon;
   background-image: url(../images/person.svg);
+}
+
+.view.element-repeat_event {
+  @extend %element-icon;
+  background-image: url(../images/repeat.svg);
 }
 
 .form.element-inline_entity_form {
@@ -389,7 +402,8 @@
   margin-bottom: 1em !important;
 }
 
-.form.element-result_types {
+.form.element-event_templates,
+.form.element-result_types{
   @extend %corner;
   background-color: $gray1;
   margin-top: 1em;
@@ -397,10 +411,12 @@
   padding: 1em;
 }
 
+.form.element-event_templates .form-checkboxes .form-item,
 .form.element-result_types .form-checkboxes .form-item {
   margin-top: 1em !important;
 }
 
+.form.element-event_templates .description,
 .form.element-result_types .description {
   display: block;
   margin-top: 0.5em;

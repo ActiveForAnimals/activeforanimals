@@ -1,8 +1,6 @@
 ## How do I export events?
 
-The quickest way is to follow this link: [export events](/export/csv).
-
-Otherwise, follow these steps:
+To export events, follow these steps:
 
 1. Navigate to your organization page and then your group page.
 1. In the right side of your group page, click on *Manage exports*.
