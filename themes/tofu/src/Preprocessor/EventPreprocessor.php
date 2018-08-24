@@ -152,7 +152,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
               break;
 
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_DEMOGRAPHICS:
-              $this->variables['demographics']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField( $item->entity->get('source'));
+              $this->variables['demographics']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField($item->entity->get('source'));
               $this->variables['content']['demographics']['total_population'] = $item->entity->get('field_total_population')->isEmpty() ? NULL : $this->wrapElement(t('Total population: @total_population', ['@total_population' => $item->entity->get('field_total_population')->value]), 'total_population');
               $this->variables['content']['demographics']['male_population'] = $item->entity->get('field_male_population')->isEmpty() ? NULL : $this->wrapElement(t('Male population: @male_population', ['@male_population' => $item->entity->get('field_male_population')->value]), 'male_population');
               $this->variables['content']['demographics']['female_population'] = $item->entity->get('field_female_population')->isEmpty() ? NULL : $this->wrapElement(t('Female population: @female_population', ['@female_population' => $item->entity->get('field_female_population')->value]), 'female_population');
