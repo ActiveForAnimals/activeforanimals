@@ -11,6 +11,7 @@ dependencies:
   - config
   - dblog
   - dynamic_page_cache
+  - link
   - options
   - page_cache
   - rdf
