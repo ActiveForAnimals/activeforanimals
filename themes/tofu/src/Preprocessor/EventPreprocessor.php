@@ -141,6 +141,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
         foreach ($event->third_party_content as $item) {
           switch ($item->entity->getType()) {
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_WEATHER_INFORMATION:
+              $this->variables['weather_information']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField($item->entity->get('source'));
               $this->variables['content']['weather_information']['temperature'] = $item->entity->get('field_temperature')->isEmpty() ? NULL : $this->wrapElement(t('Temperature: @temperature °C', ['@temperature' => round($item->entity->get('field_temperature')->value)]), 'temperature');
               $this->variables['content']['weather_information']['precipitation'] = ($item->entity->get('field_precipitation_type')->isEmpty() || $item->entity->get('field_precipitation_intensity')->isEmpty()) ? NULL : $this->wrapElement(t('Precipitation: @precipitation_intensity mm/h @precipitation_type', [
                 '@precipitation_type' => $item->entity->get('field_precipitation_type')->value,
@@ -151,6 +152,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
               break;
 
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_DEMOGRAPHICS:
+              $this->variables['demographics']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField($item->entity->get('source'));
               $this->variables['content']['demographics']['total_population'] = $item->entity->get('field_total_population')->isEmpty() ? NULL : $this->wrapElement(t('Total population: @total_population', ['@total_population' => $item->entity->get('field_total_population')->value]), 'total_population');
               $this->variables['content']['demographics']['male_population'] = $item->entity->get('field_male_population')->isEmpty() ? NULL : $this->wrapElement(t('Male population: @male_population', ['@male_population' => $item->entity->get('field_male_population')->value]), 'male_population');
               $this->variables['content']['demographics']['female_population'] = $item->entity->get('field_female_population')->isEmpty() ? NULL : $this->wrapElement(t('Female population: @female_population', ['@female_population' => $item->entity->get('field_female_population')->value]), 'female_population');
@@ -159,6 +161,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
               break;
 
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_EXTENDED_LOCATION_INFORMATION:
+              $this->variables['extended_location_information']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField($item->entity->get('source'));
               $this->variables['content']['extended_location_information']['gps_coordinates'] = $item->entity->get('field_latitude')->isEmpty() ? NULL : $this->wrapElement(t('GPS coordinates: @latitude, @longitude', [
                 '@latitude' => substr($item->entity->get('field_latitude')->value, 0, 10),
                 '@longitude' => substr($item->entity->get('field_longitude')->value, 0, 10),
@@ -170,6 +173,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
               break;
 
             case EffectiveActivismConstant::THIRD_PARTY_CONTENT_TYPE_CITY_PULSE:
+              $this->variables['city_pulse']['source'] = $item->entity->get('source')->isEmpty() ? NULL : $this->wrapField($item->entity->get('source'));
               $field_goldenstein_scale_allowed_values = $item->entity->get('field_goldenstein_scale')->getItemDefinition()->getSetting('allowed_values');
               $this->variables['content']['city_pulse']['goldenstein_scale'] = $item->entity->get('field_goldenstein_scale')->isEmpty() ? NULL : $this->wrapElement(t('Goldenstein scale: @goldenstein_scale', ['@goldenstein_scale' => $field_goldenstein_scale_allowed_values[$item->entity->get('field_goldenstein_scale')->value]]), 'goldenstein_scale');
               $field_tone_allowed_values = $item->entity->get('field_tone')->getItemDefinition()->getSetting('allowed_values');
