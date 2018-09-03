@@ -188,7 +188,8 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
                   }
                   $formatted_sources = new FormattableMarkup($sources, []);
                   $this->variables['content']['city_pulse']['news_sources'] = $this->wrapElement(t('News sources: @sources', ['@sources' => $formatted_sources]), 'news_sources');
-                } else {
+                }
+                else {
                   $this->variables['content']['city_pulse']['news_sources'] = NULL;
                 }
                 break;
