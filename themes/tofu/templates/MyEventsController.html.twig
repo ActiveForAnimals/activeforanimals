@@ -7,10 +7,22 @@
 #}
 
 <div class="column-wrapper">
-    <div class="column-15-15 first-column">
+    <div class="column-15-15 first-column last-column">
         <div class="section">
-           <div class="content">
-                {{ content }}
+            {% if (content.create_link is not empty or content.create_from_template_link is not empty) %}
+            <div class="content">
+                <div class="section">
+                    <div class="column-wrapper">
+                        <div class="column-15-15 first-column">
+                            {{ content.create_link }}
+                            {{ content.create_from_template_link }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="content">
+                {{ content.my_events }}
             </div>
         </div>
     </div>

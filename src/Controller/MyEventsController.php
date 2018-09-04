@@ -37,6 +37,7 @@ class MyEventsController extends ControllerBase {
       $this->entityTypeManager()->getStorage('event'),
       $this->currentUser()
     );
+
     $content['my_events'] = $my_events->render();
     return $content;
   }
