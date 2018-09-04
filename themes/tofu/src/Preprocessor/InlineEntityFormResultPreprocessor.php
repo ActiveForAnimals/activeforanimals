@@ -16,6 +16,7 @@ class InlineEntityFormResultPreprocessor extends Preprocessor implements Preproc
    * {@inheritdoc}
    */
   public function preprocess() {
+    $entity_manager = Drupal::entityTypeManager();
     $result_type = ResultType::load($this->variables['form']['#bundle']);
     $this->variables['content']['title'] = $result_type->label();
     $this->variables['form']['participant_count'] = $this->wrapFormElement($this->variables['form']['participant_count'], 'participant_count');
@@ -29,7 +30,7 @@ class InlineEntityFormResultPreprocessor extends Preprocessor implements Preproc
         $description = NULL;
         $data_entity = $this->variables['form'][$field_name]['widget'][0]['inline_entity_form']['#entity'];
         try {
-          $description = Drupal::entityTypeManager()
+          $description = $entity_manager
             ->getStorage($data_entity->getEntityType()->getBundleEntityType())
             ->load($data_entity->bundle())
             ->description;

@@ -50,6 +50,9 @@ class ResultTypeListBuilderPreprocessor extends Preprocessor implements Preproce
           'result_type' => PathHelper::transliterate($result_type->get('importname')),
         ]));
       }
+      else {
+        $result_type_elements['delete_link'] = $this->wrapElement(t('In use'), 'delete');
+      }
       $data_types = DataType::loadMultiple(array_map(function ($data_type) {
         if ($data_type !== 0) {
           return $data_type;
