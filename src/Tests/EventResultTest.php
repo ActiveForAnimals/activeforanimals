@@ -135,7 +135,7 @@ class EventResultTest extends WebTestBase {
       // the run fail.
       $query_position = strpos($this->url, '?');
       if ($query_position !== FALSE) {
-        $this->url = substr($this->url,0, $query_position);
+        $this->url = substr($this->url, 0, $query_position);
       }
       $this->drupalPostForm(NULL, [
         'title[0][value]' => 'abc',
