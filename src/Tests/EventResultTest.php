@@ -132,12 +132,7 @@ class EventResultTest extends WebTestBase {
       $this->drupalPostAjaxForm(NULL, $post_data, $this->getElementName('//input[@type="submit" and @value="Create result"]'));
       $this->assertResponse(200);
     }
-    $this->drupalPostForm(sprintf(
-      self::EDIT_EVENT_PATH,
-      PathHelper::transliterate($this->organization->label()),
-      PathHelper::transliterate($this->group->label()),
-      $this->event->id()
-    ), [
+    $this->drupalPostForm(NULL, [
       'title[0][value]' => 'abc',
     ], t('Save'));
     $this->assertResponse(200);
