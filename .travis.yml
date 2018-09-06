@@ -15,6 +15,7 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_ENCODE='utf8'
+    - DRUPAL_VERSION = '8.6.0'
     - DRUPAL_PATH='/home/travis/build/drupal'
     - PROFILE_PATH='/home/travis/build/drupal/profiles'
     - MODULE_PATH='/home/travis/build/drupal/modules'
@@ -39,7 +40,7 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal-8.5.6 --destination=~/build --drupal-project-rename="drupal"
+  - ~/.composer/vendor/bin/drush dl drupal-$DRUPAL_VERSION --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
