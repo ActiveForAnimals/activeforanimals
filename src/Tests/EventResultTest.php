@@ -95,13 +95,13 @@ class EventResultTest extends WebTestBase {
   public function testDo() {
     $this->drupalLogin($this->organizer);
     $entityManager = Drupal::service('entity_field.manager');
-    $this->drupalGet(sprintf(
-      self::EDIT_EVENT_PATH,
-      PathHelper::transliterate($this->organization->label()),
-      PathHelper::transliterate($this->group->label()),
-      $this->event->id()
-    ));
     foreach (Constant::DEFAULT_RESULT_TYPES as $import_name => $options) {
+      $this->drupalGet(sprintf(
+        self::EDIT_EVENT_PATH,
+        PathHelper::transliterate($this->organization->label()),
+        PathHelper::transliterate($this->group->label()),
+        $this->event->id()
+      ));
       $this->assertResponse(200);
       $this->assertFieldByXPath('//input[@type="submit" and @value="Add new result"]', NULL, 'Button to add new results exists');
       $result_type = ResultTypeHelper::getResultTypeByImportName($import_name, $this->organization->id());
@@ -131,17 +131,18 @@ class EventResultTest extends WebTestBase {
       ], $data_fields);
       $this->drupalPostAjaxForm(NULL, $post_data, $this->getElementName('//input[@type="submit" and @value="Create result"]'));
       $this->assertResponse(200);
+      // Remove leftover Ajax in url. This only happens in test runs and makes
+      // the run fail.
+      $query_position = strpos($this->url, '?');
+      if ($query_position !== FALSE) {
+        $this->url = substr($this->url, 0, $query_position);
+      }
+      $this->drupalPostForm(NULL, [
+        'title[0][value]' => 'abc',
+      ], t('Save'));
+      $this->assertResponse(200);
+      $this->assertText('Saved the event.', 'Saved the event entity.');
     }
-    $this->drupalPostForm(sprintf(
-      self::EDIT_EVENT_PATH,
-      PathHelper::transliterate($this->organization->label()),
-      PathHelper::transliterate($this->group->label()),
-      $this->event->id()
-    ), [
-      'title[0][value]' => 'abc',
-    ], t('Save'));
-    $this->assertResponse(200);
-    $this->assertText('Saved the event.', 'Saved the event entity.');
   }
 
   /**
