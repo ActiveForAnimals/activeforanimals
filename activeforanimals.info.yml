@@ -21,6 +21,8 @@ dependencies:
   - effective_activism
   # custom modules
   - afa_agarvenectarjar
+  # contrib module
+  - imagefield_slideshow
 themes:
   - tofu
   - seven
