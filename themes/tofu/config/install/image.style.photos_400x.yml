@@ -1,0 +1,15 @@
+uuid: 5d55d79e-61f2-4f30-8bcb-654525a5c64d
+langcode: en
+status: true
+dependencies: {  }
+name: photos_400x
+label: 'Photo (400x)'
+effects:
+  photos_200x:
+    uuid: 3f50ed22-16b8-4ff3-8a2e-fdd7e4275c83
+    id: image_scale
+    weight: 2
+    data:
+      width: 400
+      height: null
+      upscale: false

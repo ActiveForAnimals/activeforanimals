@@ -205,6 +205,26 @@ abstract class Preprocessor implements PreprocessorInterface {
   }
 
   /**
+   * Returns a render array for a form element.
+   *
+   * @param array $render_element
+   *   The form element to process.
+   * @param string $render_element_name
+   *   The form element name.
+   *
+   * @return array
+   *   A render array.
+   */
+  protected function wrapRenderElement(array $render_element, $render_element_name) {
+    $content = $this->getContainer([
+      'view',
+      sprintf(self::ELEMENT_CLASS_FORMAT, $render_element_name),
+    ]);
+    $content['element'][$render_element_name] = $render_element;
+    return $content;
+  }
+
+  /**
    * Returns a render array for an image.
    *
    * @param string $uri

@@ -66,6 +66,14 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['end_date'] = $event->get('end_date')->isEmpty() ? NULL : $this->wrapField($event->get('end_date'));
     $this->variables['content']['link'] = $event->get('link')->isEmpty() ? NULL : $this->wrapField($event->get('link'));
     $this->variables['content']['map'] = $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
+    $this->variables['content']['photos'] = $event->get('photos')->isEmpty() ? NULL : $this->wrapRenderElement($event->get('photos')->view([
+      'type' => 'imagefield_slideshow_field_formatter',
+      'label' => 'hidden',
+      'settings' => [
+        'imagefield_slideshow_style' => 'photos_400x',
+        'imagefield_slideshow_timeout' => 5000,
+      ]
+    ]), 'photos');
     if (
       AccessControl::isManager($event->parent->entity->organization->entity)->isAllowed() ||
       AccessControl::isOrganizer($event->parent->entity)->isAllowed()

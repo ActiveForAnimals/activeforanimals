@@ -1,0 +1,15 @@
+uuid: 049206de-9fb7-4f78-94e2-415a4b6b4c63
+langcode: en
+status: true
+dependencies: {  }
+name: photos_1000x
+label: 'Photo (1000x)'
+effects:
+  photos_1000x:
+    uuid: 1d305415-3e70-4c23-9929-b9582ed8184f
+    id: image_scale
+    weight: 2
+    data:
+      width: 1000
+      height: null
+      upscale: false

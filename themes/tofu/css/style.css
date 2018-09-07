@@ -668,6 +668,11 @@ input.form-submit:focus,
   height: auto;
 }
 
+.form.element-photos {
+  width: 100%;
+  overflow: hidden;
+}
+
 .form.element-logo label,
 .form.element-logo .description,
 .form.element-photos label,
