@@ -66,6 +66,34 @@ class Settings {
   }
 
   /**
+   * Return API key for embedded Google Maps.
+   *
+   * @return string
+   *   The API key.
+   */
+  public static function getGoogleMapsEmbedApiKey() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      switch (PANTHEON_ENVIRONMENT) {
+        case self::ENVIRONMENT_LIVE:
+          $key = isset($data['google_maps_embed_api_key']) ? $data['google_maps_embed_api_key'] : NULL;
+          break;
+
+        case self::ENVIRONMENT_TEST:
+          $key = isset($data['google_maps_embed_api_key']) ? $data['google_maps_embed_api_key'] : NULL;
+          break;
+
+        default:
+          $key = isset($data['google_maps_embed_api_key']) ? $data['google_maps_embed_api_key'] : NULL;
+          break;
+
+      }
+    }
+    return $key;
+  }
+
+  /**
    * Return API key for Google Static Maps.
    *
    * @return string

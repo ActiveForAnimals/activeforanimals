@@ -33,12 +33,16 @@
   display: none;
 }
 
-.view.element-map img {
+.view.element-map iframe {
   width: 100%;
+  height: 20em;
+  border: 0;
 }
 
 .view.element-logo img,
-.form.element-logo .image-style-thumbnail {
+.form.element-logo .image-style-thumbnail,
+.view.element-photos img,
+.form.element-photos .image-style-thumbnail {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -46,14 +50,36 @@
   height: auto;
 }
 
+.form.element-photos {
+  width: 100%;
+  overflow: hidden;
+}
+
 .form.element-logo label,
-.form.element-logo .description {
+.form.element-logo .description,
+.form.element-photos label,
+.form.element-photos .description {
   display: inherit;
 }
 
 // Do not display alt textfield.
-.form.element-logo .form-type-textfield {
+.form.element-logo .form-type-textfield ,
+.form.element-photos .form-type-textfield {
   display: none;
+}
+
+// Hide default table elements.
+.form.element-photos .tabledrag-toggle-weight-wrapper,
+.form.element-photos thead {
+  display: none;
+}
+
+.form.element-photos .details-description {
+  padding-bottom: 2em;
+}
+
+.form.element-photos .form-type-managed-file {
+  padding-top: 2em;
 }
 
 .view.element-title,
