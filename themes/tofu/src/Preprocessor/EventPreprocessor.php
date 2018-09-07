@@ -72,7 +72,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
       'settings' => [
         'imagefield_slideshow_style' => 'photos_400x',
         'imagefield_slideshow_timeout' => 5000,
-      ]
+      ],
     ]), 'photos');
     if (
       AccessControl::isManager($event->parent->entity->organization->entity)->isAllowed() ||

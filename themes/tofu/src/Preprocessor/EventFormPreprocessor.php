@@ -6,7 +6,6 @@ use Drupal;
 use Drupal\effective_activism\Helper\DateHelper;
 use Drupal\effective_activism\ListBuilder\EventListBuilder;
 use Drupal\effective_activism\ListBuilder\GroupListBuilder;
-use Drupal\tofu\Constant;
 
 /**
  * Preprocessor for EventForm.

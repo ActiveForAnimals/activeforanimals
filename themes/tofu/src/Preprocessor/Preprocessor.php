@@ -345,4 +345,5 @@ abstract class Preprocessor implements PreprocessorInterface {
       Drupal::config('effective_activism.settings')->get('google_maps_embed_api_key')
     ));
   }
+
 }
