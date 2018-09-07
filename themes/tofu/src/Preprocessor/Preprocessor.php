@@ -16,6 +16,9 @@ abstract class Preprocessor implements PreprocessorInterface {
   const LOGO_200X200 = 'logo_200x200';
   const LOGO_110X110 = 'logo_110x110';
   const LOGO_50X50 = 'logo_50x50';
+  const GOOGLE_MAP_PARAMETER_TEMPLATE = '%s?q=%s&zoom=%d&key=%s';
+  const GOOGLE_MAP_BASE_URL = 'https://www.google.com/maps/embed/v1/place';
+  const GOOGLE_MAP_ZOOM_LEVEL = 15;
 
   /**
    * EntityTypeManager.
@@ -278,4 +281,48 @@ abstract class Preprocessor implements PreprocessorInterface {
     return $content;
   }
 
+  /**
+   * Returns a render array for an image.
+   *
+   * @param \Drupal\Core\Url $url
+   *   A url to link to.
+   * @param string $element_name
+   *   The name of the element.
+   *
+   * @return array
+   *   A render array.
+   */
+  protected function wrapIframe(Url $url, $element_name) {
+    $content = $this->getContainer([
+      'image',
+      'view',
+      sprintf(self::ELEMENT_CLASS_FORMAT, $element_name),
+    ]);
+    $content['element'] = [
+      '#type' => 'markup',
+      '#markup' => sprintf('<iframe frameborder="0" src="%s" allowfullscreen></iframe>', $url->toString()),
+      '#allowed_tags' => ['iframe', 'html'],
+    ];
+    return $content;
+  }
+
+  /**
+   * Returns a Google map image from a location.
+   *
+   * @param array $locations
+   *   The locations to render as a map.
+   *
+   * @return \Drupal\Core\Url
+   *   A map url.
+   */
+  protected function getMap(array $locations) {
+    $location = array_pop($locations);
+    return Url::fromUri(sprintf(
+      self::GOOGLE_MAP_PARAMETER_TEMPLATE,
+      self::GOOGLE_MAP_BASE_URL,
+      $location['address'],
+      self::GOOGLE_MAP_ZOOM_LEVEL,
+      Drupal::config('effective_activism.settings')->get('google_maps_embed_api_key')
+    ));
+  }
 }

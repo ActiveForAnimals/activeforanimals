@@ -14,9 +14,6 @@ use Drupal\tofu\Constant;
 class EventFormPreprocessor extends Preprocessor implements PreprocessorInterface {
 
   const EVENT_LIST_LIMIT = 3;
-  const GOOGLE_MAP_PARAMETER_TEMPLATE = '%s?markers=icon:%s|%f,%f&zoom=%d&size=640x200&scale=2&key=%s';
-  const GOOGLE_MAP_BASE_URL = 'https://maps.googleapis.com/maps/api/staticmap';
-  const GOOGLE_MAP_ZOOM_LEVEL = 15;
 
   /**
    * Event list builder.
@@ -62,7 +59,9 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['end_date'] = $this->wrapFormElement($this->variables['form']['end_date'], 'end_date');
     $this->variables['form']['link'] = $this->wrapFormElement($this->variables['form']['link'], 'link');
     $this->variables['form']['results'] = $this->wrapFormElement($this->variables['form']['results'], 'inline_entity_form');
-    $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapImage($this->getMap($event->get('location')->getValue()), 'map');
+    $this->variables['form']['photos'] = $this->wrapFormElement($this->variables['form']['photos'], 'photos');
+    $this->variables['form']['photos']['element']['photos']['widget']['#open'] = (!empty($event) && !$event->get('photos')->isEmpty()) ? TRUE : FALSE;
+    $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder
       ->hideMap()
       ->render();
@@ -83,32 +82,6 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
       ],
     ];
     return $this->variables;
-  }
-
-  /**
-   * Returns a Google map image from a location.
-   *
-   * @param array $locations
-   *   The locations to render as a map.
-   *
-   * @return string
-   *   A map uri.
-   */
-  private function getMap(array $locations) {
-    $location = array_pop($locations);
-    return sprintf(
-      self::GOOGLE_MAP_PARAMETER_TEMPLATE,
-      self::GOOGLE_MAP_BASE_URL,
-      sprintf(
-        'https://%s/%s/images/location.png',
-        Drupal::request()->getHost(),
-        drupal_get_path('theme', Constant::MACHINE_NAME)
-      ),
-      $location['latitude'],
-      $location['longitude'],
-      self::GOOGLE_MAP_ZOOM_LEVEL,
-      Drupal::config('effective_activism.settings')->get('google_static_maps_api_key')
-    );
   }
 
 }
