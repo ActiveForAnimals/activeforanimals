@@ -60,7 +60,7 @@ class EventFormPreprocessor extends Preprocessor implements PreprocessorInterfac
     $this->variables['form']['results'] = $this->wrapFormElement($this->variables['form']['results'], 'inline_entity_form');
     $this->variables['form']['photos'] = $this->wrapFormElement($this->variables['form']['photos'], 'photos');
     $this->variables['form']['photos']['element']['photos']['widget']['#open'] = (!empty($event) && !$event->get('photos')->isEmpty()) ? TRUE : FALSE;
-    $this->variables['content']['map'] = empty($event) ? NULL : $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
+    $this->variables['content']['map'] = (empty($event) || empty($event->get('location')->address)) ? NULL : $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['groups'] = $this->groupListBuilder
       ->hideMap()
       ->render();

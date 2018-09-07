@@ -65,7 +65,7 @@ class EventPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['start_date'] = $event->get('start_date')->isEmpty() ? NULL : $this->wrapField($event->get('start_date'));
     $this->variables['content']['end_date'] = $event->get('end_date')->isEmpty() ? NULL : $this->wrapField($event->get('end_date'));
     $this->variables['content']['link'] = $event->get('link')->isEmpty() ? NULL : $this->wrapField($event->get('link'));
-    $this->variables['content']['map'] = $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
+    $this->variables['content']['map'] = empty($event->get('location')->address) ? NULL : $this->wrapIframe($this->getMap($event->get('location')->getValue()), 'map');
     $this->variables['content']['photos'] = $event->get('photos')->isEmpty() ? NULL : $this->wrapRenderElement($event->get('photos')->view([
       'type' => 'imagefield_slideshow_field_formatter',
       'label' => 'hidden',
