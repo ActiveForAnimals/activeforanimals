@@ -5,6 +5,7 @@ namespace Drupal\tofu\Preprocessor;
 use Drupal;
 use Drupal\Core\Url;
 use Drupal\effective_activism\Controller\InvitationController;
+use Drupal\effective_activism\Helper\AccountHelper;
 use Drupal\tofu\Constant;
 
 /**
@@ -23,6 +24,11 @@ class PagePreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['about'] = $this->wrapElement(t('About'), 'about', new Url('activeforanimals.about'));
     $this->variables['content']['register_link'] = $this->wrapButton(t('Register'), 'register_link', new Url('user.register'));
     $this->variables['content']['login_link'] = $this->wrapButton(t('Log in'), 'login_link', new Url('user.login'));
+    if (count(AccountHelper::getGroups(Drupal::currentUser())) === 1) {
+      $this->variables['content']['my_group_link'] = $this->wrapElement(t('My group'), 'my_group_link', new Url('entity.user.group', [
+        'user' => Drupal::currentUser()->id(),
+      ]));
+    }
     $this->variables['content']['my_events_link'] = $this->wrapElement(t('My events'), 'my_events_link', new Url('entity.user.events', [
       'user' => Drupal::currentUser()->id(),
     ]));

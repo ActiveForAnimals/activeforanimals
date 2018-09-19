@@ -65,9 +65,9 @@
         </div>
       </div>
     </div>
-    <div class="column-2-15">
+    <div class="column-1-15 no-spacing">
     </div>
-    <div class="column-4-15 no-spacing">
+    <div class="column-5-15 no-spacing">
       {% if not logged_in %}
       <div class="column-wrapper">
         <div class="column-5-15 no-spacing">
@@ -81,14 +81,17 @@
       </div>
       {% else %}
       <div class="column-wrapper">
-        <div class="column-5-15 no-spacing">
-          {{ content.my_events_link }}
+        <div class="column-4-15 no-spacing">
+            {{ content.my_group_link }}
         </div>
-        <div class="column-5-15 no-spacing">
-          {{ content.profile_link }}
+        <div class="column-4-15 no-spacing">
+            {{ content.my_events_link }}
         </div>
-        <div class="column-5-15 no-spacing">
-          {{ content.logout_link }}
+        <div class="column-3-15 no-spacing">
+            {{ content.profile_link }}
+        </div>
+        <div class="column-4-15 no-spacing">
+            {{ content.logout_link }}
         </div>
       </div>
       {% endif %}
@@ -116,13 +119,16 @@
           </div>
         {% else %}
           <div class="column-wrapper">
-            <div class="column-5-15 no-spacing">
+            <div class="column-4-15 no-spacing">
+                {{ content.my_group_link }}
+            </div>
+            <div class="column-4-15 no-spacing">
                 {{ content.my_events_link }}
             </div>
-            <div class="column-5-15 no-spacing">
+            <div class="column-4-15 no-spacing">
                 {{ content.profile_link }}
             </div>
-            <div class="column-5-15 no-spacing">
+            <div class="column-3-15 no-spacing">
                 {{ content.logout_link }}
             </div>
           </div>

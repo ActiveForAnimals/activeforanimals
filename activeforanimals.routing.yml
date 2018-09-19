@@ -25,5 +25,15 @@ entity.user.events:
   requirements:
     _user_is_logged_in: 'TRUE'
 
+# My group.
+entity.user.group:
+  path: '/user/{user}/group'
+  defaults:
+    _controller: '\Drupal\activeforanimals\Controller\MyGroupController::gotoGroup'
+    _title: My group
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+# Static pages.
 route_callbacks:
   - '\Drupal\activeforanimals\Helper\StaticPageRoutes::routes'
