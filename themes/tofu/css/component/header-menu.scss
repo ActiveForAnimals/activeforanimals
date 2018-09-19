@@ -20,16 +20,18 @@ $header-menu-height-small: 8em;
 .header-menu .view.element-organizations,
 .header-menu .view.element-help,
 .header-menu .view.element-about,
+.header-menu .element-my_group_link,
 .header-menu .element-my_events_link,
 .header-menu .element-profile_link,
 .header-menu .element-register_link,
 .header-menu .element-login_link,
 .header-menu .element-logout_link,
+.header-menu-small .element-my_group_link,
 .header-menu-small .element-my_events_link,
 .header-menu-small .element-profile_link,
 .header-menu-small .element-register_link,
 .header-menu-small .element-login_link,
-.header-menu-small .element-logout_link{
+.header-menu-small .element-logout_link {
   margin-top: 1em;
   text-transform: uppercase;
 }
@@ -46,11 +48,12 @@ $header-menu-height-small: 8em;
   }
 }
 
+.header-menu-small .element-my_group_link,
 .header-menu-small .element-my_events_link,
 .header-menu-small .element-profile_link,
 .header-menu-small .element-register_link,
 .header-menu-small .element-login_link,
-.header-menu-small .element-logout_link{
+.header-menu-small .element-logout_link {
   @media only screen and (max-width: $medium-min-width) {
     display: none;
   }
