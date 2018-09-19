@@ -21,8 +21,28 @@
               {{ form.filter }}
               <div class="column-15-15 first-column">
                 <div class="section">
-                  {{ form.series_1_type }}
-                  {{ form.series_1_interval }}
+                  <div class="column-wrapper">
+                    <div class="column-5-15 first-column">
+                      <div class="title">
+                        {{ 'Results'|t }}
+                      </div>
+                      <div class="content">
+                        {{ form.series_1_type }}
+                        {{ form.series_1_interval }}
+                      </div>
+                    </div>
+                    <div class="column-5-15">
+                    </div>
+                    <div class="column-5-15 last-column">
+                      <div class="title">
+                        {{ 'Participants and duration'|t }}
+                      </div>
+                      <div class="content">
+                        {{ form.series_2_type }}
+                        {{ form.series_3_type }}
+                        {{ form.series_4_type }}
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>
