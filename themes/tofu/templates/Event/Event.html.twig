@@ -7,7 +7,11 @@
 #}
 <div class="section">
   <div class="title">
+    {% if content.title %}
+    {{ content.title }}
+    {% else %}
     {{ 'Event'|t }}
+    {% endif %}
   </div>
   <div class="column-wrapper">
     <div class="column-11-15 first-column">
@@ -17,7 +21,6 @@
             {{ content.map }}
           </div>
           <div class="column-15-15">
-            {{ content.title }}
             {{ content.description }}
           </div>
           {% if content.results is not empty %}
@@ -100,6 +103,14 @@
       {{ content.end_date }}
       {{ content.location }}
       {{ content.link }}
+      {% if content.photos %}
+      <div class="title">
+        {{ 'Photos'|t }}
+      </div>
+      <div class="content">
+        {{ content.photos }}
+      </div>
+      {% endif %}
       {% if content.links is not empty %}
       <div class="links">
         <div class="title">

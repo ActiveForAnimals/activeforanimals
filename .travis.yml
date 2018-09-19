@@ -15,6 +15,7 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_ENCODE='utf8'
+    - DRUPAL_VERSION = '8.6.1'
     - DRUPAL_PATH='/home/travis/build/drupal'
     - PROFILE_PATH='/home/travis/build/drupal/profiles'
     - MODULE_PATH='/home/travis/build/drupal/modules'
@@ -39,12 +40,13 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal-8.5.6 --destination=~/build --drupal-project-rename="drupal"
+  - ~/.composer/vendor/bin/drush dl drupal-$DRUPAL_VERSION --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
   - git clone --branch development https://github.com/EffectiveActivism/effective_activism.git $MODULE_PATH/effective_activism
   - git clone --branch 8.x-1.x https://git.drupal.org/project/inline_entity_form.git $MODULE_PATH/inline_entity_form
+  - git clone --branch 8.x-1.x https://git.drupal.org/project/imagefield_slideshow.git $MODULE_PATH/imagefield_slideshow
   # Apply patches.
   - cd $MODULE_PATH/inline_entity_form
   - wget -q https://www.drupal.org/files/issues/inline_entity_form-include-access-check-2929727-4_0.patch
