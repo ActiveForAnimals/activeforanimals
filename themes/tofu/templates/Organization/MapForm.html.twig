@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Map form template.
+ *
+ */
+#}
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+<div class="section">
+  <div class="title">
+    Map
+  </div>
+  <div class="column-wrapper">
+    <div class="column-15-15 first-column last-column">
+      <div class="content">
+        <div class="column-wrapper">
+          <div class="section">
+            <div class="column-15-15 first-column last-column">
+              {{ form.filter }}
+              <div class="column-15-15 first-column">
+                <div class="section">
+                  <div class="column-wrapper">
+                    <div class="column-5-15 first-column">
+                      <div class="title">
+                        {{ 'Map type'|t }}
+                      </div>
+                      <div class="content">
+                        {{ form.map_type }}
+                      </div>
+                    </div>
+                    <div class="column-5-15">
+                    </div>
+                    <div class="column-5-15 last-column">
+                      <div class="title">
+                          {{ 'Results'|t }}
+                      </div>
+                      <div class="content">
+                          {{ form.data_type }}
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column-wrapper">
+          <div class="section">
+            <div class="column-15-15">
+              <div class="content">
+                {{ form.submit }}
+              </div>
+            </div>
+            <div class="column-15-15">
+              <div class="content spacing-top">
+                {{ form.map }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

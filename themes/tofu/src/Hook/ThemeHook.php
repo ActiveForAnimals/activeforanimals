@@ -22,7 +22,7 @@ class ThemeHook implements HookInterface {
   /**
    * An instance of this class.
    *
-   * @var HookImplementation
+   * @var \Drupal\tofu\Hook\HookInterface
    */
   private static $instance;
 

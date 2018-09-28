@@ -12,7 +12,7 @@ interface HookInterface {
   /**
    * Return an instance of this class.
    *
-   * @return HookImplementation
+   * @return \Drupal\tofu\Hook\HookInterface
    *   Instance of this class.
    */
   public static function getInstance();

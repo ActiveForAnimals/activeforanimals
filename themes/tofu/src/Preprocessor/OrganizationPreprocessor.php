@@ -90,6 +90,11 @@ class OrganizationPreprocessor extends Preprocessor implements PreprocessorInter
           'organization' => PathHelper::transliterate($organization->label()),
         ]
       ));
+      $this->variables['content']['links']['map'] = $this->wrapElement(t('View map'), 'view_map', new Url(
+        'entity.organization.map', [
+          'organization' => PathHelper::transliterate($organization->label()),
+        ]
+      ));
       $this->variables['content']['links']['manage_results'] = $this->wrapElement(t('Manage results'), 'manage_results', new Url(
         'entity.organization.result_types', [
           'organization' => PathHelper::transliterate($organization->label()),
