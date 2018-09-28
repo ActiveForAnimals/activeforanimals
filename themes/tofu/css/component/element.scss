@@ -198,6 +198,11 @@
   background-image: url(../images/result.svg);
 }
 
+.view.element-view_map {
+  @extend %element-icon;
+  background-image: url(../images/map.svg);
+}
+
 .view.element-manage_results {
   @extend %element-icon;
   background-image: url(../images/result.svg);

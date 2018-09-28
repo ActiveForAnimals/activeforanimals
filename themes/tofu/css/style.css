@@ -602,6 +602,7 @@ input.form-submit:focus,
 .view.element-edit_page,
 .view.element-manage_groups,
 .view.element-view_results,
+.view.element-view_map,
 .view.element-manage_results,
 .view.element-add_organization,
 .view.element-add_group,
@@ -797,6 +798,10 @@ input.form-submit:focus,
 
 .view.element-view_results {
   background-image: url(../images/result.svg);
+}
+
+.view.element-view_map {
+  background-image: url(../images/map.svg);
 }
 
 .view.element-manage_results {
