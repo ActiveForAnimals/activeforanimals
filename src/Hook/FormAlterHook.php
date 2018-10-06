@@ -17,7 +17,7 @@ class FormAlterHook implements HookInterface {
   /**
    * An instance of this class.
    *
-   * @var HookImplementation
+   * @var \Drupal\activeforanimals\Hook\HookInterface
    */
   private static $instance;
 
