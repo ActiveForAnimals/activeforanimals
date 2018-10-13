@@ -16,6 +16,8 @@ class FilterFormPreprocessor extends Preprocessor implements PreprocessorInterfa
     $this->variables['form']['end_date'] = $this->wrapFormElement($this->variables['form']['end_date'], 'end_date');
     $this->variables['form']['event_templates'] = $this->wrapFormElement($this->variables['form']['event_templates'], 'event_templates');
     $this->variables['form']['result_types'] = $this->wrapFormElement($this->variables['form']['result_types'], 'result_types');
+    $this->variables['form']['location'] = $this->wrapFormElement($this->variables['form']['location'], 'location');
+    $this->variables['form']['location_precision'] = $this->wrapFormElement($this->variables['form']['location_precision'], 'location_precision');
     $this->variables['help_button'] = [
       '#id' => 'activeforanimals_help',
       '#type' => 'button',
