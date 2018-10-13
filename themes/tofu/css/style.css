@@ -589,6 +589,8 @@ input.form-submit:focus,
 .form.element-email_address input,
 .view.element-location,
 .form.element-location .address,
+.view.element-location-precision,
+.form.element-location-precision,
 .view.element-event_location,
 .form.element-event_location .address,
 .form.element-location .extra-information,
@@ -602,6 +604,7 @@ input.form-submit:focus,
 .view.element-edit_page,
 .view.element-manage_groups,
 .view.element-view_results,
+.view.element-view_map,
 .view.element-manage_results,
 .view.element-add_organization,
 .view.element-add_group,
@@ -797,6 +800,10 @@ input.form-submit:focus,
 
 .view.element-view_results {
   background-image: url(../images/result.svg);
+}
+
+.view.element-view_map {
+  background-image: url(../images/map.svg);
 }
 
 .view.element-manage_results {
@@ -1198,11 +1205,13 @@ input.form-submit:focus,
 .header-menu .view.element-organizations,
 .header-menu .view.element-help,
 .header-menu .view.element-about,
+.header-menu .element-my_group_link,
 .header-menu .element-my_events_link,
 .header-menu .element-profile_link,
 .header-menu .element-register_link,
 .header-menu .element-login_link,
 .header-menu .element-logout_link,
+.header-menu-small .element-my_group_link,
 .header-menu-small .element-my_events_link,
 .header-menu-small .element-profile_link,
 .header-menu-small .element-register_link,
@@ -1223,6 +1232,7 @@ input.form-submit:focus,
 } }
 
 @media only screen and (max-width: 1024px) {
+  .header-menu-small .element-my_group_link,
   .header-menu-small .element-my_events_link,
   .header-menu-small .element-profile_link,
   .header-menu-small .element-register_link,

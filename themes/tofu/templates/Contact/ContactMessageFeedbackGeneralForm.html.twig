@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * General feedback contact page.
+ *
+ */
+#}
+<form{{ attributes }}>
+    {{ form.form_build_id }}
+    {{ form.form_token }}
+    {{ form.form_id }}
+    <div class="section">
+        <div class="title">
+            {{ 'Feedback'|t }}
+        </div>
+        <div class="content">
+            <div class="section">
+                <div class="content">
+                    {{ form.field_feedback_rating }}
+                </div>
+            </div>
+            <div class="section">
+                <div class="content">
+                    {{ form.field_feedback_message }}
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            {{ form.actions.submit }}
+        </div>
+    </div>
+</form>

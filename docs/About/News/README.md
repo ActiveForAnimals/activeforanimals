@@ -3,6 +3,18 @@
 This archive contains features, announcements and other information sent by
 our newsletter.
 
+<!--2018-09-09.md-->
+---
+<!--2018-08-26.md-->
+---
+<!--2018-08-12.md-->
+---
+<!--2018-07-29.md-->
+---
+<!--2018-07-15.md-->
+---
+<!--2018-07-08.md-->
+---
 <!--2018-07-01.md-->
 ---
 <!--2018-05-06.md-->

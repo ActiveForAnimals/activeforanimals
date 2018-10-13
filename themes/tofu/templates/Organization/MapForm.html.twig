@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Chart form template.
+ * Map form template.
  *
  */
 #}
@@ -10,7 +10,7 @@
 {{ form.form_id }}
 <div class="section">
   <div class="title">
-    Result overview
+    Map
   </div>
   <div class="column-wrapper">
     <div class="column-15-15 first-column last-column">
@@ -24,23 +24,20 @@
                   <div class="column-wrapper">
                     <div class="column-5-15 first-column">
                       <div class="title">
-                        {{ 'Results'|t }}
+                        {{ 'Map type'|t }}
                       </div>
                       <div class="content">
-                        {{ form.series_1_type }}
-                        {{ form.series_1_interval }}
+                        {{ form.map_type }}
                       </div>
                     </div>
                     <div class="column-5-15">
                     </div>
                     <div class="column-5-15 last-column">
                       <div class="title">
-                        {{ 'Participants and duration'|t }}
+                          {{ 'Results'|t }}
                       </div>
                       <div class="content">
-                        {{ form.series_2_type }}
-                        {{ form.series_3_type }}
-                        {{ form.series_4_type }}
+                          {{ form.data_type }}
                       </div>
                     </div>
                 </div>
@@ -48,9 +45,20 @@
             </div>
           </div>
         </div>
-        {{ form.submit }}
-        {{ form.chart }}
-        {{ form.select }}
+        <div class="column-wrapper">
+          <div class="section">
+            <div class="column-15-15">
+              <div class="content">
+                {{ form.submit }}
+              </div>
+            </div>
+            <div class="column-15-15">
+              <div class="content spacing-top">
+                {{ form.map }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

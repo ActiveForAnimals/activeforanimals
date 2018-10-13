@@ -22,7 +22,7 @@ class ThemeHook implements HookInterface {
   /**
    * An instance of this class.
    *
-   * @var HookImplementation
+   * @var \Drupal\tofu\Hook\HookInterface
    */
   private static $instance;
 
@@ -120,7 +120,10 @@ class ThemeHook implements HookInterface {
       'render element' => 'form',
       'template' => 'User/UserLoginForm',
     ];
-
+    $theme['contact_message_feedback_general_form'] = [
+      'render element' => 'form',
+      'template' => 'Contact/ContactMessageFeedbackGeneralForm',
+    ];
     return $theme;
   }
 
