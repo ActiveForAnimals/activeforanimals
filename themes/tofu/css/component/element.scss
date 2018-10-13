@@ -130,6 +130,11 @@
   background-image: url(../images/address.svg);
 }
 
+.view.element-location-precision,
+.form.element-location-precision {
+  @extend %element-icon;
+}
+
 .view.element-event_location,
 .form.element-event_location .address {
   @extend %element-icon;

@@ -26,6 +26,7 @@ class FilterPreprocessor extends Preprocessor implements PreprocessorInterface {
     $this->variables['content']['start_date'] = $filter->get('start_date')->isEmpty() ? NULL : $this->wrapField($filter->get('start_date'));
     $this->variables['content']['end_date'] = $filter->get('end_date')->isEmpty() ? NULL : $this->wrapField($filter->get('end_date'));
     $this->variables['content']['location'] = $filter->get('location')->isEmpty() ? NULL : $this->wrapField($filter->get('location'));
+    $this->variables['content']['location_precision'] = $filter->get('location_precision')->isEmpty() ? NULL : $this->wrapField($filter->get('location_precision'));
     $this->variables['content']['event_count'] = $this->wrapElement(Drupal::translation()->formatPlural(
       count(FilterHelper::getEvents($filter, 0, 0, FALSE)),
         'One event',
