@@ -671,6 +671,10 @@ input.form-submit:focus,
   height: auto;
 }
 
+.view.element-photos {
+  min-height: 320px;
+}
+
 .form.element-photos {
   width: 100%;
   overflow: hidden;
