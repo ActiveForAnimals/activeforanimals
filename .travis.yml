@@ -15,7 +15,7 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_ENCODE='utf8'
-    - DRUPAL_VERSION = '8.6.3'
+    - DRUPAL_VERSION = '8.6.4'
     - DRUPAL_PATH='/home/travis/build/drupal'
     - PROFILE_PATH='/home/travis/build/drupal/profiles'
     - MODULE_PATH='/home/travis/build/drupal/modules'
@@ -40,7 +40,7 @@ before_script:
   # Disable xdebug.
   - phpenv config-rm xdebug.ini
   # Download drupal.
-  - ~/.composer/vendor/bin/drush dl drupal-$DRUPAL_VERSION --destination=~/build --drupal-project-rename="drupal"
+  - ~/.config/composer/vendor/bin/drush dl drupal-$DRUPAL_VERSION --destination=~/build --drupal-project-rename="drupal"
   # Symlink current build to Drupal test installation.
   - ln -s /home/travis/build/ActiveForAnimals/activeforanimals $PROFILE_PATH
   # Add modules.
@@ -57,17 +57,17 @@ before_script:
   # Install drupal.
   - composer update
   - composer install
-  - ~/.composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
-  - ~/.composer/vendor/bin/drush --yes en simpletest
+  - ~/.config/composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
+  - ~/.config/composer/vendor/bin/drush --yes en simpletest
   # Start a webserver in the background and wait for initialization.
-  - ~/.composer/vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
+  - ~/.config/composer/vendor/bin/drush runserver $SIMPLETEST_BASE_URL &
   - sleep 5
   # Setup phpcs.
-  - ~/.composer/vendor/bin/phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer
+  - ~/.config/composer/vendor/bin/phpcs --config-set installed_paths ~/.config/composer/vendor/drupal/coder/coder_sniffer
 
 script:
-  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
-  - ~/.composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
-  #- ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
-  #- ~/.composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
+  - ~/.config/composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
+  - ~/.config/composer/vendor/bin/phpcs --standard=Drupal --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
+  #- ~/.config/composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $MODULE_PATH/effective_activism/ --ignore=*/vendor/*
+  #- ~/.config/composer/vendor/bin/phpcs --standard=DrupalPractice --runtime-set ignore_warnings_on_exit true --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md $PROFILE_PATH/activeforanimals/ --ignore=*/vendor/*
   - php core/scripts/run-tests.sh --suppress-deprecations --php $(which php) --color --url $SIMPLETEST_BASE_URL --verbose activeforanimals
