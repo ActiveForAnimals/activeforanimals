@@ -1,0 +1,5 @@
+name: 'AFA Facebook event listener'
+type: module
+description: 'Listens for new Facebook events using the Facebook webhooks (https://developers.facebook.com/docs/graph-api/webhooks/getting-started).'
+core: 8.x
+package: 'Active for Animals'

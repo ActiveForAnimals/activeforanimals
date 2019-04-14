@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.facebook_group
+  module:
+    - user
+id: user.user.facebook_group
+field_name: facebook_group
+entity_type: user
+bundle: user
+label: 'Facebook Group'
+description: 'The group to import events into.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:group'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

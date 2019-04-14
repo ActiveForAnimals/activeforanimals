@@ -415,7 +415,9 @@
   background-image: url(../images/organization.svg);
 }
 
-.form.element-password .description {
+.form.element-password .description,
+.form.element-facebook_id .description,
+.form.element-facebook_group .description {
   display: block;
 }
 

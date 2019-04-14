@@ -345,4 +345,25 @@ class Settings {
     return $key;
   }
 
+  /**
+   * Return the Facebook verify token.
+   *
+   * @return null|string
+   */
+  public static function getFacebookVerifyToken() {
+    $data = self::getSettings();
+    $key = isset($data['facebook_verify_token']) ? $data['facebook_verify_token'] : NULL;
+    return $key;
+  }
+
+  /**
+   * Return the Facebook verify token.
+   *
+   * @return null|string
+   */
+  public static function getFacebookAppSecret() {
+    $data = self::getSettings();
+    $key = isset($data['facebook_app_secret']) ? $data['facebook_app_secret'] : NULL;
+    return $key;
+  }
 }

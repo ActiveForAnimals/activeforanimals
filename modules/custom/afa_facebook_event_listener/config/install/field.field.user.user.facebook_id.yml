@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.facebook_id
+  module:
+    - user
+id: user.user.facebook_id
+field_name: facebook_id
+entity_type: user
+bundle: user
+label: 'Facebook Id'
+description: 'To import events from Facebook, you need to input your Facebook profile ID. To see how, follow <a href="https://www.facebook.com/help/1397933243846983">these instructions</a> (facebook.com).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

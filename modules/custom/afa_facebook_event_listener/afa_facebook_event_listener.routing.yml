@@ -1,0 +1,7 @@
+afa_facebook_event_listener.webhook:
+  path: '/fb-webhook'
+  defaults:
+    _controller: '\Drupal\afa_facebook_event_listener\Controller\WebHookController::content'
+    _title: Active for Animals
+  requirements:
+    _permission: 'access content'
