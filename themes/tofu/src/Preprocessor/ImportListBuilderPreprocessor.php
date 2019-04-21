@@ -38,6 +38,13 @@ class ImportListBuilderPreprocessor extends Preprocessor implements Preprocessor
         'import_type' => 'icalendar',
       ]
     ));
+    $this->variables['content']['create_facebook_link'] = $this->wrapElement(t('Create Facebook event import'), 'add_import', new Url(
+      'entity.import.add_form', [
+          'organization' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['organization']->label()),
+          'group' => PathHelper::transliterate($this->variables['elements']['#storage']['entities']['group']->label()),
+          'import_type' => 'facebook',
+      ]
+    ));
     $this->variables['content']['empty'] = t('No imports created yet.');
     $this->variables['content']['pager'] = $this->variables['elements']['pager'];
     foreach ($this->variables['elements']['#storage']['entities']['imports'] as $import) {

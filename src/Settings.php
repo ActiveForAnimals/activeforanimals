@@ -345,4 +345,34 @@ class Settings {
     return $key;
   }
 
+  /**
+   * Return Facebook verify token.
+   *
+   * @return string
+   *   The api key.
+   */
+  public static function getFacebookVerifyToken() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      $key = isset($data['facebook_verify_token']) ? $data['facebook_verify_token'] : NULL;
+    }
+    return $key;
+  }
+
+
+  /**
+   * Return Facebook App secret.
+   *
+   * @return string
+   *   The api key.
+   */
+  public static function getFacebookAppSecret() {
+    $key = NULL;
+    if (defined('PANTHEON_ENVIRONMENT')) {
+      $data = self::getSettings();
+      $key = isset($data['facebook_app_secret']) ? $data['facebook_app_secret'] : NULL;
+    }
+    return $key;
+  }
 }
