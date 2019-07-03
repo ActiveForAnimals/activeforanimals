@@ -10,6 +10,9 @@ php:
 
 matrix:
 
+services:
+  - mysql
+
 env:
   global:
     - DATABASE='drupal'
