@@ -13,12 +13,32 @@ use Drupal\user\Entity\User;
  */
 class CreateExport {
 
+  /**
+   * Organization.
+   *
+   * @var \Drupal\effective_activism\Entity\Organization
+   */
   private $organization;
 
+  /**
+   * Filter.
+   *
+   * @var \Drupal\effective_activism\Entity\Filter
+   */
   private $filter;
 
+  /**
+   * Manager.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $manager;
 
+  /**
+   * File.
+   *
+   * @var \Drupal\file\Entity\File
+   */
   private $file;
 
   /**

@@ -7,7 +7,6 @@ use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
 use Drupal\effective_activism\Constant as EffectiveActivismConstant;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
-use Drupal\effective_activism\Entity\Organization;
 use Drupal\simpletest\WebTestBase;
 
 /**

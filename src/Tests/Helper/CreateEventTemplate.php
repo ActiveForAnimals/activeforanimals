@@ -15,10 +15,25 @@ class CreateEventTemplate {
   const EVENT_TITLE = 'A sample event title';
   const EVENT_DESCRIPTION = 'A sample event description';
 
+  /**
+   * Organization.
+   *
+   * @var \Drupal\effective_activism\Entity\Organization
+   */
   private $organization;
 
+  /**
+   * Manager.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $manager;
 
+  /**
+   * Title.
+   *
+   * @var string|null
+   */
   private $title;
 
   /**

@@ -9,8 +9,6 @@ use Drupal\activeforanimals\Tests\Helper\CreateGroup;
 use Drupal\activeforanimals\Tests\Helper\CreateImport;
 use Drupal\activeforanimals\Tests\Helper\CreateExport;
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
-use Drupal\effective_activism\Entity\Group;
-use Drupal\effective_activism\Entity\Organization;
 use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;
 

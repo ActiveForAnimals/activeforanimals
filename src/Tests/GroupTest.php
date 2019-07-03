@@ -3,7 +3,6 @@
 namespace Drupal\activeforanimals\Tests;
 
 use Drupal\activeforanimals\Tests\Helper\CreateOrganization;
-use Drupal\effective_activism\Entity\Group;
 use Drupal\effective_activism\Helper\OrganizationHelper;
 use Drupal\effective_activism\Helper\PathHelper;
 use Drupal\simpletest\WebTestBase;

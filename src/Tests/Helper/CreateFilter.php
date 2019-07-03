@@ -13,10 +13,25 @@ class CreateFilter {
 
   const TITLE = 'Test filter';
 
+  /**
+   * Organization.
+   *
+   * @var \Drupal\effective_activism\Entity\Organization
+   */
   private $organization;
 
+  /**
+   * Manager.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $manager;
 
+  /**
+   * Title.
+   *
+   * @var string|null
+   */
   private $title;
 
   /**
