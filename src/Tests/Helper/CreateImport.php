@@ -12,10 +12,25 @@ use Drupal\user\Entity\User;
  */
 class CreateImport {
 
+  /**
+   * Group.
+   *
+   * @var \Drupal\effective_activism\Entity\Group
+   */
   private $group;
 
+  /**
+   * Organizer.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $organizer;
 
+  /**
+   * File.
+   *
+   * @var \Drupal\file\FileInterface|false
+   */
   private $file;
 
   /**

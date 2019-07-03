@@ -13,8 +13,18 @@ class CreateEvent {
 
   const TITLE = 'Test event';
 
+  /**
+   * Timezone.
+   *
+   * @var string
+   */
   private $timezone;
 
+  /**
+   * Values.
+   *
+   * @var array
+   */
   private $values;
 
   /**

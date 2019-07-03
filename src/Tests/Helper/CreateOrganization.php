@@ -18,12 +18,32 @@ class CreateOrganization {
 
   const TITLE = 'Test organization';
 
+  /**
+   * Manager.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $manager;
 
+  /**
+   * Organizer.
+   *
+   * @var \Drupal\user\Entity\User
+   */
   private $organizer;
 
+  /**
+   * Title.
+   *
+   * @var string|null
+   */
   private $title;
 
+  /**
+   * Timezone.
+   *
+   * @var array|mixed|null
+   */
   private $timezone;
 
   /**

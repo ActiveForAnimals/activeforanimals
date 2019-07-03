@@ -9,6 +9,11 @@ use Parsedown;
  */
 class Markdown {
 
+  /**
+   * Parser.
+   *
+   * @var \Parsedown
+   */
   private $parser;
 
   /**

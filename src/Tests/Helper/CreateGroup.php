@@ -16,10 +16,25 @@ class CreateGroup {
   const TITLE = 'Test group';
   const TIMEZONE = 'inherit';
 
+  /**
+   * Organization.
+   *
+   * @var \Drupal\effective_activism\Entity\Organization
+   */
   private $organization;
 
+  /**
+   * Timezone.
+   *
+   * @var string
+   */
   private $timezone;
 
+  /**
+   * Title.
+   *
+   * @var string|null
+   */
   private $title;
 
   /**

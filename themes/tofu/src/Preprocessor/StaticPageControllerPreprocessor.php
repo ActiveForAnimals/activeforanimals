@@ -15,14 +15,39 @@ use Drupal\tofu\Parser\Markdown;
  */
 class StaticPageControllerPreprocessor extends Preprocessor implements PreprocessorInterface {
 
+  /**
+   * Structure.
+   *
+   * @var \DOMDocument
+   */
   private $structure;
 
+  /**
+   * Filepath.
+   *
+   * @var string
+   */
   private $filepath;
 
+  /**
+   * Filename.
+   *
+   * @var string
+   */
   private $filename;
 
+  /**
+   * Image path.
+   *
+   * @var string
+   */
   private $imagepath;
 
+  /**
+   * Parser.
+   *
+   * @var \Drupal\tofu\Parser\Markdown
+   */
   private $parser;
 
   /**
