@@ -18,7 +18,7 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_ENCODE='utf8'
-    - DRUPAL_VERSION = '8.7.3'
+    - DRUPAL_VERSION = '8.7.5'
     - DRUPAL_PATH='/home/travis/build/drupal'
     - PROFILE_PATH='/home/travis/build/drupal/profiles'
     - MODULE_PATH='/home/travis/build/drupal/modules'
