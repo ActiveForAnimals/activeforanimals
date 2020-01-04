@@ -57,10 +57,10 @@ before_script:
   # Add theme dependencies.
   - cd $DRUPAL_PATH
   - sed -ie 's/"core\/composer.json"/"core\/composer.json",\n                "profiles\/activeforanimals\/themes\/tofu\/composer.json"/g' composer.json
+  - cat composer.json
   # Install drupal.
   - composer require phpunit/phpunit --dev
   - composer update
-  - composer install
   - ~/.config/composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
   - ~/.config/composer/vendor/bin/drush --yes en simpletest
   # Start a webserver in the background and wait for initialization.
