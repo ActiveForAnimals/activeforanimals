@@ -18,7 +18,7 @@ env:
     - DATABASE='drupal'
     - DB_USERNAME='root'
     - DB_ENCODE='utf8'
-    - DRUPAL_VERSION = '8.7.10'
+    - DRUPAL_VERSION = '8.8.1'
     - DRUPAL_PATH='/home/travis/build/drupal'
     - PROFILE_PATH='/home/travis/build/drupal/profiles'
     - MODULE_PATH='/home/travis/build/drupal/modules'
@@ -56,10 +56,10 @@ before_script:
   - patch -p1 < inline_entity_form-include-access-check-2929727-4_0.patch
   # Add theme dependencies.
   - cd $DRUPAL_PATH
-  - sed -ie 's/"core\/composer.json"/"core\/composer.json",\n                "profiles\/activeforanimals\/themes\/tofu\/composer.json"/g' composer.json
   # Install drupal.
+  - composer require phpunit/phpunit --dev
+  - composer require erusev/parsedown "^1.6.2"
   - composer update
-  - composer install
   - ~/.config/composer/vendor/bin/drush --yes site-install activeforanimals --db-url="mysql://$DB_USERNAME@127.0.0.1/$DATABASE" install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
   - ~/.config/composer/vendor/bin/drush --yes en simpletest
   # Start a webserver in the background and wait for initialization.
